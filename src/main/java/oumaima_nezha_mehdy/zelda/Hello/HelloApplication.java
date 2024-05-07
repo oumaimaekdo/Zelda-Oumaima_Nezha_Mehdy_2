@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda;
+package oumaima_nezha_mehdy.zelda.Hello;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
