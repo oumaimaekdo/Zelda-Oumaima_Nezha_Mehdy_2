@@ -32,13 +32,11 @@ public class Controleur implements Initializable {
                 Rectangle rectangle = new Rectangle(20, 20);
                 switch (map[x][y]) {
                     case 0:
-                        rectangle.setFill(Color.RED);
+                        rectangle.setFill(Color.OLIVE);
                         break;
                     case 1:
-                        rectangle.setFill(Color.BLUE);
+                        rectangle.setFill(Color.BEIGE);
                 }
-
-                this.map.getChildren().add(rectangle);
             }
         }
     }
