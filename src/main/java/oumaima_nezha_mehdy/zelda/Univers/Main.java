@@ -7,19 +7,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Map map = new Map(10,10);
+        Champ champ = new Champ(10,10);
 
-        map.afficherMap();
+        champ.afficherMap();
 
-        Acteur a = new Acteur("Link",map);
-        map.ajouterActeur(a);
+        Acteur a = new Acteur("Link", champ);
+        champ.ajouterActeur(a);
         System.out.println("\n \n \n" );
-        map.afficherMap();
+        champ.afficherMap();
         String c = "aeaz";
         while(!c.equals("quit")) {
             c = sc.nextLine();
             a.seDeplacer(c);
-            map.afficherMap();
+            champ.afficherMap();
         }
 
 

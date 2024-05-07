@@ -3,7 +3,7 @@ package oumaima_nezha_mehdy.zelda.Univers;
 
 import java.util.ArrayList;
 
-public class Map {
+public class Champ {
 
     private int[][] champ;
 
@@ -11,16 +11,20 @@ public class Map {
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
+    private Acteur link;
+
     private int longueur;
 
     private int largeur;
-    public Map(int L , int l){
+    public Champ(int L , int l){
         this.largeur=l;
         this.longueur=L;
-
         this.champ = new int[l][L];
-
+        this.link = new Acteur("Link",0,0,this);
+        listActeur.add(link);
         genererMap();
+        raffraichirMap();
+
     }
 
 
@@ -67,7 +71,15 @@ public class Map {
         }
 
     }
+    public int[][] getChamp(){return champ;}
 
+    public ArrayList<Acteur> getListActeur() {
+        return listActeur;
+    }
+
+    public Acteur getLink() {
+        return link;
+    }
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}
