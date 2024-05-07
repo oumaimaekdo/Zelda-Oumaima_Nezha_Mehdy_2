@@ -1,5 +1,5 @@
 package oumaima_nezha_mehdy.zelda;
-import com.example.zelda_bo_hazard.modele.Environnement;
+import oumaima_nezha_mehdy.zelda.modele.Environnement;
 
 public class Lancement {
 

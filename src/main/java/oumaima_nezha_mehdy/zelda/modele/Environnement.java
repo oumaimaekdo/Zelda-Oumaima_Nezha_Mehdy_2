@@ -16,8 +16,8 @@ public class Environnement {
     public int[][] TileMap(int ligne, int colonne){
         this.map = new int[ligne][colonne];
         for(int i = 0; i< ligne; i++){
-            for(int y = 0; y< colonne; i++){
-                this.map[i][y] = (int) Math.floor(Math.random() * 2);
+            for(int y = 0; y< colonne; y++){
+                this.map[i][y] = 1;
             }
         }
 

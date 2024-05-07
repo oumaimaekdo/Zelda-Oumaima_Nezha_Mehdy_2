@@ -1,6 +1,7 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
-import com.example.zelda_bo_hazard.modele.Environnement;
+import javafx.scene.layout.TilePane;
+import oumaima_nezha_mehdy.zelda.modele.Environnement;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -13,7 +14,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
 
     @FXML
-    private GridPane map;
+    private TilePane map;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,6 +37,8 @@ public class Controleur implements Initializable {
                     case 1:
                         rectangle.setFill(Color.BLUE);
                 }
+
+                this.map.getChildren().add(rectangle);
             }
         }
     }
