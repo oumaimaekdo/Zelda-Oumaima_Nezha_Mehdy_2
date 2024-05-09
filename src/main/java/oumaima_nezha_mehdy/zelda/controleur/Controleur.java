@@ -106,21 +106,6 @@ public class Controleur implements Initializable {
     }
 
 
-    public void ajouterRectangle(Acteur a, Color c) {
-        Rectangle rectangle = new Rectangle(20, 20);
-        rectangle.setWidth(65);
-        rectangle.setHeight(65);
-        rectangle.setFill(Color.BLUE);
-        rectangle.setTranslateX(a.getX());
-        rectangle.setTranslateY(a.getY());
-        rectangle.translateXProperty().bind(a.getXProperty());
-        rectangle.translateYProperty().bind(a.getYProperty());
-    }
-    public void ajouterRectangle(Color c) {
-        Rectangle rectangle = new Rectangle(20, 20);
-        rectangle.setWidth(65);
-        rectangle.setHeight(65);
-        rectangle.setFill(c);
-    }
+
 }
 
