@@ -32,11 +32,11 @@ public class Champ {
         for(int i=0; i<champ.length;i++)
             for (int j =0;j<champ[i].length ; j++){
                 if(Math.random()>0.25) {
-                    listBloc.add(new Terre(i, j));
+                    listBloc.add(new Terre(j, i));
                     champ[i][j]=0;
                 }
                 else {
-                    listBloc.add(new Mur(i, j));
+                    listBloc.add(new Mur(j, i));
                     champ[i][j]=1;
                 }
             }
@@ -59,18 +59,35 @@ public class Champ {
         }
     }
 
-    private void raffraichirMap(){
-        for(Bloc b : listBloc) {
-            if(b.getpassable())
-                champ[b.getY()][b.getX()] = 0;
-            else
-                champ[b.getY()][b.getX()] = 1;
-        }
-        for(Acteur a : listActeur){
-            champ[a.getY()][a.getX()] = 2;
+    private void raffraichirMap() {
+        // Réinitialiser champ à 0
+        for (int i = 0; i < champ.length; i++) {
+            for (int j = 0; j < champ[i].length; j++) {
+                champ[i][j] = 0;
+            }
         }
 
+        for (Bloc b : listBloc) {
+            int x = b.getX();
+            int y = b.getY();
+            if (x >= 0 && x < champ[0].length && y >= 0 && y < champ.length) {
+                if (b.getpassable()) {
+                    champ[y][x] = 0;
+                } else {
+                    champ[y][x] = 1;
+                }
+            }
+        }
+
+        for (Acteur a : listActeur) {
+            int x = a.getX();
+            int y = a.getY();
+            if (x >= 0 && x < champ[0].length && y >= 0 && y < champ.length) {
+                champ[y][x] = 2;
+            }
+        }
     }
+
     public int[][] getChamp(){return champ;}
 
     public ArrayList<Acteur> getListActeur() {

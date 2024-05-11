@@ -2,11 +2,12 @@ package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
@@ -14,12 +15,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import org.controlsfx.control.spreadsheet.Grid;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
 public class Controleur implements Initializable {
 
     @FXML
-    private Pane map;
+    private GridPane map;
 
     private Champ champ;
 
@@ -28,7 +30,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.champ = new Champ(25, 25);
+        this.champ = new Champ(30, 20);
         CreationMap();
         champ.afficherMap();
 
@@ -42,16 +44,15 @@ public class Controleur implements Initializable {
     public void CreationMap() {
         int[][] carte = champ.getChamp();
         tabRectangle = new Rectangle[carte.length][carte[0].length];
-        for (int x = 0; x < carte.length; x++) {
-            for (int y = 0; y < carte[x].length; y++) {
+        for (int y = 0; y < carte.length; y++) {
+            for (int x = 0; x < carte[y].length; x++) {
                 Rectangle rectangle = new Rectangle(20, 20);
-                this.map.getChildren().add(rectangle);
                 rectangle.setId(String.valueOf(x+y));
                 rectangle.setWidth(65);
                 rectangle.setHeight(65);
-
-                tabRectangle[x][y] = rectangle;
-                switch (carte[x][y]) {
+                map.add(rectangle, x, y);
+                tabRectangle[y][x] = rectangle;
+                switch (carte[y][x]) {
                     case 0:
                         rectangle.setFill(Color.GREEN);
                         break;
@@ -82,23 +83,23 @@ public class Controleur implements Initializable {
 
         champ.afficherMap();
         System.out.println(champ.getLink().getX()+","+champ.getLink().getY());
+        tabRectangle[1][1].setFill(Color.VIOLET);
         raffraichir();
-
     }
 
     public void raffraichir() {
         int[][] carte = champ.getChamp();
-        for (int x = 0; x < carte.length; x++) {
-            for (int y = 0; y < carte[x].length; y++) {
-                switch (carte[x][y]) {
+        for (int y = 0; y < carte.length; y++) {
+            for (int x = 0; x < carte[y].length; x++) {
+                switch (carte[y][x]) {
                     case 0:
-                        tabRectangle[x][y].setFill(Color.GREEN);
+                        tabRectangle[y][x].setFill(Color.GREEN);
                         break;
                     case 1:
-                        tabRectangle[x][y].setFill(Color.BLACK);
+                        tabRectangle[y][x].setFill(Color.BLACK);
                         break;
                     case 2:
-                        tabRectangle[x][y].setFill(Color.BLUE);
+                        tabRectangle[y][x].setFill(Color.BLUE);
                         break;
                 }
             }

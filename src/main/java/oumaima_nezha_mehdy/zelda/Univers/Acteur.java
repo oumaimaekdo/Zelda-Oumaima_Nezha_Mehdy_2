@@ -25,21 +25,32 @@ public class Acteur {
     }
 
     public void seDeplacer(String direction) {
+        int x2base,y2base;
+        x2base = this.x.getValue();
+        y2base = this.y.getValue();
         switch (direction) {
             case "nord":
-                this.y.set(this.y.getValue()-1);
+                    this.y.set(this.y.getValue()-1);
                 break;
             case "sud":
-                this.y.set(this.y.getValue()+1);
+                    this.y.set(this.y.getValue()+1);
                 break;
             case "ouest":
-                this.x.set(this.x.getValue()-1);
+                    this.x.set(this.x.getValue()-1);
                 break;
             case "est":
-                this.x.set(this.x.getValue()+1);
+                    this.x.set(this.x.getValue()+1);
                 break;
             default:
         }
+        if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
+            this.x.set(x2base);
+            this.y.set(y2base);
+        }
+
+    }
+    private boolean coordonnéPossible(int x,int y){
+        return x>=0&&y>=0&&x<this.champ.getLongueur()&&y<this.champ.getLargeur()&&this.champ.getChamp()[y][x]==0;
     }
 
     public int getX(){return x.getValue();}
