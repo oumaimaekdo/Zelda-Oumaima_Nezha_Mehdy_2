@@ -6,9 +6,12 @@ import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.awt.*;
 import java.net.URL;
@@ -39,8 +42,6 @@ public class Controleur implements Initializable {
         });
     }
 
-
-
     public void CreationMap() {
         int[][] carte = champ.getChamp();
         tabRectangle = new Rectangle[carte.length][carte[0].length];
@@ -52,12 +53,18 @@ public class Controleur implements Initializable {
                 rectangle.setHeight(65);
                 map.add(rectangle, x, y);
                 tabRectangle[y][x] = rectangle;
+                ImageView imageView = new ImageView();
                 switch (carte[y][x]) {
                     case 0:
                         rectangle.setFill(Color.GREEN);
                         break;
                     case 1:
-                        rectangle.setFill(Color.BLACK);
+                        Image image = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/arbreVert.png");
+                        // ../../../resources/images/arbreVert.png
+                        //imageView.setImage(image);
+                        //imageView.setFitWidth(65);
+                        //imageView.setFitHeight(65);
+                        rectangle.setFill(new ImagePattern(image));
                         break;
                     case 2:
                         rectangle.setFill(Color.BLUE);
