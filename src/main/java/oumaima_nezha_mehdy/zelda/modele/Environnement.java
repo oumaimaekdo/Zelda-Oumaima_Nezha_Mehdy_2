@@ -1,7 +1,17 @@
 package oumaima_nezha_mehdy.zelda.modele;
+
+import oumaima_nezha_mehdy.zelda.Univers.Acteur;
+import oumaima_nezha_mehdy.zelda.Univers.Bloc;
+
+import java.util.ArrayList;
+
 public class Environnement {
 
     private int map[][];
+    private ArrayList<Bloc> listBloc =new ArrayList<>();
+
+    private ArrayList<Acteur> listActeur = new ArrayList<>();
+
     public Environnement(int ligne, int colonne){
         creerMap(ligne, colonne);
     }
@@ -19,6 +29,8 @@ public class Environnement {
         }
 
     }
+
+
 
     public void afficherMap(){
         for(int i = 0; i < this.map.length; i++){
