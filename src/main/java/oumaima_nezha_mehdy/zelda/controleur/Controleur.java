@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -18,6 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import javafx.util.Duration;
 import org.controlsfx.control.spreadsheet.Grid;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
@@ -30,6 +33,10 @@ public class Controleur implements Initializable {
 
     private Rectangle[][] tabRectangle;
 
+    private Timeline gameLoop;
+    private long lastUpdateTime = 0;
+    private int temps;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -40,6 +47,8 @@ public class Controleur implements Initializable {
         this.map.setOnKeyPressed(e -> {
             System.out.println(e.getCode());
         });
+
+        initGameLoop();
     }
 
     public void CreationMap() {
@@ -119,6 +128,43 @@ public class Controleur implements Initializable {
             }
         }
     }
+
+    private void initGameLoop() {
+
+        temps = 0;
+        int nbFramesParSeconde = 60;
+
+        // Création de la KeyFrame avec l'événement à exécuter à chaque frame
+        KeyFrame kf = new KeyFrame(
+                Duration.seconds(1.0 / nbFramesParSeconde), // Durée entre chaque frame
+                event -> {
+                    // Code exécuté à chaque frame
+                    jeuMisaJour();
+                    renderGame();
+                }
+        );
+
+        // Création de la Timeline (boucle de jeu) et ajout de la KeyFrame
+        gameLoop = new Timeline(kf);
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        gameLoop.play();
+    }
+
+    // Méthode appelée à chaque frame pour mettre à jour l'état du jeu
+
+    private void jeuMisaJour() {
+
+        temps++;
+        if (temps >= 100) {
+            System.out.println("Fin de la boucle de jeu.");
+            gameLoop.stop();
+        }
+    }
+
+    // Méthode appelée à chaque frame pour mettre à jour l'affichage du jeu
+
+    private void renderGame() { System.out.println("Frame : " + temps); }
 
 
 
