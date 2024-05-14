@@ -75,7 +75,9 @@ public class Controleur implements Initializable {
                         rectangle.setFill(new ImagePattern(image));
                         break;
                     case 2:
-                        rectangle.setFill(Color.BLUE);
+                        Image link = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/link_profil.png");
+                        rectangle.setFill(new ImagePattern(link));
+                        //rectangle.setFill(Color.BLUE);
                         break;
                 }
             }
