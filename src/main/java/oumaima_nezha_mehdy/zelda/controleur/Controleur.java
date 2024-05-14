@@ -34,7 +34,6 @@ public class Controleur implements Initializable {
     private Rectangle[][] tabRectangle;
 
     private Timeline gameLoop;
-    private long lastUpdateTime = 0;
     private int temps;
 
     @Override
@@ -68,14 +67,14 @@ public class Controleur implements Initializable {
                         rectangle.setFill(Color.GREEN);
                         break;
                     case 1:
-                        Image image = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/arbreVert.png");
+                        Image image = new Image("file:./src/main/resources/images/arbreVert.png");
                         //imageView.setImage(image);
                         //imageView.setFitWidth(65);
                         //imageView.setFitHeight(65);
                         rectangle.setFill(new ImagePattern(image));
                         break;
                     case 2:
-                        Image link = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/link_profil.png");
+                        Image link = new Image("file:./src/main/resources/images/link_profil.png");
                         rectangle.setFill(new ImagePattern(link));
                         //rectangle.setFill(Color.BLUE);
                         break;
@@ -106,9 +105,9 @@ public class Controleur implements Initializable {
                 break;
         }
 
-        champ.afficherMap();
-        System.out.println(champ.getLink().getX()+","+champ.getLink().getY());
-        tabRectangle[1][1].setFill(Color.VIOLET);
+        champ.afficherMap(); // bug lorsqu'on le met en commentaire -> plus de deplacement
+        //System.out.println(champ.getLink().getX()+","+champ.getLink().getY());
+        //tabRectangle[1][1].setFill(Color.VIOLET);
         raffraichir();
     }
 
@@ -122,11 +121,11 @@ public class Controleur implements Initializable {
                         break;
                     case 1:
                         //tabRectangle[y][x].setFill(Color.BLACK);
-                        Image image = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/arbreVert.png");
+                        Image image = new Image("file:./src/main/resources/images/arbreVert.png");
                         tabRectangle[y][x].setFill(new ImagePattern(image));
                         break;
                     case 2:
-                        Image link = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/link_profil.png");
+                        Image link = new Image("file:./src/main/resources/images/link_profil.png");
                         tabRectangle[y][x].setFill(new ImagePattern(link));
                         //tabRectangle[y][x].setFill(Color.BLUE);
                         break;
