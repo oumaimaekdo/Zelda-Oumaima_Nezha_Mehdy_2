@@ -63,12 +63,14 @@ public class Champ {
     public void afficherMap(){
         raffraichirMap();
         for(int i=0; i<champ.length;i++) {
-            if(i%longueur==0)
+            if(i%longueur==0) {
                 System.out.println("");
+            }
                 System.out.print(champ[i]);
                 System.out.print("\t");
             }
         }
+
 
 
     private void raffraichirMap() {
@@ -78,8 +80,6 @@ public class Champ {
                 break;
                 case 1 : champ[i] = 1;
             }
-
-
         }
 
     }
@@ -89,6 +89,14 @@ public class Champ {
 
     public ArrayList<Acteur> getListActeur() {
         return listActeur;
+    }
+
+    public boolean peutTraverserBloc(int x ,int y){
+        for (Bloc b : listBloc){
+            if(Math.floor(b.getX())==x&&Math.floor(b.getY())==y)
+                return b.getpassable();
+        }
+        return true;
     }
 
     public Acteur getLink() {

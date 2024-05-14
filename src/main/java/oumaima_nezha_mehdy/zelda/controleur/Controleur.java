@@ -32,6 +32,9 @@ public class Controleur implements Initializable {
 
     private Acteur link2;
 
+    @FXML
+    private Pane vueActeur;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -44,7 +47,7 @@ public class Controleur implements Initializable {
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        this.champ = new Champ(10, 10);
+        this.champ = new Champ(10, 10,sol);
         map.setPrefTileHeight(65);
         map.setPrefTileHeight(65);
         CreationMap();
@@ -53,7 +56,7 @@ public class Controleur implements Initializable {
             this.map.setOnKeyPressed(e -> {
                 System.out.println(e.getCode());
             });
-            this.link2 = new Acteur("newlink",(int)map.getHeight()/2,(int)map.getWidth()/2,champ);
+            this.link2 = new Acteur("newlink",0,0,champ);
             creerSprite(link2);
 
 
@@ -62,7 +65,7 @@ public class Controleur implements Initializable {
     public void creerSprite(Acteur a){
         Circle r=new Circle(3);
         r.setFill (Color.RED);
-        map.getChildren().add(r);
+        vueActeur.getChildren().add(r);
         r.setId(a.getId());
         r.setTranslateX(a.getX());
         r.setTranslateY(a.getY());
