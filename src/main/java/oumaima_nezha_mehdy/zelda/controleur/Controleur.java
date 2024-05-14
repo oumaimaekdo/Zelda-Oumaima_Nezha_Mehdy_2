@@ -1,11 +1,14 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -63,8 +66,9 @@ public class Controleur implements Initializable {
     }
 
     public void creerSprite(Acteur a){
-        Circle r=new Circle(3);
-        r.setFill (Color.RED);
+        Circle r=new Circle(15);
+        javafx.scene.image.Image link = new Image("file:./src/main/resources/images/link_profil.png");
+        r.setFill (new ImagePattern(link));
         vueActeur.getChildren().add(r);
         r.setId(a.getId());
         r.setTranslateX(a.getX());
@@ -90,13 +94,15 @@ public class Controleur implements Initializable {
                 rectangle.setY(y);
                 switch (carte[i]) {
                     case 0:
-                        rectangle.setFill(Color.GREEN);
+                        Image herbe = new Image("file:./src/main/resources/images/herbe.png");
+                        rectangle.setFill(new ImagePattern(herbe));
                         break;
                     case 1:
                         rectangle.setFill(Color.BLACK);
                         break;
                     case 2:
-                        rectangle.setFill(Color.BLUE);
+                        Image eau = new Image("file:./src/main/resources/images/eau.png");
+                        rectangle.setFill(new ImagePattern(eau));
                         break;
                 }
         }
