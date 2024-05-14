@@ -48,10 +48,10 @@ public class Acteur {
                 break;
             default:
         }
-        if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
+      /*  if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
             this.x.set(x2base);
             this.y.set(y2base);
-        }
+        }*/
 
     }//x>=0&&y>=0&&x<this.champ.getLongueur()&&y<this.champ.getLargeur()
     private boolean coordonnéPossible(int x,int y){
