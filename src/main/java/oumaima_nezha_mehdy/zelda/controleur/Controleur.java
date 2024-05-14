@@ -121,10 +121,14 @@ public class Controleur implements Initializable {
                         tabRectangle[y][x].setFill(Color.GREEN);
                         break;
                     case 1:
-                        tabRectangle[y][x].setFill(Color.BLACK);
+                        //tabRectangle[y][x].setFill(Color.BLACK);
+                        Image image = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/arbreVert.png");
+                        tabRectangle[y][x].setFill(new ImagePattern(image));
                         break;
                     case 2:
-                        tabRectangle[y][x].setFill(Color.BLUE);
+                        Image link = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/link_profil.png");
+                        tabRectangle[y][x].setFill(new ImagePattern(link));
+                        //tabRectangle[y][x].setFill(Color.BLUE);
                         break;
                 }
             }
