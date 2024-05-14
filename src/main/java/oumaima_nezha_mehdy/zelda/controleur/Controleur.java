@@ -60,7 +60,6 @@ public class Controleur implements Initializable {
                         break;
                     case 1:
                         Image image = new Image("file:/Users/nezhaelfayez/Desktop/Zelda-Oumaima_Nezha_Mehdy/src/main/resources/images/arbreVert.png");
-                        // ../../../resources/images/arbreVert.png
                         //imageView.setImage(image);
                         //imageView.setFitWidth(65);
                         //imageView.setFitHeight(65);
@@ -78,13 +77,21 @@ public class Controleur implements Initializable {
         System.out.println("\n \n \n" );
         System.out.println(key);
         switch (key) {
-            case"Z":champ.getLink().seDeplacer("nord");
+            case "Z":
+            case "UP": // Flèche haut
+                champ.getLink().seDeplacer("nord");
                 break;
-            case "Q":champ.getLink().seDeplacer("ouest");
+            case "Q":
+            case "LEFT": // Flèche gauche
+                champ.getLink().seDeplacer("ouest");
                 break;
-            case "S":champ.getLink().seDeplacer("sud");
+            case "S":
+            case "DOWN": // Flèche bas
+                champ.getLink().seDeplacer("sud");
                 break;
-            case "D":champ.getLink().seDeplacer("est");
+            case "D":
+            case "RIGHT": // Flèche droite
+                champ.getLink().seDeplacer("est");
                 break;
         }
 
