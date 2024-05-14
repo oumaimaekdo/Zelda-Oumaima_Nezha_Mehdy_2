@@ -40,10 +40,10 @@ public class Controleur implements Initializable {
         this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 1, 1, 1, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
+                                0, 0, 2, 2, 1, 2, 2, 2, 2, 0,
+                                0, 2, 2, 2, 1, 2, 2, 0, 0, 0,
+                                2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -95,6 +95,9 @@ public class Controleur implements Initializable {
                     case 1:
                         rectangle.setFill(Color.BLACK);
                         break;
+                    case 2:
+                        rectangle.setFill(Color.BLUE);
+                        break;
                 }
         }
     }
@@ -103,13 +106,17 @@ public class Controleur implements Initializable {
         System.out.println("\n \n \n" );
         System.out.println(key);
         switch (key) {
-            case"Z":this.link2.seDeplacer("nord");
+            case"Z" :
+            case "UP":this.link2.seDeplacer("nord");
                 break;
-            case "Q":this.link2.seDeplacer("ouest");
+            case "Q":
+            case "LEFT":this.link2.seDeplacer("ouest");
                 break;
-            case "S":this.link2.seDeplacer("sud");
+            case "S":
+            case "DOWN":this.link2.seDeplacer("sud");
                 break;
-            case "D":this.link2.seDeplacer("est");
+            case "D":
+            case "RIGHT":this.link2.seDeplacer("est");
                 break;
         }
 
