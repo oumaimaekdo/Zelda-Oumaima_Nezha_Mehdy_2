@@ -54,16 +54,19 @@ public class Acteur {
         }
 
     }
+
     private boolean coordonnéPossible(int x,int y){
         boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
         x-=15;
         y-=15;
         int indice = x/64 + ((y/64)*(champ.getLongueur()));
-        boolean collision =champ.getChamp()[indice]!=2;
+        boolean collision = champ.getChamp()[indice]!=2;
+
         x+=20;
         y+=20;
         indice = x/64 + ((y/64)*(champ.getLongueur()));
         return retourneur&&(collision&&champ.getChamp()[indice]!=2);
+
     }
 
     public int getX(){return x.getValue();}

@@ -6,6 +6,9 @@ import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -38,15 +41,15 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 4, 0, 0, 0, 0, 0, 0, 4, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
-                                0, 0, 2, 2, 1, 2, 2, 2, 2, 0,
-                                0, 2, 2, 2, 1, 2, 2, 0, 0, 0,
-                                2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                                0, 0, 0, 2, 2, 2, 0, 0, 0, 0,
+                                2, 1, 2, 2, 2, 2, 2, 1, 2, 2,
+                                3, 3, 3, 2, 2, 2, 3, 3, 3, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                                3, 5, 3, 3, 3, 3, 3, 3, 5, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
         this.champ = new Champ(10, 10,sol);
         map.setPrefTileHeight(65);
         map.setPrefTileHeight(65);
@@ -90,13 +93,22 @@ public class Controleur implements Initializable {
                 rectangle.setY(y);
                 switch (carte[i]) {
                     case 0:
-                        rectangle.setFill(Color.GREEN);
+                        rectangle.setFill(Color.DARKSLATEGREY);
                         break;
                     case 1:
                         rectangle.setFill(Color.BLACK);
                         break;
                     case 2:
                         rectangle.setFill(Color.BLUE);
+                        break;
+                    case 3:
+                        rectangle.setFill(Color.LIGHTBLUE);
+                        break;
+                    case 4:
+                        rectangle.setFill(Color.SLATEGREY);
+                        break;
+                    case 5:
+                        rectangle.setFill(Color.WHITE);
                         break;
                 }
         }
