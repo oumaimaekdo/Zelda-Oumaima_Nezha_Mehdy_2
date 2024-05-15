@@ -48,10 +48,10 @@ public class Acteur {
                 break;
             default:
         }
-      /*  if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
+        if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
             this.x.set(x2base);
             this.y.set(y2base);
-        }*/
+        }
 
     }
     private boolean coordonnéPossible(int x,int y){
@@ -59,11 +59,11 @@ public class Acteur {
         x-=15;
         y-=15;
         int indice = x/64 + ((y/64)*(champ.getLongueur()));
-        boolean collision =champ.getChamp()[indice]==0;
+        boolean collision =champ.getChamp()[indice]!=2;
         x+=20;
         y+=20;
         indice = x/64 + ((y/64)*(champ.getLongueur()));
-        return retourneur&&(collision&&champ.getChamp()[indice]==0);
+        return retourneur&&(collision&&champ.getChamp()[indice]!=2);
     }
 
     public int getX(){return x.getValue();}
