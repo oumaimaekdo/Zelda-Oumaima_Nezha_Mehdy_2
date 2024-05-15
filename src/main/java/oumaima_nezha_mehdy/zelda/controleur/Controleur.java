@@ -84,8 +84,6 @@ public class Controleur implements Initializable {
 
 
 
-
-
     public void creerSprite(Acteur a) {
 
 
@@ -182,7 +180,7 @@ public class Controleur implements Initializable {
                         rectangle.setFill(new ImagePattern(image));
                         break;
                     case 2:
-                        Image link = new Image("file:src/main/resources/images/link_profil.png");
+                        Image link = new Image("file:src/main/resources/images/link_defaut.png");
                         rectangle.setFill(new ImagePattern(link));
                         //rectangle.setFill(Color.BLUE);
                         break;
@@ -239,7 +237,7 @@ public class Controleur implements Initializable {
                         tabRectangle[y][x].setFill(new ImagePattern(image));
                         break;
                     case 2:
-                        Image link = new Image("file:src/main/resources/images/link_profil.png");
+                        Image link = new Image("file:src/main/resources/images/link_defaut.png");
                         tabRectangle[y][x].setFill(new ImagePattern(link));
                         //tabRectangle[y][x].setFill(Color.BLUE);
                         break;

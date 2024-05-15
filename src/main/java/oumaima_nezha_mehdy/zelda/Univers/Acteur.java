@@ -59,6 +59,8 @@ public class Acteur {
                 break;
             default:
         }
+
+
         /*
         if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
             this.x.set(x2base);
