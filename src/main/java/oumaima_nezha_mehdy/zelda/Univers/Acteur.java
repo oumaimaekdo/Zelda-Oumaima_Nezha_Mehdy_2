@@ -53,9 +53,17 @@ public class Acteur {
             this.y.set(y2base);
         }*/
 
-    }//x>=0&&y>=0&&x<this.champ.getLongueur()&&y<this.champ.getLargeur()
+    }
     private boolean coordonnéPossible(int x,int y){
-        return champ.peutTraverserBloc(x,y);
+        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
+        x-=15;
+        y-=15;
+        int indice = x/64 + ((y/64)*(champ.getLongueur()));
+        boolean collision =champ.getChamp()[indice]==0;
+        x+=20;
+        y+=20;
+        indice = x/64 + ((y/64)*(champ.getLongueur()));
+        return retourneur&&(collision&&champ.getChamp()[indice]==0);
     }
 
     public int getX(){return x.getValue();}

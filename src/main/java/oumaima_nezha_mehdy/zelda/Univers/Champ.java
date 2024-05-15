@@ -16,16 +16,7 @@ public class Champ {
     private int longueur;
 
     private int largeur;
-    public Champ(int L , int l){
-        this.largeur=l;
-        this.longueur=L;
-        this.champ = new int[l];
-        this.link = new Acteur("Link",0,0,this);
-        listActeur.add(link);
-        genererMap();
-        raffraichirMap();
 
-    }
     public Champ(int L , int l,int[] map){
         this.largeur=l;
         this.longueur=L;

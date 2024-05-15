@@ -122,6 +122,9 @@ public class Controleur implements Initializable {
 
         champ.afficherMap();
         System.out.println(link2.getX()+","+link2.getY());
+        for(int i=0;i<champ.getChamp().length ;i++)
+            if(champ.getChamp()[i]==1)
+            System.out.println(i);
     }
 
   /*  public void raffraichir() {
