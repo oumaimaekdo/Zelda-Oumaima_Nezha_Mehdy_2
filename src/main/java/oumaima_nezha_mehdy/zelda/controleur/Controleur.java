@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
@@ -27,22 +28,52 @@ import oumaima_nezha_mehdy.zelda.Univers.*;
 public class Controleur implements Initializable {
 
     @FXML
-    private GridPane map;
+    private TilePane map;
+    @FXML
+    private Pane vueActeur;
 
     private Champ champ;
 
-    private Rectangle[][] tabRectangle;
+    private int[] sol;
+
+    private Acteur link2;
+
+    //private Rectangle[][] tabRectangle;
 
     private Timeline gameLoop;
-    private long lastUpdateTime = 0;
+
     private int temps;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.champ = new Champ(30, 20);
+
+        this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
+                                0, 0, 2, 2, 1, 2, 2, 2, 2, 0,
+                                0, 2, 2, 2, 1, 2, 2, 0, 0, 0,
+                                2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        this.champ = new Champ(10, 10,sol);
+
+        map.setPrefTileHeight(65);
+        map.setPrefTileHeight(65);
+
         CreationMap();
         champ.afficherMap();
+
+        this.map.setOnKeyPressed(e -> {
+            System.out.println(e.getCode());
+        });
+        this.link2 = new Acteur("newlink",0,0,champ);
+        creerSprite(link2);
+
+
 
         this.map.setOnKeyPressed(e -> {
             System.out.println(e.getCode());
@@ -50,6 +81,82 @@ public class Controleur implements Initializable {
 
         initGameLoop();
     }
+
+
+
+
+
+    public void creerSprite(Acteur a) {
+
+
+        Circle r=new Circle(3);
+        r.setFill (Color.RED);
+        vueActeur.getChildren().add(r);
+        r.setId(a.getId());
+        r.setTranslateX(a.getX());
+        r.setTranslateY(a.getY());
+        r.translateXProperty().bind(a.getXProperty());
+        r.translateYProperty().bind(a.getYProperty());
+
+
+        /*
+        Image link2;
+
+
+        switch (a.getDirection()) {
+            case "nord":
+                link2 = new Image("file:src/main/resources/images/link_nord.png");
+                break;
+            case "sud":
+                link2 = new Image("file:src/main/resources/images/link_sud.png");
+                break;
+            case "ouest":
+                link2 = new Image("file:src/main/resources/images/link_ouest.png");
+                break;
+            case "est":
+                link2 = new Image("file:src/main/resources/images/link_est.png");
+                break;
+            default:
+                //en cas d'erreur : on donnera l'image par défaut
+                link2 = new Image("file:chemin/vers/image_par_defaut.png");
+                break;
+            }
+
+            ImageView vuePersonnage = new ImageView(link2);
+
+         */
+        }
+
+
+
+    public void CreationMap() {
+        int[] carte = this.sol;
+        for (int i = 0; i < carte.length; i++) {
+
+            Rectangle rectangle = new Rectangle(65, 65);
+            map.getChildren().add(rectangle);
+            rectangle.setId(String.valueOf(i));
+            double col = i % 10;
+            double lig = Math.floor(i/10);
+            double x = col * 10;
+            double y = lig * 10;
+            rectangle.setX(x);
+            rectangle.setY(y);
+            switch (carte[i]) {
+                case 0:
+                    rectangle.setFill(Color.GREEN);
+                    break;
+                case 1:
+                    rectangle.setFill(Color.BLACK);
+                    break;
+                case 2:
+                    rectangle.setFill(Color.BLUE);
+                    break;
+            }
+        }
+    }
+
+    /*
 
     public void CreationMap() {
         int[][] carte = champ.getChamp();
@@ -84,34 +191,40 @@ public class Controleur implements Initializable {
         }
     }
 
+     */
+
+
+
     public void touchePressé(String key){
         System.out.println("\n \n \n" );
         System.out.println(key);
         switch (key) {
             case "Z":
-            case "UP": // Flèche haut
-                champ.getLink().seDeplacer("nord");
+            case "UP":
+                this.link2.seDeplacer("nord");
                 break;
             case "Q":
-            case "LEFT": // Flèche gauche
-                champ.getLink().seDeplacer("ouest");
+            case "LEFT":
+                this.link2.seDeplacer("ouest");
                 break;
             case "S":
-            case "DOWN": // Flèche bas
-                champ.getLink().seDeplacer("sud");
+            case "DOWN":
+                this.link2.seDeplacer("sud");
                 break;
             case "D":
-            case "RIGHT": // Flèche droite
-                champ.getLink().seDeplacer("est");
+            case "RIGHT":
+                this.link2.seDeplacer("est");
                 break;
         }
 
         champ.afficherMap();
-        System.out.println(champ.getLink().getX()+","+champ.getLink().getY());
-        tabRectangle[1][1].setFill(Color.VIOLET);
-        raffraichir();
+        System.out.println(link2.getX()+","+link2.getY());
+
+        //raffraichir();
     }
 
+
+    /*
     public void raffraichir() {
         int[][] carte = champ.getChamp();
         for (int y = 0; y < carte.length; y++) {
@@ -135,6 +248,8 @@ public class Controleur implements Initializable {
         }
     }
 
+     */
+
     private void initGameLoop() {
 
         temps = 0;
@@ -146,7 +261,7 @@ public class Controleur implements Initializable {
                 event -> {
                     // Code exécuté à chaque frame
                     jeuMisaJour();
-                    renderGame();
+                    renduDuJeu();
                 }
         );
 
@@ -170,7 +285,7 @@ public class Controleur implements Initializable {
 
     // Méthode appelée à chaque frame pour mettre à jour l'affichage du jeu
 
-    private void renderGame() { System.out.println("Frame : " + temps); }
+    private void renduDuJeu() { System.out.println("Frame : " + temps); }
 
 
 

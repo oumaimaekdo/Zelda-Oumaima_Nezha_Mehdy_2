@@ -4,11 +4,11 @@ package oumaima_nezha_mehdy.zelda.Univers;
 public abstract class Bloc {
     private boolean passable;
 
-    private int x;
+    private double x;
 
-    private int y;
+    private double y;
 
-    public Bloc(boolean t,int x, int y){
+    public Bloc(boolean t,double x, double y){
         this.passable=t;
         this.x=x;
         this.y=y;
@@ -16,7 +16,7 @@ public abstract class Bloc {
 
     public boolean getpassable(){return passable;}
 
-    public int getX(){return x;}
+    public double getX(){return x;}
 
-    public int getY(){return y;}
+    public double getY(){return y;}
 }
