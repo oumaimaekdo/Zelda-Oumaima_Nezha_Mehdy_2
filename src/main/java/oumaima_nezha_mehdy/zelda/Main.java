@@ -18,7 +18,7 @@ public class Main extends Application {
         Controleur controller = fxmlLoader.getController();
         stage.setTitle("B-O Hazard");
         stage.setScene((scene));
-        scene.setOnKeyPressed(e -> controller.touchePressé(e.getCode().toString()));
+        scene.setOnKeyPressed(e->controller.keyPressed(e));
         stage.show();
 
     }

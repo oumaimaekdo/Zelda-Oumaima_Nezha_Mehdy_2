@@ -15,6 +15,8 @@ public class Acteur {
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
 
+    private int xprecedent,yprecedent;
+
     public Acteur(String nom, int x , int y, Champ m){
         this.nom=nom;
         this.x.set(x);
@@ -48,23 +50,27 @@ public class Acteur {
                 break;
             default:
         }
+        xprecedent=x2base;
+        yprecedent=y2base;
         if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
             this.x.set(x2base);
             this.y.set(y2base);
         }
-
     }
     private boolean coordonnéPossible(int x,int y){
         boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
-        x-=0;
-        y-=5;
-        int indice = x/64 + ((y/64)*(champ.getLongueur()));
-        boolean collision =champ.getChamp()[indice]!=2;
-        x+=10;
-        y+=30;
-        indice = x/64 + ((y/64)*(champ.getLongueur()));
-        return retourneur&&(collision&&champ.getChamp()[indice]!=2);
+        int haut,bas,gauche,droite;
+        haut = 25;
+        gauche = 15;
+        bas = -20;
+        droite = -10;
+        boolean collisionhautgauche =champ.getChamp()[((x+gauche)/64) + ((y+haut)/64)*(champ.getLongueur())]!=2;
+        boolean collisionbasdroite =champ.getChamp()[(x-droite)/64 + ((y-bas)/64)*(champ.getLongueur())]!=2;
+        return retourneur&&(collisionhautgauche&&collisionbasdroite);
     }
+
+    public int getXprecedent(){return xprecedent;}
+    public int getYprecedent(){return yprecedent;}
 
     public int getX(){return x.getValue();}
 
@@ -76,4 +82,7 @@ public class Acteur {
 
     public IntegerProperty getXProperty(){return x;}
     public IntegerProperty getYProperty(){return y;}
+
+    public void setX(int x){this.x.setValue(x);}
+    public void setY(int y){this.y.setValue(y);}
 }

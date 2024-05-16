@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
-public class LinkController {
+public class VueActLink {
 
 
     private Acteur link;
@@ -25,10 +25,13 @@ public class LinkController {
     private Image linkEst;
     private Image linkOuest;
 
-    public LinkController (Pane pane,Champ c){
+    private double tT;
+
+    public VueActLink(Pane pane, Champ c,double tailleTuile){
         vueActeur=pane;
         this.champ=c;
         this.link=new Acteur("newlink",0,0,champ);
+        this.tT=tailleTuile;
         creerlink("file:src/main/resources/images/link_defaut.png",link);
         linkNord=new Image("file:src/main/resources/images/link_nord.png");
         linkSud=new Image("file:src/main/resources/images/link_sud.png");
@@ -37,9 +40,12 @@ public class LinkController {
     }
 
 
-    public void touchePressé(String key){
+    public void DeplacementLink(String key){
         System.out.println("\n \n \n" );
         System.out.println(key);
+        int x2base,y2base;
+        x2base = this.link.getX();
+        y2base = this.link.getX();
         switch (key) {
             case"Z" :
             case "UP":
@@ -59,8 +65,24 @@ public class LinkController {
                 this.vueLink.setImage(linkEst);
                 break;
         }
+        /*if(!coordonnéPossible(this.link.getX(),this.link.getY())) {
+            this.link.setX(x2base);
+            this.link.setY(y2base);
+        }*/
+
 
         System.out.println(link.getX()+","+link.getY());
+    }
+    private boolean coordonnéPossible(int x,int y){
+        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
+        int haut,bas,gauche,droite;
+        haut = 25;
+        gauche = 10;
+        bas = 1;
+        droite = -5;
+        boolean collisionhautgauche =champ.getChamp()[(int) (((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur()))]!=2;
+        boolean collisionbasdroite =champ.getChamp()[(int) ((x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur()))]!=2;
+        return retourneur&&(collisionhautgauche&&collisionbasdroite);
     }
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
@@ -75,8 +97,6 @@ public class LinkController {
         r.translateXProperty().bind(a.getXProperty());
         r.translateYProperty().bind(a.getYProperty());
         this.vueLink=r;
-
-
-
+        
     }
 }
