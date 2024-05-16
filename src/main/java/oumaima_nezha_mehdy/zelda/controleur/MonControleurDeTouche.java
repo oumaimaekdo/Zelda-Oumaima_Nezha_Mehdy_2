@@ -1,16 +1,15 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
-public class MonCrontroleurDeTouche implements EventHandler<KeyEvent> {
+public class MonControleurDeTouche implements EventHandler<KeyEvent> {
 
     private Champ champ;
 
 
-    public MonCrontroleurDeTouche(Champ champ) {
+    public MonControleurDeTouche(Champ champ) {
         this.champ = champ;
     }
     @Override
