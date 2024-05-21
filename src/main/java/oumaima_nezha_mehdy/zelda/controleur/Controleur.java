@@ -98,7 +98,8 @@ public class Controleur implements Initializable {
                         rectangle.setFill(new ImagePattern(herbe));
                         break;
                     case 1:
-                        rectangle.setFill(Color.BLACK);
+                        Image pont = new Image("file:./src/main/resources/images/pont.png");
+                        rectangle.setFill(new ImagePattern(pont));
                         break;
                     case 2:
                         Image eau = new Image("file:./src/main/resources/images/eau.png");

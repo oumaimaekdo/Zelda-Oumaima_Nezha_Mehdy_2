@@ -81,7 +81,6 @@ public class Champ {
                 case 1 : champ[i] = 1;
             }
         }
-
     }
 
 
