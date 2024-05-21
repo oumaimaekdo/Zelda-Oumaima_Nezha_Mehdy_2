@@ -216,23 +216,19 @@ public class Controleur implements Initializable {
 
     private void deplacerEnnemi() {
 
-         do{
-            if (e.getX() < link2.getX()) {
-                e.seDeplacer("ouest");
-            } else if (e.getX() > link2.getX()) {
-                e.seDeplacer("est");
-            }
 
-            if (e.getY() < link2.getY()) {
-                e.seDeplacer("nord");
-            } else if (e.getY() > link2.getY()) {
-                e.seDeplacer("sud");
-            }
+        if (e.getX() < link2.getX()) {
+            e.seDeplacer("ouest");
+        } else if (e.getX() > link2.getX()) {
+            e.seDeplacer("est");
+        }
 
-            ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
 
-        }while(e.getX() == link2.getX() && e.getY() == link2.getY());
-
+        if (e.getY() < link2.getY()) {
+            e.seDeplacer("nord");
+        } else if (e.getY() > link2.getY()) {
+            e.seDeplacer("sud");
+        }
 
 
         /*if (e.getX() == link2.getX() && e.getY() == link2.getY()) {
