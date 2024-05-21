@@ -39,7 +39,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.champ = new Champ(30, 20);
+        //this.champ = new Champ(30, 20);
         CreationMap();
         champ.afficherMap();
 
@@ -51,7 +51,7 @@ public class Controleur implements Initializable {
     }
 
     public void CreationMap() {
-        int[][] carte = champ.getChamp();
+        /*int[][] carte = champ.getChamp();
         tabRectangle = new Rectangle[carte.length][carte[0].length];
         for (int y = 0; y < carte.length; y++) {
             for (int x = 0; x < carte[y].length; x++) {
@@ -80,7 +80,7 @@ public class Controleur implements Initializable {
                         break;
                 }
             }
-        }
+        }*/
     }
 
     public void touchePressé(String key){
@@ -112,7 +112,7 @@ public class Controleur implements Initializable {
     }
 
     public void raffraichir() {
-        int[][] carte = champ.getChamp();
+       /* int[][] carte = champ.getChamp();
         for (int y = 0; y < carte.length; y++) {
             for (int x = 0; x < carte[y].length; x++) {
                 switch (carte[y][x]) {
@@ -131,7 +131,7 @@ public class Controleur implements Initializable {
                         break;
                 }
             }
-        }
+        }*/
     }
 
     private void initGameLoop() {
