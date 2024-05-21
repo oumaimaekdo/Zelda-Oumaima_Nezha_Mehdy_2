@@ -216,24 +216,28 @@ public class Controleur implements Initializable {
 
     private void deplacerEnnemi() {
 
+         do{
+            if (e.getX() < link2.getX()) {
+                e.seDeplacer("ouest");
+            } else if (e.getX() > link2.getX()) {
+                e.seDeplacer("est");
+            }
 
-        if (e.getX() < link2.getX()) {
-            e.seDeplacer("est");
-        } else if (e.getX() > link2.getX()) {
-            e.seDeplacer("ouest");
-        }
+            if (e.getY() < link2.getY()) {
+                e.seDeplacer("nord");
+            } else if (e.getY() > link2.getY()) {
+                e.seDeplacer("sud");
+            }
+
+            ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
+
+        }while(e.getX() == link2.getX() && e.getY() == link2.getY());
 
 
-        if (e.getY() < link2.getY()) {
-            e.seDeplacer("sud");
-        } else if (e.getY() > link2.getY()) {
-            e.seDeplacer("nord");
-        }
 
-
-        if (e.getX() == link2.getX() && e.getY() == link2.getY()) {
+        /*if (e.getX() == link2.getX() && e.getY() == link2.getY()) {
             System.out.println("collision !");
-        }
+        }*/
 
 
 
@@ -262,8 +266,9 @@ public class Controleur implements Initializable {
 
 
         //l'ennemi se déplace pas correctement
-        //ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
+        ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
         //e.suivreChemin(chemin);
+
     }
 
     // Méthode appelée à chaque frame pour mettre à jour l'affichage du jeu
