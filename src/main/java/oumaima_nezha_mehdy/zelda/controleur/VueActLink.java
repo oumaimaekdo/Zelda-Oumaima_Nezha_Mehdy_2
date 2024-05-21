@@ -73,14 +73,17 @@ public class VueActLink {
 
 
         System.out.println(link.getX()+","+link.getY());
+        System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
     private boolean coordonnéPossible(int x,int y){
-        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*tT&&y<=this.champ.getLargeur()*tT;
         int haut,bas,gauche,droite;
         haut = 25;
         gauche = 15;
         bas = -20;
         droite = -10;
+        boolean retourneur = x>=0&&y>=0&&x+15<this.champ.getLongueur()*tT&&y+15<this.champ.getLargeur()*tT;
+        if(!retourneur)
+            return false;
         boolean collisionhautgauche =champ.getChamp()[((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur())]!=2;
         boolean collisionbasdroite =champ.getChamp()[(x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur())]!=2;
         return retourneur&&(collisionhautgauche&&collisionbasdroite);
