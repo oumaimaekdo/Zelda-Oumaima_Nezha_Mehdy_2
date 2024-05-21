@@ -57,10 +57,10 @@ public class Champ {
             if(i%longueur==0) {
                 System.out.println("");
             }
-                System.out.print(champ[i]);
-                System.out.print("\t");
-            }
+            System.out.print(champ[i]);
+            System.out.print("\t");
         }
+    }
 
 
 
@@ -68,7 +68,7 @@ public class Champ {
         for (int i = 0; i < champ.length; i++) {
             switch(champ[i]) {
                 case 0:champ[i] = 0;
-                break;
+                    break;
                 case 1 : champ[i] = 1;
             }
         }
