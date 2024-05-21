@@ -53,15 +53,18 @@ public class Acteur {
         }
     }
     private boolean coordonnéPossible(int x,int y){
-        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
+        boolean retourneur = x>=0&&y>=0&&x<this.champ.getLongueur()*64&&y<this.champ.getLargeur()*64;
         int haut,bas,gauche,droite;
-        haut = 25;
-        gauche = 15;
-        bas = -20;
+        haut = 0;
+        gauche = 0;
+        bas = -25;
         droite = -10;
-        boolean collisionhautgauche =champ.getChamp()[((x+gauche)/64) + ((y+haut)/64)*(champ.getLongueur())]!=2;
-        boolean collisionbasdroite =champ.getChamp()[(x-droite)/64 + ((y-bas)/64)*(champ.getLongueur())]!=2;
-        return retourneur&&(collisionhautgauche&&collisionbasdroite);
+        if(retourneur) {
+            boolean collisionhautgauche = champ.getChamp()[((x + gauche) / 64) + ((y + haut) / 64) * (champ.getLongueur())] != 2;
+            boolean collisionbasdroite = champ.getChamp()[(x - droite) / 64 + ((y - bas) / 64) * (champ.getLongueur())] != 2;
+            return (collisionhautgauche&&collisionbasdroite);
+        }
+        return retourneur;
     }
 
     public int getXprecedent(){return xprecedent;}
