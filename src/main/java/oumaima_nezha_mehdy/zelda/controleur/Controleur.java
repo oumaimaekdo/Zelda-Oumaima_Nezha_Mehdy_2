@@ -33,24 +33,24 @@ public class Controleur implements Initializable {
 
     private double tailleTuile;
 
+    private int LongueurInt;
+
+    private int LargeurInt;
+
     private Clavier clavier;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        MapInt mapInt = MapPossible.test;
         this.tailleTuile=64;
-        this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
-                                0, 0, 2, 2, 1, 2, 2, 2, 2, 0,
-                                0, 2, 2, 2, 1, 2, 2, 0, 0, 0,
-                                2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        this.champ = new Champ(10, 10,sol);
+        this.sol=MapPossible.test.getCarte();
+        this.LargeurInt = mapInt.getLargeur();
+        this.LongueurInt = mapInt.getLongueur();
+        this.champ = new Champ(LongueurInt,LargeurInt,sol);
         map.setPrefTileHeight(tailleTuile);
         map.setPrefTileHeight(tailleTuile);
+        map.setPrefHeight(LargeurInt*tailleTuile);
+        map.setMaxWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile);
@@ -59,12 +59,9 @@ public class Controleur implements Initializable {
 
     }
 
-    public void keyPressed(KeyEvent e){
-        clavier.handle(e);
+    public Clavier getClavier() {
+        return clavier;
     }
-
-
-
 
     public void CreationMap() {
         int[] carte = this.sol;
