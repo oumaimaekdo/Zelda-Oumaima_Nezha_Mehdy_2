@@ -48,7 +48,6 @@ public class Champ {
 
     public void ajouterActeur(Acteur a){
         listActeur.add(a);
-        champ[a.getY()]=2;
     }
 
     public void afficherMap(){
@@ -82,13 +81,6 @@ public class Champ {
         return listActeur;
     }
 
-    public boolean peutTraverserBloc(int x ,int y){
-        for (Bloc b : listBloc){
-            if(Math.floor(b.getX())==x&&Math.floor(b.getY())==y)
-                return b.getpassable();
-        }
-        return true;
-    }
 
     public Acteur getLink() {
         return link;

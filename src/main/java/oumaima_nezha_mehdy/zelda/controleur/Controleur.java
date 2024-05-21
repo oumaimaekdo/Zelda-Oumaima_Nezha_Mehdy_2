@@ -49,7 +49,7 @@ public class Controleur implements Initializable {
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         map.setPrefTileHeight(tailleTuile);
-        map.setPrefTileHeight(tailleTuile);
+        map.setPrefTileWidth(tailleTuile);
         map.setPrefHeight(LargeurInt*tailleTuile);
         map.setMaxWidth(LongueurInt*tailleTuile);
         CreationMap();
@@ -105,6 +105,10 @@ public class Controleur implements Initializable {
 
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
+    }
+
+    public void keyPressed(KeyEvent keyEvent) {
+        clavier.handle(keyEvent);
     }
 }
 

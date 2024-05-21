@@ -17,6 +17,7 @@ public class VueActLink {
     private Champ champ;
 
 
+
     @FXML
     private ImageView vueLink;
 
@@ -25,9 +26,9 @@ public class VueActLink {
     private Image linkEst;
     private Image linkOuest;
 
-    private double tT;
+    private int tT;
 
-    public VueActLink(Pane pane, Champ c,double tailleTuile){
+    public VueActLink(Pane pane, Champ c,int tailleTuile){
         vueActeur=pane;
         this.champ=c;
         this.link=champ.getLink();
@@ -46,19 +47,26 @@ public class VueActLink {
         switch (key) {
             case"Z" :
             case "UP":
+                if(coordonnéPossible(this.link.getX(),this.link.getY()-(1*link.getVitesse())))
                 link.seDeplacer("nord");
                 this.vueLink.setImage(linkNord);
                 break;
             case "Q":
-            case "LEFT":link.seDeplacer("ouest");
+            case "LEFT":
+                if(coordonnéPossible(this.link.getX()-(1*link.getVitesse()),this.link.getY()))
+                link.seDeplacer("ouest");
                 this.vueLink.setImage(linkOuest);
                 break;
             case "S":
-            case "DOWN":link.seDeplacer("sud");
+            case "DOWN":
+                if(coordonnéPossible(this.link.getX(),this.link.getY()+(1*link.getVitesse())))
+                link.seDeplacer("sud");
                 this.vueLink.setImage(linkSud);
                 break;
             case "D":
-            case "RIGHT":link.seDeplacer("est");
+            case "RIGHT":
+                if(coordonnéPossible(this.link.getX()+(1*link.getVitesse()),this.link.getY()))
+                link.seDeplacer("est");
                 this.vueLink.setImage(linkEst);
                 break;
         }
@@ -66,37 +74,20 @@ public class VueActLink {
 
         System.out.println(link.getX()+","+link.getY());
     }
-   /* private boolean coordonnéPossible(int x,int y){
-        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
+    private boolean coordonnéPossible(int x,int y){
+        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*tT&&y<=this.champ.getLargeur()*tT;
         int haut,bas,gauche,droite;
         haut = 25;
-        gauche = 10;
-        bas = 1;
-        droite = -5;
-        boolean collisionhautgauche =champ.getChamp()[(int) (((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur()))]!=2;
-        boolean collisionbasdroite =champ.getChamp()[(int) ((x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur()))]!=2;
+        gauche = 15;
+        bas = -20;
+        droite = -10;
+        boolean collisionhautgauche =champ.getChamp()[((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur())]!=2;
+        boolean collisionbasdroite =champ.getChamp()[(x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur())]!=2;
         return retourneur&&(collisionhautgauche&&collisionbasdroite);
     }
-    public void mouvementLink(String direction){
-        int x2base,y2base;
-        x2base = this.link.getX();
-        y2base = this.link.getY();
-        link.seDeplacer(direction);
-        if(!coordonnéPossible(this.link.getX(),this.link.getY())) {
-            this.link.setX(x2base);
-            this.link.setY(y2base);
-        }
 
 
 
-
-
-
-
-
-
-
-    }*/
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
         Image Image = new Image(path);
