@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -37,27 +38,69 @@ public class Controleur implements Initializable {
     private int[] sol;
 
     private Acteur link2;
-
+    private Ennemi e;
     //private Rectangle[][] tabRectangle;
 
     private Timeline gameLoop;
 
     private int temps;
 
+    //pour la direction, on l'utilise dans le bfs et il faut le remplacer par la touche pressé par l'utilisateur
+    private String direction;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        this.sol = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 2, 2, 2, 0, 0, 0, 0,
+                2, 1, 2, 2, 2, 2, 2, 1, 2, 2,
+                3, 3, 3, 2, 2, 2, 3, 3, 3, 3,
+                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
+
+        this.champ = new Champ(10, 10, sol);
+
+        map.setPrefTileHeight(65);
+        map.setPrefTileHeight(65);
+
+        CreationMap();
+        champ.afficherMap();
+
+        this.map.setOnKeyPressed(e -> {
+            System.out.println(e.getCode());
+        });
+
+        this.e = new Ennemi("sbire de feu", 100, 100, champ);
+        this.link2 = new Acteur("newlink", 0, 0, champ);
+
+        creerSprite(link2);
+        creerSpriteEnnemi(e);
+
+        this.map.setOnKeyPressed(e -> {
+            System.out.println(e.getCode());
+        });
+
+        initGameLoop();
+
+        //this.ennemi = new Acteur("nouvel Acteur", 0, 10, champ);
+        //creerSprite2(ennemi);
+        //link3.deplacementBFS(e, direction);
+        /*
 
         this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
-                                0, 0, 2, 2, 1, 2, 2, 2, 2, 0,
-                                0, 2, 2, 2, 1, 2, 2, 0, 0, 0,
-                                2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+                                0, 0, 0, 2, 2, 2, 0, 0, 0, 0,
+                                2, 1, 2, 2, 2, 2, 2, 1, 2, 2,
+                                3, 3, 3, 2, 2, 2, 3, 3, 3, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+                                3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
 
         this.champ = new Champ(10, 10,sol);
 
@@ -70,8 +113,11 @@ public class Controleur implements Initializable {
         this.map.setOnKeyPressed(e -> {
             System.out.println(e.getCode());
         });
+
+        this.e = new Ennemi("sbire de feu", 1,1,champ);
         this.link2 = new Acteur("newlink",0,0,champ);
         creerSprite(link2);
+        creerSpriteEnnemi(e);
 
 
 
@@ -80,8 +126,42 @@ public class Controleur implements Initializable {
         });
 
         initGameLoop();
+
+        ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
+        e.suivreChemin(chemin);
+
+        //this.ennemi = new Acteur("nouvel Acteur",0,10,champ);
+        //creerSprite2(ennemi);
+        //link3.deplacementBFS(e,direction);
+
+         */
     }
 
+    public void creerSpriteEnnemi(Acteur a) {
+
+        Circle r = new Circle(3);
+        r.setFill(Color.GREEN); // Vous pouvez changer la couleur ou utiliser une image spécifique pour l'ennemi
+        vueActeur.getChildren().add(r);
+        r.setId(e.getId());
+        r.setTranslateX(e.getX());
+        r.setTranslateY(e.getY());
+        r.translateXProperty().bind(e.getXProperty());
+        r.translateYProperty().bind(e.getYProperty());
+
+/*
+        Circle r=new Circle(3);
+        r.setFill (Color.BLUE);
+        vueActeur.getChildren().add(r);
+        r.setId(a.getId());
+        r.setTranslateX(a.getX());
+        r.setTranslateY(a.getY());
+        r.translateXProperty().bind(a.getXProperty());
+        r.translateYProperty().bind(a.getYProperty());
+
+ */
+
+
+    }
 
 
     public void creerSprite(Acteur a) {
@@ -142,13 +222,16 @@ public class Controleur implements Initializable {
             rectangle.setY(y);
             switch (carte[i]) {
                 case 0:
-                    rectangle.setFill(Color.GREEN);
+                    rectangle.setFill(Color.DARKGREY);
                     break;
                 case 1:
                     rectangle.setFill(Color.BLACK);
                     break;
                 case 2:
                     rectangle.setFill(Color.BLUE);
+                    break;
+                case 3:
+                    rectangle.setFill(Color.LIGHTBLUE);
                     break;
             }
         }
@@ -251,14 +334,15 @@ public class Controleur implements Initializable {
     private void initGameLoop() {
 
         temps = 0;
-        int nbFramesParSeconde = 60;
+        int nbFramesParSeconde = 1;
 
         // Création de la KeyFrame avec l'événement à exécuter à chaque frame
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(1.0 / nbFramesParSeconde), // Durée entre chaque frame
                 event -> {
                     // Code exécuté à chaque frame
-                    jeuMisaJour();
+                    //jeuMisaJour();
+                    deplacerEnnemi();
                     renduDuJeu();
                 }
         );
@@ -271,7 +355,7 @@ public class Controleur implements Initializable {
     }
 
     // Méthode appelée à chaque frame pour mettre à jour l'état du jeu
-
+/*
     private void jeuMisaJour() {
 
         temps++;
@@ -279,6 +363,61 @@ public class Controleur implements Initializable {
             System.out.println("Fin de la boucle de jeu.");
             gameLoop.stop();
         }
+        deplacerEnnemi();
+    }
+
+ */
+
+    private void deplacerEnnemi() {
+
+        // Déplacement horizontal
+        if (e.getX() < link2.getX()) {
+            e.seDeplacer("est");
+        } else if (e.getX() > link2.getX()) {
+            e.seDeplacer("ouest");
+        }
+
+        // Déplacement vertical
+        if (e.getY() < link2.getY()) {
+            e.seDeplacer("sud");
+        } else if (e.getY() > link2.getY()) {
+            e.seDeplacer("nord");
+        }
+
+        // Vérification de la collision
+        if (e.getX() == link2.getX() && e.getY() == link2.getY()) {
+            System.out.println("collision !");
+        }
+
+
+
+        /*
+        //il s'approche du link
+
+        if (e.getX() > link2.getX()) {
+            e.seDeplacer("est");
+        } else if (e.getX() < link2.getX()) {
+            e.seDeplacer("ouest");
+        }
+
+        if (e.getY() > link2.getY()) {
+            e.seDeplacer("sud");
+        } else if (e.getY() < link2.getY()) {
+            e.seDeplacer("nord");
+        }
+
+        if(e.getX() == link2.getX() && e.getY() == link2.getY()){
+            System.out.println("collision ! ");
+        }
+
+         */
+
+
+
+
+        //l'ennemi se déplace pas correctement
+        //ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
+        //e.suivreChemin(chemin);
     }
 
     // Méthode appelée à chaque frame pour mettre à jour l'affichage du jeu
