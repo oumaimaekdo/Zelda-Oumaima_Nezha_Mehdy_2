@@ -14,11 +14,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),800,600);
+        Scene scene = new Scene(fxmlLoader.load(),1920,1080);
         Controleur controller = fxmlLoader.getController();
         stage.setTitle("B-O Hazard");
         stage.setScene((scene));
-        scene.setOnKeyPressed(e->controller.keyPressed(e));
         stage.show();
 
     }

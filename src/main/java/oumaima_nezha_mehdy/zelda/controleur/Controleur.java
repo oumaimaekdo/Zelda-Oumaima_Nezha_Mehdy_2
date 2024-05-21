@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,7 +32,7 @@ public class Controleur implements Initializable {
 
     private VueActLink linkControl;
 
-    private double tailleTuile;
+    private int tailleTuile;
 
     private Clavier clavier;
 
@@ -55,7 +56,15 @@ public class Controleur implements Initializable {
         champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile);
         this.clavier =new Clavier(vueActeur,linkControl);
+        this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
+                this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
 
+        });
+        this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
+            this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
+        });
+        this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
+        this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
 
     }
 
@@ -97,6 +106,9 @@ public class Controleur implements Initializable {
     }
 
 
+    public void mouseclicked(MouseEvent mouseEvent) {
+        univers.requestFocus();
+    }
 }
 
 

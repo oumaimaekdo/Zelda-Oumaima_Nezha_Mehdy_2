@@ -30,7 +30,7 @@ public class VueActLink {
     public VueActLink(Pane pane, Champ c,double tailleTuile){
         vueActeur=pane;
         this.champ=c;
-        this.link=new Acteur("newlink",0,0,champ);
+        this.link=champ.getLink();
         this.tT=tailleTuile;
         creerlink("file:src/main/resources/images/link_defaut.png",link);
         linkNord=new Image("file:src/main/resources/images/link_nord.png");
@@ -43,37 +43,30 @@ public class VueActLink {
     public void DeplacementLink(String key){
         System.out.println("\n \n \n" );
         System.out.println(key);
-        int x2base,y2base;
-        x2base = this.link.getX();
-        y2base = this.link.getX();
         switch (key) {
             case"Z" :
             case "UP":
-                this.link.seDeplacer("nord");
+                link.seDeplacer("nord");
                 this.vueLink.setImage(linkNord);
                 break;
             case "Q":
-            case "LEFT":this.link.seDeplacer("ouest");
+            case "LEFT":link.seDeplacer("ouest");
                 this.vueLink.setImage(linkOuest);
                 break;
             case "S":
-            case "DOWN":this.link.seDeplacer("sud");
+            case "DOWN":link.seDeplacer("sud");
                 this.vueLink.setImage(linkSud);
                 break;
             case "D":
-            case "RIGHT":this.link.seDeplacer("est");
+            case "RIGHT":link.seDeplacer("est");
                 this.vueLink.setImage(linkEst);
                 break;
         }
-        /*if(!coordonnéPossible(this.link.getX(),this.link.getY())) {
-            this.link.setX(x2base);
-            this.link.setY(y2base);
-        }*/
 
 
         System.out.println(link.getX()+","+link.getY());
     }
-    private boolean coordonnéPossible(int x,int y){
+   /* private boolean coordonnéPossible(int x,int y){
         boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
         int haut,bas,gauche,droite;
         haut = 25;
@@ -84,6 +77,26 @@ public class VueActLink {
         boolean collisionbasdroite =champ.getChamp()[(int) ((x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur()))]!=2;
         return retourneur&&(collisionhautgauche&&collisionbasdroite);
     }
+    public void mouvementLink(String direction){
+        int x2base,y2base;
+        x2base = this.link.getX();
+        y2base = this.link.getY();
+        link.seDeplacer(direction);
+        if(!coordonnéPossible(this.link.getX(),this.link.getY())) {
+            this.link.setX(x2base);
+            this.link.setY(y2base);
+        }
+
+
+
+
+
+
+
+
+
+
+    }*/
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
         Image Image = new Image(path);
