@@ -15,7 +15,6 @@ public class Clavier{
     public Clavier(Pane pane,VueActLink vac){
         this.vueActeur=pane;
         this.linkDeplacement=vac;
-        this.vueActeur.setOnKeyPressed(this::handle);
     }
 
     public void handle(KeyEvent keyEvent) {

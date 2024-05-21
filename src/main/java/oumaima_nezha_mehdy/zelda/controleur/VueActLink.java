@@ -1,9 +1,12 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
 public class VueActLink {
@@ -20,6 +23,9 @@ public class VueActLink {
 
     @FXML
     private ImageView vueLink;
+    private Timeline gameLoop;
+
+    private int temps;
 
     private Image linkNord;
     private Image linkSud;
@@ -81,9 +87,9 @@ public class VueActLink {
         gauche = 15;
         bas = -20;
         droite = -10;
-        boolean retourneur = x>=0&&y>=0&&x+15<this.champ.getLongueur()*tT&&y+15<this.champ.getLargeur()*tT;
-        if(!retourneur)
+        if(((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur())>=champ.getChamp().length)
             return false;
+        boolean retourneur = x>=0&&y>=0&&x+15<this.champ.getLongueur()*tT&&y+15<this.champ.getLargeur()*tT;
         boolean collisionhautgauche =champ.getChamp()[((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur())]!=2;
         boolean collisionbasdroite =champ.getChamp()[(x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur())]!=2;
         return retourneur&&(collisionhautgauche&&collisionbasdroite);
@@ -105,5 +111,23 @@ public class VueActLink {
         r.translateYProperty().bind(a.getYProperty());
         this.vueLink=r;
         
+    }
+
+    private void initAnimation() {
+        gameLoop = new Timeline();
+        temps=0;
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame kf = new KeyFrame(
+                // on définit le FPS (nbre de frame par seconde)
+                Duration.seconds(0.017),
+                // on définit ce qui se passe à chaque frame
+                // c'est un eventHandler d'ou le lambda
+                (ev ->{
+
+                    temps++;
+                })
+        );
+        gameLoop.getKeyFrames().add(kf);
     }
 }

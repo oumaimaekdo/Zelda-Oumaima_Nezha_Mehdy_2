@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -13,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
 public class Controleur implements Initializable {
@@ -39,6 +42,8 @@ public class Controleur implements Initializable {
     private int LargeurInt;
 
     private Clavier clavier;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,5 +115,6 @@ public class Controleur implements Initializable {
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
     }
+
 }
 
