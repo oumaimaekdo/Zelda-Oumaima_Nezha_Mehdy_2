@@ -45,13 +45,11 @@ public class Controleur implements Initializable {
 
     private int temps;
 
-    //pour la direction, on l'utilise dans le bfs et il faut le remplacer par la touche pressé par l'utilisateur
-    private String direction;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.sol = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        this.sol = new int[]{
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 2, 2, 2, 0, 0, 0, 0,

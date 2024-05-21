@@ -60,7 +60,7 @@ public class Acteur {
         }
 
 
-        if(!coordonnéPossible(this.x.getValue(),this.y.getValue())) {
+        if (!coordonnéPossible(this.x.getValue(), this.y.getValue())) {
             this.x.set(x2base);
             this.y.set(y2base);
         }
@@ -69,39 +69,52 @@ public class Acteur {
     }
 
     private boolean coordonnéPossible(int x, int y) {
-        boolean retourneur = x>=0&&y>=0&&x<=this.champ.getLongueur()*64&&y<=this.champ.getLargeur()*64;
-        x-=0;
-        y-=5;
-        int indice = x/64 + ((y/64)*(champ.getLongueur()));
-        boolean collision =champ.getChamp()[indice]!=2;
-        x+=10;
-        y+=30;
-        indice = x/64 + ((y/64)*(champ.getLongueur()));
-        return retourneur&&(collision&&champ.getChamp()[indice]!=2);
+        boolean retourneur = x >= 0 && y >= 0 && x <= this.champ.getLongueur() * 64 && y <= this.champ.getLargeur() * 64;
+        x -= 0;
+        y -= 5;
+        int indice = x / 64 + ((y / 64) * (champ.getLongueur()));
+        boolean collision = champ.getChamp()[indice] != 2;
+        x += 10;
+        y += 30;
+        indice = x / 64 + ((y / 64) * (champ.getLongueur()));
+        return retourneur && (collision && champ.getChamp()[indice] != 2);
 
     }
 
-    public boolean ennemis(){
+    public boolean ennemis() {
         //boolean estEnnemi;
         return nom != "link";
     }
 
-    public void gestionCollisionEnnemi(){
+    public void gestionCollisionEnnemi() {
 
 
     }
 
 
-    public int getX(){return x.getValue();}
+    public int getX() {
+        return x.getValue();
+    }
 
-    public int getY(){return y.getValue();}
+    public int getY() {
+        return y.getValue();
+    }
 
-    public String getDirection(){ return this.directionActuelle; }
+    public String getDirection() {
+        return this.directionActuelle;
+    }
 
-    public IntegerProperty getXProperty(){return x;}
-    public IntegerProperty getYProperty(){return y;}
+    public IntegerProperty getXProperty() {
+        return x;
+    }
 
-    public static String getId(){ return "#"+id;}
+    public IntegerProperty getYProperty() {
+        return y;
+    }
+
+    public static String getId() {
+        return "#" + id;
+    }
 
 
     public ArrayList<int[]> deplacementBFS(int cibleX, int cibleY) {
@@ -129,8 +142,8 @@ public class Acteur {
                     chemin.add(pas);
                     pas = parents.get(pas);
                 }
-            Collections.reverse(chemin);
-            return chemin;
+                Collections.reverse(chemin);
+                return chemin;
             }
 
             for (int[] dir : directions) {
@@ -159,5 +172,5 @@ public class Acteur {
 
     }
 
- */
-
+*/
+}
