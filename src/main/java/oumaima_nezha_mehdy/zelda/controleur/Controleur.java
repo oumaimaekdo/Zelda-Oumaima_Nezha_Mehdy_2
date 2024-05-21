@@ -42,16 +42,16 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test;
-        this.tailleTuile=64;
-        this.sol=MapPossible.test.getCarte();
+        MapInt mapInt = MapPossible.test2;
+        this.tailleTuile=32;
+        this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         map.setPrefTileHeight(tailleTuile);
         map.setPrefTileWidth(tailleTuile);
         map.setPrefHeight(LargeurInt*tailleTuile);
-        map.setMaxWidth(LongueurInt*tailleTuile);
+        map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile);
@@ -82,10 +82,10 @@ public class Controleur implements Initializable {
                 imageView.setId(String.valueOf(i));
                 imageView.setFitHeight(tailleTuile);
                 imageView.setFitWidth(tailleTuile);
-                double col = i % 10;
-                double lig = Math.floor(i/10);
-                double x = col * 10;
-                double y = lig * 10;
+                double col = i % LargeurInt;
+                double lig = Math.floor(i/LongueurInt);
+                double x = col * LargeurInt;
+                double y = lig * LongueurInt;
                 imageView.setX(x);
                 imageView.setY(y);
                 switch (carte[i]) {
