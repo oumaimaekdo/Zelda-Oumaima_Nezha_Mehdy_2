@@ -42,7 +42,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test;
+        MapInt mapInt = MapPossible.test2;
         this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
@@ -76,6 +76,8 @@ public class Controleur implements Initializable {
         int[] carte = this.sol;
         Image eau = new Image("file:src/main/resources/images/asset2.jpg");
         Image terre = new Image("file:src/main/resources/images/asset.jpg");
+        Image arbre = new Image("file:src/main/resources/images/arbre.png");
+
         for (int i = 0; i < carte.length; i++) {
                 ImageView imageView = new ImageView();
                 map.getChildren().add(imageView);
@@ -93,7 +95,7 @@ public class Controleur implements Initializable {
                         imageView.setImage(terre);
                         break;
                     case 1:
-                        imageView.setImage(terre);
+                        imageView.setImage(arbre);
                         break;
                     case 2:
                         imageView.setImage(eau);
