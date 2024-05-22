@@ -34,24 +34,24 @@ public class Controleur implements Initializable {
 
     private int tailleTuile;
 
+    private int LongueurInt;
+
+    private int LargeurInt;
+
     private Clavier clavier;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        MapInt mapInt = MapPossible.test;
         this.tailleTuile=64;
-        this.sol = new int[]{   0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
-                0, 0, 2, 2, 1, 2, 2, 2, 2, 0,
-                0, 2, 2, 2, 1, 2, 2, 0, 0, 0,
-                2, 2, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        this.champ = new Champ(10, 10,sol);
+        this.sol=mapInt.getCarte();
+        this.LargeurInt = mapInt.getLargeur();
+        this.LongueurInt = mapInt.getLongueur();
+        this.champ = new Champ(LongueurInt,LargeurInt,sol);
         map.setPrefTileHeight(tailleTuile);
-        map.setPrefTileHeight(tailleTuile);
+        map.setPrefTileWidth(tailleTuile);
+        map.setPrefHeight(LargeurInt*tailleTuile);
+        map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile);
@@ -68,40 +68,37 @@ public class Controleur implements Initializable {
 
     }
 
-    public void keyPressed(KeyEvent e){
-        clavier.handle(e);
+    public Clavier getClavier() {
+        return clavier;
     }
-
-
-
 
     public void CreationMap() {
         int[] carte = this.sol;
         Image eau = new Image("file:src/main/resources/images/asset2.jpg");
         Image terre = new Image("file:src/main/resources/images/asset.jpg");
         for (int i = 0; i < carte.length; i++) {
-            ImageView imageView = new ImageView();
-            map.getChildren().add(imageView);
-            imageView.setId(String.valueOf(i));
-            imageView.setFitHeight(tailleTuile);
-            imageView.setFitWidth(tailleTuile);
-            double col = i % 10;
-            double lig = Math.floor(i/10);
-            double x = col * 10;
-            double y = lig * 10;
-            imageView.setX(x);
-            imageView.setY(y);
-            switch (carte[i]) {
-                case 0:
-                    imageView.setImage(terre);
-                    break;
-                case 1:
-                    imageView.setImage(terre);
-                    break;
-                case 2:
-                    imageView.setImage(eau);
-                    break;
-            }
+                ImageView imageView = new ImageView();
+                map.getChildren().add(imageView);
+                imageView.setId(String.valueOf(i));
+                imageView.setFitHeight(tailleTuile);
+                imageView.setFitWidth(tailleTuile);
+                double col = i % LargeurInt;
+                double lig = Math.floor(i/LongueurInt);
+                double x = col * LargeurInt;
+                double y = lig * LongueurInt;
+                imageView.setX(x);
+                imageView.setY(y);
+                switch (carte[i]) {
+                    case 0:
+                        imageView.setImage(terre);
+                        break;
+                    case 1:
+                        imageView.setImage(terre);
+                        break;
+                    case 2:
+                        imageView.setImage(eau);
+                        break;
+                }
         }
     }
 
@@ -109,7 +106,9 @@ public class Controleur implements Initializable {
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
     }
+
+    public void keyPressed(KeyEvent keyEvent) {
+        clavier.handle(keyEvent);
+    }
 }
-
-
 
