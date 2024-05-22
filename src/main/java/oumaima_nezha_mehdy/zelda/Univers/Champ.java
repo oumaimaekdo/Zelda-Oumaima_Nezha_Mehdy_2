@@ -10,8 +10,11 @@ public class Champ {
     private ArrayList<Bloc> listBloc =new ArrayList<>();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
+    private ArrayList<Armes> listArme = new ArrayList<>();
 
     private Acteur link;
+
+    private Armes arme;
 
     private int longueur;
 
@@ -22,6 +25,7 @@ public class Champ {
         this.longueur=L;
         this.champ = map;
         this.link = new Acteur("Link",0,0,this);
+        this.arme = new Armes("epee",20,this,"file:src/main/resources/images/epeeFer.png");
         //listActeur.add(link);
         raffraichirMap();
 
@@ -49,6 +53,7 @@ public class Champ {
     public void ajouterActeur(Acteur a){
         listActeur.add(a);
     }
+    public void ajouterArme(Armes a){listArme.add(a);}
 
     public void afficherMap(){
         raffraichirMap();
@@ -80,11 +85,19 @@ public class Champ {
     public ArrayList<Acteur> getListActeur() {
         return listActeur;
     }
+    public ArrayList<Armes> getListArmes() {
+        return listArme;
+    }
+
 
 
     public Acteur getLink() {
         return link;
     }
+    public Armes getArme() {
+        return arme;
+    }
+
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}

@@ -14,6 +14,8 @@ public class Acteur {
 
     private int vitesse=10;
 
+    private Armes arme;
+
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
 
@@ -24,12 +26,14 @@ public class Acteur {
         this.y.set(y);
         this.champ=m;
         id += 1;
+        this.arme = null;
     }
     public Acteur(String nom, Champ m){
         this.nom=nom;
         this.champ=m;
         this.x.set(m.getLongueur()/2);
         this.y.set(m.getLargeur()/2);
+        this.arme = null;
     }
 
     public void seDeplacer(String direction) {
@@ -64,5 +68,25 @@ public class Acteur {
 
     public int getVitesse() {
         return vitesse;
+    }
+
+    public void equiperArme(Armes arme) {
+        this.arme = arme;
+        if (arme != null) {
+            arme.getImageView().xProperty().bind(this.x.add(20)); // Adjust offset as needed
+            arme.getImageView().yProperty().bind(this.y.add(20)); // Adjust offset as needed
+        }
+    }
+
+    public void attaquer() {
+        if (arme != null) {
+            arme.utiliser();
+        } else {
+            System.out.println(nom + " n'a pas d'arme équipée.");
+        }
+    }
+
+    public Armes getArme() {
+        return arme;
     }
 }

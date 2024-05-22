@@ -29,8 +29,11 @@ public class Controleur implements Initializable {
 
     @FXML
     private Pane vueActeur;
+    @FXML
+    private Pane vueArmes;
 
     private VueActLink linkControl;
+    private VueArmes armesControl;
 
     private int tailleTuile;
 
@@ -39,6 +42,8 @@ public class Controleur implements Initializable {
     private int LargeurInt;
 
     private Clavier clavier;
+
+    private Armes epee;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,7 +70,11 @@ public class Controleur implements Initializable {
         });
         this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
-
+        this.armesControl = new VueArmes(vueArmes,champ,tailleTuile);
+        Acteur acteur = champ.getLink();
+        if (acteur.getArme() != null) {
+            univers.getChildren().add(acteur.getArme().getImageView());
+        }
     }
 
     public Clavier getClavier() {
