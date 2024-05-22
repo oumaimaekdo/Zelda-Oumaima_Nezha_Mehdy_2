@@ -78,8 +78,6 @@ public class Controleur implements Initializable {
         creerSprite(link2);
         creerSpriteEnnemi(e);
 
-        //e.deplacementBFS(link2.getX(), link2.getY());
-
         this.map.setOnKeyPressed(e -> {
             System.out.println(e.getCode());
         });
@@ -176,7 +174,6 @@ public class Controleur implements Initializable {
         champ.afficherMap();
         System.out.println(link2.getX()+","+link2.getY());
 
-        //raffraichir();
     }
 
     private void initGameLoop() {
@@ -188,8 +185,6 @@ public class Controleur implements Initializable {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(1.0 / nbFramesParSeconde), // Durée entre chaque frame
                 event -> {
-                    // Code exécuté à chaque frame
-                    //jeuMisaJour();
                     deplacerEnnemi();
                     renduDuJeu();
                 }
@@ -202,73 +197,13 @@ public class Controleur implements Initializable {
         gameLoop.play();
     }
 
-    // Méthode appelée à chaque frame pour mettre à jour l'état du jeu
-/*
-    private void jeuMisaJour() {
-
-        temps++;
-        if (temps >= 100) {
-            System.out.println("Fin de la boucle de jeu.");
-            gameLoop.stop();
-        }
-        deplacerEnnemi();
-    }
-
- */
 
     private void deplacerEnnemi() {
 
         ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
         e.suivreChemin(chemin);
 
-/*
-        if (e.getX() < link2.getX()) {
-            e.seDeplacer("est");
-        } else if (e.getX() > link2.getX()) {
-            e.seDeplacer("ouest");
-        }
 
-
-        if (e.getY() < link2.getY()) {
-            e.seDeplacer("sud");
-        } else if (e.getY() > link2.getY()) {
-            e.seDeplacer("nord");
-        }
-
-
-        if (e.getX() == link2.getX() && e.getY() == link2.getY()) {
-            System.out.println("collision !");
-        }
-
-
-
-
-        //il s'approche du link
-
-        if (e.getX() > link2.getX()) {
-            e.seDeplacer("est");
-        } else if (e.getX() < link2.getX()) {
-            e.seDeplacer("ouest");
-        }
-
-        if (e.getY() > link2.getY()) {
-            e.seDeplacer("sud");
-        } else if (e.getY() < link2.getY()) {
-            e.seDeplacer("nord");
-        }
-
-        if(e.getX() == link2.getX() && e.getY() == link2.getY()){
-            System.out.println("collision ! ");
-        }
-
-         */
-
-
-
-
-        //l'ennemi se déplace pas correctement
-        //ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
-        //e.suivreChemin(chemin);
     }
 
     // Méthode appelée à chaque frame pour mettre à jour l'affichage du jeu
