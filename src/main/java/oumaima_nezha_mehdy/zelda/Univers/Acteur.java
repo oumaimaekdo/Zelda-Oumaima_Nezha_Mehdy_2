@@ -173,5 +173,4 @@ public class Acteur {
             this.y.set(nouveauY);
         }
     }
-
 }

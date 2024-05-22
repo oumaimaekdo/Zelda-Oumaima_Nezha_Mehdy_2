@@ -209,6 +209,5 @@ public class Controleur implements Initializable {
     // Méthode appelée à chaque frame pour mettre à jour l'affichage du jeu
 
     private void renduDuJeu() { System.out.println("Frame : " + temps); }
-
 }
 
