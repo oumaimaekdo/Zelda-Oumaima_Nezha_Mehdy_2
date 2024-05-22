@@ -17,6 +17,9 @@ import oumaima_nezha_mehdy.zelda.Univers.*;
 
 public class Controleur implements Initializable {
 
+
+    @FXML
+    private BorderPane fenetre;
     @FXML
     private TilePane map;
     @FXML
@@ -24,6 +27,8 @@ public class Controleur implements Initializable {
 
     private Champ champ;
 
+    @FXML
+    private HBox inventaire;
 
     private int[] sol;
 
@@ -42,7 +47,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test;
+        MapInt mapInt = MapPossible.test2;
         this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
@@ -58,7 +63,6 @@ public class Controleur implements Initializable {
         this.clavier =new Clavier(vueActeur,linkControl);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
                 this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
-
         });
         this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
@@ -109,6 +113,7 @@ public class Controleur implements Initializable {
 
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
+        System.out.println(inventaire.lookup("#case1").getId());
     }
 }
 
