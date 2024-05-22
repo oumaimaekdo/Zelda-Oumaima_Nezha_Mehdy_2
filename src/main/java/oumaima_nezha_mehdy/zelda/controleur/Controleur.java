@@ -210,7 +210,5 @@ public class Controleur implements Initializable {
 
     private void renduDuJeu() { System.out.println("Frame : " + temps); }
 
-
-
 }
 
