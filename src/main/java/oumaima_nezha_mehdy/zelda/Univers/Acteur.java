@@ -117,8 +117,51 @@ public class Acteur {
     }
 
 
-    public ArrayList<int[]> deplacementBFS(int cibleX, int cibleY) {
 
+
+        public ArrayList<int[]> deplacementBFS(int cibleX, int cibleY) {
+            int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+            boolean[][] visites = new boolean[champ.getLargeur()][champ.getLongueur()];
+            Queue<int[]> queue = new LinkedList<>();
+            Map<String, int[]> parents = new HashMap<>();
+
+            int departX = this.getX() / 64;
+            int departY = this.getY() / 64;
+
+            queue.add(new int[]{departX, departY});
+            visites[departY][departX] = true;
+
+            while (!queue.isEmpty()) {
+                int[] actuel = queue.poll();
+                int actuelX = actuel[0];
+                int actuelY = actuel[1];
+
+                if (actuelX == cibleX && actuelY == cibleY) {
+                    ArrayList<int[]> chemin = new ArrayList<>();
+                    int[] pas = actuel;
+                    while (pas != null) {
+                        chemin.add(pas);
+                        String key = pas[0] + "," + pas[1];
+                        pas = parents.get(key);
+                    }
+                    Collections.reverse(chemin);
+                    return chemin;
+                }
+
+                for (int[] dir : directions) {
+                    int nouveauX = actuelX + dir[0];
+                    int nouveauY = actuelY + dir[1];
+                    if (nouveauX >= 0 && nouveauX < champ.getLongueur() && nouveauY >= 0 && nouveauY < champ.getLargeur() && !visites[nouveauY][nouveauX] && champ.getChamp()[nouveauY * champ.getLongueur() + nouveauX] != 2) {
+                        queue.add(new int[]{nouveauX, nouveauY});
+                        visites[nouveauY][nouveauX] = true;
+                        parents.put(nouveauX + "," + nouveauY, actuel);
+                    }
+                }
+            }
+            return null;
+
+
+        /*
         int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         boolean[][] visités = new boolean[champ.getLargeur()][champ.getLongueur()];
         Queue<int[]> queue = new LinkedList<>();
@@ -156,8 +199,20 @@ public class Acteur {
                 }
             }
         }
-        return null;
+        return null;*/
     }
+
+    public void suivreChemin(ArrayList<int[]> chemin) {
+        if (chemin == null || chemin.isEmpty()) return;
+
+        for (int[] step : chemin) {
+            int nouveauX = step[0] * 64;
+            int nouveauY = step[1] * 64;
+            this.x.set(nouveauX);
+            this.y.set(nouveauY);
+        }
+    }
+
 /*
     public void suivreChemin(ArrayList<int[]> chemin) {
 

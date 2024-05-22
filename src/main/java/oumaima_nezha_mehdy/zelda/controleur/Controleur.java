@@ -78,6 +78,8 @@ public class Controleur implements Initializable {
         creerSprite(link2);
         creerSpriteEnnemi(e);
 
+        //e.deplacementBFS(link2.getX(), link2.getY());
+
         this.map.setOnKeyPressed(e -> {
             System.out.println(e.getCode());
         });
@@ -216,7 +218,10 @@ public class Controleur implements Initializable {
 
     private void deplacerEnnemi() {
 
+        ArrayList<int[]> chemin = e.deplacementBFS(link2.getX() / 64, link2.getY() / 64);
+        e.suivreChemin(chemin);
 
+/*
         if (e.getX() < link2.getX()) {
             e.seDeplacer("est");
         } else if (e.getX() > link2.getX()) {
@@ -237,7 +242,7 @@ public class Controleur implements Initializable {
 
 
 
-        /*
+
         //il s'approche du link
 
         if (e.getX() > link2.getX()) {
