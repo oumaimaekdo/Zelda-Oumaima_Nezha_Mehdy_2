@@ -79,8 +79,8 @@ public class Controleur implements Initializable {
 
     public void CreationMap() {
         int[] carte = this.sol;
-        Image eau = new Image("file:src/main/resources/images/asset2.jpg");
-        Image terre = new Image("file:src/main/resources/images/asset.jpg");
+        Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
+        Image terre = new Image("file:src/main/resources/images/Bloc/Herbe.jpg");
         for (int i = 0; i < carte.length; i++) {
                 ImageView imageView = new ImageView();
                 map.getChildren().add(imageView);

@@ -39,11 +39,13 @@ public class VueActLink {
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
-        creerlink("file:src/main/resources/images/link_defaut.png",link);
-        linkNord=new Image("file:src/main/resources/images/link_nord.png");
-        linkSud=new Image("file:src/main/resources/images/link_sud.png");
-        linkEst=new Image("file:src/main/resources/images/link_est.png");
-        linkOuest=new Image("file:src/main/resources/images/link_ouest.png");
+        creerlink("file:src/main/resources/images/Link/SudDefault.png",link);
+        linkNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
+        linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
+        linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
+        linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
+        initAnimation();
+        gameLoop.play();
     }
 
 
@@ -84,7 +86,7 @@ public class VueActLink {
     private boolean coordonnéPossible(int x,int y){
         int haut,bas,gauche,droite;
         haut = 25;
-        gauche = 15;
+        gauche = 20;
         bas = -20;
         droite = -10;
         if(((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur())>=champ.getChamp().length)
@@ -115,17 +117,19 @@ public class VueActLink {
 
     private void initAnimation() {
         gameLoop = new Timeline();
-        temps=0;
+        temps=1;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.017),
+                Duration.seconds(0.1),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-
                     temps++;
+                    System.out.println("frame :"+temps);
+
+
                 })
         );
         gameLoop.getKeyFrames().add(kf);
