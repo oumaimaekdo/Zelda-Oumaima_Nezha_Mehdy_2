@@ -17,6 +17,7 @@
                         <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                      </children>
                   </Pane>
+                  <Pane fx:id="vueArmes"></Pane>
                </children>
             </Pane>
    </center>
