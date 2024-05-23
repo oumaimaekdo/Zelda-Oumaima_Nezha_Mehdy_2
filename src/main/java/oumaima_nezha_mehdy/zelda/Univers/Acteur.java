@@ -75,13 +75,6 @@ public class Acteur {
         return vitesse;
     }
 
-    public void equiperArme(Armes arme) {
-        this.arme = arme;
-        if (arme != null) {
-            arme.getImageView().xProperty().bind(this.x.add(20)); // Adjust offset as needed
-            arme.getImageView().yProperty().bind(this.y.add(0)); // Adjust offset as needed
-        }
-    }
 
     public void attaquer() {
         if (arme != null) {

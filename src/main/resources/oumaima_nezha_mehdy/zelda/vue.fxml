@@ -24,7 +24,7 @@
    <bottom>
       <Pane prefHeight="128.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="inventaire" alignment="BOTTOM_CENTER" layoutX="680.0" layoutY="28.0" opacity="0.5" prefHeight="92.0" prefWidth="613.0" style="-fx-border-radius: 50;">
+            <HBox fx:id="vueInventaire" alignment="BOTTOM_CENTER" layoutX="680.0" layoutY="28.0" opacity="0.5" prefHeight="92.0" prefWidth="613.0" style="-fx-border-radius: 50;">
                <children>
                   <Rectangle fx:id="case1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
                   <Rectangle fx:id="case2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />

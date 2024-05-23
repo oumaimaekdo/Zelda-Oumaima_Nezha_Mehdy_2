@@ -16,6 +16,8 @@ public class VueActLink {
 
     private Champ champ;
 
+    private Pane vueArmes;
+
 
     @FXML
     private ImageView vueLink;
@@ -27,8 +29,11 @@ public class VueActLink {
 
     private int tT;
 
-    public VueActLink(Pane pane, Champ c,int tailleTuile){
+    private VueArmes armeEquipé;
+
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes){
         vueActeur=pane;
+        this.vueArmes = vueArmes;
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
@@ -37,6 +42,8 @@ public class VueActLink {
         linkSud=new Image("file:src/main/resources/images/link_sud.png");
         linkEst=new Image("file:src/main/resources/images/link_est.png");
         linkOuest=new Image("file:src/main/resources/images/link_ouest.png");
+        this.armeEquipé = new VueArmes(tT,new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),vueArmes);
+        equiperArme();
     }
 
 
@@ -104,5 +111,11 @@ public class VueActLink {
         r.translateYProperty().bind(a.getYProperty());
         this.vueLink=r;
         
+    }
+    public void equiperArme() {
+        if (armeEquipé != null) {
+            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(20)); // Adjust offset as needed
+            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(0)); // Adjust offset as needed
+        }
     }
 }
