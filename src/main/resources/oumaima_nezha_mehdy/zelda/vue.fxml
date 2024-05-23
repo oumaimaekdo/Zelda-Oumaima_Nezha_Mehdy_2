@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<?import javafx.scene.image.ImageView?>
-<Pane onMouseClicked="#mouseclicked" onKeyPressed="#keyPressed" fx:id="univers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oumaima_nezha_mehdy.zelda.controleur.Controleur">
-    <children>
-        <Pane fx:id="vueActeur">
-            <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                      prefHeight="650.0" prefWidth="650.0" />
-        </Pane>
-        <Pane fx:id="vueArmes"></Pane>
-    </children>
-</Pane>
+<BorderPane fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oumaima_nezha_mehdy.zelda.controleur.Controleur">
+   <center>
+            <Pane fx:id="univers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseClicked="#mouseclicked" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="vueActeur">
+                     <children>
+                        <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+   </center>
+   <bottom>
+      <Pane prefHeight="128.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="inventaire" alignment="BOTTOM_CENTER" layoutX="680.0" layoutY="28.0" opacity="0.5" prefHeight="92.0" prefWidth="613.0" style="-fx-border-radius: 50;">
+               <children>
+                  <Rectangle fx:id="case1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Rectangle fx:id="case2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Rectangle fx:id="case3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Rectangle fx:id="case4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Rectangle fx:id="case5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Pane>
+   </bottom>
+</BorderPane>

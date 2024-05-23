@@ -17,7 +17,6 @@ public class VueActLink {
     private Champ champ;
 
 
-
     @FXML
     private ImageView vueLink;
 
