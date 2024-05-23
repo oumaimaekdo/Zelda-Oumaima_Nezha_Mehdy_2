@@ -20,8 +20,8 @@ public class Armes {
         this.degats = degats;
         this.champ = champ;
         this.imageView = new ImageView(new Image(imagePath));
-        this.imageView.setFitWidth(30); // Ajuste selon la taille souhaitée
-        this.imageView.setFitHeight(30); // Ajuste selon la taille souhaitée
+        this.imageView.setFitWidth(22); // Ajuste selon la taille souhaitée
+        this.imageView.setFitHeight(22); // Ajuste selon la taille souhaitée
     }
 
     public String getNom() {

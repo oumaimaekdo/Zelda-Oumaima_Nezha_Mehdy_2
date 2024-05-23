@@ -5,6 +5,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.List;
+
 public class Acteur {
 
     public static int id= 0;;
@@ -15,6 +17,9 @@ public class Acteur {
     private int vitesse=10;
 
     private Armes arme;
+
+    private List<Armes> inventaire;
+
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
@@ -74,7 +79,7 @@ public class Acteur {
         this.arme = arme;
         if (arme != null) {
             arme.getImageView().xProperty().bind(this.x.add(20)); // Adjust offset as needed
-            arme.getImageView().yProperty().bind(this.y.add(20)); // Adjust offset as needed
+            arme.getImageView().yProperty().bind(this.y.add(0)); // Adjust offset as needed
         }
     }
 
@@ -88,5 +93,20 @@ public class Acteur {
 
     public Armes getArme() {
         return arme;
+    }
+
+    public void ajouterArme(Armes arme) {
+        inventaire.add(arme);
+    }
+
+    public List<Armes> getInventaire() {
+        return inventaire;
+    }
+
+    public Armes getArmeParIndex(int index) {
+        if (index >= 0 && index < inventaire.size()) {
+            return inventaire.get(index);
+        }
+        return null;
     }
 }

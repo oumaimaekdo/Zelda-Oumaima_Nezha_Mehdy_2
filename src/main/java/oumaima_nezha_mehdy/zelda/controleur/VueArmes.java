@@ -40,4 +40,48 @@ public class VueArmes {
         acteur.equiperArme(epee);
         this.vueEpee = r;
     }
+
+    public void choixArme(String path, Armes nouvelleArme) {
+        if (vueArme != null) {
+            vueArme.getChildren().remove(vueEpee);
+        }
+        this.epee = nouvelleArme;
+        creerArme(path, nouvelleArme);
+    }
+
+
+    /*public void DeplacementLink(String key){
+        System.out.println("\n \n \n" );
+        System.out.println(key);
+        switch (key) {
+            case"Z" :
+            case "UP":
+                if(coordonnéPossible(this.link.getX(),this.link.getY()-(1*link.getVitesse())))
+                    link.seDeplacer("nord");
+                this.vueLink.setImage(linkNord);
+                break;
+            case "Q":
+            case "LEFT":
+                if(coordonnéPossible(this.link.getX()-(1*link.getVitesse()),this.link.getY()))
+                    link.seDeplacer("ouest");
+                this.vueLink.setImage(linkOuest);
+                break;
+            case "S":
+            case "DOWN":
+                if(coordonnéPossible(this.link.getX(),this.link.getY()+(1*link.getVitesse())))
+                    link.seDeplacer("sud");
+                this.vueLink.setImage(linkSud);
+                break;
+            case "D":
+            case "RIGHT":
+                if(coordonnéPossible(this.link.getX()+(1*link.getVitesse()),this.link.getY()))
+                    link.seDeplacer("est");
+                this.vueLink.setImage(linkEst);
+                break;
+        }
+
+
+        System.out.println(link.getX()+","+link.getY());
+        System.out.println(link.getX()/tT+","+link.getY()/tT);
+    }*/
 }
