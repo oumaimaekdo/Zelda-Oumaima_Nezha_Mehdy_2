@@ -4,6 +4,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.ImageView;
+import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 
 import java.util.List;
 
@@ -75,20 +77,16 @@ public class Acteur {
         return vitesse;
     }
 
-    public void equiperArme(Armes arme) {
-        this.arme = arme;
-        if (arme != null) {
-            arme.getImageView().xProperty().bind(this.x.add(20)); // Adjust offset as needed
-            arme.getImageView().yProperty().bind(this.y.add(0)); // Adjust offset as needed
-        }
-    }
-
     public void attaquer() {
         if (arme != null) {
             arme.utiliser();
         } else {
             System.out.println(nom + " n'a pas d'arme équipée.");
         }
+    }
+
+    public ImageView getImageView() {
+        return imageView;
     }
 
     public Armes getArme() {

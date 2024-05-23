@@ -12,16 +12,12 @@ public class Armes {
     public static int id= 0;
 
     private Champ champ;
-    private ImageView imageView;
 
 
-    public Armes(String nom, int degats,Champ champ,String imagePath) {
+
+    public Armes(String nom, int degats) {
         this.nom = nom;
         this.degats = degats;
-        this.champ = champ;
-        this.imageView = new ImageView(new Image(imagePath));
-        this.imageView.setFitWidth(22); // Ajuste selon la taille souhaitée
-        this.imageView.setFitHeight(22); // Ajuste selon la taille souhaitée
     }
 
     public String getNom() {
@@ -42,10 +38,6 @@ public class Armes {
 
     public void utiliser() {
         System.out.println("L'arme " + nom + " a été utilisée, infligeant " + degats + " dégâts.");
-    }
-
-    public ImageView getImageView() {
-        return imageView;
     }
 
 }

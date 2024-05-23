@@ -19,26 +19,29 @@ public class VueArmes {
     private Champ champ;
     private int tailleTuile;
 
+    private ImageView imageView;
+
     // Constructeur
     public VueArmes(Pane pane, Champ champ, int tailleTuile) {
         this.vueArme = pane;
         this.champ = champ;
         this.tailleTuile = tailleTuile;
-        this.epee = champ.getArme();
-        creerArme("file:src/main/resources/images/epeeFer.png", epee);
+        this.epee = creerArme("file:src/main/resources/images/epeeFer.png", epee);
+
     }
 
     // Méthode pour créer une arme
-    public void creerArme(String path, Armes epee) {
-        ImageView r = new ImageView();
-        Image image = new Image(path);
-        r.setFitWidth(30); // Ajuste selon la taille souhaitée
-        r.setFitHeight(30); // Ajuste selon la taille souhaitée
-        vueArme.getChildren().add(r);
-        r.setId(epee.getId());
+    public Armes creerArme(String path, Armes epee) {
+        this.imageView = new ImageView(new Image(path));
+        this.imageView.setFitWidth(22); // Ajuste selon la taille souhaitée
+        this.imageView.setFitHeight(22);
+        vueArme.getChildren().add(this.imageView);
+        this.imageView.setId(epee.getId());
         Acteur acteur = champ.getLink();
         acteur.equiperArme(epee);
-        this.vueEpee = r;
+        this.vueEpee = this.imageView;
+
+        return epee;
     }
 
     public void choixArme(String path, Armes nouvelleArme) {

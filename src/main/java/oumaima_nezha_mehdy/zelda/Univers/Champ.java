@@ -25,7 +25,7 @@ public class Champ {
         this.longueur=L;
         this.champ = map;
         this.link = new Acteur("Link",0,0,this);
-        this.arme = new Armes("epee",20,this,"file:src/main/resources/images/epeeFer.png");
+        this.arme = new Armes("epee",20/*,"file:src/main/resources/images/epeeFer.png"*/);
         //listActeur.add(link);
         raffraichirMap();
 
