@@ -1,9 +1,7 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.Univers.Acteur;
 
 public class Clavier{
 
@@ -12,12 +10,17 @@ public class Clavier{
 
 
     private VueActLink linkDeplacement;
+
+
     public Clavier(Pane pane,VueActLink vac){
         this.vueActeur=pane;
         this.linkDeplacement=vac;
     }
 
-    public void handle(KeyEvent keyEvent) {
+    public void touchePressé(KeyEvent keyEvent) {
         linkDeplacement.DeplacementLink(keyEvent.getCode().toString());
+    }
+    public void toucheRelaché(KeyEvent keyEvent){
+        linkDeplacement.toucheRelaché(keyEvent);
     }
 }

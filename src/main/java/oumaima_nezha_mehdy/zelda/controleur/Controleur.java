@@ -113,8 +113,12 @@ public class Controleur implements Initializable {
     }
 
     public void keyPressed(KeyEvent keyEvent) {
-        clavier.handle(keyEvent);
+        clavier.touchePressé(keyEvent);
     }
 
+
+    public void keyReleased(KeyEvent keyEvent) {
+        clavier.toucheRelaché(keyEvent);
+    }
 }
 
