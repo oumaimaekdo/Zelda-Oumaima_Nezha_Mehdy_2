@@ -63,8 +63,8 @@ public class Controleur implements Initializable {
         map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
-        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes);
-        this.clavier =new Clavier(vueActeur,linkControl);
+        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire);
+        this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
                 this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         });

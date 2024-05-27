@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
@@ -27,16 +28,19 @@ public class VueActLink {
     private Image linkEst;
     private Image linkOuest;
 
+    private HBox vueCaseInventaire;
+
     private int tT;
 
     private VueArmes armeEquipé;
 
-    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes){
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire){
         vueActeur=pane;
         this.vueArmes = vueArmes;
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
+        this.vueCaseInventaire=vueCaseInventaire;
         creerlink("file:src/main/resources/images/link_defaut.png",link);
         linkNord=new Image("file:src/main/resources/images/link_nord.png");
         linkSud=new Image("file:src/main/resources/images/link_sud.png");
@@ -114,8 +118,14 @@ public class VueActLink {
     }
     public void equiperArme() {
         if (armeEquipé != null) {
-            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(20)); // Adjust offset as needed
-            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(0)); // Adjust offset as needed
+            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(15)); // Adjust offset as needed
+            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+            ImageView armecase1 = new ImageView();
+            armecase1.setImage(armeEquipé.getArmeVue().getImage());
+            armecase1.setFitWidth(15);
+            armecase1.setFitHeight(15);
+            vueCaseInventaire.getChildren().add(armecase1);
+
         }
     }
 }

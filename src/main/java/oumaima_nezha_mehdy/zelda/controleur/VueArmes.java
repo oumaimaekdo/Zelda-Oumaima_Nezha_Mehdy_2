@@ -28,8 +28,9 @@ public class VueArmes {
     // Méthode pour créer une arme
     public void creerArme(Image image, Armes arme) {
         ImageView r = new ImageView();
-        r.setFitWidth(30); // Ajuste selon la taille souhaitée
-        r.setFitHeight(30); // Ajuste selon la taille souhaitée
+        r.setImage(image);
+        r.setFitWidth(15); // Ajuste selon la taille souhaitée
+        r.setFitHeight(15); // Ajuste selon la taille souhaitée
         vueArme.getChildren().add(r);
         r.setId(arme.getId());
         this.ArmeVue = r;

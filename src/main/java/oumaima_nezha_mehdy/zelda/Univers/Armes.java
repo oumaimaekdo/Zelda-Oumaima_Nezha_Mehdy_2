@@ -17,6 +17,7 @@ public class Armes {
     public Armes(String nom, int degats) {
         this.nom = nom;
         this.degats = degats;
+        id++;
     }
 
     public String getNom() {
