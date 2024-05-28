@@ -22,22 +22,27 @@ public class VueInventaire {
 
         switch (e.getCode().toString()){
             case "AMPERSAND":
+            case "DIGIT1" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case1").setOpacity(1);
                 break;
             case "UNDEFINED":
+            case "DIGIT2" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case2").setOpacity(1);
                 break;
             case "QUOTEDBL":
+            case "DIGIT3" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case3").setOpacity(1);
                 break;
             case "QUOTE":
+            case "DIGIT4" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case4").setOpacity(1);
                 break;
             case "LEFT_PARENTHESIS":
+            case "DIGIT5" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case5").setOpacity(1);
                 break;

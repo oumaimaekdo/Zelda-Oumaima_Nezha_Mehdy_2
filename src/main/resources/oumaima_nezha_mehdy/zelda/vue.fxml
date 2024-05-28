@@ -36,6 +36,7 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
+            <Pane fx:id="vueArmesInventaire"/>
          </children>
          <opaqueInsets>
             <Insets />
