@@ -28,7 +28,7 @@ public class Controleur implements Initializable {
     private Champ champ;
 
     @FXML
-    private HBox inventaire;
+    private HBox vueInventaire;
 
     private int[] sol;
 
@@ -48,11 +48,10 @@ public class Controleur implements Initializable {
 
     private Clavier clavier;
 
-    private Armes epee;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test2;
+        MapInt mapInt = MapPossible.test;
         this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
@@ -64,8 +63,8 @@ public class Controleur implements Initializable {
         map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
-        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile);
-        this.clavier =new Clavier(vueActeur,linkControl);
+        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire);
+        this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
                 this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         });
@@ -74,11 +73,6 @@ public class Controleur implements Initializable {
         });
         this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
-        this.armesControl = new VueArmes(vueArmes,champ,tailleTuile);
-        Acteur acteur = champ.getLink();
-        if (acteur.getArme() != null) {
-            univers.getChildren().add(acteur.getArme().getImageView());
-        }
     }
 
     public Clavier getClavier() {
@@ -122,7 +116,7 @@ public class Controleur implements Initializable {
 
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
-        System.out.println(inventaire.lookup("#case1").getId());
+        System.out.println(vueInventaire.lookup("#case1").getId());
     }
 }
 

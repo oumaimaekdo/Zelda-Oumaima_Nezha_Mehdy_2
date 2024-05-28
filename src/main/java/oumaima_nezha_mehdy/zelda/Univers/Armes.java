@@ -11,13 +11,13 @@ public class Armes {
 
     public static int id= 0;
 
-    private Champ champ;
 
 
 
     public Armes(String nom, int degats) {
         this.nom = nom;
         this.degats = degats;
+        id++;
     }
 
     public String getNom() {
@@ -39,5 +39,6 @@ public class Armes {
     public void utiliser() {
         System.out.println("L'arme " + nom + " a été utilisée, infligeant " + degats + " dégâts.");
     }
+
 
 }

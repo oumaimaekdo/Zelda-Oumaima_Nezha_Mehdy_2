@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
@@ -16,6 +17,8 @@ public class VueActLink {
 
     private Champ champ;
 
+    private Pane vueArmes;
+
 
     @FXML
     private ImageView vueLink;
@@ -25,18 +28,26 @@ public class VueActLink {
     private Image linkEst;
     private Image linkOuest;
 
+    private HBox vueCaseInventaire;
+
     private int tT;
 
-    public VueActLink(Pane pane, Champ c,int tailleTuile){
+    private VueArmes armeEquipé;
+
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire){
         vueActeur=pane;
+        this.vueArmes = vueArmes;
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
+        this.vueCaseInventaire=vueCaseInventaire;
         creerlink("file:src/main/resources/images/link_defaut.png",link);
         linkNord=new Image("file:src/main/resources/images/link_nord.png");
         linkSud=new Image("file:src/main/resources/images/link_sud.png");
         linkEst=new Image("file:src/main/resources/images/link_est.png");
         linkOuest=new Image("file:src/main/resources/images/link_ouest.png");
+        this.armeEquipé = new VueArmes(tT,new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),vueArmes);
+        equiperArme();
     }
 
 
@@ -105,6 +116,16 @@ public class VueActLink {
         this.vueLink=r;
         
     }
+    public void equiperArme() {
+        if (armeEquipé != null) {
+            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(15)); // Adjust offset as needed
+            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+            ImageView armecase1 = new ImageView();
+            armecase1.setImage(armeEquipé.getArmeVue().getImage());
+            armecase1.setFitWidth(15);
+            armecase1.setFitHeight(15);
+            vueCaseInventaire.getChildren().add(armecase1);
 
-
+        }
+    }
 }
