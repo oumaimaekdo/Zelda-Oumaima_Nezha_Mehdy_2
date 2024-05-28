@@ -18,6 +18,7 @@
                      </children>
                   </Pane>
                   <Pane fx:id="vueArmes"></Pane>
+                  <Pane fx:id="vueArcPane"></Pane>
                </children>
             </Pane>
    </center>

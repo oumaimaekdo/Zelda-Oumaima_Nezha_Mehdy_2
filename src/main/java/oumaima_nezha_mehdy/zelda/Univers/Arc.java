@@ -12,8 +12,8 @@ public  class Arc extends Armes{
     private Champ champ;
     private ImageView imageView;
 
-    public Arc(String nom,int degats,int munitions){
-        super(nom,degats);
+    public Arc(){
+        super("Arc",25);
         this.munitions = 3;
     }
     @Override

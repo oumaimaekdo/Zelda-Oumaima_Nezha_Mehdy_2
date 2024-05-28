@@ -36,6 +36,12 @@ public class Controleur implements Initializable {
     private Pane vueActeur;
     @FXML
     private Pane vueArmes;
+    @FXML
+    private Pane vueArcPane;
+
+    @FXML
+    private VueArmes vueArc;
+    private Armes arc;
 
     private VueActLink linkControl;
     private VueArmes armesControl;
@@ -60,6 +66,14 @@ public class Controleur implements Initializable {
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
+        this.arc = new Arc();
+        this.vueArc = new VueArmes(tailleTuile,new Image("file:src/main/resources/images/arc.png"),arc,vueArcPane);
+        vueArc.getArmeVue().xProperty().setValue(200);
+        vueArc.getArmeVue().yProperty().setValue(100);
+        vueArc.getArmeVue().fitWidthProperty().setValue(20);
+        vueArc.getArmeVue().fitHeightProperty().setValue(20);
+
+
         map.setPrefTileHeight(tailleTuile);
         map.setPrefTileWidth(tailleTuile);
         map.setPrefHeight(LargeurInt*tailleTuile);
@@ -76,6 +90,7 @@ public class Controleur implements Initializable {
         });
         this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
+
     }
 
     public Clavier getClavier() {
@@ -86,6 +101,7 @@ public class Controleur implements Initializable {
         int[] carte = this.sol;
         Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
         Image terre = new Image("file:src/main/resources/images/Bloc/Herbe.jpg");
+        Image arbre = new Image("file:src/main/resources/images/Bloc/arbre.png");
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
             map.getChildren().add(imageView);
@@ -103,11 +119,12 @@ public class Controleur implements Initializable {
                     imageView.setImage(terre);
                     break;
                 case 1:
-                    imageView.setImage(terre);
+                    imageView.setImage(arbre);
                     break;
                 case 2:
                     imageView.setImage(eau);
                     break;
+
             }
         }
     }

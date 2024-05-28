@@ -54,4 +54,6 @@ public class VueInventaire {
             vueCaseInventaire.getChildren().get(i).setOpacity(0.5);
         }
     }
+
+    public void ajoutInventaire(){}
 }
