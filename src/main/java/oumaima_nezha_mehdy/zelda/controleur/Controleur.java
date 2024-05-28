@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -13,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
 public class Controleur implements Initializable {
@@ -48,7 +51,6 @@ public class Controleur implements Initializable {
 
     private Clavier clavier;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test;
@@ -67,12 +69,14 @@ public class Controleur implements Initializable {
         this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
                 this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
+
         });
         this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
         });
         this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
+
     }
 
     public Clavier getClavier() {
@@ -81,8 +85,8 @@ public class Controleur implements Initializable {
 
     public void CreationMap() {
         int[] carte = this.sol;
-        Image eau = new Image("file:src/main/resources/images/asset2.jpg");
-        Image terre = new Image("file:src/main/resources/images/asset.jpg");
+        Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
+        Image terre = new Image("file:src/main/resources/images/Bloc/Herbe.jpg");
         for (int i = 0; i < carte.length; i++) {
                 ImageView imageView = new ImageView();
                 map.getChildren().add(imageView);
@@ -117,6 +121,12 @@ public class Controleur implements Initializable {
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
+        clavier.touchePressé(keyEvent);
+    }
+
+
+    public void keyReleased(KeyEvent keyEvent) {
+        clavier.toucheRelaché(keyEvent);
     }
 }
 
