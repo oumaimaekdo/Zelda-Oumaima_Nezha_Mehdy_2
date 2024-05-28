@@ -46,7 +46,8 @@ public class VueActLink {
     private ArrayList<String> touchePressé;
 
     private boolean isAnimating;
-    public VueActLink(Pane pane, Champ c,int tailleTuile){
+
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire){
         vueActeur=pane;
         this.vueArmes = vueArmes;
         this.champ=c;
@@ -54,14 +55,15 @@ public class VueActLink {
         this.tT=tailleTuile;
         this.vueCaseInventaire=vueCaseInventaire;
         this.touchePressé = new ArrayList<>(2);
-        creerlink("file:src/main/resources/images/Link/SudDefault.png",link);
-        linkNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
-        linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
-        linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
-        linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
+        creerlink("file:src/main/resources/images/link_defaut.png",link);
+        linkNord=new Image("file:src/main/resources/images/link_nord.png");
+        linkSud=new Image("file:src/main/resources/images/link_sud.png");
+        linkEst=new Image("file:src/main/resources/images/link_est.png");
+        linkOuest=new Image("file:src/main/resources/images/link_ouest.png");
         this.armeEquipé = new VueArmes(tT,new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),vueArmes);
         equiperArme();
         initAnimation();
+
     }
 
 

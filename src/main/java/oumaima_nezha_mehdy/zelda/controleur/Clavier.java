@@ -20,15 +20,17 @@ public class Clavier{
     public Clavier(Pane pane,VueActLink vac){
         this.vueActeur=pane;
         this.linkDeplacement=vac;
-        this.vueActeur.setOnKeyPressed(this::handle);
         this.vueCaseinventaire=vueCaseinventaire;
         this.vueInventaire = new VueInventaire(vueCaseinventaire);
     }
+
+
 
     public void touchePressé(KeyEvent keyEvent) {
         linkDeplacement.DeplacementLink(keyEvent.getCode().toString());
         vueInventaire.selectionerCase(keyEvent);
     }
+
     public void toucheRelaché(KeyEvent keyEvent){
         linkDeplacement.toucheRelaché(keyEvent);
     }
