@@ -111,8 +111,7 @@ public class Controleur implements Initializable {
                 }
         }
     }
-
-
+    
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
     }
