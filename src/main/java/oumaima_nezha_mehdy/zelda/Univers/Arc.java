@@ -43,8 +43,4 @@ public  class Arc extends Armes{
 
     }
 
-    @Override
-    public ImageView getImageView() {
-        return null;
-    }
 }
