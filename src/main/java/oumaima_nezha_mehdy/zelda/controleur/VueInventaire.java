@@ -3,18 +3,17 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
-import oumaima_nezha_mehdy.zelda.Univers.*;
-
-import java.util.ArrayList;
 
 public class VueInventaire {
 
     @FXML
-    HBox vueCaseInventaire;
+    private HBox vueCaseInventaire;
 
-    public VueInventaire(HBox vueCaseInventaire){
+    private VueActLink val;
+
+    public VueInventaire(HBox vueCaseInventaire, VueActLink val){
         this.vueCaseInventaire=vueCaseInventaire;
+        this.val = val;
     }
 
 
@@ -25,6 +24,7 @@ public class VueInventaire {
             case "DIGIT1" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case1").setOpacity(1);
+
                 break;
             case "UNDEFINED":
             case "DIGIT2" :
