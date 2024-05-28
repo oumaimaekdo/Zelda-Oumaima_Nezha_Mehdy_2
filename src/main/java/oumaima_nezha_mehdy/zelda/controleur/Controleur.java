@@ -1,7 +1,5 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -15,7 +13,6 @@ import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
 public class Controleur implements Initializable {
@@ -51,6 +48,10 @@ public class Controleur implements Initializable {
 
     private Clavier clavier;
 
+    @FXML
+    private Pane vueArmesInventaire;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test;
@@ -65,18 +66,16 @@ public class Controleur implements Initializable {
         map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
-        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire);
+        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
-                this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
-
+            this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         });
         this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
         });
         this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
-
     }
 
     public Clavier getClavier() {
@@ -88,31 +87,30 @@ public class Controleur implements Initializable {
         Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
         Image terre = new Image("file:src/main/resources/images/Bloc/Herbe.jpg");
         for (int i = 0; i < carte.length; i++) {
-                ImageView imageView = new ImageView();
-                map.getChildren().add(imageView);
-                imageView.setId(String.valueOf(i));
-                imageView.setFitHeight(tailleTuile);
-                imageView.setFitWidth(tailleTuile);
-                double col = i % LargeurInt;
-                double lig = Math.floor(i/LongueurInt);
-                double x = col * LargeurInt;
-                double y = lig * LongueurInt;
-                imageView.setX(x);
-                imageView.setY(y);
-                switch (carte[i]) {
-                    case 0:
-                        imageView.setImage(terre);
-                        break;
-                    case 1:
-                        imageView.setImage(terre);
-                        break;
-                    case 2:
-                        imageView.setImage(eau);
-                        break;
-                }
+            ImageView imageView = new ImageView();
+            map.getChildren().add(imageView);
+            imageView.setId(String.valueOf(i));
+            imageView.setFitHeight(tailleTuile);
+            imageView.setFitWidth(tailleTuile);
+            double col = i % LargeurInt;
+            double lig = Math.floor(i/LongueurInt);
+            double x = col * LargeurInt;
+            double y = lig * LongueurInt;
+            imageView.setX(x);
+            imageView.setY(y);
+            switch (carte[i]) {
+                case 0:
+                    imageView.setImage(terre);
+                    break;
+                case 1:
+                    imageView.setImage(terre);
+                    break;
+                case 2:
+                    imageView.setImage(eau);
+                    break;
+            }
         }
     }
-
 
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
@@ -121,12 +119,5 @@ public class Controleur implements Initializable {
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
-        clavier.touchePressé(keyEvent);
-    }
-
-
-    public void keyReleased(KeyEvent keyEvent) {
-        clavier.toucheRelaché(keyEvent);
     }
 }
-
