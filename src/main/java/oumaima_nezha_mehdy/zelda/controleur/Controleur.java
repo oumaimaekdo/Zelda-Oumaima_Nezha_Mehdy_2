@@ -48,6 +48,9 @@ public class Controleur implements Initializable {
 
     private Clavier clavier;
 
+    @FXML
+    private Pane vueArmesInventaire;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,7 +66,7 @@ public class Controleur implements Initializable {
         map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         champ.afficherMap();
-        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire);
+        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
                 this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());

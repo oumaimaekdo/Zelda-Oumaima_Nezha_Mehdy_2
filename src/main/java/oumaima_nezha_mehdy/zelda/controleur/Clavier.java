@@ -20,7 +20,6 @@ public class Clavier{
     public Clavier(Pane pane,VueActLink vac,HBox vueCaseinventaire){
         this.vueActeur=pane;
         this.linkDeplacement=vac;
-        this.vueActeur.setOnKeyPressed(this::handle);
         this.vueCaseinventaire=vueCaseinventaire;
         this.vueInventaire = new VueInventaire(vueCaseinventaire);
     }

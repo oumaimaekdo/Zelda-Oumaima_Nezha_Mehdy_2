@@ -34,13 +34,16 @@ public class VueActLink {
 
     private VueArmes armeEquipé;
 
-    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire){
+    private Pane vueArmesInventaire;
+
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
         this.vueArmes = vueArmes;
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
         this.vueCaseInventaire=vueCaseInventaire;
+        this.vueArmesInventaire=vueArmesInventaire;
         creerlink("file:src/main/resources/images/link_defaut.png",link);
         linkNord=new Image("file:src/main/resources/images/link_nord.png");
         linkSud=new Image("file:src/main/resources/images/link_sud.png");
@@ -122,8 +125,13 @@ public class VueActLink {
             armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
             ImageView armecase1 = new ImageView();
             armecase1.setImage(armeEquipé.getArmeVue().getImage());
-            armecase1.setFitWidth(15);
-            armecase1.setFitHeight(15);
+            armecase1.setFitWidth(100);
+            armecase1.setFitHeight(100);
+            vueArmesInventaire.getChildren().add(armecase1);
+            armecase1.setX(vueCaseInventaire.getLayoutX()+50);
+            armecase1.setY(25);
+            System.out.println(armecase1.getX());
+            System.out.println(vueCaseInventaire.lookup("#case1").getScaleX());
         }
     }
 }
