@@ -118,14 +118,12 @@ public class VueActLink {
     }
     public void equiperArme() {
         if (armeEquipé != null) {
-            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(15)); // Adjust offset as needed
+            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
             armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
             ImageView armecase1 = new ImageView();
             armecase1.setImage(armeEquipé.getArmeVue().getImage());
             armecase1.setFitWidth(15);
             armecase1.setFitHeight(15);
-            vueCaseInventaire.getChildren().add(armecase1);
-
         }
     }
 }
