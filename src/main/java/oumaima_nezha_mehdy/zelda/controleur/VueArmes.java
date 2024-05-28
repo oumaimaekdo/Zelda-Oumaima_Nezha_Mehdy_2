@@ -12,6 +12,7 @@ public class VueArmes {
 
     //private Acteur acteur;
     private Armes arme;
+
     @FXML
     private Pane vueArme;
     @FXML
@@ -20,6 +21,7 @@ public class VueArmes {
 
     // Constructeur
     public VueArmes(int tailleTuile,Image image,Armes arme,Pane VueArme) {
+
         this.tailleTuile = tailleTuile;
         this.vueArme = VueArme;
         creerArme(image,arme);
@@ -27,6 +29,7 @@ public class VueArmes {
 
     // Méthode pour créer une arme
     public void creerArme(Image image, Armes arme) {
+
         ImageView r = new ImageView();
         r.setImage(image);
         r.setFitWidth(15); // Ajuste selon la taille souhaitée
@@ -34,6 +37,7 @@ public class VueArmes {
         vueArme.getChildren().add(r);
         r.setId(arme.getId());
         this.ArmeVue = r;
+
     }
 
     public ImageView getArmeVue() {
