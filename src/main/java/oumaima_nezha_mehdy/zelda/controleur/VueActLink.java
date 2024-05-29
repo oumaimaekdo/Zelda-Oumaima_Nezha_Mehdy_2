@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
+import java.util.ArrayList;
+
 public class VueActLink {
 
 
@@ -17,7 +19,7 @@ public class VueActLink {
 
     private Champ champ;
 
-    private Pane vueArmes;
+    private Pane VueArmesJeu;
 
 
     @FXML
@@ -36,21 +38,25 @@ public class VueActLink {
 
     private Pane vueArmesInventaire;
 
-    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire, Pane vueArmesInventaire){
+    private ArrayList<VueArmes> inventaire;
+
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
-        this.vueArmes = vueArmes;
+        this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
         this.vueCaseInventaire=vueCaseInventaire;
         this.vueArmesInventaire=vueArmesInventaire;
+        this.inventaire = new ArrayList<>(5);
         creerlink("file:src/main/resources/images/link_defaut.png",link);
         linkNord=new Image("file:src/main/resources/images/link_nord.png");
         linkSud=new Image("file:src/main/resources/images/link_sud.png");
         linkEst=new Image("file:src/main/resources/images/link_est.png");
         linkOuest=new Image("file:src/main/resources/images/link_ouest.png");
-        this.armeEquipé = new VueArmes(tT,new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),vueArmes);
-        equiperArme();
+        chargerInventaire();
+        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20));
+        ramasser(vA1);
     }
 
 
@@ -103,7 +109,6 @@ public class VueActLink {
     }
 
 
-
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
         Image Image = new Image(path);
@@ -121,17 +126,41 @@ public class VueActLink {
     }
     public void equiperArme() {
         if (armeEquipé != null) {
+                VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
+
             armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
             armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
-            ImageView armecase1 = new ImageView();
-            armecase1.setImage(armeEquipé.getArmeVue().getImage());
-            armecase1.setFitWidth(100);
-            armecase1.setFitHeight(100);
-            vueArmesInventaire.getChildren().add(armecase1);
-            armecase1.setX(vueCaseInventaire.getLayoutX()+50);
-            armecase1.setY(25);
-            System.out.println(armecase1.getX());
-            System.out.println(vueCaseInventaire.lookup("#case1").getScaleX());
+            VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
         }
+    }
+    public void chargerInventaire(){
+        for(int i=0;i<5;i++){
+            inventaire.add(null);
+        }
+    }
+    public void selectioner(int i){
+        if(armeEquipé!=null) {
+            VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
+        }
+        if(inventaire.get(i-1)!=null) {
+            armeEquipé = inventaire.get(i - 1);
+            VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
+
+            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
+            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+        }
+    }
+    public void ramasser(VueArmes vA) {
+        for(int i=0 ; i<5;i++)
+            if(inventaire.get(i)==null)
+                inventaire.add(i,vA);
+        ImageView armecase = new ImageView();
+        int indice = inventaire.indexOf(vA);
+        armecase.setImage(vA.getArmeVue().getImage());
+        armecase.setFitWidth(100);
+        armecase.setFitHeight(100);
+        vueArmesInventaire.getChildren().add(armecase);
+        armecase.setX(vueCaseInventaire.getLayoutX()+(100*indice)+50);
+        armecase.setY(25);
     }
 }

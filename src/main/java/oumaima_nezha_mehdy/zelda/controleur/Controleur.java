@@ -54,7 +54,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test;
+        MapInt mapInt = MapPossible.test2;
         this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();

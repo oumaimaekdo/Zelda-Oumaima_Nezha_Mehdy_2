@@ -17,7 +17,7 @@
                         <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="vueArmes"></Pane>
+                  <Pane fx:id="vueArmes"/>
                </children>
             </Pane>
    </center>
@@ -26,7 +26,7 @@
          <children>
             <HBox fx:id="vueInventaire" alignment="BOTTOM_CENTER" layoutX="680.0" layoutY="28.0" prefHeight="92.0" prefWidth="613.0" style="-fx-border-radius: 50;">
                <children>
-                  <Rectangle fx:id="case1"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Rectangle fx:id="case1"  opacity="1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
                   <Rectangle fx:id="case2"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
                   <Rectangle fx:id="case3"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
                   <Rectangle fx:id="case4"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
