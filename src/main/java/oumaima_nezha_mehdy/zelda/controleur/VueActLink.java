@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.*;
@@ -35,6 +36,9 @@ public class VueActLink {
     private VueArmes armeEquipé;
 
     private Pane vueArmesInventaire;
+
+    private static int i=2;
+
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
@@ -132,6 +136,26 @@ public class VueActLink {
             armecase1.setY(25);
             System.out.println(armecase1.getX());
             System.out.println(vueCaseInventaire.lookup("#case1").getScaleX());
+        }
+    }
+
+    public void ramasserArmes(KeyEvent e, VueArmes arme){
+        if(arme.getArmeVue().getX() == link.getX() && arme.getArmeVue().getY() == link.getY()){
+            switch (e.getCode().toString()) {
+                case "r":
+                    link.ajouterArme(arme.getArme());
+                    ImageView armecase = new ImageView();
+                    armecase.setImage(arme.getArmeVue().getImage());
+                    armecase.setFitWidth(100);
+                    armecase.setFitHeight(100);
+                    vueArmesInventaire.getChildren().add(armecase);
+                    armecase.setX(vueCaseInventaire.getLayoutX()+50);
+                    armecase.setY(25);
+                    System.out.println(armecase.getX());
+                    System.out.println(vueCaseInventaire.lookup("#case"+i).getScaleX());
+                    i++;
+                    break;
+            }
         }
     }
 }

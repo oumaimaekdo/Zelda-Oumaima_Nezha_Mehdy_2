@@ -40,5 +40,4 @@ public class Armes {
         System.out.println("L'arme " + nom + " a été utilisée, infligeant " + degats + " dégâts.");
     }
 
-
 }

@@ -57,21 +57,27 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueArmesInventaire;
 
+    @FXML
+    private ImageView vueArbres;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test;
+        MapInt mapInt = MapPossible.test2;
         this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.arc = new Arc();
-        this.vueArc = new VueArmes(tailleTuile,new Image("file:src/main/resources/images/arc.png"),arc,vueArcPane);
+        this.vueArc = new VueArmes(tailleTuile,new Image("file:src/main/resources/images/arc.gif"),arc,vueArcPane);
         vueArc.getArmeVue().xProperty().setValue(200);
         vueArc.getArmeVue().yProperty().setValue(100);
-        vueArc.getArmeVue().fitWidthProperty().setValue(20);
-        vueArc.getArmeVue().fitHeightProperty().setValue(20);
+        vueArc.getArmeVue().fitWidthProperty().setValue(100);
+        vueArc.getArmeVue().fitHeightProperty().setValue(100);
+        this.vueArbres.setImage(new Image("file:src/main/resources/images/Bloc/forest.png"));
+        vueArbres.setY(250);
+        vueArbres.setX(175);
 
 
         map.setPrefTileHeight(tailleTuile);
@@ -102,6 +108,10 @@ public class Controleur implements Initializable {
         Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
         Image terre = new Image("file:src/main/resources/images/Bloc/Herbe.jpg");
         Image arbre = new Image("file:src/main/resources/images/Bloc/arbre.png");
+        Image maison = new Image("file:src/main/resources/images/Bloc/maison.png");
+        Image pont = new Image("file:src/main/resources/images/pont.png");
+
+
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
             map.getChildren().add(imageView);
@@ -123,6 +133,12 @@ public class Controleur implements Initializable {
                     break;
                 case 2:
                     imageView.setImage(eau);
+                    break;
+                case 3:
+                    imageView.setImage(maison);
+                    break;
+                case 4:
+                    imageView.setImage(pont);
                     break;
 
             }

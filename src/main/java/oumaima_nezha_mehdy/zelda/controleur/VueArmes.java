@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.Acteur;
 import oumaima_nezha_mehdy.zelda.Univers.Armes;
@@ -40,7 +41,12 @@ public class VueArmes {
 
     }
 
+    public Armes getArme() {
+        return arme;
+    }
+
     public ImageView getArmeVue() {
         return ArmeVue;
     }
+
 }
