@@ -35,5 +35,5 @@ public class VueArmes {
     }
     public Armes getArme(){return arme;}
 
-    public String toString(){return "Arme";}
+    /*public String toString(){return "Arme";}*/
 }
