@@ -35,12 +35,12 @@ public class Controleur implements Initializable {
     private Pane vueActeur;
     @FXML
     private Pane vueArmes;
-    @FXML
-    private Pane vueArcPane;
 
     @FXML
     private VueArmes vueArc;
     private Armes arc;
+    @FXML
+    private Pane vueArcPane ;
 
     private VueActLink linkControl;
     private VueArmes armesControl;
