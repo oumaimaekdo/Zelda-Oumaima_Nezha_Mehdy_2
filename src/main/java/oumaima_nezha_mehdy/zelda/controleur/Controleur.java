@@ -1,5 +1,6 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -70,7 +71,7 @@ public class Controleur implements Initializable {
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.arc = new Arc();
-        this.vueArc = new VueArmes(tailleTuile,new Image("file:src/main/resources/images/arc.gif"),arc,vueArcPane);
+        this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc);
         vueArc.getArmeVue().xProperty().setValue(200);
         vueArc.getArmeVue().yProperty().setValue(100);
         vueArc.getArmeVue().fitWidthProperty().setValue(100);
