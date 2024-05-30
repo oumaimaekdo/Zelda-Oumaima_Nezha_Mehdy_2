@@ -21,6 +21,8 @@
                   <Pane fx:id="vueArmes"></Pane>
                   <Pane fx:id="vueArcPane"></Pane>
                   <ImageView fx:id="vueArbres"></ImageView>
+                  <ImageView fx:id="vueMaison"></ImageView>
+
                </children>
             </Pane>
    </center>
