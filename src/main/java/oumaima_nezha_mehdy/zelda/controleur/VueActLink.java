@@ -18,7 +18,6 @@ public class VueActLink {
 
     private Champ champ;
 
-    private Pane vueArmes;
 
 
     @FXML
@@ -42,7 +41,6 @@ public class VueActLink {
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane vueArmes, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
-        this.vueArmes = vueArmes;
         this.champ=c;
         this.link=champ.getLink();
         this.tT=tailleTuile;
@@ -85,6 +83,9 @@ public class VueActLink {
                 if(coordonnéPossible(this.link.getX()+(1*link.getVitesse()),this.link.getY()))
                     link.seDeplacer("est");
                 this.vueLink.setImage(linkEst);
+                break;
+            case "R":
+                link.attaquer(armeEquipé,link);
                 break;
         }
 
@@ -157,5 +158,9 @@ public class VueActLink {
                     break;
             }
         }
+    }
+
+    public Acteur getLink(){
+        return this.link;
     }
 }

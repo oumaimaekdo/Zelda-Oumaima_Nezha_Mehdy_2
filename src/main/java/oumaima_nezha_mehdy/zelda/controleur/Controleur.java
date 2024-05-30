@@ -7,8 +7,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,9 +56,9 @@ public class Controleur implements Initializable {
     private Pane vueArmesInventaire;
 
     @FXML
-    private ImageView vueArbres;
-    @FXML
-    private ImageView vueMaison;
+    private ImageView vueArbres; //creer plutôt un pain avec les elements traversable
+    /*@FXML
+    private ImageView vueMaison;*/
 
 
     @Override
@@ -81,11 +79,11 @@ public class Controleur implements Initializable {
         vueArbres.setY(250);
         vueArbres.setX(175);
 
-        this.vueMaison.setImage(new Image("file:src/main/resources/images/Bloc/maison.png"));
+        /*this.vueMaison.setImage(new Image("file:src/main/resources/images/Bloc/maison.png"));
         vueMaison.setY(700);
         vueMaison.setX(300);
         vueMaison.setFitHeight(150);
-        vueMaison.setFitWidth(150);
+        vueMaison.setFitWidth(150);*/
 
 
 
@@ -105,6 +103,7 @@ public class Controleur implements Initializable {
         });
         this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
+
 
     }
 

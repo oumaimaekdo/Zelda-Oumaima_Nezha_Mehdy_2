@@ -1,8 +1,6 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
 
-import javafx.scene.image.ImageView;
-
 public abstract class Bloc {
     private boolean passable;
 
