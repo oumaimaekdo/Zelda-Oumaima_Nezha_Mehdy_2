@@ -69,25 +69,21 @@ public class VueActLink {
         switch (key) {
             case"Z" :
             case "UP":
-                if(coordonnéPossible(this.link.getX(),this.link.getY()-(1*link.getVitesse())))
                 link.seDeplacer("nord");
                 this.vueLink.setImage(linkNord);
                 break;
             case "Q":
             case "LEFT":
-                if(coordonnéPossible(this.link.getX()-(1*link.getVitesse()),this.link.getY()))
                 link.seDeplacer("ouest");
                 this.vueLink.setImage(linkOuest);
                 break;
             case "S":
             case "DOWN":
-                if(coordonnéPossible(this.link.getX(),this.link.getY()+(1*link.getVitesse())))
                 link.seDeplacer("sud");
                 this.vueLink.setImage(linkSud);
                 break;
             case "D":
             case "RIGHT":
-                if(coordonnéPossible(this.link.getX()+(1*link.getVitesse()),this.link.getY()))
                 link.seDeplacer("est");
                 this.vueLink.setImage(linkEst);
                 break;
@@ -97,19 +93,7 @@ public class VueActLink {
         System.out.println(link.getX()+","+link.getY());
         System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
-    private boolean coordonnéPossible(int x,int y){
-        int haut,bas,gauche,droite;
-        haut = 25;
-        gauche = 15;
-        bas = -20;
-        droite = -10;
-        boolean retourneur = x>=0&&y>=0&&x+15<this.champ.getLongueur()*tT&&y+15<this.champ.getLargeur()*tT;
-        if(!retourneur)
-            return false;
-        boolean collisionhautgauche =champ.getChamp()[((x+gauche)/tT) + ((y+haut)/tT)*(champ.getLongueur())]!=2;
-        boolean collisionbasdroite =champ.getChamp()[(x-droite)/tT + ((y-bas)/tT)*(champ.getLongueur())]!=2;
-        return retourneur&&(collisionhautgauche&&collisionbasdroite);
-    }
+
 
 
     public void creerlink(String path , Acteur a){

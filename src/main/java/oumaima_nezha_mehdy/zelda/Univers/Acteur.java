@@ -44,15 +44,19 @@ public class Acteur {
     public void seDeplacer(String direction) {
         switch (direction) {
             case "nord":
+                if(champ.coordonnéPossible(this.getX(), this.getY() - (1 * this.getVitesse())))
                     this.y.set(this.y.getValue()-(1*vitesse));
                 break;
             case "sud":
+                if(champ.coordonnéPossible(this.getX(), this.getY() + (1 * this.getVitesse())))
                     this.y.set(this.y.getValue()+(1*vitesse));
                 break;
             case "ouest":
+                if(champ.coordonnéPossible(this.getX() - (1 * this.getVitesse()), this.getY()))
                     this.x.set(this.x.getValue()-(1*vitesse));
                 break;
             case "est":
+                if(this.champ.coordonnéPossible(this.getX()+(1*this.vitesse),this.getY()))
                     this.x.set(this.x.getValue()+(1*vitesse));
                 break;
             default:
