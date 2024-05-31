@@ -120,15 +120,6 @@ public class VueActLink {
         this.vueLink=r;
         
     }
-    public void equiperArme() {
-        if (armeEquipé != null) {
-                VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
-
-            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
-            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
-            VueArmesJeu.getChildren().remove(armeEquipé);
-        }
-    }
     public void chargerInventaire(){
         for(int i=0;i<5;i++){
             inventaire.add(null);

@@ -49,8 +49,8 @@ public class Champ {
 
     public boolean coordonnéPossible(int x,int y){
         int haut,bas,gauche,droite;
-        haut = 25;
-        gauche = 15;
+        haut = 20;
+        gauche = 20;
         bas = -20;
         droite = -10;
         boolean retourneur = x>=0&&y>=0&&x+15<this.longueur*tT&&y+15<this.largeur*tT;
@@ -77,4 +77,8 @@ public class Champ {
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}
+
+    public int gettT() {
+        return tT;
+    }
 }

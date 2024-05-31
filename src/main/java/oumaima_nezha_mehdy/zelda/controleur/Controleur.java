@@ -63,11 +63,11 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test2;
-        this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
+        this.tailleTuile=champ.gettT();
         this.arc = new Arc();
         this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc);
         vueArc.getArmeVue().xProperty().setValue(200);
