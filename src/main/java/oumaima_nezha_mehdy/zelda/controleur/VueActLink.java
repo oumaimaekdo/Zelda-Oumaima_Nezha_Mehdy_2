@@ -61,8 +61,9 @@ public class VueActLink {
         chargerInventaire();
         VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20));
         ramasser(vA1);
-        VueArmes vA2=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25));
-        ramasser(vA2);
+        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25));
+        ramasser(arcInventaire);
+
 
     }
 

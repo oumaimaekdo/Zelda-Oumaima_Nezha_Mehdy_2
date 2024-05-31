@@ -12,6 +12,7 @@ public class VueArmes {
     @FXML
     private ImageView ArmeVue;
 
+
     // Constructeur
     public VueArmes(Image image,Armes arme) {
         creerArme(image,arme);
