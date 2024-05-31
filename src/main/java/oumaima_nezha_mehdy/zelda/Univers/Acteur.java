@@ -90,7 +90,7 @@ public class Acteur {
         armeEquipe.getArmeVue().setFitHeight(30);
         armeEquipe.getArmeVue().xProperty().bind(acteur.getXProperty().add(14)); // Adjust offset as needed
         armeEquipe.getArmeVue().yProperty().bind(acteur.getYProperty().add(1));
-        System.out.println(acteur.getVie());
+        System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
 
     public Armes getArme() {

@@ -58,8 +58,6 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView vueArbres; //creer plutôt un pain avec les elements traversable
-    /*@FXML
-    private ImageView vueMaison;*/
 
 
     @Override
@@ -79,13 +77,6 @@ public class Controleur implements Initializable {
         this.vueArbres.setImage(new Image("file:src/main/resources/images/Bloc/forest.png"));
         vueArbres.setY(250);
         vueArbres.setX(175);
-
-        /*this.vueMaison.setImage(new Image("file:src/main/resources/images/Bloc/maison.png"));
-        vueMaison.setY(700);
-        vueMaison.setX(300);
-        vueMaison.setFitHeight(150);
-        vueMaison.setFitWidth(150);*/
-
 
 
         map.setPrefTileHeight(tailleTuile);
