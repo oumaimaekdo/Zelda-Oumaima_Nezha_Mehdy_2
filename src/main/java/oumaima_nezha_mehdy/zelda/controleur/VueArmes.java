@@ -4,15 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.Univers.Acteur;
 import oumaima_nezha_mehdy.zelda.Univers.Armes;
-import oumaima_nezha_mehdy.zelda.Univers.Champ;
 
 public class VueArmes {
 
     private Armes arme;
     @FXML
     private ImageView ArmeVue;
+
 
     // Constructeur
     public VueArmes(Image image,Armes arme) {

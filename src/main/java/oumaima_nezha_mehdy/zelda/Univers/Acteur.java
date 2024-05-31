@@ -1,10 +1,11 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
+import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class Acteur {
@@ -19,6 +20,8 @@ public class Acteur {
     private Armes arme;
 
     private List<Armes> inventaire;
+
+    private static int vie = 100;
 
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
@@ -75,17 +78,23 @@ public class Acteur {
     public void setX(int x){this.x.setValue(x);}
     public void setY(int y){this.y.setValue(y);}
 
+    public int getVie(){ return this.vie; }
+
+    public void setVie(int vie){ this.vie = vie;}
+
     public int getVitesse() {
         return vitesse;
     }
 
 
-    public void attaquer() {
-        if (arme != null) {
-            arme.utiliser();
-        } else {
-            System.out.println(nom + " n'a pas d'arme équipée.");
-        }
+    public void attaquer(VueArmes armeEquipe, Acteur acteur) {
+        acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
+        armeEquipe.getArmeVue().setImage(new Image("file:src/main/resources/images/attaqueEpee.gif"));
+        armeEquipe.getArmeVue().setFitWidth(30);
+        armeEquipe.getArmeVue().setFitHeight(30);
+        armeEquipe.getArmeVue().xProperty().bind(acteur.getXProperty().add(14)); // Adjust offset as needed
+        armeEquipe.getArmeVue().yProperty().bind(acteur.getYProperty().add(1));
+        System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
 
     public Armes getArme() {
@@ -106,4 +115,5 @@ public class Acteur {
         }
         return null;
     }
+
 }

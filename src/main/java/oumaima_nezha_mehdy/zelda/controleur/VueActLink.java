@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.*;
@@ -52,14 +53,18 @@ public class VueActLink {
         this.vueCaseInventaire=vueCaseInventaire;
         this.vueArmesInventaire=vueArmesInventaire;
         this.inventaire = FXCollections.observableArrayList();
-        creerlink("file:src/main/resources/images/link_defaut.png",link);
-        linkNord=new Image("file:src/main/resources/images/link_nord.png");
-        linkSud=new Image("file:src/main/resources/images/link_sud.png");
-        linkEst=new Image("file:src/main/resources/images/link_est.png");
-        linkOuest=new Image("file:src/main/resources/images/link_ouest.png");
+        creerlink("file:src/main/resources/images/link_profil.png",link);
+        linkNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
+        linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
+        linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
+        linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
         chargerInventaire();
         VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20));
         ramasser(vA1);
+        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25));
+        ramasser(arcInventaire);
+
+
     }
 
 
@@ -87,12 +92,16 @@ public class VueActLink {
                 link.seDeplacer("est");
                 this.vueLink.setImage(linkEst);
                 break;
+            case "R":
+                link.attaquer(armeEquipé,link);
+                break;
         }
 
 
         System.out.println(link.getX()+","+link.getY());
         System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
+
 
 
 
@@ -156,4 +165,8 @@ public class VueActLink {
     }
 
     public ObservableList getInventaire(){return inventaire;}
+
+    public Acteur getLink(){
+        return this.link;
+    }
 }

@@ -59,4 +59,6 @@ public class VueInventaire {
         }
 
     }
+
+    public void ajoutInventaire(){}
 }

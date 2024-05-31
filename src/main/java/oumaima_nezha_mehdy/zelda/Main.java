@@ -1,13 +1,9 @@
 package oumaima_nezha_mehdy.zelda;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import oumaima_nezha_mehdy.zelda.Univers.Gameloop;
 import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 
 import java.io.IOException;
