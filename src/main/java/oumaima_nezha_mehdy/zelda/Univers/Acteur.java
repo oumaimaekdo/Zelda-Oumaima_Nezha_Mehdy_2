@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class Acteur {

@@ -1,7 +1,5 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class Armes {
     private String nom;

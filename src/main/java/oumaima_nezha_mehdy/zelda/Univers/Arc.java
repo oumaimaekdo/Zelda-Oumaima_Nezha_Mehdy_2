@@ -1,7 +1,5 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
-import javafx.scene.image.ImageView;
-
 public  class Arc extends Armes{
 
     private String nom;
@@ -10,8 +8,6 @@ public  class Arc extends Armes{
     public static int id= 0;
 
     private Champ champ;
-    private ImageView imageView;
-
     public Arc(){
         super("Arc",25);
         this.munitions = 3;
