@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 public class MapPossible {
     public static MapInt test= new MapInt(new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0,

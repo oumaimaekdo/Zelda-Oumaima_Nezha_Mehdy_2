@@ -9,4 +9,6 @@ module oumaima_nezha_mehdy.zelda {
     exports oumaima_nezha_mehdy.zelda;
     exports oumaima_nezha_mehdy.zelda.controleur;
     opens oumaima_nezha_mehdy.zelda.controleur to javafx.fxml;
+    exports oumaima_nezha_mehdy.zelda.Vue;
+    opens oumaima_nezha_mehdy.zelda.Vue to javafx.fxml;
 }

@@ -1,48 +1,37 @@
-package oumaima_nezha_mehdy.zelda.controleur;
+package oumaima_nezha_mehdy.zelda.Vue;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.Univers.*;
-
-import java.util.ArrayList;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
+import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 
 public class VueActLink {
 
-
     private Acteur link;
-
     @FXML
     private Pane vueActeur;
-
     private Champ champ;
-
     private Pane VueArmesJeu;
-
-
     @FXML
     private ImageView vueLink;
-
     private Image linkNord;
     private Image linkSud;
     private Image linkEst;
     private Image linkOuest;
-
     private HBox vueCaseInventaire;
-
     private int tT;
-
     private VueArmes armeEquipé;
-
     private Pane vueArmesInventaire;
-
     private ObservableList<VueArmes> inventaire;
+    private Armes epee = new EpeeDeFer();
+    private static boolean attaquer = true;
+
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
@@ -59,11 +48,10 @@ public class VueActLink {
         linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
         chargerInventaire();
-        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20));
-        ramasser(vA1);
+        armeEquipé=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),epee);
+        ramasser(armeEquipé);
         VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25));
         ramasser(arcInventaire);
-
 
     }
 
@@ -96,11 +84,22 @@ public class VueActLink {
                 link.seDeplacer("est");
                 this.vueLink.setImage(linkEst);
                 break;
-            case "R":
-                link.attaquer(armeEquipé,link);
+            case "A":
+                new Thread(() -> {
+                    try{
+                        link.attaquer(link, epee);
+                        armeEquipé.vueAttaque(link,epee);
+                        System.out.println("le perso attaque");
+                        Thread.sleep(3000);
+                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/epeeFer.png"),epee,link);
+                        System.out.println("le perso arrete l'attaque");
+
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).start();
                 break;
         }
-
 
         System.out.println(link.getX()+","+link.getY());
         System.out.println(link.getX()/tT+","+link.getY()/tT);
@@ -119,8 +118,6 @@ public class VueActLink {
         return retourneur&&(collisionhautgauche&&collisionbasdroite);
     }
 
-
-
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
         Image Image = new Image(path);
@@ -134,22 +131,15 @@ public class VueActLink {
         r.translateXProperty().bind(a.getXProperty());
         r.translateYProperty().bind(a.getYProperty());
         this.vueLink=r;
-        
     }
-    public void equiperArme() {
-        if (armeEquipé != null) {
-                VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
 
-            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
-            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
-            VueArmesJeu.getChildren().remove(armeEquipé);
-        }
-    }
+
     public void chargerInventaire(){
         for(int i=0;i<5;i++){
             inventaire.add(null);
         }
     }
+
     public void selectioner(int i){
         if(armeEquipé!=null) {
             VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
@@ -158,12 +148,11 @@ public class VueActLink {
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);
             VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
-            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
-            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
-
+            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17));
+            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10));
         }
-
     }
+
     public void ramasser(VueArmes vA) {
         for(int i=0 ; i<5;i++)
             if(inventaire.get(i)==null) {

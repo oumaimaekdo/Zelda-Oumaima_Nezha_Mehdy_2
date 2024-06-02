@@ -1,9 +1,7 @@
-package oumaima_nezha_mehdy.zelda.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
-
-import java.awt.*;
 
 public class Gameloop extends AnimationTimer {
 

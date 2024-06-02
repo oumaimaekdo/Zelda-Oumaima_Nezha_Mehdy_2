@@ -1,11 +1,9 @@
-package oumaima_nezha_mehdy.zelda.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.image.Image;
-import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class Acteur {
@@ -17,7 +15,7 @@ public class Acteur {
 
     private int vitesse=10;
 
-    private Armes arme;
+    private Armes armeEquipe;
 
     private List<Armes> inventaire;
 
@@ -33,15 +31,15 @@ public class Acteur {
         this.x.set(x);
         this.y.set(y);
         this.champ=m;
+        this.armeEquipe = null;
         id += 1;
-        this.arme = null;
     }
     public Acteur(String nom, Champ m){
         this.nom=nom;
         this.champ=m;
         this.x.set(m.getLongueur()/2);
         this.y.set(m.getLargeur()/2);
-        this.arme = null;
+        this.armeEquipe = null;
     }
 
     public void seDeplacer(String direction) {
@@ -83,18 +81,13 @@ public class Acteur {
     }
 
 
-    public void attaquer(VueArmes armeEquipe, Acteur acteur) {
-        acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
-        armeEquipe.getArmeVue().setImage(new Image("file:src/main/resources/images/attaqueEpee.gif"));
-        armeEquipe.getArmeVue().setFitWidth(30);
-        armeEquipe.getArmeVue().setFitHeight(30);
-        armeEquipe.getArmeVue().xProperty().bind(acteur.getXProperty().add(14)); // Adjust offset as needed
-        armeEquipe.getArmeVue().yProperty().bind(acteur.getYProperty().add(1));
+    public void attaquer(Acteur acteur,Armes armeEquipe) {
+        acteur.setVie(acteur.getVie()-armeEquipe.getDegats());
         System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
 
     public Armes getArme() {
-        return arme;
+        return armeEquipe;
     }
 
     public void ajouterArme(Armes arme) {
@@ -110,6 +103,10 @@ public class Acteur {
             return inventaire.get(index);
         }
         return null;
+    }
+
+    public void EquiperArme(Armes arme){
+        this.armeEquipe = arme;
     }
 
 }

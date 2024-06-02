@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
 public abstract class Bloc {

@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.controleur;
+package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;

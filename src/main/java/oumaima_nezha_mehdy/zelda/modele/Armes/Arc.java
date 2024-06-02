@@ -1,8 +1,10 @@
-package oumaima_nezha_mehdy.zelda.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Armes;
 
 import javafx.scene.image.ImageView;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
-public  class Arc extends Armes{
+public  class Arc extends Armes {
 
     private String nom;
     private int degats;
@@ -33,11 +35,6 @@ public  class Arc extends Armes{
     public static String getId() {
         return "#"+id;
     }
-    @Override
-    public void setId(int id){
-        this.id = id;
-    }
-
     @Override
     public void utiliser() {
 

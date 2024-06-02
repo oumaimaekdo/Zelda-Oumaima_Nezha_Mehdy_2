@@ -1,6 +1,5 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
-import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -12,7 +11,11 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import oumaima_nezha_mehdy.zelda.Univers.*;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.*;
+import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
+import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 
 public class Controleur implements Initializable {
 
@@ -69,11 +72,11 @@ public class Controleur implements Initializable {
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.arc = new Arc();
-        this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc);
+        /*this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc,);
         vueArc.getArmeVue().xProperty().setValue(200);
         vueArc.getArmeVue().yProperty().setValue(100);
         vueArc.getArmeVue().fitWidthProperty().setValue(100);
-        vueArc.getArmeVue().fitHeightProperty().setValue(100);
+        vueArc.getArmeVue().fitHeightProperty().setValue(100);*/
         this.vueArbres.setImage(new Image("file:src/main/resources/images/Bloc/forest.png"));
         vueArbres.setY(250);
         vueArbres.setX(175);
