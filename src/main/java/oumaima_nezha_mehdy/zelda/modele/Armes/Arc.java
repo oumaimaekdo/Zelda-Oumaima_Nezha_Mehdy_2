@@ -20,7 +20,7 @@ public  class Arc extends Armes {
     }
     @Override
     public String getNom() {
-        return null;
+        return this.nom;
     }
 
     @Override
@@ -35,9 +35,6 @@ public  class Arc extends Armes {
     public static String getId() {
         return "#"+id;
     }
-    @Override
-    public void utiliser() {
 
-    }
 
 }

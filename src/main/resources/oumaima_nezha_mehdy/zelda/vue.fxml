@@ -20,7 +20,7 @@
                   </Pane>
                   <Pane fx:id="vueArmes"></Pane>
                   <Pane fx:id="vueArcPane"></Pane>
-                  <ImageView fx:id="vueArbres"></ImageView>
+                  <Pane fx:id="elementsImpassable"></Pane>
                   <ImageView fx:id="vueMaison"></ImageView>
 
                </children>

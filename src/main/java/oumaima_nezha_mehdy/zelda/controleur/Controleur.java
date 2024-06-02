@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import oumaima_nezha_mehdy.zelda.Vue.VueBlocImpassable;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
@@ -60,8 +61,9 @@ public class Controleur implements Initializable {
     private Pane vueArmesInventaire;
 
     @FXML
-    private ImageView vueArbres; //creer plutôt un pain avec les elements traversable
+    private Pane elementsImpassable; //creer plutôt un pain avec les elements traversable
 
+    private VueBlocImpassable test;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,14 +74,8 @@ public class Controleur implements Initializable {
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.arc = new Arc();
-        /*this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc,);
-        vueArc.getArmeVue().xProperty().setValue(200);
-        vueArc.getArmeVue().yProperty().setValue(100);
-        vueArc.getArmeVue().fitWidthProperty().setValue(100);
-        vueArc.getArmeVue().fitHeightProperty().setValue(100);*/
-        this.vueArbres.setImage(new Image("file:src/main/resources/images/Bloc/forest.png"));
-        vueArbres.setY(250);
-        vueArbres.setX(175);
+        this.test = new VueBlocImpassable(elementsImpassable,champ,tailleTuile,250,175);
+
 
 
         map.setPrefTileHeight(tailleTuile);
