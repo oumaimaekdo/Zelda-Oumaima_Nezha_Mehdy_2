@@ -18,42 +18,25 @@ public class Champ {
 
     private int largeur;
 
+    private int tT;
+
     public Champ(int L , int l,int[] map){
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
         this.link = new Acteur("Link",0,0,this);
         this.sbir = new Sbir("Squelette",50,50,this);
-        //listActeur.add(link);
-        raffraichirMap();
+        this.tT=64;
 
     }
 
 
-    private void genererMap(){
-        for(int i=0; i<champ.length;i++) {
-            double x,y;
-            double col = i % 10;
-            double lig = Math.floor(i/10);
-            x = col * 10;
-            y = lig * 10;
-            if (Math.random() > 0.25) {
-                listBloc.add(new Terre(x, y));
-                champ[i] = 0;
-            } else {
-                listBloc.add(new Mur(x, y));
-                champ[i] = 1;
-            }
-        }
-
-    }
 
     public void ajouterActeur(Acteur a){
         listActeur.add(a);
     }
 
     public void afficherMap(){
-        raffraichirMap();
         for(int i=0; i<champ.length;i++) {
             if(i%longueur==0) {
                 System.out.println("");
@@ -65,15 +48,18 @@ public class Champ {
 
 
 
-    private void raffraichirMap() {
-        for (int i = 0; i < champ.length; i++) {
-            switch(champ[i]) {
-                case 0:champ[i] = 0;
-                    break;
-                case 1 : champ[i] = 1;
-            }
-        }
-
+    public boolean coordonnéPossible(int x,int y){
+        int haut,bas,gauche,droite;
+        haut = 20;
+        gauche = 20;
+        bas = -20;
+        droite = -10;
+        boolean retourneur = x>=0&&y>=0&&x+15<this.longueur*tT&&y+15<this.largeur*tT;
+        if(!retourneur)
+            return false;
+        boolean collisionhautgauche =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=2;
+        boolean collisionbasdroite =champ[(x-droite)/tT + ((y-bas)/tT)*(this.longueur)]!=2;
+        return retourneur&&(collisionhautgauche&&collisionbasdroite);
     }
 
 
@@ -96,4 +82,8 @@ public class Champ {
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}
+
+    public int gettT() {
+        return tT;
+    }
 }

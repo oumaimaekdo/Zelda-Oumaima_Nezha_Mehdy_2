@@ -11,12 +11,20 @@ public class VueArmes {
     private Armes arme;
     @FXML
     private ImageView ArmeVue;
+    private Image armeInversé;
+
+    private Image armeImage;
 
     private Image attaqueEpee = new Image("file:src/main/resources/images/attaqueEpee.gif");
     private Image epee = new Image("file:src/main/resources/images/epeeFer.png");
 
     //Constructeur
     public VueArmes(Image image,Armes arme) {
+        creerArme(image,arme);
+    }
+    public VueArmes(Image image,Armes arme,Image inveré) {
+        armeInversé=inveré;
+        armeImage=image;
         creerArme(image,arme);
     }
     public void creerArme(Image image, Armes arme) {
@@ -55,4 +63,12 @@ public class VueArmes {
         return ArmeVue;
     }
     public Armes getArme(){return arme;}
+
+    public Image getArmeInversé(){
+        return armeInversé;
+    }
+
+    public Image getArmeImage() {
+        return armeImage;
+    }
 }
