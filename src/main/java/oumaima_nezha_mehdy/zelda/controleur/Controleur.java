@@ -1,5 +1,6 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -73,11 +74,11 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test2;
-        this.tailleTuile=64;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
+        this.tailleTuile=champ.gettT();
         this.arc = new Arc();
         this.test = new VueBlocImpassable(elementsImpassable,champ,tailleTuile,250,175);
 
@@ -88,7 +89,6 @@ public class Controleur implements Initializable {
         map.setPrefHeight(LargeurInt*tailleTuile);
         map.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
-        champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
         sbirControl.getSbir1().deplacementAleatoireX();
