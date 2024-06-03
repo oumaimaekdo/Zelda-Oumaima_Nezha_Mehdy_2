@@ -12,9 +12,15 @@ public class VueArmes {
     @FXML
     private ImageView ArmeVue;
 
+    private Image armeInversé;
+
+    private Image armeImage;
+
 
     // Constructeur
-    public VueArmes(Image image,Armes arme) {
+    public VueArmes(Image image,Armes arme,Image inveré) {
+        armeInversé=inveré;
+        armeImage=image;
         creerArme(image,arme);
     }
 
@@ -34,5 +40,12 @@ public class VueArmes {
     }
     public Armes getArme(){return arme;}
 
+    public Image getArmeInversé(){
+        return armeInversé;
+    }
+
+    public Image getArmeImage() {
+        return armeImage;
+    }
     /*public String toString(){return "Arme";}*/
 }

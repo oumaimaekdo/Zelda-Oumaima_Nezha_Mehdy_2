@@ -69,7 +69,7 @@ public class Controleur implements Initializable {
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.tailleTuile=champ.gettT();
         this.arc = new Arc();
-        this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc);
+        this.vueArc = new VueArmes(new Image("file:src/main/resources/images/arc.gif"),arc,new Image("file:src/main/resources/images/arcInversé.gif"));
         vueArc.getArmeVue().xProperty().setValue(200);
         vueArc.getArmeVue().yProperty().setValue(100);
         vueArc.getArmeVue().fitWidthProperty().setValue(100);

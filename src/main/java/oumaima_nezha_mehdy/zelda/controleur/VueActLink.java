@@ -42,6 +42,8 @@ public class VueActLink {
 
     private Pane vueArmesInventaire;
 
+    private String directionregardé;
+
     private ObservableList<VueArmes> inventaire;
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
@@ -59,9 +61,9 @@ public class VueActLink {
         linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
         chargerInventaire();
-        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20));
+        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),new Image("file:src/main/resources/images/epeeFerInversé.png"));
         ramasser(vA1);
-        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25));
+        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25),new Image("file:src/main/resources/images/arcInversé.png"));
         ramasser(arcInventaire);
 
 
@@ -74,30 +76,34 @@ public class VueActLink {
         switch (key) {
             case"Z" :
             case "UP":
-                link.seDeplacer("nord");
+                directionregardé="nord";
+                link.seDeplacer(directionregardé);
                 this.vueLink.setImage(linkNord);
                 break;
             case "Q":
             case "LEFT":
-                link.seDeplacer("ouest");
+                directionregardé="ouest";
+                link.seDeplacer(directionregardé);
                 this.vueLink.setImage(linkOuest);
                 break;
             case "S":
             case "DOWN":
-                link.seDeplacer("sud");
+                directionregardé="sud";
+                link.seDeplacer(directionregardé);
                 this.vueLink.setImage(linkSud);
                 break;
             case "D":
             case "RIGHT":
-                link.seDeplacer("est");
+                directionregardé="est";
                 this.vueLink.setImage(linkEst);
+                link.seDeplacer(directionregardé);
                 break;
             case "R":
                 link.attaquer(armeEquipé,link);
                 break;
         }
-
-
+        if (armeEquipé!=null)
+        bindeur(directionregardé);
         System.out.println(link.getX()+","+link.getY());
         System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
@@ -133,11 +139,34 @@ public class VueActLink {
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);
             VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
-            armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(17)); // Adjust offset as needed
-            armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+            bindeur(directionregardé);
 
         }
 
+    }
+    public void bindeur(String direction){
+        switch (direction){
+            case "sud" :
+                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeImage());
+                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
+                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+                break;
+            case "nord" :
+                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeInversé());
+                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(20));
+                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(7));
+                break;
+            case "ouest" :
+                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeImage());
+                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
+                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(5));
+                break;
+            case "est" :
+                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeInversé());
+                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(15));
+                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10));
+                break;
+        }
     }
     public void ramasser(VueArmes vA) {
         for(int i=0 ; i<5;i++)
@@ -148,11 +177,12 @@ public class VueActLink {
         ImageView armecase = new ImageView();
         int indice = inventaire.indexOf(vA);
         armecase.setImage(vA.getArmeVue().getImage());
-        armecase.setFitWidth(100);
-        armecase.setFitHeight(100);
+        System.out.println(vA.getArmeVue().getImage().getHeight()+".........."+vA.getArmeVue().getImage().getWidth());
+        armecase.setFitWidth(80);
+        armecase.setFitHeight(80);
         vueArmesInventaire.getChildren().add(armecase);
-        armecase.setX(vueCaseInventaire.getLayoutX()+(100*indice)+50);
-        armecase.setY(25);
+        armecase.setX(vueCaseInventaire.getLayoutX()+(100*indice)+65);
+        armecase.setY(40);
     }
 
     public ObservableList getInventaire(){return inventaire;}
