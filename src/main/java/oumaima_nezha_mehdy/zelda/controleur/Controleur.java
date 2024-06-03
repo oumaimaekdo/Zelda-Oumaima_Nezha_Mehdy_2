@@ -91,7 +91,7 @@ public class Controleur implements Initializable {
         champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
-        sbirControl.deplacementSbir();
+        sbirControl.getSbir1().deplacementAleatoireX();
         this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());

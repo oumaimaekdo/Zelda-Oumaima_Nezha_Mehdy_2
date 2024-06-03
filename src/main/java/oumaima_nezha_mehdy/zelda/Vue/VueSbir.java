@@ -56,4 +56,8 @@ public class VueSbir {
         sbir1.deplacementAleatoireX();
     }
 
+    public Sbir getSbir1(){
+        return this.sbir1;
+    }
+
 }
