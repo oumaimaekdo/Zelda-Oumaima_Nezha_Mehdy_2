@@ -1,4 +1,8 @@
-package oumaima_nezha_mehdy.zelda.controleur;
+package oumaima_nezha_mehdy.zelda.Vue;
+
+
+import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
+
 
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
