@@ -66,23 +66,17 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueArmesInventaire;
 
-    @FXML
-    private Pane elementsImpassable; //creer plutôt un pain avec les elements traversable
 
-    private VueBlocImpassable test;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        MapInt mapInt = MapPossible.test2;
+        MapInt mapInt = MapPossible.test3;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.tailleTuile=champ.gettT();
         this.arc = new Arc();
-        this.test = new VueBlocImpassable(elementsImpassable,champ,tailleTuile,250,175);
-
-
 
         map.setPrefTileHeight(tailleTuile);
         map.setPrefTileWidth(tailleTuile);
@@ -112,7 +106,7 @@ public class Controleur implements Initializable {
     public void CreationMap() {
         int[] carte = this.sol;
         Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
-        Image terre = new Image("file:src/main/resources/images/Bloc/Herbe.jpg");
+        Image terre = new Image("file:src/main/resources/images/herbe2.png");
         Image arbre = new Image("file:src/main/resources/images/Bloc/arbre.png");
         Image maison = new Image("file:src/main/resources/images/Bloc/maison.png");
         Image pont = new Image("file:src/main/resources/images/pont.png");
@@ -131,20 +125,11 @@ public class Controleur implements Initializable {
             imageView.setX(x);
             imageView.setY(y);
             switch (carte[i]) {
-                case 0:
+                case 12:
                     imageView.setImage(terre);
-                    break;
-                case 1:
-                    imageView.setImage(arbre);
                     break;
                 case 2:
                     imageView.setImage(eau);
-                    break;
-                case 3:
-                    imageView.setImage(maison);
-                    break;
-                case 4:
-                    imageView.setImage(pont);
                     break;
 
             }
