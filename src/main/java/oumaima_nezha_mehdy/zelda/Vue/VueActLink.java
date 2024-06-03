@@ -30,7 +30,6 @@ public class VueActLink {
     private Pane vueArmesInventaire;
     private ObservableList<VueArmes> inventaire;
     private Armes epee = new EpeeDeFer();
-    private static boolean attaquer = true;
 
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
@@ -106,8 +105,8 @@ public class VueActLink {
     }
     private boolean coordonnéPossible(int x,int y){
         int haut,bas,gauche,droite;
-        haut = 25;
-        gauche = 15;
+        haut = 20;
+        gauche = 20;
         bas = -20;
         droite = -10;
         boolean retourneur = x>=0&&y>=0&&x+15<this.champ.getLongueur()*tT&&y+15<this.champ.getLargeur()*tT;

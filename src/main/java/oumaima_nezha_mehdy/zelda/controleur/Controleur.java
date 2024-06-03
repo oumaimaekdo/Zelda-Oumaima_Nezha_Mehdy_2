@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import oumaima_nezha_mehdy.zelda.Vue.VueBlocImpassable;
+import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
@@ -39,6 +40,8 @@ public class Controleur implements Initializable {
     private Pane vueActeur;
     @FXML
     private Pane vueArmes;
+    @FXML
+    private Pane vueSbir;
 
     @FXML
     private VueArmes vueArc;
@@ -47,6 +50,8 @@ public class Controleur implements Initializable {
     private Pane vueArcPane ;
 
     private VueActLink linkControl;
+    private VueSbir sbirControl;
+
     private VueArmes armesControl;
 
     private int tailleTuile;
@@ -85,6 +90,8 @@ public class Controleur implements Initializable {
         CreationMap();
         champ.afficherMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
+        this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
+        sbirControl.deplacementSbir();
         this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());

@@ -12,7 +12,7 @@ public class Champ {
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
     private Acteur link;
-
+    private Sbir sbir;
 
     private int longueur;
 
@@ -23,6 +23,7 @@ public class Champ {
         this.longueur=L;
         this.champ = map;
         this.link = new Acteur("Link",0,0,this);
+        this.sbir = new Sbir("Squelette",50,50,this);
         //listActeur.add(link);
         raffraichirMap();
 
@@ -87,6 +88,10 @@ public class Champ {
     public Acteur getLink() {
         return link;
     }
+    public Sbir getSbir() {
+        return sbir;
+    }
+
 
 
     public int getLongueur(){return longueur;}
