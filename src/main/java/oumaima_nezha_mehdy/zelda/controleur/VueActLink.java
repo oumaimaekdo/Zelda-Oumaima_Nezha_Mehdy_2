@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,9 +11,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class VueActLink {
 
@@ -46,11 +50,13 @@ public class VueActLink {
 
     private int numeroImage;
 
+    private Timeline gameLoop;
     private ObservableList<VueArmes> inventaire;
+    private HashSet<String> touchePressé;
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
-        numeroImage=0;
+        numeroImage=1;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
         this.link=champ.getLink();
@@ -58,81 +64,61 @@ public class VueActLink {
         this.vueCaseInventaire=vueCaseInventaire;
         this.vueArmesInventaire=vueArmesInventaire;
         this.inventaire = FXCollections.observableArrayList();
+        this.touchePressé = new HashSet<>();
+        this.directionregardé="est";
         creerlink("file:src/main/resources/images/link_profil.png",link);
-        linkNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
-        linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
-        linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
-        linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
+        linkNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
+        linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
+        linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
+        linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
         chargerInventaire();
         VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),new Image("file:src/main/resources/images/epeeFerInversé.png"));
         ramasser(vA1);
         VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25),new Image("file:src/main/resources/images/arcInversé.png"));
         ramasser(arcInventaire);
+        initAnimation();
+        gameLoop.play();
 
 
     }
 
-
-    public void DeplacementLink(String key){
-        System.out.println("\n \n \n" );
-        System.out.println(key);
-        switch (key) {
-            case"Z" :
-            case "UP":
-                numeroImage++;
-                directionregardé="nord";
-                if (numeroImage>2)
-                    numeroImage=1;
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Nord/UP_"+numeroImage+".png"));
-                if (numeroImage==0)
-                this.vueLink.setImage(linkNord);
-                link.seDeplacer(directionregardé);
-                break;
-            case "Q":
-            case "LEFT":
-                numeroImage++;
-                directionregardé="ouest";
-                if (numeroImage>9)
-                    numeroImage=1;
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/LEFT_"+numeroImage+".png"));
-                if (numeroImage==0)
-                    this.vueLink.setImage(linkOuest);
-                link.seDeplacer(directionregardé);
-                break;
-            case "S":
-            case "DOWN":
-                numeroImage++;
-                directionregardé="sud";
-                if (numeroImage>2)
-                    numeroImage=1;
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Sud/DOWN_"+numeroImage+".png"));
-                if (numeroImage==0) this.vueLink.setImage(linkSud);
-                link.seDeplacer(directionregardé);
-
-                break;
-            case "D":
-            case "RIGHT":
-                numeroImage++;
-                directionregardé="est";
-                if (numeroImage>10)
-                    numeroImage=1;
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Est/Est"+numeroImage+".png"));
-                if (numeroImage==0)
-                this.vueLink.setImage(linkEst);
-                link.seDeplacer(directionregardé);
-                break;
-            case "R":
-                link.attaquer(armeEquipé,link);
-                break;
-        }
-        if (armeEquipé!=null)
-        bindeur(directionregardé);
-        System.out.println(link.getX()+","+link.getY());
-        System.out.println(link.getX()/tT+","+link.getY()/tT);
+    public void ajouterTouche(String key){
+        touchePressé.add(key);
     }
-        public void toucheRelaché(KeyEvent e){
-        numeroImage=0;
+
+
+
+    public void DeplacementLink() {
+        if (touchePressé.contains("Z")) {
+                link.seDeplacer("nord");
+            directionregardé="nord";
+
+            this.vueLink.setImage(linkNord);
         }
+        if (touchePressé.contains("Q")) {
+            link.seDeplacer("ouest");
+            directionregardé="ouest";
+
+            this.vueLink.setImage(linkOuest);
+        }
+        if (touchePressé.contains("S")){
+                link.seDeplacer("sud");
+            directionregardé="sud";
+
+            this.vueLink.setImage(linkSud);
+        }
+        if (touchePressé.contains("D")){
+                link.seDeplacer("est");
+            directionregardé="est";
+
+            this.vueLink.setImage(linkEst);
+        }
+
+    }
+    public void toucheRelaché(KeyEvent keyEvent) {
+            touchePressé.remove(keyEvent.getCode().toString());
+    }
+
 
 
 
@@ -213,5 +199,48 @@ public class VueActLink {
 
     public Acteur getLink(){
         return this.link;
+    }
+
+    public void animation(String direction) {
+        switch (direction) {
+            case "nord":
+                if(numeroImage<3)
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/UP_" + numeroImage + ".png"));
+                break;
+            case "sud":
+                if(numeroImage<3)
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/DOWN_" + numeroImage + ".png"));
+                break;
+            case "est":
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/Est" + numeroImage + ".png"));
+                break;
+            case "ouest":
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/LEFT_" + numeroImage + ".png"));
+                break;
+            case "inactif":
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/"+directionregardé+"Default.png"));
+                break;
+        }
+    }
+
+    private void initAnimation() {
+        gameLoop = new Timeline();
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame kf = new KeyFrame(
+                // on définit le FPS (nbre de frame par seconde)
+                Duration.seconds(0.03),
+                // on définit ce qui se passe à chaque frame
+                // c'est un eventHandler d'ou le lambda
+                (ev ->{
+                    DeplacementLink();
+                    if (touchePressé.isEmpty())
+                        animation("inactif");
+                    else
+                        animation(directionregardé);
+                    numeroImage++;
+                })
+        );
+        gameLoop.getKeyFrames().add(kf);
     }
 }

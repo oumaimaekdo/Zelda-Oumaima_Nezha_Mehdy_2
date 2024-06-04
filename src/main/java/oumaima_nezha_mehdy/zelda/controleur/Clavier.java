@@ -23,7 +23,7 @@ public class Clavier{
     }
 
     public void handle(KeyEvent keyEvent) {
-        linkDeplacement.DeplacementLink(keyEvent.getCode().toString());
+        linkDeplacement.ajouterTouche(keyEvent.getCode().toString());
         vueInventaire.selectionerCase(keyEvent);
     }
     public void toucheRelaché(KeyEvent e){
