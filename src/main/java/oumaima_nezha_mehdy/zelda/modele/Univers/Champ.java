@@ -24,7 +24,7 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.link = new Acteur("Link",0,0,this);
+        this.link = new Acteur("Link",0,700,this);
         this.sbir = new Sbir("Squelette",50,50,this);
         this.tT=64;
 

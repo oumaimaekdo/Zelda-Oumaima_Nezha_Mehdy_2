@@ -105,12 +105,32 @@ public class Controleur implements Initializable {
 
     public void CreationMap() {
         int[] carte = this.sol;
-        Image eau = new Image("file:src/main/resources/images/Bloc/Eau.jpg");
-        Image terre = new Image("file:src/main/resources/images/herbe2.png");
-        Image arbre = new Image("file:src/main/resources/images/Bloc/arbre.png");
-        Image maison = new Image("file:src/main/resources/images/Bloc/maison.png");
-        Image pont = new Image("file:src/main/resources/images/pont.png");
-
+        Image herbeDroit = new Image("file:src/main/resources/images/MapDebut/13.png");
+        Image herbe = new Image("file:src/main/resources/images/MapDebut/herbe2.png");
+        Image herbeBas = new Image("file:src/main/resources/images/MapDebut/23.png");
+        Image herbeGauche = new Image("file:src/main/resources/images/MapDebut/11.png");
+        Image herbeHaut = new Image("file:src/main/resources/images/MapDebut/1.png");
+        Image terre = new Image("file:src/main/resources/images/MapDebut/54.png");
+        Image coin24 = new Image("file:src/main/resources/images/MapDebut/24.png");
+        Image coin22 = new Image("file:src/main/resources/images/MapDebut/22.png");
+        Image coin17 = new Image("file:src/main/resources/images/MapDebut/17.png");
+        Image coin28 = new Image("file:src/main/resources/images/MapDebut/28.png");
+        Image coin0 = new Image("file:src/main/resources/images/MapDebut/0.png");
+        Image coin16 = new Image("file:src/main/resources/images/MapDebut/16.png");
+        Image coin2 = new Image("file:src/main/resources/images/MapDebut/2.png");
+        Image coin27 = new Image("file:src/main/resources/images/MapDebut/27.png");
+        Image buisson33 = new Image("file:src/main/resources/images/MapDebut/33.png");
+        Image buisson34 = new Image("file:src/main/resources/images/MapDebut/34.png");
+        Image buisson35 = new Image("file:src/main/resources/images/MapDebut/35.png");
+        Image buisson36 = new Image("file:src/main/resources/images/MapDebut/36.png");
+        Image maison5 = new Image("file:src/main/resources/images/MapDebut/5.png");
+        Image maison6 = new Image("file:src/main/resources/images/MapDebut/6.png");
+        Image maison7 = new Image("file:src/main/resources/images/MapDebut/7.png");
+        Image maison8 = new Image("file:src/main/resources/images/MapDebut/8.png");
+        Image maison9 = new Image("file:src/main/resources/images/MapDebut/9.png");
+        Image maison10 = new Image("file:src/main/resources/images/MapDebut/10.png");
+        Image maison14 = new Image("file:src/main/resources/images/MapDebut/14.png");
+        Image maison15 = new Image("file:src/main/resources/images/MapDebut/15.png");
 
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
@@ -126,12 +146,83 @@ public class Controleur implements Initializable {
             imageView.setY(y);
             switch (carte[i]) {
                 case 12:
+                    imageView.setImage(herbe);
+                    break;
+                case 54:
                     imageView.setImage(terre);
                     break;
-                case 2:
-                    imageView.setImage(eau);
+                case 13:
+                    imageView.setImage(herbeDroit);
                     break;
-
+                case 11:
+                    imageView.setImage(herbeGauche);
+                    break;
+                case 23:
+                    imageView.setImage(herbeBas);
+                    break;
+                case 1:
+                    imageView.setImage(herbeHaut);
+                    break;
+                case 24:
+                    imageView.setImage(coin24);
+                    break;
+                case 22:
+                    imageView.setImage(coin22);
+                    break;
+                case 17:
+                    imageView.setImage(coin17);
+                    break;
+                case 28:
+                    imageView.setImage(coin28);
+                    break;
+                case 0:
+                    imageView.setImage(coin0);
+                    break;
+                case 16:
+                    imageView.setImage(coin16);
+                    break;
+                case 2:
+                    imageView.setImage(coin2);
+                    break;
+                case 27:
+                    imageView.setImage(coin27);
+                    break;
+                case 33:
+                    imageView.setImage(buisson33);
+                    break;
+                case 34:
+                    imageView.setImage(buisson34);
+                    break;
+                case 35:
+                    imageView.setImage(buisson35);
+                    break;
+                case 36:
+                    imageView.setImage(buisson36);
+                    break;
+                case 5:
+                    imageView.setImage(maison5);
+                    break;
+                case 6:
+                    imageView.setImage(maison6);
+                    break;
+                case 7:
+                    imageView.setImage(maison7);
+                    break;
+                case 8:
+                    imageView.setImage(maison8);
+                    break;
+                case 9:
+                    imageView.setImage(maison9);
+                    break;
+                case 10:
+                    imageView.setImage(maison10);
+                    break;
+                case 14:
+                    imageView.setImage(maison14);
+                    break;
+                case 15:
+                    imageView.setImage(maison15);
+                    break;
             }
         }
     }
