@@ -11,14 +11,13 @@
    <center>
             <Pane fx:id="univers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseClicked="#mouseclicked" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
                <children>
-
                   <Pane fx:id="vueActeur">
                      <children>
-
-                        <TilePane fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
+                        <TilePane fx:id="map1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                      </children>
                   </Pane>
                   <Pane fx:id="vueArmes"></Pane>
+                  <TilePane fx:id="map2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" ></TilePane>
                   <Pane fx:id="vueArcPane"></Pane>
                   <Pane fx:id="elementsImpassable"></Pane>
                   <Pane fx:id="vueSbir"></Pane>

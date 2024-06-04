@@ -26,7 +26,9 @@ public class Controleur implements Initializable {
     @FXML
     private BorderPane fenetre;
     @FXML
-    private TilePane map;
+    private TilePane map1;
+    @FXML
+    private TilePane map2;
     @FXML
     private Pane univers;
 
@@ -78,11 +80,14 @@ public class Controleur implements Initializable {
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
         this.tailleTuile=champ.gettT();
         this.arc = new Arc();
-
-        map.setPrefTileHeight(tailleTuile);
-        map.setPrefTileWidth(tailleTuile);
-        map.setPrefHeight(LargeurInt*tailleTuile);
-        map.setPrefWidth(LongueurInt*tailleTuile);
+        map1.setPrefTileHeight(tailleTuile);
+        map1.setPrefTileWidth(tailleTuile);
+        map1.setPrefHeight(LargeurInt*tailleTuile);
+        map1.setPrefWidth(LongueurInt*tailleTuile);
+        map2.setPrefTileHeight(tailleTuile);
+        map2.setPrefTileWidth(tailleTuile);
+        map2.setPrefHeight(LargeurInt*tailleTuile);
+        map2.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
@@ -152,16 +157,24 @@ public class Controleur implements Initializable {
 
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
-            map.getChildren().add(imageView);
+            ImageView imageView2 = new ImageView();
+
+            map1.getChildren().add(imageView);
+            map2.getChildren().add(imageView2);
             imageView.setId(String.valueOf(i));
             imageView.setFitHeight(tailleTuile);
             imageView.setFitWidth(tailleTuile);
+            imageView2.setId(String.valueOf(i));
+            imageView2.setFitHeight(tailleTuile);
+            imageView2.setFitWidth(tailleTuile);
             double col = i % LargeurInt;
             double lig = Math.floor(i/LongueurInt);
             double x = col * LargeurInt;
             double y = lig * LongueurInt;
             imageView.setX(x);
             imageView.setY(y);
+            imageView2.setX(x);
+            imageView2.setY(y);
             switch (carte[i]) {
                 case 12:
                     imageView.setImage(herbe);
@@ -254,34 +267,34 @@ public class Controleur implements Initializable {
                     imageView.setImage(maison58);
                     break;
                 case 59:
-                    imageView.setImage(maison59);
+                    imageView2.setImage(maison59);
                     break;
                 case 60:
-                    imageView.setImage(maison60);
+                    imageView2.setImage(maison60);
                     break;
                 case 61:
-                    imageView.setImage(maison61);
+                    imageView2.setImage(maison61);
                     break;
                 case 62:
-                    imageView.setImage(maison62);
+                    imageView2.setImage(maison62);
                     break;
                 case 63:
-                    imageView.setImage(maison63);
+                    imageView2.setImage(maison63);
                     break;
                 case 64:
-                    imageView.setImage(maison64);
+                    imageView2.setImage(maison64);
                     break;
                 case 65:
-                    imageView.setImage(maison65);
+                    imageView2.setImage(maison65);
                     break;
                 case 66:
-                    imageView.setImage(maison66);
+                    imageView2.setImage(maison66);
                     break;
                 case 67:
                     imageView.setImage(tronc67);
                     break;
                 case 68:
-                    imageView.setImage(arbrecote68);
+                    imageView2.setImage(arbrecote68);
                     break;
             }
         }
