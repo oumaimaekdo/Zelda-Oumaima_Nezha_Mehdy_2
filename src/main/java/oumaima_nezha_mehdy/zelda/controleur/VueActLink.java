@@ -44,10 +44,13 @@ public class VueActLink {
 
     private String directionregardé;
 
+    private int numeroImage;
+
     private ObservableList<VueArmes> inventaire;
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
         vueActeur=pane;
+        numeroImage=0;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
         this.link=champ.getLink();
@@ -76,25 +79,45 @@ public class VueActLink {
         switch (key) {
             case"Z" :
             case "UP":
+                numeroImage++;
                 directionregardé="nord";
-                link.seDeplacer(directionregardé);
+                if (numeroImage>2)
+                    numeroImage=1;
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Nord/UP_"+numeroImage+".png"));
+                if (numeroImage==0)
                 this.vueLink.setImage(linkNord);
+                link.seDeplacer(directionregardé);
                 break;
             case "Q":
             case "LEFT":
+                numeroImage++;
                 directionregardé="ouest";
+                if (numeroImage>9)
+                    numeroImage=1;
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/LEFT_"+numeroImage+".png"));
+                if (numeroImage==0)
+                    this.vueLink.setImage(linkOuest);
                 link.seDeplacer(directionregardé);
-                this.vueLink.setImage(linkOuest);
                 break;
             case "S":
             case "DOWN":
+                numeroImage++;
                 directionregardé="sud";
+                if (numeroImage>2)
+                    numeroImage=1;
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Sud/DOWN_"+numeroImage+".png"));
+                if (numeroImage==0) this.vueLink.setImage(linkSud);
                 link.seDeplacer(directionregardé);
-                this.vueLink.setImage(linkSud);
+
                 break;
             case "D":
             case "RIGHT":
+                numeroImage++;
                 directionregardé="est";
+                if (numeroImage>10)
+                    numeroImage=1;
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Est/Est"+numeroImage+".png"));
+                if (numeroImage==0)
                 this.vueLink.setImage(linkEst);
                 link.seDeplacer(directionregardé);
                 break;
@@ -107,7 +130,9 @@ public class VueActLink {
         System.out.println(link.getX()+","+link.getY());
         System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
-
+        public void toucheRelaché(KeyEvent e){
+        numeroImage=0;
+        }
 
 
 
@@ -134,7 +159,6 @@ public class VueActLink {
     public void selectioner(int i){
         if(armeEquipé!=null) {
             VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
-            System.out.println(VueArmesJeu.getChildren().isEmpty());
         }
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);

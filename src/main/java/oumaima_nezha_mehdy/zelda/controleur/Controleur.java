@@ -152,4 +152,7 @@ public class Controleur implements Initializable {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
     }
+    public void keyReleased(KeyEvent e){
+        clavier.toucheRelaché(e);
+    }
 }

@@ -26,4 +26,7 @@ public class Clavier{
         linkDeplacement.DeplacementLink(keyEvent.getCode().toString());
         vueInventaire.selectionerCase(keyEvent);
     }
+    public void toucheRelaché(KeyEvent e){
+        linkDeplacement.toucheRelaché(e);
+    }
 }
