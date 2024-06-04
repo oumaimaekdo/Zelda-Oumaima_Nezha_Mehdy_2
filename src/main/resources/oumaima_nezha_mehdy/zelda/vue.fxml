@@ -17,7 +17,7 @@
                      </children>
                   </Pane>
                   <Pane fx:id="vueArmes"></Pane>
-                  <TilePane fx:id="map2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" ></TilePane>
+                  <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" ></TilePane>
                   <Pane fx:id="vueArcPane"></Pane>
                   <Pane fx:id="elementsImpassable"></Pane>
                   <Pane fx:id="vueSbir"></Pane>

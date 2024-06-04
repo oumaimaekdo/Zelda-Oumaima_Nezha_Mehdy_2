@@ -28,7 +28,7 @@ public class Controleur implements Initializable {
     @FXML
     private TilePane map1;
     @FXML
-    private TilePane map2;
+    private TilePane LayerSup;
     @FXML
     private Pane univers;
 
@@ -38,6 +38,8 @@ public class Controleur implements Initializable {
     private HBox vueInventaire;
 
     private int[] sol;
+    private int[] Layersup;
+    private int[] collision;
 
     @FXML
     private Pane vueActeur;
@@ -73,22 +75,25 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test3;
-        MapInt mapInt2 = MapPossible.test2;
+        MapInt mapInt2 = MapPossible.test4;
         this.sol=mapInt.getCarte();
+        this.collision = mapInt2.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,sol);
+
         this.tailleTuile=champ.gettT();
         this.arc = new Arc();
         map1.setPrefTileHeight(tailleTuile);
         map1.setPrefTileWidth(tailleTuile);
         map1.setPrefHeight(LargeurInt*tailleTuile);
         map1.setPrefWidth(LongueurInt*tailleTuile);
-        map2.setPrefTileHeight(tailleTuile);
-        map2.setPrefTileWidth(tailleTuile);
-        map2.setPrefHeight(LargeurInt*tailleTuile);
-        map2.setPrefWidth(LongueurInt*tailleTuile);
+        LayerSup.setPrefTileHeight(tailleTuile);
+        LayerSup.setPrefTileWidth(tailleTuile);
+        LayerSup.setPrefHeight(LargeurInt*tailleTuile);
+        LayerSup.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
+        CreationLayerSup();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
         sbirControl.getSbir1().deplacementAleatoireX();
@@ -103,6 +108,7 @@ public class Controleur implements Initializable {
         this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
 
 
+
     }
 
     public Clavier getClavier() {
@@ -111,6 +117,7 @@ public class Controleur implements Initializable {
 
     public void CreationMap() {
         int[] carte = this.sol;
+        int [] carteCollision = this.collision;
         Image herbeDroit = new Image("file:src/main/resources/images/MapDebut/13.png");
         Image herbe = new Image("file:src/main/resources/images/MapDebut/herbe2.png");
         Image herbeBas = new Image("file:src/main/resources/images/MapDebut/23.png");
@@ -141,40 +148,40 @@ public class Controleur implements Initializable {
         Image maison56 = new Image("file:src/main/resources/images/MapDebut/56.png");
         Image maison57 = new Image("file:src/main/resources/images/MapDebut/57.png");
         Image maison58 = new Image("file:src/main/resources/images/MapDebut/58.png");
-        Image maison59 = new Image("file:src/main/resources/images/MapDebut/59.png");
-        Image maison60 = new Image("file:src/main/resources/images/MapDebut/60.png");
-        Image maison61 = new Image("file:src/main/resources/images/MapDebut/61.png");
-        Image maison62 = new Image("file:src/main/resources/images/MapDebut/62.png");
-        Image maison63 = new Image("file:src/main/resources/images/MapDebut/63.png");
-        Image maison64 = new Image("file:src/main/resources/images/MapDebut/64.png");
+        Image bloc110 = new Image("file:src/main/resources/images/MapDebut/110.png");
+        Image bloc111 = new Image("file:src/main/resources/images/MapDebut/111.png");
+        Image bloc100 = new Image("file:src/main/resources/images/MapDebut/100.png");
+        Image bloc101 = new Image("file:src/main/resources/images/MapDebut/101.png");
+        Image bloc109 = new Image("file:src/main/resources/images/MapDebut/109.png");
+        Image bloc112 = new Image("file:src/main/resources/images/MapDebut/112.png");
+        Image bloc108 = new Image("file:src/main/resources/images/MapDebut/108.png");
+        Image bloc113 = new Image("file:src/main/resources/images/MapDebut/113.png");
+        Image bloc114 = new Image("file:src/main/resources/images/MapDebut/114.png");
+        Image bloc115 = new Image("file:src/main/resources/images/MapDebut/115.png");
+        Image bloc116 = new Image("file:src/main/resources/images/MapDebut/116.png");
         Image maison65 = new Image("file:src/main/resources/images/MapDebut/65.png");
         Image maison66 = new Image("file:src/main/resources/images/MapDebut/66.png");
         Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
         Image arbrecote68 = new Image("file:src/main/resources/images/MapDebut/68.png");
+        Image maison71 = new Image("file:src/main/resources/images/MapDebut/71.png");
+        Image maison72 = new Image("file:src/main/resources/images/MapDebut/72.png");
 
 
 
 
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
-            ImageView imageView2 = new ImageView();
 
             map1.getChildren().add(imageView);
-            map2.getChildren().add(imageView2);
             imageView.setId(String.valueOf(i));
             imageView.setFitHeight(tailleTuile);
             imageView.setFitWidth(tailleTuile);
-            imageView2.setId(String.valueOf(i));
-            imageView2.setFitHeight(tailleTuile);
-            imageView2.setFitWidth(tailleTuile);
             double col = i % LargeurInt;
             double lig = Math.floor(i/LongueurInt);
             double x = col * LargeurInt;
             double y = lig * LongueurInt;
             imageView.setX(x);
             imageView.setY(y);
-            imageView2.setX(x);
-            imageView2.setY(y);
             switch (carte[i]) {
                 case 12:
                     imageView.setImage(herbe);
@@ -266,6 +273,91 @@ public class Controleur implements Initializable {
                 case 58:
                     imageView.setImage(maison58);
                     break;
+                case 100:
+                    imageView.setImage(bloc100);
+                    break;
+                case 110:
+                    imageView.setImage(bloc110);
+                    break;
+                case 111:
+                    imageView.setImage(bloc111);
+                    break;
+                case 101:
+                    imageView.setImage(bloc101);
+                    break;
+                case 109:
+                    imageView.setImage(bloc109);
+                    break;
+                case 112:
+                    imageView.setImage(bloc112);
+                    break;
+                case 108:
+                    imageView.setImage(bloc108);
+                    break;
+                case 67:
+                    imageView.setImage(tronc67);
+                    break;
+                case 71:
+                    imageView.setImage(maison71);
+                    break;
+                case 72:
+                    imageView.setImage(maison72);
+                    break;
+                case 113:
+                    imageView.setImage(bloc113);
+                    break;
+                case 114:
+                    imageView.setImage(bloc114);
+                    break;
+                case 115:
+                    imageView.setImage(bloc115);
+                    break;
+                case 116:
+                    imageView.setImage(bloc116);
+                    break;
+
+            }
+        }
+    }
+    public void CreationLayerSup() {
+        int [] carteCollision = this.collision;
+
+        Image maison8 = new Image("file:src/main/resources/images/MapDebut/8.png");
+        Image maison59 = new Image("file:src/main/resources/images/MapDebut/59.png");
+        Image maison60 = new Image("file:src/main/resources/images/MapDebut/60.png");
+        Image maison61 = new Image("file:src/main/resources/images/MapDebut/61.png");
+        Image maison62 = new Image("file:src/main/resources/images/MapDebut/62.png");
+        Image maison63 = new Image("file:src/main/resources/images/MapDebut/63.png");
+        Image maison64 = new Image("file:src/main/resources/images/MapDebut/64.png");
+        Image maison65 = new Image("file:src/main/resources/images/MapDebut/65.png");
+        Image maison66 = new Image("file:src/main/resources/images/MapDebut/66.png");
+        Image arbrecote68 = new Image("file:src/main/resources/images/MapDebut/68.png");
+        Image arbrehaut69 = new Image("file:src/main/resources/images/MapDebut/69.png");
+        Image arbrehaut70 = new Image("file:src/main/resources/images/MapDebut/70.png");
+        Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
+        Image bloc117 = new Image("file:src/main/resources/images/MapDebut/117.png");
+
+
+
+
+
+        for (int i = 0; i < carteCollision.length; i++) {
+            ImageView imageView2 = new ImageView();
+
+            LayerSup.getChildren().add(imageView2);
+            imageView2.setId(String.valueOf(i));
+            imageView2.setFitHeight(tailleTuile);
+            imageView2.setFitWidth(tailleTuile);
+            double col = i % LargeurInt;
+            double lig = Math.floor(i/LongueurInt);
+            double x = col * LargeurInt;
+            double y = lig * LongueurInt;
+            imageView2.setX(x);
+            imageView2.setY(y);
+            switch (carteCollision[i]) {
+                case 8:
+                    imageView2.setImage(maison8);
+                    break;
                 case 59:
                     imageView2.setImage(maison59);
                     break;
@@ -291,11 +383,21 @@ public class Controleur implements Initializable {
                     imageView2.setImage(maison66);
                     break;
                 case 67:
-                    imageView.setImage(tronc67);
+                    imageView2.setImage(tronc67);
                     break;
                 case 68:
                     imageView2.setImage(arbrecote68);
                     break;
+                case 69:
+                    imageView2.setImage(arbrehaut69);
+                    break;
+                case 70:
+                    imageView2.setImage(arbrehaut70);
+                    break;
+                case 117:
+                    imageView2.setImage(bloc117);
+                    break;
+
             }
         }
     }
