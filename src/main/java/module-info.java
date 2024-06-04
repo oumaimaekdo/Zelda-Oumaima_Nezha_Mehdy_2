@@ -4,8 +4,8 @@ module oumaima_nezha_mehdy.zelda {
 
     requires org.controlsfx.controls;
     requires java.desktop;
-    requires gdx;
-    requires gdx.backend.lwjgl;
+    //requires gdx;
+    //requires gdx.backend.lwjgl;
 
     opens oumaima_nezha_mehdy.zelda to javafx.fxml;
     exports oumaima_nezha_mehdy.zelda;

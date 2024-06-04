@@ -71,6 +71,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test3;
+        MapInt mapInt2 = MapPossible.test2;
         this.sol=mapInt.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
@@ -131,6 +132,23 @@ public class Controleur implements Initializable {
         Image maison10 = new Image("file:src/main/resources/images/MapDebut/10.png");
         Image maison14 = new Image("file:src/main/resources/images/MapDebut/14.png");
         Image maison15 = new Image("file:src/main/resources/images/MapDebut/15.png");
+        Image maison55 = new Image("file:src/main/resources/images/MapDebut/55.png");
+        Image maison56 = new Image("file:src/main/resources/images/MapDebut/56.png");
+        Image maison57 = new Image("file:src/main/resources/images/MapDebut/57.png");
+        Image maison58 = new Image("file:src/main/resources/images/MapDebut/58.png");
+        Image maison59 = new Image("file:src/main/resources/images/MapDebut/59.png");
+        Image maison60 = new Image("file:src/main/resources/images/MapDebut/60.png");
+        Image maison61 = new Image("file:src/main/resources/images/MapDebut/61.png");
+        Image maison62 = new Image("file:src/main/resources/images/MapDebut/62.png");
+        Image maison63 = new Image("file:src/main/resources/images/MapDebut/63.png");
+        Image maison64 = new Image("file:src/main/resources/images/MapDebut/64.png");
+        Image maison65 = new Image("file:src/main/resources/images/MapDebut/65.png");
+        Image maison66 = new Image("file:src/main/resources/images/MapDebut/66.png");
+        Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
+        Image arbrecote68 = new Image("file:src/main/resources/images/MapDebut/68.png");
+
+
+
 
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
@@ -222,6 +240,48 @@ public class Controleur implements Initializable {
                     break;
                 case 15:
                     imageView.setImage(maison15);
+                    break;
+                case 55:
+                    imageView.setImage(maison55);
+                    break;
+                case 56:
+                    imageView.setImage(maison56);
+                    break;
+                case 57:
+                    imageView.setImage(maison57);
+                    break;
+                case 58:
+                    imageView.setImage(maison58);
+                    break;
+                case 59:
+                    imageView.setImage(maison59);
+                    break;
+                case 60:
+                    imageView.setImage(maison60);
+                    break;
+                case 61:
+                    imageView.setImage(maison61);
+                    break;
+                case 62:
+                    imageView.setImage(maison62);
+                    break;
+                case 63:
+                    imageView.setImage(maison63);
+                    break;
+                case 64:
+                    imageView.setImage(maison64);
+                    break;
+                case 65:
+                    imageView.setImage(maison65);
+                    break;
+                case 66:
+                    imageView.setImage(maison66);
+                    break;
+                case 67:
+                    imageView.setImage(tronc67);
+                    break;
+                case 68:
+                    imageView.setImage(arbrecote68);
                     break;
             }
         }

@@ -2,6 +2,7 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Champ {
 
@@ -10,6 +11,8 @@ public class Champ {
     private ArrayList<Bloc> listBloc =new ArrayList<>();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
+
+    private ArrayList<Integer> pointDeCollision;
 
     private Acteur link;
     private Sbir sbir;
@@ -27,6 +30,7 @@ public class Champ {
         this.link = new Acteur("Link",0,700,this);
         this.sbir = new Sbir("Squelette",50,50,this);
         this.tT=64;
+        this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
 
     }
 
@@ -58,10 +62,18 @@ public class Champ {
         if(!retourneur)
             return false;
         boolean collisionhautgauche =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=2;
-        boolean collisionbasdroite =champ[(x-droite)/tT + ((y-bas)/tT)*(this.longueur)]!=2;
-        return retourneur&&(collisionhautgauche&&collisionbasdroite);
-    }
 
+        /*for(int i : pointDeCollision){
+            boolean b = champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=i;
+
+        }*/
+        boolean collisionmaison1 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=5;
+        boolean collisionmaison2 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=6;
+        boolean collisionmaison3 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=7;
+        boolean collisionmaison4 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=8;
+        boolean collisionbasdroite =champ[(x-droite)/tT + ((y-bas)/tT)*(this.longueur)]!=2;
+        return retourneur&&(collisionhautgauche&&collisionbasdroite&&collisionmaison1&&collisionmaison2&&collisionmaison3&&collisionmaison4);
+    }
 
     public int[] getChamp(){return champ;}
 
