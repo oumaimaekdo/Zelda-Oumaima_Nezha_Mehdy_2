@@ -1,5 +1,6 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
+import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -27,11 +28,17 @@ public class Sbir extends Acteur {
     }
 
     public void deplacementAleatoire() {
-        if (moveX) {
-            deplacementAleatoireX();
-        } else {
-            deplacementAleatoireY();
-        }
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (moveX) {
+                    deplacementAleatoireX();
+                } else {
+                    deplacementAleatoireY();
+                }
+            }
+        };
+        timer.start();
     }
 
     private void deplacementAleatoireX() {

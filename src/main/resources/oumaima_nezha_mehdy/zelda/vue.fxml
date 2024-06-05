@@ -2,12 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-
-<BorderPane fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oumaima_nezha_mehdy.zelda.controleur.Controleur">
+<BorderPane fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oumaima_nezha_mehdy.zelda.controleur.Controleur">
    <center>
             <Pane fx:id="univers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onMouseClicked="#mouseclicked" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
                <children>
@@ -16,12 +17,12 @@
                         <TilePane fx:id="map1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="vueArmes"></Pane>
-                  <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" ></TilePane>
-                  <Pane fx:id="vueArcPane"></Pane>
-                  <Pane fx:id="elementsImpassable"></Pane>
-                  <Pane fx:id="vueSbir"></Pane>
-                  <ImageView fx:id="vueMaison"></ImageView>
+                  <Pane fx:id="vueArmes" />
+                  <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
+                  <Pane fx:id="vueArcPane" />
+                  <Pane fx:id="elementsImpassable" />
+                  <Pane fx:id="vueSbir" />
+                  <ImageView fx:id="vueMaison" />
 
                </children>
             </Pane>
@@ -29,19 +30,19 @@
    <bottom>
       <Pane prefHeight="128.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="vueInventaire" alignment="BOTTOM_CENTER" layoutX="680.0" layoutY="28.0" prefHeight="92.0" prefWidth="613.0" style="-fx-border-radius: 50;">
+            <HBox fx:id="vueInventaire" alignment="BOTTOM_CENTER" layoutX="680.0" layoutY="28.0" prefHeight="95.0" prefWidth="600.0" style="-fx-border-radius: 50;">
                <children>
-                  <Rectangle fx:id="case1"  opacity="1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-                  <Rectangle fx:id="case2"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-                  <Rectangle fx:id="case3"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-                  <Rectangle fx:id="case4"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
-                  <Rectangle fx:id="case5"  opacity="0.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+                  <Rectangle fx:id="case1" arcHeight="30.0" arcWidth="70.0" fill="#c8ad7f" height="100.0" opacity="1" stroke="#582900" strokeType="INSIDE" strokeWidth="2.0" style="-fx-background-image: url('file:src/main/resources/images/Inventory_Slot.png');-fx-background-size: cover;" width="102.0" />
+                  <Rectangle fx:id="case2" arcHeight="30.0" arcWidth="70.0" fill="#c8ad7f" height="100.0" layoutX="10.0" layoutY="10.0" opacity="0.5" stroke="#582900" strokeType="INSIDE" strokeWidth="2.0" style="-fx-background-image: url('file:src/main/resources/images/Inventory_Slot.png');-fx-background-size: cover;" width="100.0" />
+                  <Rectangle fx:id="case3" arcHeight="30.0" arcWidth="70.0" fill="#c8ad7f" height="100.0" layoutX="10.0" layoutY="10.0" opacity="0.5" stroke="#582900" strokeType="INSIDE" strokeWidth="2.0" style="-fx-background-image: url('file:src/main/resources/images/Inventory_Slot.png');-fx-background-size: cover;" width="100.0" />
+                  <Rectangle fx:id="case4" arcHeight="30.0" arcWidth="70.0" fill="#c8ad7f" height="100.0" layoutX="10.0" layoutY="10.0" opacity="0.5" stroke="#582900" strokeType="INSIDE" strokeWidth="2.0" style="-fx-background-image: url('file:src/main/resources/images/Inventory_Slot.png');-fx-background-size: cover;" width="100.0" />
+                  <Rectangle fx:id="case5" arcHeight="30.0" arcWidth="70.0" fill="#c8ad7f" height="100.0" layoutX="10.0" layoutY="10.0" opacity="0.5" stroke="#582900" strokeType="INSIDE" strokeWidth="2.0" style="-fx-background-image: url('file:src/main/resources/images/Inventory_Slot.png');-fx-background-size: cover;" width="100.0" />
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <Pane fx:id="vueArmesInventaire"/>
+            <Pane fx:id="vueArmesInventaire" />
          </children>
          <opaqueInsets>
             <Insets />

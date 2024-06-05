@@ -198,8 +198,8 @@ public class VueActLink {
         int indice = inventaire.indexOf(vA);
         armecase.setImage(vA.getArmeVue().getImage());
         System.out.println(vA.getArmeVue().getImage().getHeight()+".........."+vA.getArmeVue().getImage().getWidth());
-        armecase.setFitWidth(80);
-        armecase.setFitHeight(80);
+        armecase.setFitWidth(70);
+        armecase.setFitHeight(70);
         vueArmesInventaire.getChildren().add(armecase);
         armecase.setX(vueCaseInventaire.getLayoutX()+(100*indice)+65);
         armecase.setY(40);
