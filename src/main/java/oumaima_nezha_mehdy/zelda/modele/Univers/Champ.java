@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import oumaima_nezha_mehdy.zelda.Vue.VueChamp;
 import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
@@ -101,6 +102,7 @@ public class Champ {
         if(presenceHautGauche && presenceBasDroite){
             champ[indexHautGauche]=0;
             champ[indexBasDroite] = 0;
+
         }
 
         return (presenceHautGauche && presenceBasDroite);

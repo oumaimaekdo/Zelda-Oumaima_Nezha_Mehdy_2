@@ -1,29 +1,26 @@
-package oumaima_nezha_mehdy.zelda.controleur;
+package oumaima_nezha_mehdy.zelda.Vue;
 
-import javafx.collections.ListChangeListener;
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import oumaima_nezha_mehdy.zelda.controleur.Clavier;
+import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
+import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
+import oumaima_nezha_mehdy.zelda.modele.Univers.MapPossible;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import oumaima_nezha_mehdy.zelda.Vue.VueBlocImpassable;
-import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-import oumaima_nezha_mehdy.zelda.modele.Univers.*;
-import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
-
-public class Controleur implements Initializable {
-
-
+public class VueChamp {
 
     @FXML
     private TilePane map1;
@@ -65,10 +62,12 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueArmesInventaire;
 
+    private Armes epeeRouge;
+    private VueArmes vueEpeeRouge;
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    public VueChamp(Champ champ) {
         MapInt mapInt = MapPossible.test3;
         MapInt mapInt2 = MapPossible.test4;
         MapInt mapInt3 = MapPossible.collision;
@@ -98,26 +97,11 @@ public class Controleur implements Initializable {
         CreationMap();
         CreationLayerSup();
         CreationArme();
-        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
-        this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
-        sbirControl.getSbir1().deplacementAleatoire();
-        this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
-        this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
-            this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
-        });
-        this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
-            this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
-        });
-        this.univers.setTranslateX(univers.getPrefWidth()/2-champ.getLink().getX());
-        this.univers.setTranslateY(univers.getPrefHeight()/2-champ.getLink().getY());
 
 
 
     }
 
-    public Clavier getClavier() {
-        return clavier;
-    }
 
     public void CreationMap() {
         int[] carte = this.sol;
@@ -450,20 +434,10 @@ public class Controleur implements Initializable {
             switch (carteArme[i]) {
                 case 2:
                     imageView2.setImage(arcImg);
-                    Armes epeeRouge = new Armes("epeeRouge",35);
-                    VueArmes vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
+                    epeeRouge = new Armes("epeeRouge",35);
+                    vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
                     break;
             }
         }
-    }
-
-
-    public void mouseclicked(MouseEvent mouseEvent) {
-        univers.requestFocus();
-    }
-
-    public void keyPressed(KeyEvent keyEvent) {
-        clavier.handle(keyEvent);
-        System.out.println(vueInventaire.lookup("#case1").getId());
     }
 }
