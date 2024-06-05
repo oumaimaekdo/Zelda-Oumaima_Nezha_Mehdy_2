@@ -53,7 +53,7 @@ public class Champ {
         gauche = 20;
         bas = -20;
         droite = -10;
-        boolean retourneur = x>=0&&y>=0&&x+15<this.longueur*tT&&y+15<this.largeur*tT;
+        boolean retourneur = x>=0&&y>=0&&x+15<this.longueur*tT&&y+haut<this.largeur*tT;
         if(!retourneur)
             return false;
         boolean collisionhautgauche =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=2;

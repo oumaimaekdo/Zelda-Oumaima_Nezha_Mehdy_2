@@ -50,6 +50,8 @@ public class VueInventaire {
                 vueCaseInventaire.lookup("#case5").setOpacity(1);
                 val.selectioner(5);
                 break;
+            case "G": val.lacher();
+            break;
         }
 
     }

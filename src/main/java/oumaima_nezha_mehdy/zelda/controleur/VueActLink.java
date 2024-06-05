@@ -113,7 +113,8 @@ public class VueActLink {
 
             this.vueLink.setImage(linkEst);
         }
-
+        if (armeEquipé!=null)
+        bindeur(directionregardé);
     }
     public void toucheRelaché(KeyEvent keyEvent) {
             touchePressé.remove(keyEvent.getCode().toString());
@@ -190,9 +191,19 @@ public class VueActLink {
         System.out.println(vA.getArmeVue().getImage().getHeight()+".........."+vA.getArmeVue().getImage().getWidth());
         armecase.setFitWidth(80);
         armecase.setFitHeight(80);
+        armecase.setId("case"+indice);
         vueArmesInventaire.getChildren().add(armecase);
         armecase.setX(vueCaseInventaire.getLayoutX()+(100*indice)+65);
         armecase.setY(40);
+    }
+    public void lacher(){
+        if(armeEquipé!=null){
+            int indice = inventaire.indexOf(armeEquipé);
+            armeEquipé.getArmeVue().xProperty().unbind();
+            armeEquipé.getArmeVue().yProperty().unbind();
+            vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case"+indice));
+            armeEquipé=null;
+        }
     }
 
     public ObservableList getInventaire(){return inventaire;}
@@ -204,18 +215,16 @@ public class VueActLink {
     public void animation(String direction) {
         switch (direction) {
             case "nord":
-                if(numeroImage<3)
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/UP_" + numeroImage + ".png"));
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Nord/Nord" + numeroImage + ".png"));
                 break;
             case "sud":
-                if(numeroImage<3)
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/DOWN_" + numeroImage + ".png"));
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Sud/Sud" + numeroImage + ".png"));
                 break;
             case "est":
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/Est" + numeroImage + ".png"));
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Est/Est" + numeroImage + ".png"));
                 break;
             case "ouest":
-                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/LEFT_" + numeroImage + ".png"));
+                this.vueLink.setImage(new Image("file:src/main/resources/images/Link/Ouest/Ouest" + numeroImage + ".png"));
                 break;
             case "inactif":
                 this.vueLink.setImage(new Image("file:src/main/resources/images/Link/"+directionregardé+"Default.png"));
@@ -239,6 +248,8 @@ public class VueActLink {
                     else
                         animation(directionregardé);
                     numeroImage++;
+                    if(numeroImage>10)
+                        numeroImage=1;
                 })
         );
         gameLoop.getKeyFrames().add(kf);
