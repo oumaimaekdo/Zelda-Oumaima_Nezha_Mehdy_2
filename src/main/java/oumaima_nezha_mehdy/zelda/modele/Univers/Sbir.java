@@ -3,68 +3,109 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Sbir extends Acteur{
+public class Sbir extends Acteur {
 
-    private IntegerProperty x = new SimpleIntegerProperty(100);
-    private IntegerProperty y = new SimpleIntegerProperty(100);
-    private int vie = 100;
-    private int vitesse=10;
-    private int xDepart;
-    private int xArrive;
-    public Sbir(String nom, int x, int y, Champ m) {
+    private int vie;
+    private int vitesse;
+    private IntegerProperty xDepart;
+    private IntegerProperty xArrive;
+    private IntegerProperty yDepart;
+    private IntegerProperty yArrive;
+    private boolean moveX; // Indicates if the Sbir moves on the X-axis or Y-axis
+    private Champ champ;
+
+    public Sbir(String nom, int x, int y, Champ m, boolean moveX) {
         super(nom, x, y, m);
-        this.xDepart=150;
-        this.xArrive = 250;
-        id++;
+        this.champ = m;
+        this.xDepart = new SimpleIntegerProperty(x - 150);  // Arbitrary values for demonstration
+        this.xArrive = new SimpleIntegerProperty(x + 150);  // You can customize these as needed
+        this.yDepart = new SimpleIntegerProperty(y - 150);
+        this.yArrive = new SimpleIntegerProperty(y + 150);
+        this.vie = 100;
+        this.vitesse = 10;
+        this.moveX = moveX;
     }
 
-    public int getX(){return x.getValue();}
-
-    public int getY(){return y.getValue();}
-
-    public static String getId() {
-        return "#"+id;
-    }
-    public IntegerProperty getXProperty(){return x;}
-    public IntegerProperty getYProperty(){return y;}
-
-    public void setX(int x){this.x.setValue(x);}
-    public void setY(int y){this.y.setValue(y);}
-
-    public int getVie(){ return this.vie; }
-
-    public void setVie(int vie){ this.vie = vie;}
-
-    public int getVitesse() {
-        return vitesse;
+    public void deplacementAleatoire() {
+        if (moveX) {
+            deplacementAleatoireX();
+        } else {
+            deplacementAleatoireY();
+        }
     }
 
-    public void deplacementAleatoireX(){
-        if(this.x.getValue() < xArrive){
+    private void deplacementAleatoireX() {
+        if (getX() < xArrive.get()) {
             seDeplacer("est");
-        } else if(this.x.getValue() > xDepart){
+        } else if (getX() > xDepart.get()) {
             seDeplacer("ouest");
         }
     }
+
+    private void deplacementAleatoireY() {
+        if (getY() < yArrive.get()) {
+            seDeplacer("sud");
+        } else if (getY() > yDepart.get()) {
+            seDeplacer("nord");
+        }
+    }
+
     public void seDeplacer(String direction) {
         switch (direction) {
             case "nord":
-                this.y.set(this.y.getValue()-(1*vitesse));
+                this.yDepart.set(this.yDepart.getValue() - (1 * vitesse));
                 break;
             case "sud":
-                this.y.set(this.y.getValue()+(1*vitesse));
+                this.yDepart.set(this.yDepart.getValue() + (1 * vitesse));
                 break;
             case "ouest":
-                this.x.set(this.x.getValue()-(1*vitesse));
+                this.xDepart.set(this.xDepart.getValue() - (1 * vitesse));
                 break;
             case "est":
-                this.x.set(this.x.getValue()+(1*vitesse));
+                this.xDepart.set(this.xDepart.getValue() + (1 * vitesse));
                 break;
             default:
         }
     }
 
+    // Getter and setter methods for x and y using IntegerProperty
+    @Override
+    public int getX() {
+        return super.getXProperty().get();
+    }
 
+    @Override
+    public void setX(int x) {
+        super.getXProperty().set(x);
+    }
 
+    @Override
+    public IntegerProperty getXProperty() {
+        return super.getXProperty();
+    }
 
+    @Override
+    public int getY() {
+        return super.getYProperty().get();
+    }
+
+    @Override
+    public void setY(int y) {
+        super.getYProperty().set(y);
+    }
+
+    @Override
+    public IntegerProperty getYProperty() {
+        return super.getYProperty();
+    }
+
+    public Champ getChamp() {
+        return champ;
+    }
+
+    public void setChamp(Champ champ) {
+        this.champ = champ;
+    }
 }
+
+        /**/

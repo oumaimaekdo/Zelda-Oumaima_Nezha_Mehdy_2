@@ -53,7 +53,7 @@ public class VueSbir {
     }
 
     public void deplacementSbir(){
-        sbir1.deplacementAleatoireX();
+        sbir1.deplacementAleatoire();
     }
 
     public Sbir getSbir1(){
