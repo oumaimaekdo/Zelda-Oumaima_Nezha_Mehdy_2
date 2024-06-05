@@ -80,7 +80,7 @@ public class Controleur implements Initializable {
         this.collision = mapInt2.getCarte();
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
-        this.champ = new Champ(LongueurInt,LargeurInt,sol);
+        this.champ = new Champ(LongueurInt,LargeurInt,MapPossible.collision.getCarte());
 
         this.tailleTuile=champ.gettT();
         this.arc = new Arc();
@@ -152,6 +152,9 @@ public class Controleur implements Initializable {
         Image bloc111 = new Image("file:src/main/resources/images/MapDebut/111.png");
         Image bloc100 = new Image("file:src/main/resources/images/MapDebut/100.png");
         Image bloc101 = new Image("file:src/main/resources/images/MapDebut/101.png");
+        Image bloc102 = new Image("file:src/main/resources/images/MapDebut/102.png");
+        Image bloc103 = new Image("file:src/main/resources/images/MapDebut/103.png");
+        Image bloc104 = new Image("file:src/main/resources/images/MapDebut/104.png");
         Image bloc109 = new Image("file:src/main/resources/images/MapDebut/109.png");
         Image bloc112 = new Image("file:src/main/resources/images/MapDebut/112.png");
         Image bloc108 = new Image("file:src/main/resources/images/MapDebut/108.png");
@@ -159,6 +162,8 @@ public class Controleur implements Initializable {
         Image bloc114 = new Image("file:src/main/resources/images/MapDebut/114.png");
         Image bloc115 = new Image("file:src/main/resources/images/MapDebut/115.png");
         Image bloc116 = new Image("file:src/main/resources/images/MapDebut/116.png");
+        Image bloc118 = new Image("file:src/main/resources/images/MapDebut/118.png");
+        Image bloc119 = new Image("file:src/main/resources/images/MapDebut/119.png");
         Image maison65 = new Image("file:src/main/resources/images/MapDebut/65.png");
         Image maison66 = new Image("file:src/main/resources/images/MapDebut/66.png");
         Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
@@ -285,6 +290,15 @@ public class Controleur implements Initializable {
                 case 101:
                     imageView.setImage(bloc101);
                     break;
+                case 102:
+                    imageView.setImage(bloc102);
+                    break;
+                case 103:
+                    imageView.setImage(bloc103);
+                    break;
+                case 104:
+                    imageView.setImage(bloc104);
+                    break;
                 case 109:
                     imageView.setImage(bloc109);
                     break;
@@ -314,6 +328,12 @@ public class Controleur implements Initializable {
                     break;
                 case 116:
                     imageView.setImage(bloc116);
+                    break;
+                case 118:
+                    imageView.setImage(bloc118);
+                    break;
+                case 119:
+                    imageView.setImage(bloc119);
                     break;
 
             }

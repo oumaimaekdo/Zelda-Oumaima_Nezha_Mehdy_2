@@ -111,7 +111,7 @@ public class VueActLink {
                         armeEquipé.vueAttaque(link,epee);
                         System.out.println("le perso attaque");
                         Thread.sleep(3000);
-                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/epeeFer.png"),epee,link);
+                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/epeeFerInversé.png"),epee,link);
                         System.out.println("le perso arrete l'attaque");
 
                     } catch (InterruptedException e) {
