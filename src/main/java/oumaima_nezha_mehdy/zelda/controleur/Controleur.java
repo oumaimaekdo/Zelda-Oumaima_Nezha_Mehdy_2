@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import oumaima_nezha_mehdy.zelda.Vue.VueBlocImpassable;
@@ -23,12 +25,14 @@ import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 public class Controleur implements Initializable {
 
 
-    @FXML
-    private BorderPane fenetre;
+
     @FXML
     private TilePane map1;
     @FXML
     private TilePane LayerSup;
+    @FXML
+    private TilePane armesMap;
+
     @FXML
     private Pane univers;
 
@@ -48,16 +52,8 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueSbir;
 
-    @FXML
-    private VueArmes vueArc;
-    private Armes arc;
-    @FXML
-    private Pane vueArcPane ;
-
     private VueActLink linkControl;
     private VueSbir sbirControl;
-
-    private VueArmes armesControl;
 
     private int tailleTuile;
 
@@ -76,14 +72,18 @@ public class Controleur implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         MapInt mapInt = MapPossible.test3;
         MapInt mapInt2 = MapPossible.test4;
+        MapInt mapInt3 = MapPossible.collision;
+
         this.sol=mapInt.getCarte();
-        this.collision = mapInt2.getCarte();
+        this.Layersup = mapInt2.getCarte();
+        this.collision = mapInt3.getCarte();
+
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         this.champ = new Champ(LongueurInt,LargeurInt,MapPossible.collision.getCarte());
 
         this.tailleTuile=champ.gettT();
-        this.arc = new Arc();
+        //this.arc = new Arc();
         map1.setPrefTileHeight(tailleTuile);
         map1.setPrefTileWidth(tailleTuile);
         map1.setPrefHeight(LargeurInt*tailleTuile);
@@ -92,8 +92,13 @@ public class Controleur implements Initializable {
         LayerSup.setPrefTileWidth(tailleTuile);
         LayerSup.setPrefHeight(LargeurInt*tailleTuile);
         LayerSup.setPrefWidth(LongueurInt*tailleTuile);
+        armesMap.setPrefTileHeight(tailleTuile);
+        armesMap.setPrefTileWidth(tailleTuile);
+        armesMap.setPrefHeight(LargeurInt*tailleTuile);
+        armesMap.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
         CreationLayerSup();
+        CreationArme();
         this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
         sbirControl.getSbir1().deplacementAleatoire();
@@ -117,7 +122,7 @@ public class Controleur implements Initializable {
 
     public void CreationMap() {
         int[] carte = this.sol;
-        int [] carteCollision = this.collision;
+
         Image herbeDroit = new Image("file:src/main/resources/images/MapDebut/13.png");
         Image herbe = new Image("file:src/main/resources/images/MapDebut/herbe2.png");
         Image herbeBas = new Image("file:src/main/resources/images/MapDebut/23.png");
@@ -340,7 +345,7 @@ public class Controleur implements Initializable {
         }
     }
     public void CreationLayerSup() {
-        int [] carteCollision = this.collision;
+        int [] carteLayersup = this.Layersup;
 
         Image maison8 = new Image("file:src/main/resources/images/MapDebut/8.png");
         Image maison59 = new Image("file:src/main/resources/images/MapDebut/59.png");
@@ -359,9 +364,7 @@ public class Controleur implements Initializable {
 
 
 
-
-
-        for (int i = 0; i < carteCollision.length; i++) {
+        for (int i = 0; i < carteLayersup.length; i++) {
             ImageView imageView2 = new ImageView();
 
             LayerSup.getChildren().add(imageView2);
@@ -374,7 +377,10 @@ public class Controleur implements Initializable {
             double y = lig * LongueurInt;
             imageView2.setX(x);
             imageView2.setY(y);
-            switch (carteCollision[i]) {
+            switch (carteLayersup[i]) {
+                /*case 200:
+                    imageView2.setImage(arcImg);
+                    break;*/
                 case 8:
                     imageView2.setImage(maison8);
                     break;
@@ -421,6 +427,40 @@ public class Controleur implements Initializable {
             }
         }
     }
+
+    private Map<Integer, ImageView> armesImageViews = new HashMap<>();
+    public void CreationArme(){
+        int [] carteArme = this.collision;
+
+        Image arcImg = new Image("file:src/main/resources/images/arc.gif");
+
+
+        for (int i = 0; i < carteArme.length; i++) {
+            ImageView imageView2 = new ImageView();
+
+            armesMap.getChildren().add(imageView2);
+            imageView2.setId(String.valueOf(i));
+            imageView2.setFitHeight(tailleTuile);
+            imageView2.setFitWidth(tailleTuile);
+            double col = i % LargeurInt;
+            double lig = Math.floor(i / LongueurInt);
+            double x = col * LargeurInt;
+            double y = lig * LongueurInt;
+            imageView2.setX(x);
+            imageView2.setY(y);
+            switch (carteArme[i]) {
+                case 2:
+                    imageView2.setImage(arcImg);
+                    imageView2.setId("#"+2);
+                    break;
+                case 3:
+                    imageView2.setImage(arcImg);
+
+                    break;
+            }
+        }
+    }
+
 
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();

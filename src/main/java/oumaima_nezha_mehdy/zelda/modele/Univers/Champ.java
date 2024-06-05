@@ -1,6 +1,12 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import oumaima_nezha_mehdy.zelda.controleur.Controleur;
+import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,6 +28,9 @@ public class Champ {
     private int largeur;
 
     private int tT;
+
+    private VueArmes vueArmes;
+    private Armes arme;
 
     public Champ(int L , int l,int[] map){
         this.largeur=l;
@@ -52,29 +61,6 @@ public class Champ {
 
 
 
-    /*public boolean coordonnéPossible(int x,int y){
-        int haut,bas,gauche,droite;
-        haut = 20;
-        gauche = 20;
-        bas = -20;
-        droite = -10;
-        boolean retourneur = x>=0&&y>=0&&x+15<this.longueur*tT&&y+15<this.largeur*tT;
-        if(!retourneur)
-            return false;
-        boolean collisionhautgauche =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=2;
-
-        /*for(int i : pointDeCollision){
-            boolean b = champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=i;
-
-        }
-        boolean collisionmaison1 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=5;
-        boolean collisionmaison2 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=6;
-        boolean collisionmaison3 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=7;
-        boolean collisionmaison4 =champ[((x+gauche)/tT) + ((y+haut)/tT)*(this.longueur)]!=8;
-        boolean collisionbasdroite =champ[(x-droite)/tT + ((y-bas)/tT)*(this.longueur)]!=2;
-        return retourneur&&(collisionhautgauche&&collisionbasdroite&&collisionmaison1&&collisionmaison2&&collisionmaison3&&collisionmaison4);
-    }*/
-
     public boolean coordonnéPossible(int x, int y) {
         // Define the boundary offsets
         final int haut = 20;
@@ -92,19 +78,33 @@ public class Champ {
         int indexBasDroite = ((x - droite) / tT) + ((y - bas) / tT) * this.longueur;
 
         // Check for collisions
-        boolean collisionHautGauche = champ[indexHautGauche] != 2;
-        boolean collisionBasDroite = champ[indexBasDroite] != 2;
-
-        // Define collision values for houses
-        int[] maisonCollisions = {1};
-        for (int maison : maisonCollisions) {
-            if (champ[indexHautGauche] == maison) {
-                return false;
-            }
-        }
+        boolean collisionHautGauche = champ[indexHautGauche] != 1;
+        boolean collisionBasDroite = champ[indexBasDroite] != 1;
 
         // Return the final condition
         return collisionHautGauche && collisionBasDroite;
+    }
+
+    public boolean presenceArme(int x, int y){
+
+        final int haut = 20;
+        final int gauche = 20;
+        final int bas = -20;
+        final int droite = -10;
+
+        int indexHautGauche = ((x + gauche) / tT) + ((y + haut) / tT) * this.longueur;
+        int indexBasDroite = ((x - droite) / tT) + ((y - bas) / tT) * this.longueur;
+
+        boolean presenceHautGauche = champ[indexHautGauche] == 2;
+        boolean presenceBasDroite = champ[indexBasDroite] == 2;
+
+        if(presenceHautGauche && presenceBasDroite){
+            champ[indexHautGauche]=0;
+            champ[indexBasDroite] = 0;
+        }
+
+        return (presenceHautGauche && presenceBasDroite);
+
     }
 
     public int[] getChamp(){return champ;}

@@ -1,6 +1,7 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 
+import javafx.scene.layout.TilePane;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 
 
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
@@ -29,6 +31,8 @@ public class VueActLink {
 
     private Pane VueArmesJeu;
 
+    @FXML
+    private TilePane armesMap;
 
     @FXML
     private ImageView vueLink;
@@ -80,44 +84,49 @@ public class VueActLink {
         System.out.println("\n \n \n" );
         System.out.println(key);
         switch (key) {
-            case"Z" :
+            case "Z":
             case "UP":
-                directionregardé="nord";
+                directionregardé = "nord";
                 link.seDeplacer(directionregardé);
                 this.vueLink.setImage(linkNord);
                 break;
             case "Q":
             case "LEFT":
-                directionregardé="ouest";
+                directionregardé = "ouest";
                 link.seDeplacer(directionregardé);
                 this.vueLink.setImage(linkOuest);
                 break;
             case "S":
             case "DOWN":
-                directionregardé="sud";
+                directionregardé = "sud";
                 link.seDeplacer(directionregardé);
                 this.vueLink.setImage(linkSud);
                 break;
             case "D":
             case "RIGHT":
-                directionregardé="est";
+                directionregardé = "est";
                 this.vueLink.setImage(linkEst);
                 link.seDeplacer(directionregardé);
                 break;
             case "A":
                 new Thread(() -> {
-                    try{
+                    try {
                         link.attaquer(link, epee);
-                        armeEquipé.vueAttaque(link,epee);
+                        armeEquipé.vueAttaque(link, epee);
                         System.out.println("le perso attaque");
                         Thread.sleep(3000);
-                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/epeeFerInversé.png"),epee,link);
+                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/epeeFerInversé.png"), epee, link);
                         System.out.println("le perso arrete l'attaque");
 
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 }).start();
+                break;
+            case "E":
+                if (champ.presenceArme(link.getX(),link.getY())) {
+                    ramasser(new VueArmes(new Image("file:src/main/resources/images/epeerouge.png"), new Armes("epeeRouge", 35)));
+                }
                 break;
         }
         if (armeEquipé!=null)
