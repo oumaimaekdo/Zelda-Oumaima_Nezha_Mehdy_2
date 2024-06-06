@@ -141,6 +141,7 @@ public class Controleur implements Initializable {
         Image buisson35 = new Image("file:src/main/resources/images/MapDebut/35.png");
         Image buisson36 = new Image("file:src/main/resources/images/MapDebut/36.png");
         Image sol37 = new Image("file:src/main/resources/images/MapDebut/37.png");
+        Image eau38 = new Image("file:src/main/resources/images/MapDebut/38.png");
         Image maison5 = new Image("file:src/main/resources/images/MapDebut/5.png");
         Image maison6 = new Image("file:src/main/resources/images/MapDebut/6.png");
         Image maison7 = new Image("file:src/main/resources/images/MapDebut/7.png");
@@ -254,6 +255,9 @@ public class Controleur implements Initializable {
                     break;
                 case 37:
                     imageView.setImage(sol37);
+                    break;
+                case 38:
+                    imageView.setImage(eau38);
                     break;
                 case 5:
                     imageView.setImage(maison5);
