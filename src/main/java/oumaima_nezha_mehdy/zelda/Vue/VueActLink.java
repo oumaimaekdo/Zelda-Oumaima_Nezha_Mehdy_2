@@ -128,6 +128,10 @@ public class VueActLink {
                     ramasser(new VueArmes(new Image("file:src/main/resources/images/Armes/epeerouge.png"), new Armes("epeeRouge", 35)));
                 }
                 break;
+            case "L":
+                if(armeEquipé != null){
+                    lacher();
+                }
         }
         if (armeEquipé!=null)
         bindeur(directionregardé);
@@ -218,5 +222,16 @@ public class VueActLink {
 
     public Acteur getLink(){
         return this.link;
+    }
+
+
+    public void lacher(){
+        if(armeEquipé!=null){
+            int indice = inventaire.indexOf(armeEquipé);
+            armeEquipé.getArmeVue().xProperty().unbind();
+            armeEquipé.getArmeVue().yProperty().unbind();
+            vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case"+indice));
+            armeEquipé=null;
+        }
     }
 }
