@@ -16,40 +16,25 @@ import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
 import oumaima_nezha_mehdy.zelda.modele.Univers.MapPossible;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 public class VueChamp {
 
-    @FXML
     private TilePane map1;
-    @FXML
     private TilePane LayerSup;
-    @FXML
     private TilePane armesMap;
 
-    @FXML
-    private Pane univers;
 
     private Champ champ;
-
-    @FXML
-    private HBox vueInventaire;
 
     private int[] sol;
     private int[] Layersup;
     private int[] collision;
 
-    @FXML
-    private Pane vueActeur;
-    @FXML
-    private Pane vueArmes;
-    @FXML
-    private Pane vueSbir;
 
-    private VueActLink linkControl;
-    private VueSbir sbirControl;
 
     private int tailleTuile;
 
@@ -57,30 +42,35 @@ public class VueChamp {
 
     private int LargeurInt;
 
-    private Clavier clavier;
-
-    @FXML
-    private Pane vueArmesInventaire;
 
     private Armes epeeRouge;
     private VueArmes vueEpeeRouge;
 
 
 
-    public VueChamp(Champ champ) {
-        MapInt mapInt = MapPossible.test3;
-        MapInt mapInt2 = MapPossible.test4;
-        MapInt mapInt3 = MapPossible.collision;
+    public VueChamp(TilePane map1, TilePane LayerSup,TilePane armesMap, Champ champ, MapInt mapInt, MapInt mapInt2, MapInt collision) {
 
-        this.sol=mapInt.getCarte();
+        this.map1 = map1;
+        this.LayerSup = LayerSup;
+        this.armesMap = armesMap;
+
+        this.champ = champ;
+        this.tailleTuile = champ.gettT();
+
+        this.sol = mapInt.getCarte();
         this.Layersup = mapInt2.getCarte();
-        this.collision = mapInt3.getCarte();
+        this.collision = collision.getCarte();
+
 
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
-        this.champ = new Champ(LongueurInt,LargeurInt,MapPossible.collision.getCarte());
 
-        this.tailleTuile=champ.gettT();
+
+
+        this.LargeurInt = mapInt.getLargeur();
+        this.LongueurInt = mapInt.getLongueur();
+
+
         //this.arc = new Arc();
         map1.setPrefTileHeight(tailleTuile);
         map1.setPrefTileWidth(tailleTuile);
@@ -95,8 +85,9 @@ public class VueChamp {
         armesMap.setPrefHeight(LargeurInt*tailleTuile);
         armesMap.setPrefWidth(LongueurInt*tailleTuile);
         CreationMap();
-        CreationLayerSup();
         CreationArme();
+        CreationLayerSup();
+
 
 
 
@@ -124,6 +115,8 @@ public class VueChamp {
         Image buisson34 = new Image("file:src/main/resources/images/MapDebut/34.png");
         Image buisson35 = new Image("file:src/main/resources/images/MapDebut/35.png");
         Image buisson36 = new Image("file:src/main/resources/images/MapDebut/36.png");
+        Image sol37 = new Image("file:src/main/resources/images/MapDebut/37.png");
+        Image eau38 = new Image("file:src/main/resources/images/MapDebut/38.png");
         Image maison5 = new Image("file:src/main/resources/images/MapDebut/5.png");
         Image maison6 = new Image("file:src/main/resources/images/MapDebut/6.png");
         Image maison7 = new Image("file:src/main/resources/images/MapDebut/7.png");
@@ -158,6 +151,9 @@ public class VueChamp {
         Image arbrecote68 = new Image("file:src/main/resources/images/MapDebut/68.png");
         Image maison71 = new Image("file:src/main/resources/images/MapDebut/71.png");
         Image maison72 = new Image("file:src/main/resources/images/MapDebut/72.png");
+        Image arbrebas74 = new Image("file:src/main/resources/images/MapDebut/74.png");
+        Image arbrebas75 = new Image("file:src/main/resources/images/MapDebut/75.png");
+        Image maison90 = new Image("file:src/main/resources/images/MapDebut/9bis.png");
 
 
 
@@ -229,6 +225,12 @@ public class VueChamp {
                     break;
                 case 36:
                     imageView.setImage(buisson36);
+                    break;
+                case 37:
+                    imageView.setImage(sol37);
+                    break;
+                case 38:
+                    imageView.setImage(eau38);
                     break;
                 case 5:
                     imageView.setImage(maison5);
@@ -305,6 +307,15 @@ public class VueChamp {
                 case 72:
                     imageView.setImage(maison72);
                     break;
+                case 74:
+                    imageView.setImage(arbrebas74);
+                    break;
+                case 75:
+                    imageView.setImage(arbrebas75);
+                    break;
+                case 90:
+                    imageView.setImage(maison90);
+                    break;
                 case 113:
                     imageView.setImage(bloc113);
                     break;
@@ -327,6 +338,39 @@ public class VueChamp {
             }
         }
     }
+
+    private ArrayList<VueArmes> listeArmesCreer= new ArrayList<>();
+    public void CreationArme(){
+        int [] carteArme = this.collision;
+
+        Image epeeRougeMap = new Image("file:src/main/resources/images/Armes/epeeRouge.gif");
+
+
+        for (int i = 0; i < carteArme.length; i++) {
+            ImageView imageView2 = new ImageView();
+
+            armesMap.getChildren().add(imageView2);
+            imageView2.setId(String.valueOf(i));
+            imageView2.setFitHeight(tailleTuile);
+            imageView2.setFitWidth(tailleTuile);
+            double col = i % LargeurInt;
+            double lig = Math.floor(i / LongueurInt);
+            double x = col * LargeurInt;
+            double y = lig * LongueurInt;
+            imageView2.setX(x);
+            imageView2.setY(y);
+            switch (carteArme[i]) {
+                case 2:
+                    imageView2.setImage(epeeRougeMap);
+                    imageView2.setId("epeerouge");
+                    epeeRouge = new Armes("epeeRouge",35);
+                    vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
+                    this.listeArmesCreer.add(vueEpeeRouge);
+                    break;
+            }
+        }
+    }
+
     public void CreationLayerSup() {
         int [] carteLayersup = this.Layersup;
 
@@ -343,6 +387,7 @@ public class VueChamp {
         Image arbrehaut69 = new Image("file:src/main/resources/images/MapDebut/69.png");
         Image arbrehaut70 = new Image("file:src/main/resources/images/MapDebut/70.png");
         Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
+        Image arbrecote73 = new Image("file:src/main/resources/images/MapDebut/73.png");
         Image bloc117 = new Image("file:src/main/resources/images/MapDebut/117.png");
 
 
@@ -362,7 +407,7 @@ public class VueChamp {
             imageView2.setY(y);
             switch (carteLayersup[i]) {
                 /*case 200:
-                    imageView2.setImage(arcImg);
+                    imageView2.setImage(vueEpeeRouge.getArmeImage());
                     break;*/
                 case 8:
                     imageView2.setImage(maison8);
@@ -403,6 +448,9 @@ public class VueChamp {
                 case 70:
                     imageView2.setImage(arbrehaut70);
                     break;
+                case 73:
+                    imageView2.setImage(arbrecote73);
+                    break;
                 case 117:
                     imageView2.setImage(bloc117);
                     break;
@@ -411,33 +459,8 @@ public class VueChamp {
         }
     }
 
-    private Map<Integer, ImageView> armesImageViews = new HashMap<>();
-    public void CreationArme(){
-        int [] carteArme = this.collision;
+    public ArrayList<VueArmes> getListeArmesCreer(){
+        return this.listeArmesCreer;
 
-        Image arcImg = new Image("file:src/main/resources/images/arc.gif");
-
-
-        for (int i = 0; i < carteArme.length; i++) {
-            ImageView imageView2 = new ImageView();
-
-            armesMap.getChildren().add(imageView2);
-            imageView2.setId(String.valueOf(i));
-            imageView2.setFitHeight(tailleTuile);
-            imageView2.setFitWidth(tailleTuile);
-            double col = i % LargeurInt;
-            double lig = Math.floor(i / LongueurInt);
-            double x = col * LargeurInt;
-            double y = lig * LongueurInt;
-            imageView2.setX(x);
-            imageView2.setY(y);
-            switch (carteArme[i]) {
-                case 2:
-                    imageView2.setImage(arcImg);
-                    epeeRouge = new Armes("epeeRouge",35);
-                    vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
-                    break;
-            }
-        }
     }
 }

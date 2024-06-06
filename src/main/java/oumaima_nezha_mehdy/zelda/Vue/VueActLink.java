@@ -23,6 +23,7 @@ public class VueActLink {
 
 
     private Acteur link;
+    private VueChamp vueChamp;
 
     @FXML
     private Pane vueActeur;
@@ -56,13 +57,14 @@ public class VueActLink {
     private Armes epee = new EpeeDeFer();
 
 
-    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire, TilePane armesMap){
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire, TilePane armesMap,VueChamp vueChamp){
         vueActeur=pane;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
         this.armesMap = armesMap;
         this.link=champ.getLink();
         this.tT=tailleTuile;
+        this.vueChamp = vueChamp;
         this.vueCaseInventaire=vueCaseInventaire;
         this.vueArmesInventaire=vueArmesInventaire;
         this.inventaire = FXCollections.observableArrayList();
@@ -128,6 +130,8 @@ public class VueActLink {
                 if (champ.presenceArme(link.getX(),link.getY())) {
                     ramasser(new VueArmes(new Image("file:src/main/resources/images/Armes/epeerouge.png"), new Armes("epeeRouge", 35)));
                     this.armesMap.getChildren().remove(armesMap.lookup("#epeerouge"));
+
+
                 }
                 break;
             case "L":
