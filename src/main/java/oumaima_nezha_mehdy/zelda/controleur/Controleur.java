@@ -98,7 +98,7 @@ public class Controleur implements Initializable {
         CreationMap();
         CreationLayerSup();
         CreationArme();
-        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire);
+        this.linkControl=new VueActLink(vueActeur,champ,tailleTuile,vueArmes,vueInventaire,vueArmesInventaire,armesMap);
         this.sbirControl = new VueSbir(vueSbir,champ,tailleTuile);
         sbirControl.getSbir1().deplacementAleatoire();
         this.clavier =new Clavier(vueActeur,linkControl,vueInventaire);
@@ -443,6 +443,8 @@ public class Controleur implements Initializable {
     }
 
     private Map<Integer, ImageView> armesImageViews = new HashMap<>();
+    private Armes epeeRouge;
+    private VueArmes vueEpeeRouge;
     public void CreationArme(){
         int [] carteArme = this.collision;
 
@@ -465,8 +467,9 @@ public class Controleur implements Initializable {
             switch (carteArme[i]) {
                 case 2:
                     imageView2.setImage(epeeRougeImg);
-                    Armes epeeRouge = new Armes("epeeRouge",35);
-                    VueArmes vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
+                    epeeRouge = new Armes("epeeRouge",35);
+                    vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
+                    imageView2.setId("epeerouge");
                     break;
             }
         }
