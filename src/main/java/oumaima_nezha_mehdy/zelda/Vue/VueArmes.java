@@ -15,7 +15,7 @@ public class VueArmes {
 
     private Image armeImage;
 
-    private Image attaqueEpee = new Image("file:src/main/resources/images/attaqueEpee.gif");
+    private Image attaqueEpee = new Image("file:src/main/resources/images/Armes/attaqueEpee.gif");
     private Image epee = new Image("file:src/main/resources/images/epeeFer.png");
 
     //Constructeur
