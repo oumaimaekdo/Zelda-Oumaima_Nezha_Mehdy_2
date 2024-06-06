@@ -1,11 +1,16 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
+import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Acteur {
@@ -19,13 +24,16 @@ public class Acteur {
 
     private Armes arme;
 
-    private List<Armes> inventaire;
+
+    private ObservableList<Armes> inventaire;
 
     private static int vie = 100;
 
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
+
+    private Armes armeEquipé;
 
 
     public Acteur(String nom, int x , int y, Champ m){
@@ -35,6 +43,8 @@ public class Acteur {
         this.champ=m;
         id += 1;
         this.arme = null;
+        this.inventaire= FXCollections.observableArrayList();
+        chargerInventaire();
     }
     public Acteur(String nom, Champ m){
         this.nom=nom;
@@ -105,7 +115,7 @@ public class Acteur {
         inventaire.add(arme);
     }
 
-    public List<Armes> getInventaire() {
+    public ObservableList<Armes> getInventaire() {
         return inventaire;
     }
 
@@ -114,6 +124,34 @@ public class Acteur {
             return inventaire.get(index);
         }
         return null;
+    }
+    private void chargerInventaire(){
+        for(int i=0;i<5;i++){
+            inventaire.add(null);
+        }
+    }
+    public void ramasser(Armes vA) {
+        for(int i=0 ; i<5;i++)
+            if(inventaire.get(i)==null) {
+                inventaire.add(i,vA);
+                break;
+            }
+    }
+
+    public void selectioner(int i){
+        if(inventaire.get(i-1)!=null) {
+            armeEquipé = inventaire.get(i-1);
+            armeEquipé.getYProperty().bind(this.y);
+            armeEquipé.getXProperty().bind(this.x);
+        }
+
+    }
+    public void lacher(){
+        if(armeEquipé!=null){
+            int indice = inventaire.indexOf(armeEquipé);
+            inventaire.set(indice,null);
+            armeEquipé=null;
+        }
     }
 
 }

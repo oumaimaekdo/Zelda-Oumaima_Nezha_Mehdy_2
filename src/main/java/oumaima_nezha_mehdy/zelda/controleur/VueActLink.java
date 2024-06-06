@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -51,7 +52,8 @@ public class VueActLink {
     private int numeroImage;
 
     private Timeline gameLoop;
-    private ObservableList<VueArmes> inventaire;
+
+    private ArrayList<VueArmes> vueInventaire;
     private HashSet<String> touchePressé;
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
@@ -63,19 +65,16 @@ public class VueActLink {
         this.tT=tailleTuile;
         this.vueCaseInventaire=vueCaseInventaire;
         this.vueArmesInventaire=vueArmesInventaire;
-        this.inventaire = FXCollections.observableArrayList();
         this.touchePressé = new HashSet<>();
         this.directionregardé="est";
+        this.vueInventaire = new ArrayList<>();
+        link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
         creerlink("file:src/main/resources/images/link_profil.png",link);
         linkNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
-        chargerInventaire();
-        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),new Image("file:src/main/resources/images/epeeFerInversé.png"));
-        ramasser(vA1);
-        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25),new Image("file:src/main/resources/images/arcInversé.png"));
-        ramasser(arcInventaire);
+        link.ramasser(new Armes("Epee",20));
         initAnimation();
         gameLoop.play();
 
@@ -89,11 +88,11 @@ public class VueActLink {
 
 
     public void DeplacementLink() {
-        if (touchePressé.contains("Z")) {
-                link.seDeplacer("nord");
-            directionregardé="nord";
+        if (touchePressé.contains("D")){
+            link.seDeplacer("est");
+            directionregardé="est";
 
-            this.vueLink.setImage(linkNord);
+            this.vueLink.setImage(linkEst);
         }
         if (touchePressé.contains("Q")) {
             link.seDeplacer("ouest");
@@ -107,11 +106,11 @@ public class VueActLink {
 
             this.vueLink.setImage(linkSud);
         }
-        if (touchePressé.contains("D")){
-                link.seDeplacer("est");
-            directionregardé="est";
+        if (touchePressé.contains("Z")) {
+            link.seDeplacer("nord");
+            directionregardé="nord";
 
-            this.vueLink.setImage(linkEst);
+            this.vueLink.setImage(linkNord);
         }
         if (armeEquipé!=null)
         bindeur(directionregardé);
@@ -138,20 +137,14 @@ public class VueActLink {
         this.vueLink=r;
         
     }
-    public void chargerInventaire(){
-        for(int i=0;i<5;i++){
-            inventaire.add(null);
-        }
-    }
     public void selectioner(int i){
         if(armeEquipé!=null) {
             VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
         }
-        if(inventaire.get(i-1)!=null) {
-            armeEquipé = inventaire.get(i-1);
+        if(link.getInventaire().get(i-1)!=null) {
+            armeEquipé = vueInventaire.get(i-1);
             VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
             bindeur(directionregardé);
-
         }
 
     }
@@ -179,34 +172,14 @@ public class VueActLink {
                 break;
         }
     }
-    public void ramasser(VueArmes vA) {
-        for(int i=0 ; i<5;i++)
-            if(inventaire.get(i)==null) {
-                inventaire.add(i, vA);
-                break;
-            }
-        ImageView armecase = new ImageView();
-        int indice = inventaire.indexOf(vA);
-        armecase.setImage(vA.getArmeVue().getImage());
-        System.out.println(vA.getArmeVue().getImage().getHeight()+".........."+vA.getArmeVue().getImage().getWidth());
-        armecase.setFitWidth(80);
-        armecase.setFitHeight(80);
-        armecase.setId("case"+indice);
-        vueArmesInventaire.getChildren().add(armecase);
-        armecase.setX(vueCaseInventaire.getLayoutX()+(100*indice)+65);
-        armecase.setY(40);
-    }
     public void lacher(){
         if(armeEquipé!=null){
-            int indice = inventaire.indexOf(armeEquipé);
-            armeEquipé.getArmeVue().xProperty().unbind();
-            armeEquipé.getArmeVue().yProperty().unbind();
+            int indice = this.link.getInventaire().indexOf(armeEquipé.getArme());
             vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case"+indice));
             armeEquipé=null;
         }
     }
 
-    public ObservableList getInventaire(){return inventaire;}
 
     public Acteur getLink(){
         return this.link;
@@ -230,6 +203,10 @@ public class VueActLink {
                 this.vueLink.setImage(new Image("file:src/main/resources/images/Link/"+directionregardé+"Default.png"));
                 break;
         }
+    }
+
+    public ArrayList<VueArmes> getVueInventaire() {
+        return vueInventaire;
     }
 
     private void initAnimation() {

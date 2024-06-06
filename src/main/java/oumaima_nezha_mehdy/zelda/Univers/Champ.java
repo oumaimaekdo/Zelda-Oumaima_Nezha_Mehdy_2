@@ -11,6 +11,8 @@ public class Champ {
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
+    private ArrayList<Armes> item;
+
     private Acteur link;
 
 
@@ -19,6 +21,7 @@ public class Champ {
     private int largeur;
 
     private int tT;
+
 
     public Champ(int L , int l,int[] map){
         this.largeur=l;
@@ -33,6 +36,10 @@ public class Champ {
 
     public void ajouterActeur(Acteur a){
         listActeur.add(a);
+    }
+
+    public void ajouterItem(Armes a){
+        item.add(a);
     }
 
     public void afficherMap(){

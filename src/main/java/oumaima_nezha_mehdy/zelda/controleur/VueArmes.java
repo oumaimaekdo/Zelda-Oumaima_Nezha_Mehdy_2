@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.Armes;
 
-public class VueArmes {
+public abstract class VueArmes {
 
     private Armes arme;
     @FXML
