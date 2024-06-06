@@ -172,6 +172,9 @@ public class Controleur implements Initializable {
         Image maison66 = new Image("file:src/main/resources/images/MapDebut/66.png");
         Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
         Image arbrecote68 = new Image("file:src/main/resources/images/MapDebut/68.png");
+        Image arbrebas74 = new Image("file:src/main/resources/images/MapDebut/74.png");
+        Image arbrebas75 = new Image("file:src/main/resources/images/MapDebut/75.png");
+
         Image maison71 = new Image("file:src/main/resources/images/MapDebut/71.png");
         Image maison72 = new Image("file:src/main/resources/images/MapDebut/72.png");
 
@@ -321,6 +324,12 @@ public class Controleur implements Initializable {
                 case 72:
                     imageView.setImage(maison72);
                     break;
+                case 74:
+                    imageView.setImage(arbrebas74);
+                    break;
+                case 75:
+                    imageView.setImage(arbrebas75);
+                    break;
                 case 113:
                     imageView.setImage(bloc113);
                     break;
@@ -360,6 +369,8 @@ public class Controleur implements Initializable {
         Image arbrehaut70 = new Image("file:src/main/resources/images/MapDebut/70.png");
         Image tronc67 = new Image("file:src/main/resources/images/MapDebut/67.png");
         Image bloc117 = new Image("file:src/main/resources/images/MapDebut/117.png");
+
+        Image arbrecote73 = new Image("file:src/main/resources/images/MapDebut/73.png");
 
 
 
@@ -419,6 +430,10 @@ public class Controleur implements Initializable {
                 case 70:
                     imageView2.setImage(arbrehaut70);
                     break;
+                case 73:
+                    imageView2.setImage(arbrecote73);
+                    break;
+
                 case 117:
                     imageView2.setImage(bloc117);
                     break;
@@ -431,7 +446,7 @@ public class Controleur implements Initializable {
     public void CreationArme(){
         int [] carteArme = this.collision;
 
-        Image arcImg = new Image("file:src/main/resources/images/arc.gif");
+        Image epeeRougeImg = new Image("file:src/main/resources/images/Armes/epeeRouge.gif");
 
 
         for (int i = 0; i < carteArme.length; i++) {
@@ -449,7 +464,7 @@ public class Controleur implements Initializable {
             imageView2.setY(y);
             switch (carteArme[i]) {
                 case 2:
-                    imageView2.setImage(arcImg);
+                    imageView2.setImage(epeeRougeImg);
                     Armes epeeRouge = new Armes("epeeRouge",35);
                     VueArmes vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
                     break;

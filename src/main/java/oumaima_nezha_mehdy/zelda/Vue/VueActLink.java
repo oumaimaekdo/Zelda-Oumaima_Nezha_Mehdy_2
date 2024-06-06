@@ -71,9 +71,9 @@ public class VueActLink {
         linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
         chargerInventaire();
-        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/epeeFer.png"),new Armes("epee",20),new Image("file:src/main/resources/images/epeeFerInversé.png"));
+        VueArmes vA1=new VueArmes(new Image("file:src/main/resources/images/Armes/epeeFer.png"),new Armes("epee",20),new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"));
         ramasser(vA1);
-        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/arc.png"),new Armes("arc",25),new Image("file:src/main/resources/images/arcInversé.png"));
+        VueArmes arcInventaire=new VueArmes(new Image("file:src/main/resources/images/Armes/arc.png"),new Armes("arc",25),new Image("file:src/main/resources/images/Armes/arcInversé.png"));
         ramasser(arcInventaire);
 
 
@@ -115,7 +115,7 @@ public class VueActLink {
                         armeEquipé.vueAttaque(link, epee);
                         System.out.println("le perso attaque");
                         Thread.sleep(3000);
-                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/epeeFerInversé.png"), epee, link);
+                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
                         System.out.println("le perso arrete l'attaque");
 
                     } catch (InterruptedException e) {
@@ -125,7 +125,7 @@ public class VueActLink {
                 break;
             case "E":
                 if (champ.presenceArme(link.getX(),link.getY())) {
-                    ramasser(new VueArmes(new Image("file:src/main/resources/images/epeerouge.png"), new Armes("epeeRouge", 35)));
+                    ramasser(new VueArmes(new Image("file:src/main/resources/images/Armes/epeerouge.png"), new Armes("epeeRouge", 35)));
                 }
                 break;
         }
