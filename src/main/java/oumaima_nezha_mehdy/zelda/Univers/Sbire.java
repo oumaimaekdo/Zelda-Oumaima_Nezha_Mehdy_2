@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
+import javafx.scene.paint.Color;
+
 import java.util.Random;
 
 public class Sbire extends Ennemi{
@@ -13,8 +15,8 @@ public class Sbire extends Ennemi{
         super(nom,m);
     }
 
-
-    public void deplacementAleatoire() {
+    @Override
+    public void deplacer() {
 
         Random rand = new Random();
         int direction = rand.nextInt(4); // Génère un nombre aléatoire entre 0 et 3 inclus
@@ -33,4 +35,17 @@ public class Sbire extends Ennemi{
                 break;
         }
     }
+
+    @Override
+    public void attaquer(Acteur cible) {
+
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.GREEN;
+    }
+
+
+    // public void deplacementAleatoire() {}
 }

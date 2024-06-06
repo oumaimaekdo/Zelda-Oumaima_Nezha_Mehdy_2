@@ -19,13 +19,11 @@
                           prefHeight="650.0" prefWidth="650.0" />
             </Pane>
             <VBox>
-                <Label fx:id="pointDeVie" text="points de vie initial : 3"/>
-                <!--<ProgressBar fx:id="pointsDeVie" prefWidth="200"/>-->
+                <Label fx:id="pointDeVie" text="points de vie du Link : 3"/>
+                <ProgressBar fx:id="pointsDeVie" prefWidth="150"/>
+                <Label fx:id="pointDeVieEnnemi" text="points de vie de l'ennemi : 3"/>
+                <ProgressBar fx:id="pointsDeVieEnnemi" prefWidth="150"/>
             </VBox>
-
-
-
-
         </HBox>
     </children>
 </Pane>

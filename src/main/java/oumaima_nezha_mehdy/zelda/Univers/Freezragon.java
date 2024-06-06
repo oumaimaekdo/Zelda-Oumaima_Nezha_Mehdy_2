@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
+import javafx.scene.paint.Color;
+
 import java.util.*;
 
 public class Freezragon extends Ennemi {
@@ -17,7 +19,23 @@ public class Freezragon extends Ennemi {
     }
 
     public void seDeplacer(){
-        deplacementBFS.deplacementBFS(link.getX(), link.getY(), super.champ, this);
+        ArrayList<int[]> chemin = deplacementBFS.deplacementBFS(link.getX(), link.getY(), super.champ, this);
+        suivreChemin(chemin);
+    }
+
+    @Override
+    public void deplacer() {
+
+    }
+
+    @Override
+    public void attaquer(Acteur cible) {
+
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.LIGHTBLUE;
     }
 
 
