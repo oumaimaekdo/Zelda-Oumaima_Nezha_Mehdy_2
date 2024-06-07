@@ -165,6 +165,8 @@ public class Acteur {
             int indice = inventaire.indexOf(armeEquipé);
             inventaire.set(indice,null);
             champ.ajouterItem(armeEquipé);
+            armeEquipé.getYProperty().unbind();
+            armeEquipé.getXProperty().unbind();
             armeEquipé=null;
         }
     }
