@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import oumaima_nezha_mehdy.zelda.Univers.Armes;
 
 public class VueInventaire {
 
@@ -56,6 +57,8 @@ public class VueInventaire {
                 val.selectioner(5);
                 break;
             case "G": val.getLink().lacher();
+            break;
+            case "E" : val.getLink().ramasserAutour();
             break;
         }
 

@@ -70,11 +70,13 @@ public class VueActLink {
         this.vueInventaire = new ArrayList<>();
         chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
+        champ.getItem().addListener(new ChampItemObs(VueArmesJeu));
         creerlink("file:src/main/resources/images/link_profil.png",link);
         linkNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
+        link.ramasser(new Armes("Epee",20));
         link.ramasser(new Armes("Epee",20));
         initAnimation();
         gameLoop.play();
@@ -186,6 +188,9 @@ public class VueActLink {
         }
     }
 
+    public Champ getChamp() {
+        return champ;
+    }
 
     public Acteur getLink(){
         return this.link;

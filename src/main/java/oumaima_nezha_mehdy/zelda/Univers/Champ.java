@@ -1,6 +1,9 @@
 package oumaima_nezha_mehdy.zelda.Univers;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Champ {
@@ -11,7 +14,7 @@ public class Champ {
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
-    private ArrayList<Armes> item;
+    private ObservableList<Armes> item;
 
     private Acteur link;
 
@@ -29,6 +32,7 @@ public class Champ {
         this.champ = map;
         this.link = new Acteur("Link",0,0,this);
         this.tT=64;
+        this.item = FXCollections.observableArrayList();
 
     }
 
@@ -75,7 +79,9 @@ public class Champ {
         return listActeur;
     }
 
-
+    public ObservableList<Armes> getItem() {
+        return item;
+    }
 
     public Acteur getLink() {
         return link;

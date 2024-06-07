@@ -29,7 +29,7 @@ class InventaireObs implements ListChangeListener<Armes> {
         while(change.next()){
             if(change.wasAdded()){
                 for(Armes a : change.getAddedSubList() ) {
-                    if(a!=null) {
+                    if(a!=null){
                         VueArmes vA = null;
                         if (a.getNom().equals("Epee")) {
                             vA = new VueEpee(a);
@@ -53,6 +53,7 @@ class InventaireObs implements ListChangeListener<Armes> {
             }
             if (change.wasRemoved()){
                 for (Armes a : change.getRemoved()) {
+                    System.out.println(a.getX()+"............"+a.getY());
                    int indice = -1;
                     for(VueArmes vA : val.getVueInventaire())
                         if(vA!=null&&vA.getArme().equals(a))

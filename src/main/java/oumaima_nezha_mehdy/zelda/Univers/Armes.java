@@ -7,6 +7,7 @@ public class Armes {
     private String nom;
     private int degats;
 
+
     public static int id= 0;
 
     private IntegerProperty x = new SimpleIntegerProperty(0);

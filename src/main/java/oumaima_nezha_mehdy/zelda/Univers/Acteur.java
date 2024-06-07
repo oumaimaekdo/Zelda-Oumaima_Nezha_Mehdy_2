@@ -96,6 +96,19 @@ public class Acteur {
         return vitesse;
     }
 
+    public ArrayList<Armes> armeAutour() {
+        ArrayList<Armes> itemAutour = new ArrayList<>();
+        for (Armes a : champ.getItem())
+            if (!inventaire.contains(a))
+                if ((this.getY() - 5 <= a.getY() && a.getY() <= this.getY() + 5) && (this.getX() - 5 <= a.getX() && a.getX() <= this.getX() + 5))
+                    itemAutour.add(a);
+        return itemAutour;
+    }
+    public void ramasserAutour(){
+        if(!armeAutour().isEmpty())
+        ramasser(armeAutour().get(0));
+    }
+
 
     public void attaquer(VueArmes armeEquipe, Acteur acteur) {
         acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
@@ -136,6 +149,7 @@ public class Acteur {
                 inventaire.add(i,vA);
                 break;
             }
+        champ.getItem().remove(vA);
     }
 
     public void selectioner(int i){
@@ -150,6 +164,7 @@ public class Acteur {
         if(armeEquipé!=null){
             int indice = inventaire.indexOf(armeEquipé);
             inventaire.set(indice,null);
+            champ.ajouterItem(armeEquipé);
             armeEquipé=null;
         }
     }

@@ -22,6 +22,7 @@ public abstract class VueArmes {
         armeInversé=inveré;
         armeImage=image;
         creerArme(image,arme);
+        ArmeVue.setId(arme.getId());
     }
 
     // Méthode pour créer une arme

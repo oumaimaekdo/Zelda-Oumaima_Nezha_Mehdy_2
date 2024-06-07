@@ -9,7 +9,6 @@ public  class Arc extends Armes{
     private int munitions;
     public static int id= 0;
 
-    private Champ champ;
     private ImageView imageView;
 
     public Arc(){
