@@ -68,6 +68,7 @@ public class VueActLink {
         this.touchePressé = new HashSet<>();
         this.directionregardé="est";
         this.vueInventaire = new ArrayList<>();
+        chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
         creerlink("file:src/main/resources/images/link_profil.png",link);
         linkNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
@@ -174,9 +175,14 @@ public class VueActLink {
     }
     public void lacher(){
         if(armeEquipé!=null){
-            int indice = this.link.getInventaire().indexOf(armeEquipé.getArme());
-            vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case"+indice));
+            armeEquipé.getArmeVue().xProperty().unbind();
+            armeEquipé.getArmeVue().yProperty().unbind();
             armeEquipé=null;
+        }
+    }
+    private void chargerInventaire(){
+        for(int i=0;i<5;i++){
+            vueInventaire.add(null);
         }
     }
 
@@ -203,6 +209,10 @@ public class VueActLink {
                 this.vueLink.setImage(new Image("file:src/main/resources/images/Link/"+directionregardé+"Default.png"));
                 break;
         }
+    }
+
+    public VueArmes getArmeEquipé() {
+        return armeEquipé;
     }
 
     public ArrayList<VueArmes> getVueInventaire() {
