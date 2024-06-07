@@ -54,19 +54,20 @@ public class Controleur implements Initializable {
     private MapInt mapInt2;
     private MapInt mapInt3;
     private MapInt mapInt4;
-
+    private MapInt monde;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.mapInt = MapPossible.test3;
         this.mapInt2 = MapPossible.test4;
         this.mapInt3 = MapPossible.collision;
         this.mapInt4 = MapPossible.village2;
+        this.monde = MapVillage2.monde;
 
-        this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
-        this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
-        //this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapVillage2.collision.getCarte());
-        //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"village2");
-        //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"volcanIsland");
+        //this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
+        //this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
+        this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
+        this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"village2");
+        //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
 
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire, armesMap,vueChamp);
