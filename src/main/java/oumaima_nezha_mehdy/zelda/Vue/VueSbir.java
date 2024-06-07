@@ -60,4 +60,8 @@ public class VueSbir {
         return this.sbir1;
     }
 
+    public void updateChamp(Champ champ) {
+        this.champ = champ;
+    }
+
 }

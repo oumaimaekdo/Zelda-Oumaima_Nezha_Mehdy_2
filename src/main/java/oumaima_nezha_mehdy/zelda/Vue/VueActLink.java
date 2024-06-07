@@ -302,4 +302,9 @@ public class VueActLink {
                 })
         );gameLoop.getKeyFrames().add(kf);
     }
+
+    public void updateChamp(Champ champ, VueChamp vueChamp) {
+        this.champ = champ;
+        this.vueChamp = vueChamp;
+    }
 }

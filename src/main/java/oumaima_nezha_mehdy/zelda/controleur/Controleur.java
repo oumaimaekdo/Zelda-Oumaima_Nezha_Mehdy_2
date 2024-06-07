@@ -75,7 +75,7 @@ public class Controleur implements Initializable {
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
         setUpListeners();
-        //chamgementMap();
+        checkAndChangeMap();
     }
 
     private void setUpListeners() {
@@ -101,14 +101,29 @@ public class Controleur implements Initializable {
     public void keyReleased(KeyEvent e){
         clavier.toucheRelaché(e);
     }
+    private void checkAndChangeMap() {
+        int linkX = (int) champ.getLink().getX();
+        int linkY = (int) champ.getLink().getY();
+        int tileX = linkX / champ.gettT();
+        int tileY = linkY / champ.gettT();
 
-    public void chamgementMap(){
-        if(this.vueVillage2.getNom() == "village2") {
-            if (this.champ.presencePortail(this.linkControl.getLink().getX(), this.linkControl.getLink().getY())) {
-                this.champ = new Champ(this.mapInt.getLongueur(), this.mapInt.getLargeur(), MapPossible.collision.getCarte());
-                this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
-                System.out.println("changement de map");
+        if (tileX >= 0 && tileX < champ.getLargeur() && tileY >= 0 && tileY < champ.getLongueur()) {
+            if (champ.presencePortail(tileX,tileY)) {
+                changementMap();
             }
+        }
+    }
+
+
+
+    public void changementMap(){
+        if(this.vueVillage2.getNom() == "village2") {
+            this.champ = new Champ(this.mapInt.getLongueur(), this.mapInt.getLargeur(), MapPossible.collision.getCarte());
+            this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
+            this.linkControl.updateChamp(champ, vueChamp);
+            this.sbirControl.updateChamp(champ);
+            System.out.println("changement de map");
+
         }
     }
 }

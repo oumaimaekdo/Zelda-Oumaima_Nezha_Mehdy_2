@@ -37,7 +37,7 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.link = new Acteur("Link",0,700,this);
+        this.link = new Acteur("Link",250,900,this);
         this.sbir = new Sbir("Squelette",50,650,this,true);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
