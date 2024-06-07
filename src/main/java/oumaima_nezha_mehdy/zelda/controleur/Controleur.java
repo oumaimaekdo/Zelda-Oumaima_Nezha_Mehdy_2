@@ -2,20 +2,17 @@ package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
-import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.image.Image;
 import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.Univers.*;
 
@@ -30,17 +27,17 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueActeur;
     @FXML
-    private ListView<String> inventaireListeVue;
-
+    private HBox coeursLink;
     @FXML
-    private ProgressBar pointsDeVie, pointsDeVieEnnemi;
+    private HBox coeursVolcanorax;
 
     private Champ champ;
     private int[] sol;
-    private Acteur link2;
+    private Acteur link;
     private Volcanorax volcanorax;
-    private Timeline gameLoop, timeline;
+    private Timeline gameLoop;
     private int temps;
+
 
     private ArrayList<Ennemi> ennemis;
     private ArrayList<Sbire> sbires;
@@ -74,36 +71,34 @@ public class Controleur implements Initializable {
             touchePressé(e.getCode().toString());
         });
 
+        deplacementBFS = new DeplacementBFS();
+
+
         ennemis = new ArrayList<>();
         sbires = new ArrayList<>();
 
-        this.link2 = new Acteur("newlink", 0, 0, champ);
-        creerSprite(link2);
+        this.link = new Acteur("newlink", 0, 0, champ);
+        creerSprite(link);
 
-        // Ajouter le boss du feu, qui est Volcanorax
-        this.volcanorax = new Volcanorax(200, 200, champ, link2);
+        // Ajouter le boss du feu : Volcanorax
+        this.volcanorax = new Volcanorax(0, 200, champ, link);
         creerSpriteEnnemi(volcanorax);
         ennemis.add(volcanorax);
 
-        //Ajouter un sbire
-        ennemis.add(new Sbire("nouveau sbire",300,300,champ));
+        // Ajouter un sbire
+        ennemis.add(new Sbire("nouveau sbire", 300, 300, champ));
 
-        pointsDeVie.progressProperty().bind(link2.pointsDeVieProperty().divide(50.0));
-        pointsDeVieEnnemi.progressProperty().bind(volcanorax.pointsDeVieProperty().divide(50.0));
+        updateCoeurs(link, coeursLink);
+        updateCoeurs(volcanorax, coeursVolcanorax);
 
-        pointsDeVieEnnemi.setStyle("-fx-accent: red;");
-
+        deplacementBFS = new DeplacementBFS();
+        cheminActuel = new ArrayList<>();
         initGameLoop();
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> calculerCheminVolcanorax()));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
     }
 
     public void creerSpriteEnnemi(Acteur a) {
-        Circle r = new Circle(3);
-        for(Ennemi ennemi : ennemis) {
-            r.setFill(ennemi.getColor());
-        }
+        Circle r = new Circle(10);
+        r.setFill(new ImagePattern(new Image("file:src/main/resources/Bloc/squeletteMarcheEst.gif")));
         vueActeur.getChildren().add(r);
         r.setId(a.getId());
         r.setTranslateX(a.getX());
@@ -138,16 +133,16 @@ public class Controleur implements Initializable {
 
             switch (carte[i]) {
                 case 0:
-                    rectangle.setFill(new ImagePattern(new Image("file:src/main/resources/images/version1/grass.png")));
+                    rectangle.setFill(new ImagePattern(new Image("file:src/main/resources/Bloc/Herbe.jpg")));
                     break;
                 case 1:
                     rectangle.setFill(Color.BLACK);
                     break;
                 case 2:
-                    rectangle.setFill(new ImagePattern(new Image("file:src/main/resources/images/version1/water.png")));
+                    rectangle.setFill(new ImagePattern(new Image("file:src/main/resources/Bloc/Eau.jpg")));
                     break;
                 case 3:
-                    rectangle.setFill(new ImagePattern(new Image("file:src/main/resources/images/version1/stone.png")));
+                    rectangle.setFill(new ImagePattern(new Image("file:src/main/resources/Bloc/Herbe.jpg")));
                     break;
             }
         }
@@ -159,60 +154,106 @@ public class Controleur implements Initializable {
         switch (key) {
             case "Z":
             case "UP":
-                this.link2.seDeplacer("nord");
+                this.link.seDeplacer("nord");
                 break;
             case "Q":
             case "LEFT":
-                this.link2.seDeplacer("ouest");
+                this.link.seDeplacer("ouest");
                 break;
             case "S":
             case "DOWN":
-                this.link2.seDeplacer("sud");
+                this.link.seDeplacer("sud");
                 break;
             case "D":
             case "RIGHT":
-                this.link2.seDeplacer("est");
+                this.link.seDeplacer("est");
                 break;
         }
 
         champ.afficherMap();
-        System.out.println(link2.getX() + "," + link2.getY());
+        System.out.println(link.getX() + "," + link.getY());
+
+        // Mettre à jour les coeurs après le déplacement
+        updateCoeurs(link, coeursLink);
+        updateCoeurs(volcanorax, coeursVolcanorax);
     }
 
-    private void initGameLoop() {
-        temps = 0;
-        int nbFramesParSeconde = 60;
+    private void updateCoeurs(Acteur acteur, HBox coeursBox) {
+        coeursBox.getChildren().clear();
+        int pointsDeVie = acteur.getPointsDeVie();
+        int maxPointsDeVie = acteur.getPointsDeVie(); //obtenir les points de vie max
+        Image heartFull = new Image("file:src/main/resources/Bloc/coeur-rempli.png");
+        Image heartEmpty = new Image("file:src/main/resources/Bloc/coeur-vide.png");
+        int nombreCoeurs = Math.min(pointsDeVie, 3); // Limite à un maximum de 3 coeurs
 
-        KeyFrame kf = new KeyFrame(
-                Duration.seconds(1.0 / nbFramesParSeconde),
-                event -> {
-                    deplacerEnnemi();
-                    renduDuJeu();
-                }
-        );
+        for(Ennemi ennemi : ennemis){
 
-        gameLoop = new Timeline(kf);
-        gameLoop.setCycleCount(Timeline.INDEFINITE);
-        gameLoop.play();
+            if(ennemi.estEnCollisionAvec(link)){
+                nombreCoeurs = Math.min(pointsDeVie, 2);
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            ImageView heartView;
+            if (i < nombreCoeurs) {
+                heartView = new ImageView(heartFull);
+            } else {
+                heartView = new ImageView(heartEmpty);
+            }
+            heartView.setFitHeight(20);
+            heartView.setFitWidth(20);
+            coeursBox.getChildren().add(heartView);
+        }
     }
 
     private void deplacerEnnemi() {
+        // Calculer un nouveau chemin si nécessaire
+        if (cheminActuel == null || indexChemin >= cheminActuel.size() || cheminActuel.isEmpty()) {
+            cheminActuel = deplacementBFS.deplacementBFS(link.getX() / 65, link.getY() / 65, champ, volcanorax);
+            indexChemin = 0;
+        }
+
+        // Déplacer l'ennemi le long du chemin calculé
+        if (cheminActuel != null && indexChemin < cheminActuel.size()) {
+            int[] prochainePosition = cheminActuel.get(indexChemin);
+            volcanorax.setX(prochainePosition[0] * 65);
+            volcanorax.setY(prochainePosition[1] * 65);
+            indexChemin++;
+        }
+    }
+
+
+
+    private void initGameLoop() {
+        gameLoop = new Timeline();
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame kf = new KeyFrame(
+                Duration.seconds(0.017), // 60 Frames par seconde
+                ae -> {
+                    update();
+                }
+        );
+        gameLoop.getKeyFrames().add(kf);
+        gameLoop.play();
+    }
+
+    private void update() {
+        deplacerEnnemi();
+
         for (Ennemi ennemi : ennemis) {
-            ennemi.deplacer();
+            if (ennemi.estEnCollisionAvec(link)) {
+                link.setPointsDeVie(link.getPointsDeVie() - 1);
+                updateCoeurs(link, coeursLink);
+                if (link.getPointsDeVie() <= 0) {
+                    // Gérer la mort du joueur
+                    System.out.println("Link est mort");
+                    gameLoop.stop();
+                }
+            }
         }
-    }
 
-    private void renduDuJeu() {
-        System.out.println("Frame : " + temps);
-
-        if (link2.estEnCollisionAvec(volcanorax)) {
-            System.out.println("⚠ Collision !");
-            link2.attaquer(volcanorax);
-        }
-    }
-
-    private void calculerCheminVolcanorax() {
-        cheminActuel = deplacementBFS.deplacementBFS(link2.getX() / 64, link2.getY() / 64, champ, volcanorax);
-        indexChemin = 0;
+        // Mettre à jour les coeurs après le déplacement
+        updateCoeurs(link, coeursLink);
+        updateCoeurs(volcanorax, coeursVolcanorax);
     }
 }

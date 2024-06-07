@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Acteur {
+
     private String nom;
     private Champ champ;
     private static int id = 0;

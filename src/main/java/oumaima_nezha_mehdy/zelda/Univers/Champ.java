@@ -75,8 +75,6 @@ public class Champ {
 
             System.out.print(champ[i]);
             System.out.print("\t");
-
-
         }
     }
 

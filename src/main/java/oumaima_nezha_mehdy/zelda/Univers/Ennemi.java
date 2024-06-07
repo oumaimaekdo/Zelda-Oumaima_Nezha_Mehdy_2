@@ -21,6 +21,8 @@ public abstract class Ennemi extends Acteur {
     public abstract void deplacer();
     public abstract void attaquer(Acteur cible);
 
+    public abstract Color getColor();
+
     public void suivreChemin(ArrayList<int[]> chemin) {
         if (chemin == null || chemin.isEmpty()) {
             return;
@@ -34,5 +36,4 @@ public abstract class Ennemi extends Acteur {
         this.setY(nouveauY);
     }
 
-    public abstract Color getColor();
 }

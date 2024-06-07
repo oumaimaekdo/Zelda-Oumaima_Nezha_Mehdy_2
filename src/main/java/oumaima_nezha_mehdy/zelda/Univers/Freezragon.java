@@ -18,15 +18,12 @@ public class Freezragon extends Ennemi {
         super("Freezragon", m);
     }
 
-    public void seDeplacer(){
+    @Override
+    public void deplacer(){
         ArrayList<int[]> chemin = deplacementBFS.deplacementBFS(link.getX(), link.getY(), super.champ, this);
         suivreChemin(chemin);
     }
 
-    @Override
-    public void deplacer() {
-
-    }
 
     @Override
     public void attaquer(Acteur cible) {

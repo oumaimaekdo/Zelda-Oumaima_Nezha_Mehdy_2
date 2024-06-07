@@ -26,6 +26,7 @@ public class Volcanorax extends Ennemi {
 
     @Override
     public void deplacer() {
+
         int[] nouvellePositionLink = {link.getX() / 64, link.getY() / 64};
 
         // Recalculer le chemin seulement si Link a bougé
@@ -45,11 +46,11 @@ public class Volcanorax extends Ennemi {
 
     @Override
     public void attaquer(Acteur cible) {
-        // Implement attack logic here
+
     }
 
     @Override
     public Color getColor() {
-        return Color.PURPLE;
+        return null;
     }
 }
