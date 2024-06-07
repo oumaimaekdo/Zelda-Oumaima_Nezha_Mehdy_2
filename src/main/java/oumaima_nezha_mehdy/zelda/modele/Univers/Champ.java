@@ -109,6 +109,23 @@ public class Champ {
 
     }
 
+    public boolean presencePortail(int x, int y){
+
+        final int haut = 20;
+        final int gauche = 20;
+        final int bas = -20;
+        final int droite = -10;
+
+        int indexHautGauche = ((x + gauche) / tT) + ((y + haut) / tT) * this.longueur;
+        int indexBasDroite = ((x - droite) / tT) + ((y - bas) / tT) * this.longueur;
+
+        boolean presenceHautGauche = champ[indexHautGauche] == -1;
+        boolean presenceBasDroite = champ[indexBasDroite] == -1;
+
+        return (presenceHautGauche && presenceBasDroite);
+
+    }
+
     public int[] getChamp(){return champ;}
 
     public ArrayList<Acteur> getListActeur() {
