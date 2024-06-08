@@ -89,7 +89,7 @@ public class VueActLink {
         linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
         link.ramasser(new Armes("Epee",20));
-        link.ramasser(new Armes("Epee",20));
+        link.ramasser(new Armes("Arc",20));
         initAnimation();
         gameLoop.play();
 
