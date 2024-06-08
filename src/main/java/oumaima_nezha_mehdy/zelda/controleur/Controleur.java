@@ -1,16 +1,21 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.stage.Stage;
+import oumaima_nezha_mehdy.zelda.Main;
 import oumaima_nezha_mehdy.zelda.Vue.VueChamp;
 import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
@@ -63,9 +68,9 @@ public class Controleur implements Initializable {
         this.mapInt4 = MapPossible.village2;
         this.monde = MapVillage2.monde;
 
-        //this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
+        this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
         //this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
-        this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
+        //this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
         this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"village2");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
 
@@ -123,7 +128,7 @@ public class Controleur implements Initializable {
             this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
             this.linkControl.updateChamp(champ, vueChamp);
             this.sbirControl.updateChamp(champ);
-            System.out.println("changement de map");
+
 
         }
     }
