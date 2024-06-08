@@ -56,6 +56,7 @@ public class VueInventaire {
                 break;
             case "E" :
                 val.getLink().ramasserAutour();
+
                 break;
         }
 

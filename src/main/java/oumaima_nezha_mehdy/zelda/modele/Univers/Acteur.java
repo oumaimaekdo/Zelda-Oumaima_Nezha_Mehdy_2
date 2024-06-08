@@ -101,9 +101,10 @@ public class Acteur {
                     itemAutour.add(a);
         return itemAutour;
     }
-    public void ramasserAutour(){
-        if(!armeAutour().isEmpty())
+    public void ramasserAutour() {
+        if (!armeAutour().isEmpty()){
             ramasser(armeAutour().get(0));
+        }
     }
 
 
@@ -138,9 +139,11 @@ public class Acteur {
     public void ramasser(Armes vA) {
         for(int i=0 ; i<5;i++)
             if(inventaire.get(i)==null) {
+                System.out.println("Arme ramassée: " + vA.getNom());
                 inventaire.add(i,vA);
                 break;
             }
+
         champ.getItem().remove(vA);
     }
 
