@@ -69,9 +69,10 @@ public class Controleur implements Initializable {
         this.monde = MapVillage2.monde;
 
         this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
-        //this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
+        this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
         //this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
-        this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"village2");
+        //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"volcanLand");
+        //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"iceLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
 
 

@@ -21,7 +21,8 @@ public class VueVillage2 {
     private String nom;
 
     private static final String IMAGE_PATH_Village2 = "file:src/main/resources/images/village2/";
-    private static final String IMAGE_PATH_VolcanIsland = "file:src/main/resources/images/volcanIsland/";
+    private static final String IMAGE_PATH_VolcanIsland = "file:src/main/resources/images/villageFeu/";
+    private static final String IMAGE_PATH_iceLand = "file:src/main/resources/images/villageGlace/";
     private static final String IMAGE_PATH_monde = "file:src/main/resources/images/monde/";
 
 
@@ -61,9 +62,14 @@ public class VueVillage2 {
                 imageMap.put(i, new Image(IMAGE_PATH_Village2 + "1-" + i + ".png"));
             }
         }
-        else if(nom == "volcanIsland") {
-            for (int i = 0; i <= 299; i++) {
+        else if(nom == "volcanLand") {
+            for (int i = 0; i <= 439; i++) {
                 imageMap.put(i, new Image(IMAGE_PATH_VolcanIsland + "1-" + i + ".png"));
+            }
+        }
+        else if(nom == "iceLand") {
+            for (int i = 0; i <= 439; i++) {
+                imageMap.put(i, new Image(IMAGE_PATH_iceLand + "1-" + i + ".png"));
             }
         }
         else if(nom == "monde") {
