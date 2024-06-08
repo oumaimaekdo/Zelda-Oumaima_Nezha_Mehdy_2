@@ -26,7 +26,6 @@ public class VueActLink {
 
 
     private Acteur link;
-    private VueChamp vueChamp;
 
     @FXML
     private Pane vueActeur;
@@ -76,7 +75,6 @@ public class VueActLink {
         this.armesMap = armesMap;
         this.link=champ.getLink();
         this.tT=tailleTuile;
-        this.vueChamp = vueChamp;
         this.vueCaseInventaire=vueCaseInventaire;
         this.vueArmesInventaire=vueArmesInventaire;
         this.touchePressé = new HashSet<>();
