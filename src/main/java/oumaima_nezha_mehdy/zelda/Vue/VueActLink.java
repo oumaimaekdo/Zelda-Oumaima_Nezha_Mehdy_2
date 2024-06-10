@@ -212,10 +212,6 @@ public class VueActLink {
 
     }
 
-    }
-
-    public ObservableList getInventaire(){return inventaire;}
-
     public Acteur getLink(){
         return this.link;
     }

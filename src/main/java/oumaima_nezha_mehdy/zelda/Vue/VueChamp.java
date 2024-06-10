@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import oumaima_nezha_mehdy.zelda.controleur.Clavier;
-import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
+import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
