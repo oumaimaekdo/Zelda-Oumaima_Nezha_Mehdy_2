@@ -1,15 +1,25 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import oumaima_nezha_mehdy.zelda.controleur.Clavier;
 import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
-import java.util.ArrayList;
+import oumaima_nezha_mehdy.zelda.modele.Univers.MapPossible;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class VueChamp {
 
@@ -354,7 +364,7 @@ public class VueChamp {
                     imageView2.setImage(epeeRougeMap);
                     imageView2.setId("epeerouge");
                     epeeRouge = new Armes("epeeRouge",35);
-                    vueEpeeRouge = new VueArmes(imageView2.getImage(),epeeRouge,imageView2.getImage());
+                    vueEpeeRouge = new VueEpeeRouge(epeeRouge);
                     this.listeArmesCreer.add(vueEpeeRouge);
                     break;
             }

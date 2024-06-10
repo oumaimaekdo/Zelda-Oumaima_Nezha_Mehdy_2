@@ -1,13 +1,18 @@
 package oumaima_nezha_mehdy.zelda.modele.Armes;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Armes {
     private String nom;
     private int degats;
+
+
     public static int id= 0;
-    private IntegerProperty x;
-    private IntegerProperty y;
+
+    private IntegerProperty x = new SimpleIntegerProperty(0);
+    private IntegerProperty y = new SimpleIntegerProperty(0);
+
 
     public Armes(String nom, int degats) {
         this.nom = nom;
@@ -15,50 +20,42 @@ public class Armes {
         id++;
     }
 
-    public Armes(String nom, int degats, int x, int y) {
-        this.nom = nom;
-        this.degats = degats;
-        this.x.set(x);
-        this.y.set(y);
-        id++;
+    public String getNom() {
+        return nom;
     }
 
     public int getDegats() {
         return degats;
     }
 
-    public void setDegats(int degats){
-        this.degats = degats;
+    public static String getId() {
+        return "#"+id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setX(int a){
+        x.setValue(a);
+    }
+    public void setY(int a){
+        y.setValue(a);
     }
 
     public int getX() {
         return x.get();
     }
+
     public int getY() {
         return y.get();
     }
-    public IntegerProperty xProperty(){
-        return x;
-    }
-    public IntegerProperty yProperty(){
-        return y;
-    }
 
-    public void setX(int x) {
-        this.x.set(x);
+    public void utiliser() {
+        System.out.println("L'arme " + nom + " a été utilisée, infligeant " + degats + " dégâts.");
     }
-
-    public void setY(int y) {
-        this.y.set(y);
-    }
-    public String getNom() {
-        return nom;
-    }
-
-    public static String getId() {
-        return "#"+id;
-    }
-
+    public IntegerProperty getXProperty(){return x;}
+    public IntegerProperty getYProperty(){return y;}
 
 
 }

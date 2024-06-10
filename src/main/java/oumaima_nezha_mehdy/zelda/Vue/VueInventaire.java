@@ -51,8 +51,12 @@ public class VueInventaire {
                 vueCaseInventaire.lookup("#case5").setOpacity(1);
                 val.selectioner(5);
                 break;
-            case "G":
+            case "L":
                 val.lacher();
+                break;
+            case "E" :
+                val.getLink().ramasserAutour();
+
                 break;
         }
 

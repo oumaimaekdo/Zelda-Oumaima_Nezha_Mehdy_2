@@ -7,7 +7,8 @@ import oumaima_nezha_mehdy.zelda.Vue.VueChamp;
 import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 import oumaima_nezha_mehdy.zelda.controleur.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,7 +21,7 @@ public class Champ {
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
     private ArrayList<Integer> pointDeCollision;
-
+    private ObservableList<Armes> item;
     private Acteur link;
     private Sbir sbir;
 
@@ -37,10 +38,11 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.link = new Acteur("Link",250,900,this);
+        this.link = new Acteur("Link",0,700,this);
         this.sbir = new Sbir("Squelette",50,650,this,true);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
+        this.item = FXCollections.observableArrayList();
 
     }
 
@@ -126,22 +128,27 @@ public class Champ {
 
     }
 
+    public void ajouterItem(Armes a){
+        item.add(a);
+    }
+
     public int[] getChamp(){return champ;}
 
     public ArrayList<Acteur> getListActeur() {
         return listActeur;
     }
 
-
+    public ObservableList<Armes> getItem() {
+        return item;
+    }
 
     public Acteur getLink() {
         return link;
     }
+
     public Sbir getSbir() {
         return sbir;
     }
-
-
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}

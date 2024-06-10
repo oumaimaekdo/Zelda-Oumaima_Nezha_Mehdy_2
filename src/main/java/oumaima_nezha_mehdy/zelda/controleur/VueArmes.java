@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
 
-public  class VueArmes {
+public class VueArmes {
 
     private Armes arme;
     @FXML

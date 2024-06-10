@@ -25,7 +25,6 @@ public class Clavier{
     }
 
     public void handle(KeyEvent keyEvent) {
-        linkDeplacement.DeplacementLink();
         linkDeplacement.ajouterTouche(keyEvent.getCode().toString());
         vueInventaire.selectionerCase(keyEvent);
     }
