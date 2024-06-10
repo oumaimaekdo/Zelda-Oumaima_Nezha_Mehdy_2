@@ -29,31 +29,29 @@ class InventaireObs implements ListChangeListener<Armes> {
         while(change.next()){
             if(change.wasAdded()){
                 for(Armes a : change.getAddedSubList() ) {
-                    if(a!=null){
-                        val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#"+a.getId()));
+                    if (a != null) {
+                        val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#" + a.getId()));
+                        System.out.println(val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#" + a.getId())));
                         VueArmes vA = null;
                         if (a.getNom().equals("Epee")) {
                             vA = new VueEpee(a);
                         }
-                        if (a.getNom().equals("Arc")) {
-                            vA = new VueArc(a);
-                        }
                         a.getXProperty().bind(link.getXProperty());
                         a.getYProperty().bind(link.getYProperty());
-                        vA.getArmeVue().xProperty().bind(a.getXProperty());
-                        vA.getArmeVue().yProperty().bind(a.getYProperty());
                         ImageView armecase = new ImageView();
                         int indice = link.getInventaire().indexOf(a);
                         armecase.setImage(vA.getArmeVue().getImage());
-                        System.out.println(vA.getArmeVue().getImage().getHeight() + ".........." + vA.getArmeVue().getImage().getWidth());
                         armecase.setFitWidth(80);
                         armecase.setFitHeight(80);
                         armecase.setId("case" + indice);
+                        val.getVueInventaire().add(indice, vA);
                         vueArmesInventaire.getChildren().add(armecase);
                         armecase.setX(vueCaseInventaire.getLayoutX() + (100 * indice) + 65);
                         armecase.setY(40);
                         val.getVueInventaire().set(indice, vA);
+                        System.out.println("zaza");
                     }
+                }
                 }
             }
             if (change.wasRemoved()){
@@ -70,4 +68,4 @@ class InventaireObs implements ListChangeListener<Armes> {
             }
         }
     }
-}
+

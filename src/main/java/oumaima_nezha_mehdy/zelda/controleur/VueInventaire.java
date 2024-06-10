@@ -60,6 +60,21 @@ public class VueInventaire {
             break;
             case "E" : val.getLink().ramasserAutour();
             break;
+            case "V" : for(Armes a : val.getChamp().getItem())
+                        System.out.println("arme");
+            break;
+            case "H" : for(VueArmes a : val.getVueInventaire())
+                            if(a!=null)
+                                System.out.println("VueArme");
+                            else
+                                System.out.println("null");
+                            break;
+            case "L" : for(Armes a : val.getLink().getInventaire())
+                if(a!=null)
+                    System.out.println("Arme");
+                else
+                    System.out.println("null");
+                break;
         }
 
     }

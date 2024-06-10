@@ -2,10 +2,6 @@ package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -78,8 +74,14 @@ public class VueActLink {
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
-        link.ramasser(new Armes("Epee",20));
-        link.ramasser(new Armes("Epee",20));
+        VueArmes a = new VueEpee(new Armes("Epee",20, champ));
+        VueArmesJeu.getChildren().add(a.getArmeVue());
+        a.getArme().setX(50);
+        a.getArme().setY(50);
+        VueArmes b = new VueEpee(new Armes("Epee",20, champ));
+        VueArmesJeu.getChildren().add(b.getArmeVue());
+        b.getArme().setX(100);
+        b.getArme().setY(50);
         initAnimation();
         gameLoop.play();
 
@@ -146,7 +148,7 @@ public class VueActLink {
         if(armeEquipé!=null) {
             VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
         }
-        if(link.getInventaire().get(i-1)!=null) {
+        if(vueInventaire.get(i-1)!=null) {
             armeEquipé = vueInventaire.get(i-1);
             VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
             bindeur(directionregardé);

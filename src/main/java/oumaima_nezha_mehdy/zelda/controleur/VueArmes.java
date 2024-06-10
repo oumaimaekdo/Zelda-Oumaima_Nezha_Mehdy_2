@@ -23,6 +23,8 @@ public abstract class VueArmes {
         armeImage=image;
         creerArme(image,arme);
         ArmeVue.setId(arme.getId());
+        ArmeVue.xProperty().bind(arme.getXProperty());
+        ArmeVue.yProperty().bind(arme.getYProperty());
     }
 
     // Méthode pour créer une arme

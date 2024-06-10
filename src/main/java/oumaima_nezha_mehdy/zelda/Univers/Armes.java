@@ -7,6 +7,7 @@ public class Armes {
     private String nom;
     private int degats;
 
+    private Champ champ;
 
     public static int id= 0;
 
@@ -14,9 +15,11 @@ public class Armes {
     private IntegerProperty y = new SimpleIntegerProperty(0);
 
 
-    public Armes(String nom, int degats) {
+    public Armes(String nom, int degats, Champ champ) {
         this.nom = nom;
         this.degats = degats;
+        this.champ = champ;
+        champ.ajouterItem(this);
         id++;
     }
 

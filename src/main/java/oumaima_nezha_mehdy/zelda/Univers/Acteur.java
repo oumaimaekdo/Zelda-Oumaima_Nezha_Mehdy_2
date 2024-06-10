@@ -155,8 +155,6 @@ public class Acteur {
     public void selectioner(int i){
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);
-            armeEquipé.getYProperty().bind(this.y);
-            armeEquipé.getXProperty().bind(this.x);
         }
 
     }

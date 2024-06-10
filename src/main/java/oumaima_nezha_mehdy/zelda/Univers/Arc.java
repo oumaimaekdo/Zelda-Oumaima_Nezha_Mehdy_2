@@ -11,8 +11,8 @@ public  class Arc extends Armes{
 
     private ImageView imageView;
 
-    public Arc(){
-        super("Arc",25);
+    public Arc(Champ champ){
+        super("Arc",25, champ);
         this.munitions = 3;
     }
     @Override

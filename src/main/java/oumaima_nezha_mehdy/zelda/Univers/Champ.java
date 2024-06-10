@@ -30,9 +30,9 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.link = new Acteur("Link",0,0,this);
         this.tT=64;
         this.item = FXCollections.observableArrayList();
+        this.link = new Acteur("Link",0,0,this);
 
     }
 
