@@ -54,6 +54,7 @@ public class VueActLink {
     private Timeline gameLoop;
 
     private ArrayList<VueArmes> vueInventaire;
+    private ArrayList<VueArmes> vueItem;
     private HashSet<String> touchePressé;
 
     public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
@@ -68,9 +69,10 @@ public class VueActLink {
         this.touchePressé = new HashSet<>();
         this.directionregardé="est";
         this.vueInventaire = new ArrayList<>();
+        this.vueItem = new ArrayList<>();
         chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
-        champ.getItem().addListener(new ChampItemObs(VueArmesJeu));
+        champ.getItem().addListener(new ChampItemObs(VueArmesJeu,this));
         creerlink("file:src/main/resources/images/link_profil.png",link);
         linkNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
@@ -155,23 +157,23 @@ public class VueActLink {
         switch (direction){
             case "sud" :
                 armeEquipé.getArmeVue().setImage(armeEquipé.getArmeImage());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+                armeEquipé.getArmeVue().xProperty().bind(this.armeEquipé.getArme().getXProperty().add(-3)); // Adjust offset as needed
+                armeEquipé.getArmeVue().yProperty().bind(this.armeEquipé.getArme().getYProperty().add(10)); // Adjust offset as needed
                 break;
             case "nord" :
                 armeEquipé.getArmeVue().setImage(armeEquipé.getArmeInversé());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(20));
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(7));
+                armeEquipé.getArmeVue().xProperty().bind(this.armeEquipé.getArme().getXProperty().add(20));
+                armeEquipé.getArmeVue().yProperty().bind(this.armeEquipé.getArme().getYProperty().add(7));
                 break;
             case "ouest" :
                 armeEquipé.getArmeVue().setImage(armeEquipé.getArmeImage());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(5));
+                armeEquipé.getArmeVue().xProperty().bind(this.armeEquipé.getArme().getXProperty().add(-3)); // Adjust offset as needed
+                armeEquipé.getArmeVue().yProperty().bind(this.armeEquipé.getArme().getYProperty().add(5));
                 break;
             case "est" :
                 armeEquipé.getArmeVue().setImage(armeEquipé.getArmeInversé());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(15));
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10));
+                armeEquipé.getArmeVue().xProperty().bind(this.armeEquipé.getArme().getXProperty().add(15));
+                armeEquipé.getArmeVue().yProperty().bind(this.armeEquipé.getArme().getYProperty().add(10));
                 break;
         }
     }
@@ -245,5 +247,13 @@ public class VueActLink {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    public ArrayList<VueArmes> getVueItem() {
+        return vueItem;
+    }
+
+    public Pane getVueArmesJeu() {
+        return VueArmesJeu;
     }
 }

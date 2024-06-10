@@ -30,6 +30,7 @@ class InventaireObs implements ListChangeListener<Armes> {
             if(change.wasAdded()){
                 for(Armes a : change.getAddedSubList() ) {
                     if(a!=null){
+                        val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#"+a.getId()));
                         VueArmes vA = null;
                         if (a.getNom().equals("Epee")) {
                             vA = new VueEpee(a);
@@ -37,6 +38,10 @@ class InventaireObs implements ListChangeListener<Armes> {
                         if (a.getNom().equals("Arc")) {
                             vA = new VueArc(a);
                         }
+                        a.getXProperty().bind(link.getXProperty());
+                        a.getYProperty().bind(link.getYProperty());
+                        vA.getArmeVue().xProperty().bind(a.getXProperty());
+                        vA.getArmeVue().yProperty().bind(a.getYProperty());
                         ImageView armecase = new ImageView();
                         int indice = link.getInventaire().indexOf(a);
                         armecase.setImage(vA.getArmeVue().getImage());

@@ -100,7 +100,7 @@ public class Acteur {
         ArrayList<Armes> itemAutour = new ArrayList<>();
         for (Armes a : champ.getItem())
             if (!inventaire.contains(a))
-                if ((this.getY() - 5 <= a.getY() && a.getY() <= this.getY() + 5) && (this.getX() - 5 <= a.getX() && a.getX() <= this.getX() + 5))
+                if ((this.getY() - 10 <= a.getY() && a.getY() <= this.getY() + 10) && (this.getX() - 10 <= a.getX() && a.getX() <= this.getX() + 10))
                     itemAutour.add(a);
         return itemAutour;
     }
