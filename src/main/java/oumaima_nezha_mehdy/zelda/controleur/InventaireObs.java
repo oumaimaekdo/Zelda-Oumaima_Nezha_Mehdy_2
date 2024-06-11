@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Univers.Acteur;
 import oumaima_nezha_mehdy.zelda.Univers.Arc;
 import oumaima_nezha_mehdy.zelda.Univers.Armes;
+import oumaima_nezha_mehdy.zelda.Univers.EpeeFer;
 
 class InventaireObs implements ListChangeListener<Armes> {
 
@@ -30,10 +31,9 @@ class InventaireObs implements ListChangeListener<Armes> {
             if(change.wasAdded()){
                 for(Armes a : change.getAddedSubList() ) {
                     if (a != null) {
-                        val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#" + a.getId()));
                         System.out.println(val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#" + a.getId())));
                         VueArmes vA = null;
-                        if (a.getNom().equals("Epee")) {
+                        if (a instanceof EpeeFer) {
                             vA = new VueEpee(a);
                         }
                         a.getXProperty().bind(link.getXProperty());
@@ -44,11 +44,10 @@ class InventaireObs implements ListChangeListener<Armes> {
                         armecase.setFitWidth(80);
                         armecase.setFitHeight(80);
                         armecase.setId("case" + indice);
-                        val.getVueInventaire().add(indice, vA);
+                        val.getVueInventaire().set(indice, vA);
                         vueArmesInventaire.getChildren().add(armecase);
                         armecase.setX(vueCaseInventaire.getLayoutX() + (100 * indice) + 65);
                         armecase.setY(40);
-                        val.getVueInventaire().set(indice, vA);
                         System.out.println("zaza");
                     }
                 }
@@ -56,14 +55,16 @@ class InventaireObs implements ListChangeListener<Armes> {
             }
             if (change.wasRemoved()){
                 for (Armes a : change.getRemoved()) {
-                    System.out.println(a.getX()+"............"+a.getY());
-                   int indice = -1;
-                    for(VueArmes vA : val.getVueInventaire())
-                        if(vA!=null&&vA.getArme().equals(a))
-                            indice = val.getVueInventaire().indexOf(vA);
-                    val.lacher();
-                   vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case" + indice));
-                    val.getVueInventaire().set(indice,null);
+                    if(a!=null) {
+                        System.out.println(a.getX() + "............" + a.getY());
+                        int indice = -1;
+                        for (VueArmes vA : val.getVueInventaire())
+                            if (vA != null && vA.getArme().equals(a))
+                                indice = val.getVueInventaire().indexOf(vA);
+                        val.lacher();
+                        vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case" + indice));
+                        val.getVueInventaire().set(indice, null);
+                    }
                 }
             }
         }

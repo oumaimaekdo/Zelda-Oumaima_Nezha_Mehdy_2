@@ -3,13 +3,15 @@ package oumaima_nezha_mehdy.zelda.Univers;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Armes {
+public abstract class Armes {
     private String nom;
     private int degats;
 
     private Champ champ;
 
-    public static int id= 0;
+    private String id;
+
+    public static int cpt= 0;
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
@@ -20,7 +22,8 @@ public class Armes {
         this.degats = degats;
         this.champ = champ;
         champ.ajouterItem(this);
-        id++;
+        id = ""+cpt;
+        cpt++;
     }
 
     public String getNom() {
@@ -31,13 +34,10 @@ public class Armes {
         return degats;
     }
 
-    public static String getId() {
-        return "#"+id;
+    public  String getId() {
+        return id;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
 
     public void setX(int a){
         x.setValue(a);
@@ -60,5 +60,14 @@ public class Armes {
     public IntegerProperty getXProperty(){return x;}
     public IntegerProperty getYProperty(){return y;}
 
-
+    @Override
+    public String toString() {
+        return "Armes{" +
+                "nom='" + nom + '\'' +
+                ", degats=" + degats +
+                ", champ=" + champ +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

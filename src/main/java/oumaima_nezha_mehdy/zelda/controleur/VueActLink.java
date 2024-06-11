@@ -74,11 +74,11 @@ public class VueActLink {
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
-        VueArmes a = new VueEpee(new Armes("Epee",20, champ));
+        VueArmes a = new VueEpee(new EpeeFer(champ));
         VueArmesJeu.getChildren().add(a.getArmeVue());
         a.getArme().setX(50);
         a.getArme().setY(50);
-        VueArmes b = new VueEpee(new Armes("Epee",20, champ));
+        VueArmes b = new VueEpee(new EpeeFer(champ));
         VueArmesJeu.getChildren().add(b.getArmeVue());
         b.getArme().setX(100);
         b.getArme().setY(50);
@@ -124,6 +124,10 @@ public class VueActLink {
     }
     public void toucheRelaché(KeyEvent keyEvent) {
             touchePressé.remove(keyEvent.getCode().toString());
+    }
+
+    public void re(){
+        vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case" + 1));
     }
 
 

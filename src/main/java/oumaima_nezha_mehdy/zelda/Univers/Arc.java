@@ -29,10 +29,6 @@ public  class Arc extends Armes{
         return this.munitions;
     }
 
-    public static String getId() {
-        return "#"+id;
-    }
-    @Override
     public void setId(int id){
         this.id = id;
     }

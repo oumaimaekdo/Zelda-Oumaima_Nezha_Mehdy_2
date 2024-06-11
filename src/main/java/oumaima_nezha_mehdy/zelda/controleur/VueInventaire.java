@@ -75,6 +75,7 @@ public class VueInventaire {
                 else
                     System.out.println("null");
                 break;
+            case "R" : val.re();
         }
 
     }
