@@ -56,9 +56,14 @@ public class Champ {
         }
     }
 
+    public void setChamp(int L , int l,int[] map){
+        this.largeur=l;
+        this.longueur=L;
+        this.champ = map;
+        this.tT=64;
+    }
 
-
-    public boolean coordonnéPossible(int x,int y){
+    public boolean coordonnéPossible(int x, int y){
         int haut,bas,gauche,droite;
         haut = 20;
         gauche = 20;
