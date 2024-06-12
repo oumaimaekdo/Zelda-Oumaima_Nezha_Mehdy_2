@@ -5,12 +5,14 @@ import javafx.scene.layout.TilePane;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class VueVillage2 {
     private TilePane map1;
+    private TilePane LayerSup;
     private Champ champ;
 
     private int[] sol;
@@ -19,12 +21,13 @@ public class VueVillage2 {
     private int LongueurInt;
     private int LargeurInt;
     private String nom;
+    private ArrayList<VueArmes> listeArmesCreer;
 
+    private static final String IMAGE_PATH_Debut = "file:src/main/resources/images/mapDebut64/";
     private static final String IMAGE_PATH_Village2 = "file:src/main/resources/images/village2/";
     private static final String IMAGE_PATH_VolcanIsland = "file:src/main/resources/images/villageFeu/";
     private static final String IMAGE_PATH_iceLand = "file:src/main/resources/images/villageGlace/";
     private static final String IMAGE_PATH_monde = "file:src/main/resources/images/monde/";
-
 
 
     public VueVillage2(TilePane map1, Champ champ, MapInt mapInt,String nom){
@@ -77,6 +80,11 @@ public class VueVillage2 {
                 imageMap.put(i, new Image(IMAGE_PATH_monde + "1-" + i + ".png"));
             }
         }
+        else if(nom == "debut") {
+            for (int i = 0; i <= 299; i++) {
+                imageMap.put(i, new Image(IMAGE_PATH_Debut + "510-" + i + ".png"));
+            }
+        }
 
         for (int i = 0; i < carte.length; i++) {
             ImageView imageView = new ImageView();
@@ -102,5 +110,10 @@ public class VueVillage2 {
 
     public String getNom() {
         return nom;
+    }
+
+    public ArrayList<VueArmes> getListeArmesCreer(){
+        return this.listeArmesCreer;
+
     }
 }

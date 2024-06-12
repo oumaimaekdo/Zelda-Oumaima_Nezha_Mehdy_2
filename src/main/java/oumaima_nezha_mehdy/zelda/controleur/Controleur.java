@@ -70,21 +70,22 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.mapInt = MapPossible.test3;
-        this.mapInt2 = MapPossible.test4;
+        this.mapInt = MapPossible.Layer1;
+        this.mapInt2 = MapPossible.Layer2;
         this.mapInt3 = MapPossible.collision;
         this.mapInt4 = MapPossible.village2;
         this.monde = MapVillage2.monde;
 
-        ChargementMap(mapInt);
+
         //this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
         //this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
         //this.vueChamp = new VueChamp(map1,LayerSup,champ,mapInt,mapInt2,mapInt3);
+        ChargementMap(mapInt,"debut",MapPossible.collision.getCarte());
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"volcanLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"iceLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
 
-        this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire,vueChamp);
+        this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
         sbirControl.getSbir1().deplacementAleatoire();
 
@@ -106,8 +107,8 @@ public class Controleur implements Initializable {
         this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
     }
 
-    public void ChargementMap(MapInt mapInt){
-        this.sol=mapInt.getCarte();
+    public void ChargementMap(MapInt mapInt,String nomMap,int[] collision){
+        this.sol= collision;
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
         if(this.champ==null)
@@ -115,12 +116,12 @@ public class Controleur implements Initializable {
         else
             this.champ.setChamp(mapInt.getLongueur(),mapInt.getLargeur(),sol);
         this.tailleTuile=champ.gettT();
-        map1.setPrefTileHeight(tailleTuile);
-        map1.setPrefTileWidth(tailleTuile);
-        map1.setPrefHeight(LargeurInt*tailleTuile);
-        map1.setPrefWidth(LongueurInt*tailleTuile);
-        this.vueChamp = new VueChamp(map1,LayerSup,champ,mapInt,mapInt2,mapInt3);
-        vueChamp.CreationMap();
+        mapVIllage2.setPrefTileHeight(tailleTuile);
+        mapVIllage2.setPrefTileWidth(tailleTuile);
+        mapVIllage2.setPrefHeight(LargeurInt*tailleTuile);
+        mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
+        this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,nomMap);
+        this.vueVillage2.CreationMap();
     }
 
 
@@ -132,8 +133,10 @@ public class Controleur implements Initializable {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
         if(keyEvent.getCode().toString().equals("P")){
-            map1.getChildren().clear();
-            ChargementMap(MapPossible.test2);
+            mapVIllage2.getChildren().clear();
+            linkControl.getLink().setX(660);
+            linkControl.getLink().setY(50);
+            ChargementMap(mapInt,"iceLand",MapVillage2.collision.getCarte());
         }
     }
 
