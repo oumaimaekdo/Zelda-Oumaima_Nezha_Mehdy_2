@@ -57,7 +57,7 @@ public class VueInventaire {
                 val.getLink().selectioner(5);
                 val.selectioner(5);
                 break;
-            case "G": val.getLink().lacher();
+            case "L": val.getLink().lacher();
                 break;
             case "E" : val.getLink().ramasserAutour();
                 break;
@@ -67,12 +67,6 @@ public class VueInventaire {
             case "H" : for(VueArmes a : val.getVueInventaire())
                 if(a!=null)
                     System.out.println("VueArme");
-                else
-                    System.out.println("null");
-                break;
-            case "L" : for(Armes a : val.getLink().getInventaire())
-                if(a!=null)
-                    System.out.println("Arme");
                 else
                     System.out.println("null");
                 break;

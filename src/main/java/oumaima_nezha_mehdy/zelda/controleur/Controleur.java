@@ -76,9 +76,10 @@ public class Controleur implements Initializable {
         this.mapInt4 = MapPossible.village2;
         this.monde = MapVillage2.monde;
 
-        this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
+        ChargementMap(mapInt);
+        //this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
         //this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
-        this.vueChamp = new VueChamp(map1,LayerSup,champ,mapInt,mapInt2,mapInt3);
+        //this.vueChamp = new VueChamp(map1,LayerSup,champ,mapInt,mapInt2,mapInt3);
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"volcanLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"iceLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
@@ -89,6 +90,8 @@ public class Controleur implements Initializable {
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
         setUpListeners();
+
+
 
     }
 
@@ -103,6 +106,23 @@ public class Controleur implements Initializable {
         this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
     }
 
+    public void ChargementMap(MapInt mapInt){
+        this.sol=mapInt.getCarte();
+        this.LargeurInt = mapInt.getLargeur();
+        this.LongueurInt = mapInt.getLongueur();
+        if(this.champ==null)
+            this.champ = new Champ(LongueurInt,LargeurInt,sol);
+        else
+            this.champ.setChamp(mapInt.getLongueur(),mapInt.getLargeur(),sol);
+        this.tailleTuile=champ.gettT();
+        map1.setPrefTileHeight(tailleTuile);
+        map1.setPrefTileWidth(tailleTuile);
+        map1.setPrefHeight(LargeurInt*tailleTuile);
+        map1.setPrefWidth(LongueurInt*tailleTuile);
+        this.vueChamp = new VueChamp(map1,LayerSup,champ,mapInt,mapInt2,mapInt3);
+        vueChamp.CreationMap();
+    }
+
 
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
@@ -111,6 +131,10 @@ public class Controleur implements Initializable {
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
+        if(keyEvent.getCode().toString().equals("P")){
+            map1.getChildren().clear();
+            ChargementMap(MapPossible.test2);
+        }
     }
 
     public void keyReleased(KeyEvent e){
