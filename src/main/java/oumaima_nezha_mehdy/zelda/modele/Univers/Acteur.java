@@ -141,11 +141,9 @@ public class Acteur {
     public void ramasser(Armes vA) {
         for(int i=0 ; i<5;i++)
             if(inventaire.get(i)==null) {
-                System.out.println("Arme ramassée: " + vA.getNom());
                 inventaire.set(i,vA);
                 break;
             }
-
         champ.getItem().remove(vA);
     }
 

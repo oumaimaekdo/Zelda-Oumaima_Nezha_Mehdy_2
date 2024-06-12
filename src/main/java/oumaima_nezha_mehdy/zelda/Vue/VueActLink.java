@@ -73,12 +73,12 @@ public class VueActLink {
 
 
 
-    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire, TilePane armesMap,VueChamp vueChamp){
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire,VueChamp vueChamp){
         vueActeur=pane;
         numeroImage=1;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
-        this.armesMap = armesMap;
+        //this.armesMap = armesMap;
         this.link=champ.getLink();
         this.tT=tailleTuile;
         this.vueChamp = vueChamp;
@@ -291,4 +291,6 @@ public class VueActLink {
     public Pane getVueArmesJeu() {
         return VueArmesJeu;
     }
+
+
 }

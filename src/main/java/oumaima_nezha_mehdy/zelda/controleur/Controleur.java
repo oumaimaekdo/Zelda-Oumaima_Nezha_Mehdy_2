@@ -83,7 +83,7 @@ public class Controleur implements Initializable {
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"iceLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
 
-        this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire, armesMap,vueChamp);
+        this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire,vueChamp);
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
         sbirControl.getSbir1().deplacementAleatoire();
 
