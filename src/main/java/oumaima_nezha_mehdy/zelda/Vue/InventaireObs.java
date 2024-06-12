@@ -37,7 +37,7 @@ class InventaireObs implements ListChangeListener<Armes> {
                         System.out.println(val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#" + a.getId())));
                         VueArmes vA = null;
                         if (a instanceof EpeeDeFer) {
-                            vA = new VueEpeeRouge(a);
+                            vA = new VueEpee(a);
                         }
                         a.getXProperty().bind(link.getXProperty());
                         a.getYProperty().bind(link.getYProperty());

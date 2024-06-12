@@ -49,11 +49,11 @@ public class VueChamp {
 
 
 
-    public VueChamp(TilePane map1, TilePane LayerSup,TilePane armesMap, Champ champ, MapInt mapInt, MapInt mapInt2, MapInt collision) {
+    public VueChamp(TilePane map1, TilePane LayerSup, Champ champ, MapInt mapInt, MapInt mapInt2, MapInt collision) {
 
         this.map1 = map1;
         this.LayerSup = LayerSup;
-        this.armesMap = armesMap;
+       // this.armesMap = armesMap;
 
         this.champ = champ;
         this.tailleTuile = champ.gettT();
@@ -81,12 +81,12 @@ public class VueChamp {
         LayerSup.setPrefTileWidth(tailleTuile);
         LayerSup.setPrefHeight(LargeurInt*tailleTuile);
         LayerSup.setPrefWidth(LongueurInt*tailleTuile);
-        armesMap.setPrefTileHeight(tailleTuile);
+        /*armesMap.setPrefTileHeight(tailleTuile);
         armesMap.setPrefTileWidth(tailleTuile);
         armesMap.setPrefHeight(LargeurInt*tailleTuile);
-        armesMap.setPrefWidth(LongueurInt*tailleTuile);
+        armesMap.setPrefWidth(LongueurInt*tailleTuile);*/
         CreationMap();
-        CreationArme();
+        //CreationArme();
         CreationLayerSup();
 
 
