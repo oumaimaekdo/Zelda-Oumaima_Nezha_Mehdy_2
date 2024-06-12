@@ -68,7 +68,7 @@ public class VueActLink {
     private ArrayList<VueArmes> vueInventaire;
     private HashSet<String> touchePressé;
 
-    private Armes epee = new EpeeDeFer();
+    private Armes epee ;
     private int numeroImage;
 
 
@@ -87,6 +87,7 @@ public class VueActLink {
         this.touchePressé = new HashSet<>();
         this.directionregardé="est";
         this.vueInventaire = new ArrayList<>();
+        this.epee = new EpeeDeFer(this.champ);
         chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
         champ.getItem().addListener(new ChampItemObs(VueArmesJeu));
@@ -95,8 +96,14 @@ public class VueActLink {
         linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
-        link.ramasser(new Armes("Epee",20));
-        link.ramasser(new Armes("Arc",20));
+        VueArmes a = new VueEpee(new EpeeDeFer(champ));
+        VueArmesJeu.getChildren().add(a.getArmeVue());
+        a.getArme().setX(300);
+        a.getArme().setY(550);
+        VueArmes b = new VueEpee(new EpeeDeFer(champ));
+        VueArmesJeu.getChildren().add(b.getArmeVue());
+        b.getArme().setX(200);
+        b.getArme().setY(750);
         initAnimation();
         gameLoop.play();
 
@@ -270,11 +277,6 @@ public class VueActLink {
                 })
         );gameLoop.getKeyFrames().add(kf);
     }
-
-    public VueArmes getArmeEquipé() {
-        return armeEquipé;
-    }
-
     public ArrayList<VueArmes> getVueInventaire() {
         return vueInventaire;
     }
@@ -282,8 +284,11 @@ public class VueActLink {
         return champ;
     }
 
-    public void updateChamp(Champ champ, VueChamp vueChamp) {
-        this.champ = champ;
-        this.vueChamp = vueChamp;
+    public void re(){
+        vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case" + 1));
+    }
+
+    public Pane getVueArmesJeu() {
+        return VueArmesJeu;
     }
 }

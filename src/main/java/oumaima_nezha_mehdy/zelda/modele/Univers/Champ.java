@@ -34,11 +34,11 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.link = new Acteur("Link",0,700,this);
         this.sbir = new Sbir("Squelette",50,650,this,true);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
+        this.link = new Acteur("Link",0,700,this);
 
     }
 
@@ -151,5 +151,12 @@ public class Champ {
 
     public int gettT() {
         return tT;
+    }
+
+    public void setChamp(int L , int l,int[] map){
+        this.largeur=l;
+        this.longueur=L;
+        this.champ = map;
+        this.tT=64;
     }
 }

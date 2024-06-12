@@ -12,8 +12,8 @@ public  class Arc extends Armes {
     public static int id= 0;
 
 
-    public Arc(){
-        super("Arc",25);
+    public Arc(Champ champ){
+        super("Arc",25,champ);
         this.munitions = 3;
     }
     @Override
@@ -30,9 +30,8 @@ public  class Arc extends Armes {
         return this.munitions;
     }
 
-    public static String getId() {
-        return "#"+id;
+    public void setId(int id){
+        this.id = id;
     }
-
 
 }

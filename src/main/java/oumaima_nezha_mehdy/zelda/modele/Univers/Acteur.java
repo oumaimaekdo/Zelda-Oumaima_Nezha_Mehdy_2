@@ -94,11 +94,13 @@ public class Acteur {
     }
 
     public ArrayList<Armes> armeAutour() {
+        int rayon = 30;
         ArrayList<Armes> itemAutour = new ArrayList<>();
         for (Armes a : champ.getItem())
             if (!inventaire.contains(a))
-                if ((this.getY() - 5 <= a.getY() && a.getY() <= this.getY() + 5) && (this.getX() - 5 <= a.getX() && a.getX() <= this.getX() + 5))
+                if ((this.getY() - rayon <= a.getY() && a.getY() <= this.getY() + rayon) && (this.getX() - rayon <= a.getX() && a.getX() <= this.getX() + rayon)){
                     itemAutour.add(a);
+                }
         return itemAutour;
     }
     public void ramasserAutour() {
@@ -140,7 +142,7 @@ public class Acteur {
         for(int i=0 ; i<5;i++)
             if(inventaire.get(i)==null) {
                 System.out.println("Arme ramassée: " + vA.getNom());
-                inventaire.add(i,vA);
+                inventaire.set(i,vA);
                 break;
             }
 
@@ -150,8 +152,8 @@ public class Acteur {
     public void selectioner(int i){
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);
-            armeEquipé.getYProperty().bind(this.y);
-            armeEquipé.getXProperty().bind(this.x);
+            //armeEquipé.getYProperty().bind(this.y);
+            //armeEquipé.getXProperty().bind(this.x);
         }
 
     }

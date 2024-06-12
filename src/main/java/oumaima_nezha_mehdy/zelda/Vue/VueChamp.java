@@ -11,6 +11,7 @@ import javafx.scene.layout.TilePane;
 import oumaima_nezha_mehdy.zelda.controleur.Clavier;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFeu;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
 import oumaima_nezha_mehdy.zelda.modele.Univers.MapPossible;
@@ -363,7 +364,7 @@ public class VueChamp {
                 case 2:
                     imageView2.setImage(epeeRougeMap);
                     imageView2.setId("epeerouge");
-                    epeeRouge = new Armes("epeeRouge",35);
+                    epeeRouge = new EpeeDeFeu(champ);
                     vueEpeeRouge = new VueEpeeRouge(epeeRouge);
                     this.listeArmesCreer.add(vueEpeeRouge);
                     break;

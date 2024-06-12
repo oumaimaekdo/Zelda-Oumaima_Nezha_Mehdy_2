@@ -60,6 +60,14 @@ public class Controleur implements Initializable {
     private MapInt mapInt3;
     private MapInt mapInt4;
     private MapInt monde;
+
+    private int[] sol;
+    private int LongueurInt;
+
+    private int LargeurInt;
+
+    private int tailleTuile;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.mapInt = MapPossible.test3;
@@ -69,12 +77,11 @@ public class Controleur implements Initializable {
         this.monde = MapVillage2.monde;
 
         this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
-        this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
         //this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
+        this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"volcanLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"iceLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
-
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire, armesMap,vueChamp);
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
@@ -82,7 +89,7 @@ public class Controleur implements Initializable {
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
         setUpListeners();
-        checkAndChangeMap();
+
     }
 
     private void setUpListeners() {
@@ -96,6 +103,7 @@ public class Controleur implements Initializable {
         this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
     }
 
+
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
     }
@@ -108,29 +116,6 @@ public class Controleur implements Initializable {
     public void keyReleased(KeyEvent e){
         clavier.toucheRelaché(e);
     }
-    private void checkAndChangeMap() {
-        int linkX = (int) champ.getLink().getX();
-        int linkY = (int) champ.getLink().getY();
-        int tileX = linkX / champ.gettT();
-        int tileY = linkY / champ.gettT();
-
-        if (tileX >= 0 && tileX < champ.getLargeur() && tileY >= 0 && tileY < champ.getLongueur()) {
-            if (champ.presencePortail(tileX,tileY)) {
-                changementMap();
-            }
-        }
-    }
 
 
-
-    public void changementMap(){
-        if(this.vueVillage2.getNom() == "village2") {
-            this.champ = new Champ(this.mapInt.getLongueur(), this.mapInt.getLargeur(), MapPossible.collision.getCarte());
-            this.vueChamp = new VueChamp(map1,LayerSup,armesMap,champ,mapInt,mapInt2,mapInt3);
-            this.linkControl.updateChamp(champ, vueChamp);
-            this.sbirControl.updateChamp(champ);
-
-
-        }
-    }
 }

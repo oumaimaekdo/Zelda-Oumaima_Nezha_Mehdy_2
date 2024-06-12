@@ -4,8 +4,13 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
+import oumaima_nezha_mehdy.zelda.Vue.VueEpeeRouge;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteur;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
+import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 
 class InventaireObs implements ListChangeListener<Armes> {
 
@@ -16,7 +21,7 @@ class InventaireObs implements ListChangeListener<Armes> {
     private HBox vueCaseInventaire;
     private VueActLink val;
 
-    public InventaireObs(Acteur link, Pane vAI, HBox vCI, VueActLink val) {
+    InventaireObs(Acteur link,Pane vAI,HBox vCI,VueActLink val) {
         this.link = link;
         this.vueArmesInventaire=vAI;
         this.vueCaseInventaire=vCI;
@@ -28,38 +33,40 @@ class InventaireObs implements ListChangeListener<Armes> {
         while(change.next()){
             if(change.wasAdded()){
                 for(Armes a : change.getAddedSubList() ) {
-                    if(a!=null){
+                    if (a != null) {
+                        System.out.println(val.getVueArmesJeu().getChildren().remove(val.getVueArmesJeu().lookup("#" + a.getId())));
                         VueArmes vA = null;
-                        if (a.getNom().equals("Epee")) {
-                            vA = new VueEpee(a);
+                        if (a instanceof EpeeDeFer) {
+                            vA = new VueEpeeRouge(a);
                         }
-                        if (a.getNom().equals("Arc")) {
-                            vA = new VueArc(a);
-                        }
+                        a.getXProperty().bind(link.getXProperty());
+                        a.getYProperty().bind(link.getYProperty());
                         ImageView armecase = new ImageView();
                         int indice = link.getInventaire().indexOf(a);
                         armecase.setImage(vA.getArmeVue().getImage());
-                        System.out.println(vA.getArmeVue().getImage().getHeight() + ".........." + vA.getArmeVue().getImage().getWidth());
                         armecase.setFitWidth(80);
                         armecase.setFitHeight(80);
                         armecase.setId("case" + indice);
+                        val.getVueInventaire().set(indice, vA);
                         vueArmesInventaire.getChildren().add(armecase);
                         armecase.setX(vueCaseInventaire.getLayoutX() + (100 * indice) + 65);
                         armecase.setY(40);
-                        val.getVueInventaire().set(indice, vA);
+                        System.out.println("zaza");
                     }
                 }
             }
-            if (change.wasRemoved()){
-                for (Armes a : change.getRemoved()) {
-                    System.out.println(a.getX()+"............"+a.getY());
+        }
+        if (change.wasRemoved()){
+            for (Armes a : change.getRemoved()) {
+                if(a!=null) {
+                    System.out.println(a.getX() + "............" + a.getY());
                     int indice = -1;
-                    for(VueArmes vA : val.getVueInventaire())
-                        if(vA!=null&&vA.getArme().equals(a))
+                    for (VueArmes vA : val.getVueInventaire())
+                        if (vA != null && vA.getArme().equals(a))
                             indice = val.getVueInventaire().indexOf(vA);
                     val.lacher();
                     vueArmesInventaire.getChildren().remove(vueArmesInventaire.lookup("#case" + indice));
-                    val.getVueInventaire().set(indice,null);
+                    val.getVueInventaire().set(indice, null);
                 }
             }
         }

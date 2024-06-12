@@ -52,7 +52,7 @@ public abstract class VueArmes {
     public Image getArmeImage() {
         return armeImage;
     }
-    /*public String toString(){return "Arme";}*/
+
     public void vueAttaque(Acteur acteur,Armes arme){
 
         if(arme.getNom().equals("epee")){

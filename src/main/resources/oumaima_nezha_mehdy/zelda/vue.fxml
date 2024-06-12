@@ -18,12 +18,12 @@
                         <TilePane fx:id="mapVIllage2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="vueArmes" />
                   <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                   <TilePane fx:id="armesMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                   <Pane fx:id="vueArcPane" />
-                  <Pane fx:id="elementsImpassable" />
                   <Pane fx:id="vueSbir" />
+                  <Pane fx:id="vueArmes" />
+
 
                </children>
             </Pane>
