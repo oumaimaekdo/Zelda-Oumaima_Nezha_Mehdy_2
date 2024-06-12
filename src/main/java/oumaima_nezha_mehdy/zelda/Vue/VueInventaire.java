@@ -26,39 +26,59 @@ public class VueInventaire {
             case "DIGIT1" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case1").setOpacity(1);
+                val.getLink().selectioner(1);
                 val.selectioner(1);
                 break;
             case "UNDEFINED":
             case "DIGIT2" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case2").setOpacity(1);
+                val.getLink().selectioner(2);
                 val.selectioner(2);
                 break;
             case "QUOTEDBL":
             case "DIGIT3" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case3").setOpacity(1);
+                val.getLink().selectioner(3);
                 val.selectioner(3);
                 break;
             case "QUOTE":
             case "DIGIT4" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case4").setOpacity(1);
+                val.getLink().selectioner(4);
                 val.selectioner(4);
                 break;
             case "LEFT_PARENTHESIS":
             case "DIGIT5" :
                 reinitialiserOpacitéCase();
                 vueCaseInventaire.lookup("#case5").setOpacity(1);
+                val.getLink().selectioner(5);
                 val.selectioner(5);
                 break;
-            case "L":
-                val.getLink().lacher();
+            case "G": val.getLink().lacher();
                 break;
             case "E" : val.getLink().ramasserAutour();
                 break;
+            case "V" : for(Armes a : val.getChamp().getItem())
+                System.out.println("arme");
+                break;
+            case "H" : for(VueArmes a : val.getVueInventaire())
+                if(a!=null)
+                    System.out.println("VueArme");
+                else
+                    System.out.println("null");
+                break;
+            case "L" : for(Armes a : val.getLink().getInventaire())
+                if(a!=null)
+                    System.out.println("Arme");
+                else
+                    System.out.println("null");
+                break;
             case "R" : val.re();
         }
+
     }
     private void reinitialiserOpacitéCase(){
         for(int i=0; i<vueCaseInventaire.getChildren().size() ; i++){

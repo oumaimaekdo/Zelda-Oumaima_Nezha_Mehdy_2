@@ -66,6 +66,8 @@ public class VueActLink {
     private Timeline gameLoop;
 
     private ArrayList<VueArmes> vueInventaire;
+    private ArrayList<VueArmes> vueItem;
+
     private HashSet<String> touchePressé;
 
     private Armes epee ;
@@ -88,9 +90,10 @@ public class VueActLink {
         this.directionregardé="est";
         this.vueInventaire = new ArrayList<>();
         this.epee = new EpeeDeFer(this.champ);
+        this.vueItem = new ArrayList<>();
         chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
-        champ.getItem().addListener(new ChampItemObs(VueArmesJeu));
+        champ.getItem().addListener(new ChampItemObs(VueArmesJeu,this));
         creerlink("file:src/main/resources/images/link_profil.png",link);
         linkNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
         linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
@@ -174,11 +177,6 @@ public class VueActLink {
         this.vueLink=r;
         
     }
-    private void chargerInventaire(){
-        for(int i=0;i<5;i++){
-            vueInventaire.add(null);
-        }
-    }
 
     public void selectioner(int i){
         if(armeEquipé!=null) {
@@ -232,6 +230,12 @@ public class VueActLink {
         }
     }
 
+    private void chargerInventaire(){
+        for(int i=0;i<5;i++){
+            vueInventaire.add(null);
+        }
+    }
+
     public void toucheRelaché(KeyEvent keyEvent) {
         touchePressé.remove(keyEvent.getCode().toString());
     }
@@ -282,6 +286,10 @@ public class VueActLink {
     }
     public Champ getChamp() {
         return champ;
+    }
+
+    public ArrayList<VueArmes> getVueItem() {
+        return vueItem;
     }
 
     public void re(){

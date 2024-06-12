@@ -7,17 +7,27 @@ import oumaima_nezha_mehdy.zelda.modele.Armes.*;
 public class ChampItemObs implements ListChangeListener<Armes> {
 
     private Pane VueArmeJeu;
+    private VueActLink val;
 
-    public ChampItemObs(Pane vueJeu){
+    public ChampItemObs(Pane vueJeu,VueActLink val){
         VueArmeJeu=vueJeu;
+        this.val=val;
     }
     @Override
     public void onChanged(Change<? extends Armes> change) {
         while(change.next()){
             if(change.wasRemoved()) {
-                for (Armes a : change.getRemoved())
-                    VueArmeJeu.getChildren().remove(VueArmeJeu.lookup("#" + a.getId()));
-                System.out.println("supp");
+                for (VueArmes va :val.getVueItem() ) {
+                    if(change.getRemoved().contains(va.getArmeVue())) {
+                        VueArmeJeu.getChildren().remove(va.getArmeVue());
+                        System.out.println("supp");
+                    }
+                }
+            }
+            if(change.wasAdded()){
+                for (Armes a : change.getAddedSubList()) {
+
+                }
             }
 
 
