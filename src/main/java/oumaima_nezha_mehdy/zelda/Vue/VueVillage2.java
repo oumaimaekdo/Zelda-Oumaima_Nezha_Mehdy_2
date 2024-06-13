@@ -59,7 +59,6 @@ public class VueVillage2 {
         LayerSup.setPrefTileWidth(tailleTuile);
         LayerSup.setPrefHeight(LargeurInt * tailleTuile);
         LayerSup.setPrefWidth(LongueurInt * tailleTuile);
-
         CreationMap();
         CreationLayerSup();
 

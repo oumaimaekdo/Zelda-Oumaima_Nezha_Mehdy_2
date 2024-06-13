@@ -145,9 +145,11 @@ public class VueActLink {
                     link.attaquer(armeEquipé,link);
                     armeEquipé.vueAttaque(this,link, armeEquipé.getArme());
                     System.out.println("le perso attaque");
-                    Thread.sleep(3000);
+                    Thread.sleep(300);
                    if(armeEquipé.getArme().getNom() != "bombe"){
-                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), armeEquipé.getArme(), link);
+                       armeEquipé.getArmeVue().setFitWidth(15);
+                       armeEquipé.getArmeVue().setFitHeight(15);
+                       armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), armeEquipé.getArme(), link);
                     }
 
                     System.out.println("le perso arrete l'attaque");

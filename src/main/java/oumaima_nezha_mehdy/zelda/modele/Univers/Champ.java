@@ -68,7 +68,7 @@ public class Champ {
         final int droite = -10;
 
         // Check initial boundary conditions
-        if (x < 0 || y < 0 || x + 15 >= this.longueur * tT || y + 15 >= this.largeur * tT) {
+        if (x < 0 || y < 0 || x + haut >= this.longueur * tT || y + gauche >= this.largeur * tT) {
             return false;
         }
 
