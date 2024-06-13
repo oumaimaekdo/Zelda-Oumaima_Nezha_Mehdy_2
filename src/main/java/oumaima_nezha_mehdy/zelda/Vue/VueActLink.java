@@ -33,8 +33,6 @@ public class VueActLink {
 
 
     private Acteur link;
-    private VueChamp vueChamp;
-
     @FXML
     private Pane vueActeur;
 

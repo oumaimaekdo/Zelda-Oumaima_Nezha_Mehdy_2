@@ -1,22 +1,16 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.stage.Stage;
-import oumaima_nezha_mehdy.zelda.Main;
-import oumaima_nezha_mehdy.zelda.Vue.VueChamp;
 import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
@@ -52,7 +46,6 @@ public class Controleur implements Initializable {
     private VueActLink linkControl;
     private VueSbir sbirControl;
     private Clavier clavier;
-    private VueChamp vueChamp;
     private VueVillage2 vueVillage2;
 
     private MapInt mapInt;
@@ -70,17 +63,12 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.mapInt = MapPossible.Layer1;
-        this.mapInt2 = MapPossible.Layer2;
         this.mapInt3 = MapPossible.collision;
         this.mapInt4 = MapPossible.village2;
         this.monde = MapVillage2.monde;
 
 
-        //this.champ = new Champ(mapInt.getLongueur(), mapInt.getLargeur(), MapPossible.collision.getCarte());
-        //this.champ = new Champ(mapInt4.getLongueur(), mapInt4.getLargeur(), MapVillage2.collision.getCarte());
-        //this.vueChamp = new VueChamp(map1,LayerSup,champ,mapInt,mapInt2,mapInt3);
-        ChargementMap(mapInt,"debut",MapPossible.collision.getCarte());
+        ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"volcanLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,"iceLand");
         //this.vueVillage2 = new VueVillage2(mapVIllage2,champ,monde,"monde");
@@ -120,7 +108,7 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefTileWidth(tailleTuile);
         mapVIllage2.setPrefHeight(LargeurInt*tailleTuile);
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
-        this.vueVillage2 = new VueVillage2(mapVIllage2,champ,mapInt4,nomMap);
+        this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
         this.vueVillage2.CreationMap();
     }
 
@@ -132,11 +120,30 @@ public class Controleur implements Initializable {
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
-        if(keyEvent.getCode().toString().equals("P")){
-            mapVIllage2.getChildren().clear();
-            linkControl.getLink().setX(660);
-            linkControl.getLink().setY(50);
-            ChargementMap(mapInt,"iceLand",MapVillage2.collision.getCarte());
+        if(vueVillage2.getNom().equals("debut")) {
+            if (keyEvent.getCode().toString().equals("P")) {
+                mapVIllage2.getChildren().clear();
+                LayerSup.getChildren().clear();
+                linkControl.getLink().setX(660);
+                linkControl.getLink().setY(50);
+                ChargementMap(mapInt4, "foret", MapVillage2.collision.getCarte());
+            }
+        }
+        else if(vueVillage2.getNom().equals("foret")){
+            if (keyEvent.getCode().toString().equals("P")) {
+
+                mapVIllage2.getChildren().clear();
+                LayerSup.getChildren().clear();
+                linkControl.getLink().setX(60);
+                linkControl.getLink().setY(590);
+                ChargementMap(mapInt4, "iceLand", MapVillage2.collision.getCarte());
+            } if(keyEvent.getCode().toString().equals("N")){
+                mapVIllage2.getChildren().clear();
+                LayerSup.getChildren().clear();
+                linkControl.getLink().setX(670);
+                linkControl.getLink().setY(930);
+                ChargementMap(mapInt4, "debut", MapVillage2.collision.getCarte());
+            }
         }
     }
 
