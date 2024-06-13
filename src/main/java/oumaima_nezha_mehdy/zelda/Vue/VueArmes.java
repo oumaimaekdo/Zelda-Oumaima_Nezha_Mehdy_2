@@ -39,6 +39,8 @@ public abstract class VueArmes {
         r.setId(arme.getId());
         this.ArmeVue = r;
         this.arme=arme;
+        ArmeVue.xProperty().bind(arme.getXProperty());
+        ArmeVue.yProperty().bind(arme.getYProperty());
     }
 
     public ImageView getArmeVue() {

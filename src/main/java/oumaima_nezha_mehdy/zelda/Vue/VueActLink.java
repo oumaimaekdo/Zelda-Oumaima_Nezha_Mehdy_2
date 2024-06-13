@@ -98,7 +98,7 @@ public class VueActLink {
         linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
         VueArmes a = new VueEpee(new EpeeDeFer(champ));
         VueArmesJeu.getChildren().add(a.getArmeVue());
-        a.getArme().setX(300);
+        a.getArme().setX(600);
         a.getArme().setY(550);
         VueArmes b = new VueBombe(new Bombe(champ));
         VueArmesJeu.getChildren().add(b.getArmeVue());

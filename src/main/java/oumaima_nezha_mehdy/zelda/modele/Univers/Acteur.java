@@ -94,7 +94,7 @@ public class Acteur {
     }
 
     public ArrayList<Armes> armeAutour() {
-        int rayon = 1000;
+        int rayon = 30;
         ArrayList<Armes> itemAutour = new ArrayList<>();
         for (Armes a : champ.getItem())
             if (!inventaire.contains(a))
