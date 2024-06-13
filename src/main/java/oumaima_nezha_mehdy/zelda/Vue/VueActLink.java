@@ -92,10 +92,10 @@ public class VueActLink {
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
         champ.getItem().addListener(new ChampItemObs(VueArmesJeu,this));
         creerlink("file:src/main/resources/images/link_profil.png",link);
-        linkNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
-        linkSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
-        linkEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
-        linkOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");
+        linkNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
+        linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
+        linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
+        linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
         VueArmes a = new VueEpee(new EpeeDeFer(champ));
         VueArmesJeu.getChildren().add(a.getArmeVue());
         a.getArme().setX(300);
@@ -145,7 +145,9 @@ public class VueActLink {
                     link.attaquer(armeEquipé,link);
                     armeEquipé.vueAttaque(link, epee);
                     System.out.println("le perso attaque");
-                    Thread.sleep(3000);
+                    Thread.sleep(300);
+                    armeEquipé.getArmeVue().setFitWidth(15);
+                    armeEquipé.getArmeVue().setFitHeight(15);
                     armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
                     System.out.println("le perso arrete l'attaque");
 
@@ -260,7 +262,7 @@ public class VueActLink {
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-
+        
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.03),
@@ -275,6 +277,7 @@ public class VueActLink {
                     numeroImage++;
                     if(numeroImage>10)
                         numeroImage=1;
+
                 })
         );gameLoop.getKeyFrames().add(kf);
     }

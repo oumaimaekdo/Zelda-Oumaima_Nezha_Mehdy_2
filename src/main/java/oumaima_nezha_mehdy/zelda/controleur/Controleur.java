@@ -87,6 +87,14 @@ public class Controleur implements Initializable {
     private void setUpListeners() {
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateX(univers.getPrefWidth() / 2 - champ.getLink().getX());
+            if(vueVillage2.getNom().equals("debut")&&champ.getLink().getY()/64==14 && champ.getLink().getX()/64==10) {
+                mapVIllage2.getChildren().clear();
+                LayerSup.getChildren().clear();
+                linkControl.getLink().setX(660);
+                linkControl.getLink().setY(50);
+                ChargementMap(mapInt4, "foret", MapVillage2.collision.getCarte());
+            }
+
         });
         this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
@@ -109,7 +117,6 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefHeight(LargeurInt*tailleTuile);
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
-        this.vueVillage2.CreationMap();
     }
 
 
@@ -145,6 +152,7 @@ public class Controleur implements Initializable {
                 ChargementMap(mapInt4, "debut", MapVillage2.collision.getCarte());
             }
         }
+        System.out.println(linkControl.getLink().getX()/64 + " ......." + linkControl.getLink().getY()/64);
     }
 
     public void keyReleased(KeyEvent e){

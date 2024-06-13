@@ -57,7 +57,7 @@ public class VueInventaire {
                 val.getLink().selectioner(5);
                 val.selectioner(5);
                 break;
-            case "L": val.getLink().lacher();
+            case "G": val.getLink().lacher();
                 break;
             case "E" : val.getLink().ramasserAutour();
                 break;
@@ -70,7 +70,6 @@ public class VueInventaire {
                 else
                     System.out.println("null");
                 break;
-            case "R" : val.re();
         }
 
     }

@@ -30,10 +30,10 @@ public class VueSbir {
         this.sbir1=champ.getSbir();
         this.tailleTuile=tailleTuile;
         creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif",sbir1);
-        /*SbirNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
-        SbirSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
-        SbirEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
-        SbirOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");*/
+        /*SbirNord=new Image("file:src/main/resources/images/Link/nordDefault.png");
+        SbirSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
+        SbirEst=new Image("file:src/main/resources/images/Link/estDefault.png");
+        SbirOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");*/
         deplacementSbir();
     }
 
