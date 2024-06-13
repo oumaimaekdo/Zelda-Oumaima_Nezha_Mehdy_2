@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import javafx.animation.KeyFrame;
@@ -86,7 +87,6 @@ public class VueActLink {
         this.touchePressé = new HashSet<>();
         this.directionregardé="est";
         this.vueInventaire = new ArrayList<>();
-        this.epee = new EpeeDeFer(this.champ);
         this.vueItem = new ArrayList<>();
         chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
@@ -100,7 +100,7 @@ public class VueActLink {
         VueArmesJeu.getChildren().add(a.getArmeVue());
         a.getArme().setX(300);
         a.getArme().setY(550);
-        VueArmes b = new VueEpee(new EpeeDeFer(champ));
+        VueArmes b = new VueBombe(new Bombe(champ));
         VueArmesJeu.getChildren().add(b.getArmeVue());
         b.getArme().setX(200);
         b.getArme().setY(750);
@@ -143,10 +143,13 @@ public class VueActLink {
             new Thread(() -> {
                 try {
                     link.attaquer(armeEquipé,link);
-                    armeEquipé.vueAttaque(link, epee);
+                    armeEquipé.vueAttaque(this,link, armeEquipé.getArme());
                     System.out.println("le perso attaque");
                     Thread.sleep(3000);
-                    armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
+                   if(armeEquipé.getArme().getNom() != "bombe"){
+                        armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), armeEquipé.getArme(), link);
+                    }
+
                     System.out.println("le perso arrete l'attaque");
 
                 } catch (InterruptedException e) {

@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
 import oumaima_nezha_mehdy.zelda.Vue.VueEpeeRouge;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteur;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
@@ -38,6 +39,8 @@ class InventaireObs implements ListChangeListener<Armes> {
                         VueArmes vA = null;
                         if (a instanceof EpeeDeFer) {
                             vA = new VueEpee(a);
+                        } else if (a instanceof Bombe) {
+                            vA = new VueBombe(a);
                         }
                         a.getXProperty().bind(link.getXProperty());
                         a.getYProperty().bind(link.getYProperty());

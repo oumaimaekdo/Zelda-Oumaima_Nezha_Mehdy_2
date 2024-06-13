@@ -19,6 +19,7 @@ public abstract class VueArmes {
     private Image armeImage;
 
     private Image attaqueEpee = new Image("file:src/main/resources/images/Armes/attaqueEpee.gif");
+    private Image attaqueBombe = new Image("file:src/main/resources/images/Armes/explosionBombe.gif");
 
 
     // Constructeur
@@ -53,7 +54,7 @@ public abstract class VueArmes {
         return armeImage;
     }
 
-    public void vueAttaque(Acteur acteur,Armes arme){
+    public void vueAttaque(VueActLink vueActeur,Acteur acteur,Armes arme){
 
         if(arme.getNom().equals("epee")){
             ArmeVue.setImage(attaqueEpee);
@@ -61,6 +62,14 @@ public abstract class VueArmes {
             ArmeVue.setFitHeight(30);
             ArmeVue.xProperty().bind(acteur.getXProperty().add(14));
             ArmeVue.yProperty().bind(acteur.getYProperty().add(1));
+        }
+        else if(arme.getNom().equals("bombe")){
+            ArmeVue.setImage(attaqueBombe);
+            ArmeVue.setFitWidth(30);
+            ArmeVue.setFitHeight(30);
+            ArmeVue.xProperty().bind(acteur.getXProperty().add(140));
+            ArmeVue.yProperty().bind(acteur.getYProperty().add(1));
+            acteur.lacher();
         }
 
     }

@@ -109,7 +109,6 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefHeight(LargeurInt*tailleTuile);
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
-        this.vueVillage2.CreationMap();
     }
 
 
@@ -131,7 +130,6 @@ public class Controleur implements Initializable {
         }
         else if(vueVillage2.getNom().equals("foret")){
             if (keyEvent.getCode().toString().equals("P")) {
-
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
                 linkControl.getLink().setX(60);

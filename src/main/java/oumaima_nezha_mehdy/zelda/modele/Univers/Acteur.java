@@ -111,8 +111,14 @@ public class Acteur {
 
 
     public void attaquer(VueArmes armeEquipe, Acteur acteur) {
-        acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
-        System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
+        if(armeEquipe.getArme().getNom().equals("bombe")){
+            acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
+        }
+        else{
+            acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
+            System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
+        }
+
     }
 
     public Armes getArme() {
