@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Bloc;
 
 public class VueInventaire {
 
@@ -61,15 +62,12 @@ public class VueInventaire {
                 break;
             case "E" : val.getLink().ramasserAutour();
                 break;
-            case "V" : for(Armes a : val.getChamp().getItem())
-                System.out.println("arme");
-                break;
-            case "H" : for(VueArmes a : val.getVueInventaire())
-                if(a!=null)
-                    System.out.println("VueArme");
-                else
-                    System.out.println("null");
-                break;
+            case "H" :
+                System.out.println("link = "+val.getLink().getX()+","+val.getLink().getY());
+                for(Bloc b : val.getChamp().getListBloc())
+                System.out.println(b.getX()+"........."+ b.getY());
+
+            break;
         }
 
     }

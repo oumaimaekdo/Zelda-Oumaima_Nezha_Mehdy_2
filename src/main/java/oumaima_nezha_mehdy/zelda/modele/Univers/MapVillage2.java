@@ -42,10 +42,6 @@ public class MapVillage2 {
             tableau[i] = i; // Initialisation de chaque élément avec sa valeur correspondante
         }
 
-        // Affichage du tableau pour vérifier
-        for (int i = 0; i < tableau.length; i++) {
-            System.out.print(tableau[i] + " ");
-        }
 
         return tableau;
     }

@@ -1,10 +1,13 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
+import oumaima_nezha_mehdy.zelda.Vue.ListObsBloc;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +15,7 @@ public class Champ {
 
     private int[] champ;
 
-    private ArrayList<Bloc> listBloc =new ArrayList<>();
+    private ObservableList<Bloc> listBloc =FXCollections.observableArrayList();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
@@ -39,6 +42,7 @@ public class Champ {
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
         this.link = new Acteur("Link",0,700,this);
+
 
     }
 
@@ -79,6 +83,10 @@ public class Champ {
         // Check for collisions
         boolean collisionHautGauche = champ[indexHautGauche] != 1;
         boolean collisionBasDroite = champ[indexBasDroite] != 1;
+        int rayon=40;
+        for(Bloc b : listBloc)
+            if(x<b.getX()+rayon&&x>b.getX()-(rayon-15)&&y<b.getY()+rayon&&y>b.getY()-(rayon-15))
+                return b.getpassable();
 
         // Return the final condition
         return collisionHautGauche && collisionBasDroite;
@@ -105,6 +113,13 @@ public class Champ {
 
         return (presenceHautGauche && presenceBasDroite);
 
+    }
+    public void ajouterBloc(Bloc b){
+        listBloc.add(b);
+    }
+
+    public ObservableList<Bloc> getListBloc() {
+        return listBloc;
     }
 
     public boolean presencePortail(int x, int y){

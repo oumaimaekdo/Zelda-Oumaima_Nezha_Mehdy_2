@@ -15,6 +15,7 @@
                   <Pane fx:id="vueActeur">
                      <children>
                         <TilePane fx:id="mapVIllage2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
+                        <Pane fx:id="VueBloc" />
                      </children>
                   </Pane>
                   <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />

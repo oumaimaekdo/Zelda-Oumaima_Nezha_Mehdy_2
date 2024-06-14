@@ -2,6 +2,8 @@ package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -11,13 +13,16 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import oumaima_nezha_mehdy.zelda.Vue.ListObsBloc;
 import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
+import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
 import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 
 public class Controleur implements Initializable {
 
+    public Pane VueBloc;
     @FXML
     private TilePane map1;
     @FXML
@@ -117,6 +122,8 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefHeight(LargeurInt*tailleTuile);
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
+        this.champ.getListBloc().addListener(new ListObsBloc(VueBloc));
+        Coffre c = new Coffre(new EpeeDeFer(this.champ),"123",this.champ);
     }
 
 
@@ -126,7 +133,6 @@ public class Controleur implements Initializable {
 
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
-        System.out.println(vueInventaire.lookup("#case1").getId());
         if(vueVillage2.getNom().equals("debut")) {
             if (keyEvent.getCode().toString().equals("P")) {
                 mapVIllage2.getChildren().clear();
@@ -152,7 +158,6 @@ public class Controleur implements Initializable {
                 ChargementMap(mapInt4, "debut", MapVillage2.collision.getCarte());
             }
         }
-        System.out.println(linkControl.getLink().getX()/64 + " ......." + linkControl.getLink().getY()/64);
     }
 
     public void keyReleased(KeyEvent e){

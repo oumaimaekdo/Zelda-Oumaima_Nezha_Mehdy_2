@@ -20,4 +20,7 @@ public abstract class Bloc {
     public double getX(){return x;}
 
     public double getY(){return y;}
+
+    abstract public void interagir();
+    }
 }

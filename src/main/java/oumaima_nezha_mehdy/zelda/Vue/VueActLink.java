@@ -158,8 +158,6 @@ public class VueActLink {
         }
         if (armeEquipé!=null)
             bindeur(directionregardé);
-            System.out.println(link.getX()+","+link.getY());
-            System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
