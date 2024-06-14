@@ -34,54 +34,6 @@ public class Sbir extends Acteur {
         this.moveX = moveX;
     }
 
-    public void deplacementAleatoire() {
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (moveX) {
-                    deplacementAleatoireX();
-                } else {
-                    deplacementAleatoireY();
-                }
-            }
-        };
-        timer.start();
-    }
-
-   private void deplacementAleatoireX() {
-        if (getX() < xArrive.get()) {
-            seDeplacer("est");
-        } else if (getX() > xDepart.get()) {
-            seDeplacer("ouest");
-        }
-    }
-
-    private void deplacementAleatoireY() {
-        if (getY() < yArrive.get()) {
-            seDeplacer("sud");
-        } else if (getY() > yDepart.get()) {
-            seDeplacer("nord");
-        }
-    }
-
-
-    public void seDeplacer(Acteur link) {
-
-        while(getX() != link.getX() && getY() != link.getY()) {
-            if (link.getX() > getX()){
-                setX(getX() + 1);
-            }else if(link.getY() > getY()){
-                setY(getY()+1);
-            }
-            else if(link.getY() > getY()){
-                setY(getY() + 1);
-            }else{
-                setY(getY() - 1);
-            }
-        }
-
-    }
-
 
 
     // Getter and setter methods for x and y using IntegerProperty

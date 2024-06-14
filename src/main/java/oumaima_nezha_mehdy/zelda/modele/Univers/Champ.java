@@ -36,11 +36,11 @@ public class Champ {
         this.longueur=L;
         this.champ = map;
         this.sbir2 = new Ennemi("Vocanorax",50,650,this);
+        listActeur.add(sbir2);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
         this.link = new Acteur("Link",0,700,this);
-
     }
 
 
@@ -159,5 +159,9 @@ public class Champ {
         this.longueur=L;
         this.champ = map;
         this.tT=64;
+    }
+
+    public void mortActeur(Acteur acteur){
+        listActeur.remove(acteur);
     }
 }

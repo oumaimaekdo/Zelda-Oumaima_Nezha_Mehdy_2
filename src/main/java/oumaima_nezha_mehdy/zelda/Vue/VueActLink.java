@@ -142,17 +142,20 @@ public class VueActLink {
         if (touchePressé.contains("A")){
             new Thread(() -> {
                 try {
-                    link.attaquer(armeEquipé,link);
-                    armeEquipé.vueAttaque(this,link, armeEquipé.getArme());
-                    System.out.println("le perso attaque");
-                    Thread.sleep(300);
-                   if(armeEquipé.getArme().getNom() != "bombe"){
-                       armeEquipé.getArmeVue().setFitWidth(15);
-                       armeEquipé.getArmeVue().setFitHeight(15);
-                       armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), armeEquipé.getArme(), link);
+                    for(Acteur a : getLink().ennemiAutour()){
+                        link.attaquer(armeEquipé,a);
+                        armeEquipé.vueAttaque(this,link, armeEquipé.getArme());
+                        System.out.println("Link attaque. Il reste "+a.getVie()+" de vie a "+ a.getNom());
+                        Thread.sleep(3000);
+                        if(armeEquipé.getArme().getNom() != "bombe"){
+                            armeEquipé.getArmeVue().setFitWidth(15);
+                            armeEquipé.getArmeVue().setFitHeight(15);
+                            armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), armeEquipé.getArme(), link);
+                        }
+
+                        System.out.println("le perso arrete l'attaque");
                     }
 
-                    System.out.println("le perso arrete l'attaque");
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

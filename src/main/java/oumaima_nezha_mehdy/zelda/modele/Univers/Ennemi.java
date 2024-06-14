@@ -13,30 +13,9 @@ public class Ennemi extends Acteur {
     }
 
     private void initialiserMouvement() {
-        mouvementTimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> seDirigerVersLink()));
+        mouvementTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> seDirigerVersLink()));
         mouvementTimeline.setCycleCount(Timeline.INDEFINITE);
         mouvementTimeline.play();
-    }
-
-    private void seDeplacerAleatoirement() {
-        int chanceDeDeplacement = (int) (Math.random() * 100) + 1;
-        int chanceDeNouvelleDirection = (int) (Math.random() * 100) + 1;
-        int directionAleatoire;
-        String nouvelleDirection = "";
-
-        if (chanceDeDeplacement <= 75) { //75% de chance de se déplacer
-            if (chanceDeNouvelleDirection <= 75) { //75% de chance de changer de direction
-                directionAleatoire = (int) (Math.random() * 4) + 1;
-                nouvelleDirection = switch (directionAleatoire) {
-                    case 1 -> "nord";
-                    case 2 -> "est";
-                    case 3 -> "sud";
-                    case 4 -> "ouest";
-                    default -> "null";
-                };
-            }
-            this.seDeplacer(nouvelleDirection);
-        }
     }
 
     private void seDirigerVersLink() {
@@ -51,20 +30,33 @@ public class Ennemi extends Acteur {
         int deltaY = linkY - this.getY();
 
         String direction = "";
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            if (deltaX > 0) {
-                direction = "est";
+        if(!estmort()){
+            if (!estEnCollisionAvec(getChamp().getLink())) {
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX > 0) {
+                        direction = "est";
+                    } else {
+                        direction = "ouest";
+                    }
+                } else {
+                    if (deltaY > 0) {
+                        direction = "sud";
+                    } else {
+                        direction = "nord";
+                    }
+                }
+                this.seDeplacer(direction);
             } else {
                 direction = "ouest";
             }
-        } else {
-            if (deltaY > 0) {
-                direction = "sud";
-            } else {
-                direction = "nord";
-            }
+        }else{
+            getChamp().mortActeur(this);
         }
 
-        this.seDeplacer(direction);
     }
+
+    public boolean estmort(){
+        return getVie()<=0;
+    }
+
 }

@@ -1,9 +1,12 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 
@@ -28,6 +31,9 @@ public class VueSbir {
         this.sbir1 = champ.getSbir();
         this.tailleTuile = tailleTuile;
         creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif", sbir1);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(sbir1)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     public void creerSbir(String path, Ennemi s) {
@@ -52,4 +58,11 @@ public class VueSbir {
     public void updateChamp(Champ champ) {
         this.champ = champ;
     }
+
+    public void supprimerSbir(Ennemi s){
+        if(s.estmort()){
+            vueSbir.getChildren().remove(vueSbir1);
+        }
+    }
+
 }
