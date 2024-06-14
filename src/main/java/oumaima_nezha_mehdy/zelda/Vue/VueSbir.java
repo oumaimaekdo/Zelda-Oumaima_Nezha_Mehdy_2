@@ -10,11 +10,14 @@ import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 
+import java.util.ArrayList;
+
 public class VueSbir {
 
     @FXML
     private Pane vueSbir;
     private Ennemi sbir1;
+    private Ennemi sbir2;
     private Champ champ;
     private int tailleTuile;
 
@@ -29,9 +32,11 @@ public class VueSbir {
         vueSbir = pane;
         this.champ = c;
         this.sbir1 = champ.getSbir();
+        this.sbir2 = champ.getSbir2();
         this.tailleTuile = tailleTuile;
         creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif", sbir1);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(sbir1)));
+        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif",sbir2);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(champ.getListEnnemi())));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
@@ -59,10 +64,13 @@ public class VueSbir {
         this.champ = champ;
     }
 
-    public void supprimerSbir(Ennemi s){
-        if(s.estmort()){
-            vueSbir.getChildren().remove(vueSbir1);
+    public void supprimerSbir(ArrayList<Ennemi> ennemi){
+        for(Ennemi e : ennemi){
+            if(e.estmort()){
+                vueSbir.getChildren().remove(vueSbir1);
+            }
         }
+
     }
 
 }

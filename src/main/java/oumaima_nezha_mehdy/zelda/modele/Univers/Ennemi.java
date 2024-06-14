@@ -10,6 +10,7 @@ public class Ennemi extends Acteur {
     public Ennemi(String nom, int x, int y, Champ m) {
         super(nom, x, y, m);
         initialiserMouvement();
+        setVie(1000);
     }
 
     private void initialiserMouvement() {

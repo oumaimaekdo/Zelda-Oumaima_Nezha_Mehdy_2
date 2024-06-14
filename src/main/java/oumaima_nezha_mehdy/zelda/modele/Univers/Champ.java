@@ -15,6 +15,7 @@ public class Champ {
     private ArrayList<Bloc> listBloc =new ArrayList<>();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
+    private ArrayList<Ennemi> listEnnemi = new ArrayList<>();
 
     private ArrayList<Integer> pointDeCollision;
     private ObservableList<Armes> item;
@@ -27,16 +28,17 @@ public class Champ {
 
     private int tT;
 
-    private VueArmes vueArmes;
-    private Armes arme;
     private Ennemi sbir2;
+    private Ennemi sbir3;
 
     public Champ(int L , int l,int[] map){
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
         this.sbir2 = new Ennemi("Vocanorax",50,650,this);
-        listActeur.add(sbir2);
+        listEnnemi.add(sbir2);
+        this.sbir3 = new Ennemi("squelette",300,350,this);
+        listEnnemi.add(sbir3);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
@@ -134,6 +136,10 @@ public class Champ {
     public ArrayList<Acteur> getListActeur() {
         return listActeur;
     }
+    public ArrayList<Ennemi> getListEnnemi() {
+        return listEnnemi;
+    }
+
 
     public ObservableList<Armes> getItem() {
         return item;
@@ -146,6 +152,10 @@ public class Champ {
     public Ennemi getSbir() {
         return sbir2;
     }
+    public Ennemi getSbir2() {
+        return sbir3;
+    }
+
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}
@@ -163,5 +173,6 @@ public class Champ {
 
     public void mortActeur(Acteur acteur){
         listActeur.remove(acteur);
+        listEnnemi.remove(acteur);
     }
 }

@@ -69,5 +69,11 @@ public abstract class Armes {
                 '}';
     }
 
+    public Champ getChamp() {
+        return champ;
+    }
 
+    public void setDegats(int degats) {
+        this.degats = degats;
+    }
 }
