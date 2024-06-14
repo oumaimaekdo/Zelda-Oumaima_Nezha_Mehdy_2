@@ -71,7 +71,7 @@ public class Controleur implements Initializable {
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
-        sbirControl.getSbir1().deplacementAleatoire();
+        sbirControl.getSbir1().seDeplacer(linkControl.getLink());
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
         setUpListeners();
@@ -113,11 +113,15 @@ public class Controleur implements Initializable {
             }
 
         });
+        this.champ.getSbir().getYProperty().addListener((observable, oldValue, newValue) -> {
+            this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
+        });
         this.champ.getLink().getYProperty().addListener((observable, oldValue, newValue) -> {
             this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
         });
         this.univers.setTranslateX(univers.getPrefWidth() / 2 - champ.getLink().getX());
         this.univers.setTranslateY(univers.getPrefHeight() / 2 - champ.getLink().getY());
+
     }
 
     public void ChargementMap(MapInt mapInt,String nomMap,int[] collision){

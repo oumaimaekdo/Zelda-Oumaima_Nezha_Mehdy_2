@@ -3,6 +3,12 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import static java.nio.file.Files.move;
 
 public class Sbir extends Acteur {
 
@@ -14,6 +20,7 @@ public class Sbir extends Acteur {
     private IntegerProperty yArrive;
     private boolean moveX; // Indicates if the Sbir moves on the X-axis or Y-axis
     private Champ champ;
+
 
     public Sbir(String nom, int x, int y, Champ m, boolean moveX) {
         super(nom, x, y, m);
@@ -41,7 +48,7 @@ public class Sbir extends Acteur {
         timer.start();
     }
 
-    private void deplacementAleatoireX() {
+   private void deplacementAleatoireX() {
         if (getX() < xArrive.get()) {
             seDeplacer("est");
         } else if (getX() > xDepart.get()) {
@@ -57,23 +64,25 @@ public class Sbir extends Acteur {
         }
     }
 
-    public void seDeplacer(String direction) {
-        switch (direction) {
-            case "nord":
-                this.yDepart.set(this.yDepart.getValue() - (1 * vitesse));
-                break;
-            case "sud":
-                this.yDepart.set(this.yDepart.getValue() + (1 * vitesse));
-                break;
-            case "ouest":
-                this.xDepart.set(this.xDepart.getValue() - (1 * vitesse));
-                break;
-            case "est":
-                this.xDepart.set(this.xDepart.getValue() + (1 * vitesse));
-                break;
-            default:
+
+    public void seDeplacer(Acteur link) {
+
+        while(getX() != link.getX() && getY() != link.getY()) {
+            if (link.getX() > getX()){
+                setX(getX() + 1);
+            }else if(link.getY() > getY()){
+                setY(getY()+1);
+            }
+            else if(link.getY() > getY()){
+                setY(getY() + 1);
+            }else{
+                setY(getY() - 1);
+            }
         }
+
     }
+
+
 
     // Getter and setter methods for x and y using IntegerProperty
     @Override

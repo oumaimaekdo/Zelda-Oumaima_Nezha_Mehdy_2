@@ -34,7 +34,6 @@ public class VueSbir {
         SbirSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
         SbirEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
         SbirOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");*/
-        deplacementSbir();
     }
 
     public void creerSbir(String path , Sbir s){
@@ -50,10 +49,6 @@ public class VueSbir {
         r.translateXProperty().bind(s.getXProperty());
         r.translateYProperty().bind(s.getYProperty());
         this.vueSbir1=r;
-    }
-
-    public void deplacementSbir(){
-        sbir1.deplacementAleatoire();
     }
 
     public Sbir getSbir1(){
