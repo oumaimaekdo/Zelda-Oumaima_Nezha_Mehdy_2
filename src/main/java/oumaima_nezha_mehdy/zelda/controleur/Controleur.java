@@ -71,7 +71,6 @@ public class Controleur implements Initializable {
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
-        sbirControl.getSbir1().seDeplacer(linkControl.getLink());
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
         setUpListeners();

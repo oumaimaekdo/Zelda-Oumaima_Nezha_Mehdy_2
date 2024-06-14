@@ -29,12 +29,13 @@ public class Champ {
 
     private VueArmes vueArmes;
     private Armes arme;
+    private Ennemi sbir2;
 
     public Champ(int L , int l,int[] map){
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.sbir = new Sbir("Squelette",50,650,this,true);
+        this.sbir2 = new Ennemi("Vocanorax",50,650,this);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
@@ -142,8 +143,8 @@ public class Champ {
         return link;
     }
 
-    public Sbir getSbir() {
-        return sbir;
+    public Ennemi getSbir() {
+        return sbir2;
     }
 
     public int getLongueur(){return longueur;}

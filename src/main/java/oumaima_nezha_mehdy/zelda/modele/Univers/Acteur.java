@@ -172,4 +172,8 @@ public class Acteur {
         }
     }
 
+    public Champ getChamp(){
+        return this.champ;
+    }
+
 }

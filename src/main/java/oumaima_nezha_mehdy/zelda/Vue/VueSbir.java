@@ -3,17 +3,15 @@ package oumaima_nezha_mehdy.zelda.Vue;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Acteur;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Sbir;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 
 public class VueSbir {
 
     @FXML
     private Pane vueSbir;
-    private Sbir sbir1;
+    private Ennemi sbir1;
     private Champ champ;
     private int tailleTuile;
 
@@ -25,21 +23,17 @@ public class VueSbir {
     private Image SbirOuest;
 
     public VueSbir(Pane pane, Champ c, int tailleTuile) {
-        vueSbir=pane;
-        this.champ=c;
-        this.sbir1=champ.getSbir();
-        this.tailleTuile=tailleTuile;
-        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif",sbir1);
-        /*SbirNord=new Image("file:src/main/resources/images/Link/NordDefault.png");
-        SbirSud=new Image("file:src/main/resources/images/Link/SudDefault.png");
-        SbirEst=new Image("file:src/main/resources/images/Link/EstDefault.png");
-        SbirOuest=new Image("file:src/main/resources/images/Link/OuestDefault.png");*/
+        vueSbir = pane;
+        this.champ = c;
+        this.sbir1 = champ.getSbir();
+        this.tailleTuile = tailleTuile;
+        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif", sbir1);
     }
 
-    public void creerSbir(String path , Sbir s){
+    public void creerSbir(String path, Ennemi s) {
         ImageView r = new ImageView();
-        Image Image = new Image(path);
-        r.setImage(Image);
+        Image image = new Image(path);
+        r.setImage(image);
         r.setFitWidth(30);
         r.setFitHeight(30);
         vueSbir.getChildren().add(r);
@@ -48,15 +42,14 @@ public class VueSbir {
         r.setTranslateY(s.getY());
         r.translateXProperty().bind(s.getXProperty());
         r.translateYProperty().bind(s.getYProperty());
-        this.vueSbir1=r;
+        this.vueSbir1 = r;
     }
 
-    public Sbir getSbir1(){
+    public Ennemi getSbir() {
         return this.sbir1;
     }
 
     public void updateChamp(Champ champ) {
         this.champ = champ;
     }
-
 }
