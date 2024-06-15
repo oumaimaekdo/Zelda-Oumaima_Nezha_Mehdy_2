@@ -21,6 +21,5 @@ public abstract class Bloc {
 
     public double getY(){return y;}
 
-    abstract public void interagir();
     }
 

@@ -6,6 +6,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Bloc;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Outils;
 
 public class VueInventaire {
 
@@ -63,9 +64,13 @@ public class VueInventaire {
             case "E" : val.getLink().ramasserAutour();
                 break;
             case "H" :
-                System.out.println("link = "+val.getLink().getX()+","+val.getLink().getY());
-                for(Bloc b : val.getChamp().getListBloc())
-                System.out.println(b.getX()+"........."+ b.getY());
+                for(Outils o : val.getLink().getInventaire()) {
+                    if(o!=null)
+                    System.out.println("Outil");
+                    else
+                        System.out.println("null");
+
+                }
 
             break;
         }

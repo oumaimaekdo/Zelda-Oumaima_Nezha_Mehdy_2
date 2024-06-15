@@ -20,7 +20,7 @@ public class Champ {
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
     private ArrayList<Integer> pointDeCollision;
-    private ObservableList<Armes> item;
+    private ObservableList<Outils> item;
     private Acteur link;
     private Sbir sbir;
 
@@ -139,7 +139,7 @@ public class Champ {
 
     }
 
-    public void ajouterItem(Armes a){
+    public void ajouterItem(Outils a){
         item.add(a);
     }
 
@@ -149,7 +149,7 @@ public class Champ {
         return listActeur;
     }
 
-    public ObservableList<Armes> getItem() {
+    public ObservableList<Outils> getItem() {
         return item;
     }
 

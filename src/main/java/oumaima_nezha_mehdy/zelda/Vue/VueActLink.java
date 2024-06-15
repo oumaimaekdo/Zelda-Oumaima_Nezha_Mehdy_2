@@ -1,6 +1,7 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 
+import javafx.beans.InvalidationListener;
 import javafx.scene.layout.TilePane;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 
@@ -55,7 +56,7 @@ public class VueActLink {
 
     private int tT;
 
-    private VueArmes armeEquipé;
+    private VueOutils armeEquipé;
 
     private Pane vueArmesInventaire;
 
@@ -63,8 +64,8 @@ public class VueActLink {
 
     private Timeline gameLoop;
 
-    private ArrayList<VueArmes> vueInventaire;
-    private ArrayList<VueArmes> vueItem;
+    private ArrayList<VueOutils> vueInventaire;
+    private ArrayList<VueOutils> vueItem;
 
     private HashSet<String> touchePressé;
 
@@ -96,16 +97,10 @@ public class VueActLink {
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
-        VueArmes a = new VueEpee(new EpeeDeFer(champ));
-        VueArmesJeu.getChildren().add(a.getArmeVue());
-        a.getArme().setX(300);
-        a.getArme().setY(550);
-        VueArmes b = new VueEpee(new EpeeDeFer(champ));
-        VueArmesJeu.getChildren().add(b.getArmeVue());
-        b.getArme().setX(200);
-        b.getArme().setY(750);
         initAnimation();
         gameLoop.play();
+        Clé clé= new  Clé("CléNormal",this.champ);
+        link.ramasser(clé);
 
 
     }
@@ -140,15 +135,16 @@ public class VueActLink {
             this.vueLink.setImage(linkEst);
         }
         if (touchePressé.contains("A")){
+            if(armeEquipé!=null && armeEquipé instanceof VueArmes)
             new Thread(() -> {
                 try {
-                    link.attaquer(armeEquipé,link);
-                    armeEquipé.vueAttaque(link, epee);
+                    link.attaquer((VueArmes) armeEquipé,link);
+                    ((VueArmes) armeEquipé).vueAttaque(link, epee);
                     System.out.println("le perso attaque");
                     Thread.sleep(300);
-                    armeEquipé.getArmeVue().setFitWidth(15);
-                    armeEquipé.getArmeVue().setFitHeight(15);
-                    armeEquipé.vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
+                    ((VueArmes) armeEquipé).getArmeVue().setFitWidth(15);
+                    ((VueArmes) armeEquipé).getArmeVue().setFitHeight(15);
+                    ((VueArmes) armeEquipé).vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
                     System.out.println("le perso arrete l'attaque");
 
                 } catch (InterruptedException e) {
@@ -177,12 +173,12 @@ public class VueActLink {
 
     public void selectioner(int i){
         if(armeEquipé!=null) {
-            VueArmesJeu.getChildren().remove(armeEquipé.getArmeVue());
+            VueArmesJeu.getChildren().remove(armeEquipé.getVue());
             System.out.println(VueArmesJeu.getChildren().isEmpty());
         }
         if(link.getInventaire().get(i-1)!=null) {
             armeEquipé = vueInventaire.get(i-1);
-            VueArmesJeu.getChildren().add(armeEquipé.getArmeVue());
+            VueArmesJeu.getChildren().add(armeEquipé.getVue());
             bindeur(directionregardé);
 
         }
@@ -191,24 +187,24 @@ public class VueActLink {
     public void bindeur(String direction){
         switch (direction){
             case "sud" :
-                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeImage());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
+                armeEquipé.getVue().setImage(armeEquipé.getImage());
+                armeEquipé.getVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
+                armeEquipé.getVue().yProperty().bind(this.link.getYProperty().add(10)); // Adjust offset as needed
                 break;
             case "nord" :
-                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeInversé());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(20));
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(7));
+                armeEquipé.getVue().setImage(armeEquipé.getInversé());
+                armeEquipé.getVue().xProperty().bind(this.link.getXProperty().add(20));
+                armeEquipé.getVue().yProperty().bind(this.link.getYProperty().add(7));
                 break;
             case "ouest" :
-                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeImage());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(5));
+                armeEquipé.getVue().setImage(armeEquipé.getImage());
+                armeEquipé.getVue().xProperty().bind(this.link.getXProperty().add(-3)); // Adjust offset as needed
+                armeEquipé.getVue().yProperty().bind(this.link.getYProperty().add(5));
                 break;
             case "est" :
-                armeEquipé.getArmeVue().setImage(armeEquipé.getArmeInversé());
-                armeEquipé.getArmeVue().xProperty().bind(this.link.getXProperty().add(15));
-                armeEquipé.getArmeVue().yProperty().bind(this.link.getYProperty().add(10));
+                armeEquipé.getVue().setImage(armeEquipé.getInversé());
+                armeEquipé.getVue().xProperty().bind(this.link.getXProperty().add(15));
+                armeEquipé.getVue().yProperty().bind(this.link.getYProperty().add(10));
                 break;
         }
 
@@ -221,8 +217,8 @@ public class VueActLink {
 
     public void lacher(){
         if(armeEquipé!=null){
-            armeEquipé.getArmeVue().xProperty().unbind();
-            armeEquipé.getArmeVue().yProperty().unbind();
+            armeEquipé.getVue().xProperty().unbind();
+            armeEquipé.getVue().yProperty().unbind();
             armeEquipé=null;
         }
     }
@@ -279,14 +275,14 @@ public class VueActLink {
                 })
         );gameLoop.getKeyFrames().add(kf);
     }
-    public ArrayList<VueArmes> getVueInventaire() {
+    public ArrayList<VueOutils> getVueInventaire() {
         return vueInventaire;
     }
     public Champ getChamp() {
         return champ;
     }
 
-    public ArrayList<VueArmes> getVueItem() {
+    public ArrayList<VueOutils> getVueItem() {
         return vueItem;
     }
 

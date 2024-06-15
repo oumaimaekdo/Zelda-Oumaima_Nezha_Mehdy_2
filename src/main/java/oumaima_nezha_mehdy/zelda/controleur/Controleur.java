@@ -123,7 +123,7 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
         this.champ.getListBloc().addListener(new ListObsBloc(VueBloc));
-        Coffre c = new Coffre(new EpeeDeFer(this.champ),"123",this.champ);
+        Coffre c = new Coffre(new EpeeDeFer(this.champ),"CléNormal",this.champ);
     }
 
 

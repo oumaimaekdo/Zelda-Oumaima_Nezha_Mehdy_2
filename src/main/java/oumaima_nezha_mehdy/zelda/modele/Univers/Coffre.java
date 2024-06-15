@@ -12,22 +12,37 @@ public class Coffre extends Bloc{
 
     private Champ champ;
 
-    private String clé;
 
-    public Coffre(Armes contenu,String clé,Champ c){
+    private int nbInteraction;
+
+    private String cléRequise;
+
+    public Coffre(Armes contenu,String cléRequise,Champ c){
         super(false,700,700);
         this.contenu=contenu;
-        this.clé=clé;
+        this.cléRequise=cléRequise;
         this.champ=c;
         this.champ.ajouterCoffre(this);
         this.ouvert.set(false);
+        nbInteraction=0;
     }
 
 
-    @Override
     public void interagir() {
         ouvert.set(true);
+        nbInteraction++;
     }
     public boolean getouvert(){return ouvert.getValue();}
     public BooleanProperty getouvertProperty(){return ouvert;}
+
+    public int getNbInteraction() {
+        return nbInteraction;
+    }
+
+    public Armes getContenu() {
+        Armes returneur  = contenu;
+        contenu=null;
+        return returneur;
+    }
+    public String getCléRequise(){return cléRequise;}
 }

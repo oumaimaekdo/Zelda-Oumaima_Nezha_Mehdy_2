@@ -8,7 +8,7 @@ import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.modele.Armes.*;
 
 
-public abstract class VueArmes {
+public abstract class VueArmes extends VueOutils {
 
     private Armes arme;
     @FXML
@@ -22,23 +22,10 @@ public abstract class VueArmes {
 
 
     // Constructeur
-    public VueArmes(Image image,Armes arme,Image inveré) {
-        armeInversé=inveré;
-        armeImage=image;
-        creerArme(image,arme);
-        ArmeVue.setId(arme.getId());
+    public VueArmes(Image image,Armes arme,Image invesré) {
+        super(arme,invesré,image);
     }
 
-    // Méthode pour créer une arme
-    public void creerArme(Image image, Armes arme) {
-        ImageView r = new ImageView();
-        r.setImage(image);
-        r.setFitWidth(15); // Ajuste selon la taille souhaitée
-        r.setFitHeight(15); // Ajuste selon la taille souhaitée
-        r.setId(arme.getId());
-        this.ArmeVue = r;
-        this.arme=arme;
-    }
 
     public ImageView getArmeVue() {
         return ArmeVue;

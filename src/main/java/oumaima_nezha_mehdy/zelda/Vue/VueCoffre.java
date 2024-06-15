@@ -17,6 +17,7 @@ public class VueCoffre {
     private Coffre c;
 
 
+
     public VueCoffre(Coffre c){
 
         coffreFermé = new Image("file:src/main/resources/images/Bloc/giftNormal.png");
@@ -39,9 +40,6 @@ public class VueCoffre {
 
     public void Interagir(){
         if(coffreouvert.getValue()){
-
-        }
-        else {
             Vue.setImage(coffreOuvert);
         }
     }

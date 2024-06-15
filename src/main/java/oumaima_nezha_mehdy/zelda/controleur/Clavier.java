@@ -48,7 +48,7 @@ public class Clavier{
                 vueInventaire.selectionerCase(keyEvent);
                 break;
             case"F":linkDeplacement.getLink().interagirCoffre();
-                System.out.println("aaaaaaa");
+
 
         }
     }

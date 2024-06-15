@@ -3,8 +3,9 @@ package oumaima_nezha_mehdy.zelda.Vue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import oumaima_nezha_mehdy.zelda.modele.Armes.*;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Outils;
 
-public class ChampItemObs implements ListChangeListener<Armes> {
+public class ChampItemObs implements ListChangeListener<Outils> {
 
     private Pane VueArmeJeu;
     private VueActLink val;
@@ -14,18 +15,18 @@ public class ChampItemObs implements ListChangeListener<Armes> {
         this.val=val;
     }
     @Override
-    public void onChanged(Change<? extends Armes> change) {
+    public void onChanged(Change<? extends Outils> change) {
         while(change.next()){
             if(change.wasRemoved()) {
-                for (VueArmes va :val.getVueItem() ) {
-                    if(change.getRemoved().contains(va.getArmeVue())) {
-                        VueArmeJeu.getChildren().remove(va.getArmeVue());
+                for (VueOutils va :val.getVueItem() ) {
+                    if(change.getRemoved().contains(va.getVue())) {
+                        VueArmeJeu.getChildren().remove(va.getVue());
                         System.out.println("supp");
                     }
                 }
             }
             if(change.wasAdded()){
-                for (Armes a : change.getAddedSubList()) {
+                for (Outils a : change.getAddedSubList()) {
 
                 }
             }
