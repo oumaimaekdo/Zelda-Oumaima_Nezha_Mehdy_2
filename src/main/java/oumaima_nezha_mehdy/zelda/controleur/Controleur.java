@@ -18,12 +18,11 @@ import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 
 public class Controleur implements Initializable {
 
-    @FXML
-    private TilePane map1;
+
     @FXML
     private TilePane LayerSup;
     @FXML
-    private TilePane armesMap;
+    private TilePane TresorPnj;
 
     @FXML
     private TilePane mapVIllage2;
@@ -63,11 +62,10 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.mapInt3 = MapPossible.collision;
         this.mapInt4 = MapPossible.village2;
 
 
-        ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
+        ChargementMap(mapInt4,MapPossible.pnjETtresors,"debut",MapPossible.collision.getCarte());
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
@@ -85,30 +83,34 @@ public class Controleur implements Initializable {
             if(vueVillage2.getNom().equals("debut")&&champ.getLink().getY()/64==14 && champ.getLink().getX()/64==10) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
+                TresorPnj.getChildren().clear();
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
-                ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());
+                ChargementMap(mapInt4,MapPossible.pnjETtresors, "foret", MapPossible.collisionForet.getCarte());
             }
             else if(vueVillage2.getNom().equals("foret") &&champ.getLink().getY()/64==0 && champ.getLink().getX()/64==10) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
+                TresorPnj.getChildren().clear();
                 linkControl.getLink().setX(670);
                 linkControl.getLink().setY(900);
-                ChargementMap(mapInt4, "debut", MapPossible.collision.getCarte());
+                ChargementMap(mapInt4,MapPossible.pnjETtresors, "debut", MapPossible.collision.getCarte());
             }
             else if(vueVillage2.getNom().equals("foret") &&champ.getLink().getY()/64==10 && champ.getLink().getX()/64==19) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
+                TresorPnj.getChildren().clear();
                 linkControl.getLink().setX(60);
                 linkControl.getLink().setY(590);
-                ChargementMap(mapInt4, "iceLand", MapPossible.collision.getCarte());
+                ChargementMap(mapInt4,MapPossible.pnjETtresors, "iceLand", MapPossible.collision.getCarte());
             }
             else if(vueVillage2.getNom().equals("iceLand") &&champ.getLink().getY()/64==9 && champ.getLink().getX()/64==0) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
+                TresorPnj.getChildren().clear();
                 linkControl.getLink().setX(1180);
                 linkControl.getLink().setY(590);
-                ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());
+                ChargementMap(mapInt4,MapPossible.pnjETtresors, "foret", MapPossible.collisionForet.getCarte());
             }
 
         });
@@ -123,7 +125,7 @@ public class Controleur implements Initializable {
 
     }
 
-    public void ChargementMap(MapInt mapInt,String nomMap,int[] collision){
+    public void ChargementMap(MapInt mapInt,MapInt carteTresorPnj,String nomMap,int[] collision){
         this.sol= collision;
         this.LargeurInt = mapInt.getLargeur();
         this.LongueurInt = mapInt.getLongueur();
@@ -136,7 +138,7 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefTileWidth(tailleTuile);
         mapVIllage2.setPrefHeight(LargeurInt*tailleTuile);
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
-        this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
+        this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,TresorPnj,champ,mapInt4,MapPossible.LayerSup,carteTresorPnj,nomMap);
     }
 
 

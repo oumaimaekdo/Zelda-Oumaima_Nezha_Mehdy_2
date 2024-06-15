@@ -14,10 +14,12 @@ import java.util.Map;
 public class VueVillage2 {
     private TilePane map1;
     private TilePane LayerSup;
+    private TilePane TresorPnj;
     private Champ champ;
 
     private int[] sol;
     private int[] carteLayersup;
+    private int[] carteTresorPnj;
 
     private int tailleTuile;
     private int LongueurInt;
@@ -30,12 +32,14 @@ public class VueVillage2 {
     private static final String IMAGE_PATH_VolcanIsland = "file:src/main/resources/images/villageFeu/";
     private static final String IMAGE_PATH_iceLand = "file:src/main/resources/images/villageGlace/";
     private static final String IMAGE_PATH_foret = "file:src/main/resources/images/foret/";
+    private static final String IMAGE_PATH_perso = "file:src/main/resources/images/Personnages/";
 
 
-    public VueVillage2(TilePane map1,TilePane LayerSup, Champ champ, MapInt mapInt,MapInt carteLayersup,String nom){
+    public VueVillage2(TilePane map1,TilePane LayerSup,TilePane TresorPnj, Champ champ, MapInt mapInt,MapInt carteLayersup,MapInt carteTresorPnj,String nom){
 
         this.map1 = map1;
         this.LayerSup = LayerSup;
+        this.TresorPnj = TresorPnj;
         this.nom = nom;
 
 
@@ -44,6 +48,7 @@ public class VueVillage2 {
 
         this.sol = mapInt.getCarte();
         this.carteLayersup = carteLayersup.getCarte();
+        this.carteTresorPnj = carteTresorPnj.getCarte();
 
 
 
@@ -59,8 +64,15 @@ public class VueVillage2 {
         LayerSup.setPrefTileWidth(tailleTuile);
         LayerSup.setPrefHeight(LargeurInt * tailleTuile);
         LayerSup.setPrefWidth(LongueurInt * tailleTuile);
+
+        TresorPnj.setPrefTileHeight(tailleTuile);
+        TresorPnj.setPrefTileWidth(tailleTuile);
+        TresorPnj.setPrefHeight(LargeurInt * tailleTuile);
+        TresorPnj.setPrefWidth(LongueurInt * tailleTuile);
+
         CreationMap();
         CreationLayerSup();
+        CreationTresorPnj();
 
     }
 
@@ -174,6 +186,41 @@ public class VueVillage2 {
                     imageView2.setImage(tileImage);
                 }
             }
+        }
+
+    }
+
+    public void CreationTresorPnj() {
+        int[] carteTresorPnj = this.carteTresorPnj;
+
+        if(nom.equals("foret")){
+            Map<Integer, Image> imageMap = new HashMap<>();
+            for (int i : carteTresorPnj) {
+                if (i != 0) {
+                    imageMap.put(i, new Image(IMAGE_PATH_perso + i + ".png"));
+                }
+            }
+
+            for (int i = 0; i < carteTresorPnj.length; i++) {
+                ImageView imageView2 = new ImageView();
+                TresorPnj.getChildren().add(imageView2);
+                imageView2.setId(String.valueOf(i));
+                imageView2.setFitHeight(30);
+                imageView2.setFitWidth(30);
+                double col = i % LargeurInt;
+                double lig = Math.floor(i / LongueurInt);
+                double x = col * LargeurInt;
+                double y = lig * LongueurInt;
+                imageView2.setX(x);
+                imageView2.setY(y);
+
+                int tileValue = carteTresorPnj[i];
+                Image tileImage = imageMap.get(tileValue);
+                if (tileImage != null) {
+                    imageView2.setImage(tileImage);
+                }
+            }
+
         }
 
     }
