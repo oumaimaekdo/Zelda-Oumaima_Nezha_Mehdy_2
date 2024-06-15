@@ -1,7 +1,9 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Tests;
 
 import org.junit.jupiter.api.Test;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteur;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 import java.util.Arrays;
 

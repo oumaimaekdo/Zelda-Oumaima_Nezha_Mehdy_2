@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
