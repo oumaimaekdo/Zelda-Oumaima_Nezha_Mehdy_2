@@ -19,7 +19,7 @@ public class Ennemi extends Acteur {
         mouvementTimeline.play();
     }
 
-    private void seDirigerVersLink() {
+    public void seDirigerVersLink() {
         Acteur link = this.getChamp().getLink();
         if (link == null) {
             return;
