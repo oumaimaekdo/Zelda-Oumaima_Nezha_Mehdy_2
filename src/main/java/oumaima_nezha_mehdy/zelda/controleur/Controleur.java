@@ -87,7 +87,7 @@ public class Controleur implements Initializable {
                 LayerSup.getChildren().clear();
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
-                ChargementMap(mapInt4, "foret", MapPossible.collision.getCarte());
+                ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());
             }
             else if(vueVillage2.getNom().equals("foret") &&champ.getLink().getY()/64==0 && champ.getLink().getX()/64==10) {
                 mapVIllage2.getChildren().clear();
@@ -108,7 +108,7 @@ public class Controleur implements Initializable {
                 LayerSup.getChildren().clear();
                 linkControl.getLink().setX(1180);
                 linkControl.getLink().setY(590);
-                ChargementMap(mapInt4, "foret", MapPossible.collision.getCarte());
+                ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());
             }
 
         });
