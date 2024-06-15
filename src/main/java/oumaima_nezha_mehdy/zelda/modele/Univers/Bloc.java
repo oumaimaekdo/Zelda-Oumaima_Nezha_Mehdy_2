@@ -23,4 +23,4 @@ public abstract class Bloc {
 
     abstract public void interagir();
     }
-}
+

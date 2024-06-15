@@ -115,6 +115,20 @@ public class Acteur {
         System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
 
+    public ArrayList<Coffre> InteragirCoffreAutour(){
+        ArrayList<Coffre> coffreAutour = new ArrayList<>();
+        int rayon = 100;
+        for (Coffre c : champ.getListBloc()){
+            if ((this.getY() - rayon <= c.getY() && c.getY() <= this.getY() + rayon) && (this.getX() - rayon <= c.getX() && c.getX() <= this.getX() + rayon))
+            coffreAutour.add(c);
+        }
+        return coffreAutour;
+    }
+    public void interagirCoffre(){
+        if(!InteragirCoffreAutour().isEmpty())
+        InteragirCoffreAutour().get(0).interagir();
+    }
+
     public Armes getArme() {
         return arme;
     }

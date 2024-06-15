@@ -15,7 +15,7 @@ public class Champ {
 
     private int[] champ;
 
-    private ObservableList<Bloc> listBloc =FXCollections.observableArrayList();
+    private ObservableList<Coffre> listCoffre =FXCollections.observableArrayList();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class Champ {
         boolean collisionHautGauche = champ[indexHautGauche] != 1;
         boolean collisionBasDroite = champ[indexBasDroite] != 1;
         int rayon=40;
-        for(Bloc b : listBloc)
+        for(Coffre b : listCoffre)
             if(x<b.getX()+rayon&&x>b.getX()-(rayon-15)&&y<b.getY()+rayon&&y>b.getY()-(rayon-15))
                 return b.getpassable();
 
@@ -114,12 +114,12 @@ public class Champ {
         return (presenceHautGauche && presenceBasDroite);
 
     }
-    public void ajouterBloc(Bloc b){
-        listBloc.add(b);
+    public void ajouterCoffre(Coffre b){
+        listCoffre.add(b);
     }
 
-    public ObservableList<Bloc> getListBloc() {
-        return listBloc;
+    public ObservableList<Coffre> getListBloc() {
+        return listCoffre;
     }
 
     public boolean presencePortail(int x, int y){

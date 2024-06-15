@@ -25,8 +25,32 @@ public class Clavier{
     }
 
     public void handle(KeyEvent keyEvent) {
-        linkDeplacement.ajouterTouche(keyEvent.getCode().toString());
-        vueInventaire.selectionerCase(keyEvent);
+        switch(keyEvent.getCode().toString()) {
+            case "Z":
+            case "Q":
+            case "S":
+            case "D":
+                linkDeplacement.ajouterTouche(keyEvent.getCode().toString());
+                break;
+            case "AMPERSAND":
+            case "DIGIT1" :
+            case "UNDEFINED":
+            case "DIGIT2" :
+            case "QUOTEDBL":
+            case "DIGIT3" :
+            case "QUOTE":
+            case "DIGIT4" :
+            case "LEFT_PARENTHESIS":
+            case "DIGIT5" :
+            case "G":
+            case "E" :
+            case "H" :
+                vueInventaire.selectionerCase(keyEvent);
+                break;
+            case"F":linkDeplacement.getLink().interagirCoffre();
+                System.out.println("aaaaaaa");
+
+        }
     }
 
     public void toucheRelaché(KeyEvent e){
