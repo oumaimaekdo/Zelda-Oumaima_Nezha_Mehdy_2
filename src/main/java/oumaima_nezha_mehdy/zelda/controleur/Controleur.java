@@ -1,5 +1,6 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
@@ -11,6 +12,7 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import oumaima_nezha_mehdy.zelda.Vue.EnnemiObs;
 import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
@@ -18,6 +20,7 @@ import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 
 public class Controleur implements Initializable {
 
+    private EnnemiObs<Ennemi> ennemisObs = new EnnemiObs();
     @FXML
     private TilePane map1;
     @FXML
@@ -63,6 +66,9 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        this.univers.setTranslateX(ennemisObs);
+
         this.mapInt3 = MapPossible.collision;
         this.mapInt4 = MapPossible.village2;
 
