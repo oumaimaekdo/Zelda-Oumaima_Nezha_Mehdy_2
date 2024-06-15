@@ -16,6 +16,7 @@ public class Champ {
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
     private ArrayList<Ennemi> listEnnemi = new ArrayList<>();
+    private ArrayList<DonneurQuetes> listQuetes = new ArrayList<>();
 
     private ArrayList<Integer> pointDeCollision;
     private ObservableList<Armes> item;
@@ -30,6 +31,8 @@ public class Champ {
 
     private Ennemi sbir2;
     private Ennemi sbir3;
+    private DonneurQuetes Arthur;
+    private DonneurQuetes Vanessa;
 
     public Champ(int L , int l,int[] map){
         this.largeur=l;
@@ -43,6 +46,10 @@ public class Champ {
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
         this.link = new Acteur("Link",0,700,this);
+        this.Arthur = new DonneurQuetes("Arthur",920,410,this);
+        listQuetes.add(Arthur);
+        this.Vanessa = new DonneurQuetes("Vanessa",730,850,this);
+        listQuetes.add(Vanessa);
     }
 
 
@@ -154,6 +161,12 @@ public class Champ {
     }
     public Ennemi getSbir2() {
         return sbir3;
+    }
+    public DonneurQuetes getArthur() {
+        return Arthur;
+    }
+    public DonneurQuetes getVanessa() {
+        return Vanessa;
     }
 
 

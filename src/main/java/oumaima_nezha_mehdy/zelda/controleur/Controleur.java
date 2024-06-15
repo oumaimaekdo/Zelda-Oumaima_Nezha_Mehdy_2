@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import oumaima_nezha_mehdy.zelda.Vue.VueDonneurQuetes;
 import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
@@ -39,11 +40,14 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueSbir;
     @FXML
+    private Pane vueDonneurQuetes;
+    @FXML
     private Pane vueArmesInventaire;
 
     private Champ champ;
     private VueActLink linkControl;
     private VueSbir sbirControl;
+    private VueDonneurQuetes donneurQuetesControl;
     private Clavier clavier;
     private VueVillage2 vueVillage2;
 
@@ -84,6 +88,7 @@ public class Controleur implements Initializable {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
                 TresorPnj.getChildren().clear();
+                this.donneurQuetesControl = new VueDonneurQuetes(vueDonneurQuetes,champ, champ.gettT());
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
                 ChargementMap(mapInt4,MapPossible.pnjETtresors, "foret", MapPossible.collisionForet.getCarte());
