@@ -4,14 +4,11 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
-import oumaima_nezha_mehdy.zelda.Vue.VueEpeeRouge;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteur;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
+
 
 class InventaireObs implements ListChangeListener<Armes> {
 

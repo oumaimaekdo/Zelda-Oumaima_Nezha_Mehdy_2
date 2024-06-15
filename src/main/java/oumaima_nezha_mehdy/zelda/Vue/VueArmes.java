@@ -3,7 +3,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.modele.Armes.*;
 

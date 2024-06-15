@@ -1,7 +1,7 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
+
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

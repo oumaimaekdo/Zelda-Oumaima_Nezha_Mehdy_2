@@ -4,7 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 

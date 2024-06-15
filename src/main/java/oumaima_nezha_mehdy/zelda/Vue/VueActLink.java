@@ -2,19 +2,15 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 
 import javafx.scene.layout.TilePane;
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
@@ -25,7 +21,6 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 
@@ -41,8 +36,7 @@ public class VueActLink {
 
     private Pane VueArmesJeu;
 
-    @FXML
-    private TilePane armesMap;
+
 
     @FXML
     private ImageView vueLink;
@@ -69,7 +63,6 @@ public class VueActLink {
 
     private HashSet<String> touchePressé;
 
-    private Armes epee ;
     private int numeroImage;
 
 
@@ -79,7 +72,6 @@ public class VueActLink {
         numeroImage=1;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
-        //this.armesMap = armesMap;
         this.link=champ.getLink();
         this.tT=tailleTuile;
         this.vueCaseInventaire=vueCaseInventaire;
