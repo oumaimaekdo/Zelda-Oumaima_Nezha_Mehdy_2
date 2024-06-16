@@ -2,6 +2,7 @@ package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -9,6 +10,8 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import oumaima_nezha_mehdy.zelda.Vue.VueDonneurQuetes;
@@ -61,6 +64,15 @@ public class Controleur implements Initializable {
 
     private int tailleTuile;
 
+    @FXML
+    private Pane dialoguePane;
+    @FXML
+    private Label dialogueLabel;
+    @FXML
+    private Label interactionLabel;
+
+    private DialogueManager dialogueManager;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.mapInt4 = MapPossible.village2;
@@ -73,6 +85,9 @@ public class Controleur implements Initializable {
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
         setUpListeners();
+
+        interactionLabel.setVisible(false);
+        dialogueManager = new DialogueManager(dialoguePane, dialogueLabel);
 
 
 
@@ -142,6 +157,32 @@ public class Controleur implements Initializable {
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
     }
 
+    public void proximityDetected(DonneurQuetes donneur) {
+        interactionLabel.setText("Cliquez sur P pour parler avec " + donneur.getNom());
+        interactionLabel.setVisible(true);
+    }
+
+    public void startDialogue() {
+        List<String> dialogues = new ArrayList<>();
+        dialogues.add("Bonjour, Link !");
+        dialogues.add("J'ai une quête pour toi.");
+        dialogues.add("Veux-tu m'aider à récupérer l'épée légendaire ?");
+        dialogueManager.startDialogue(dialogues);
+    }
+
+    public void handle(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+            case P:
+                if (interactionLabel.isVisible()) {
+                    startDialogue();
+                } else if (dialoguePane.isVisible()) {
+                    dialogueManager.showNextDialogue();
+                }
+                break;
+            // Autres cas pour d'autres touches
+        }
+    }
+
 
     public void mouseclicked(MouseEvent mouseEvent) {
         univers.requestFocus();
@@ -149,6 +190,7 @@ public class Controleur implements Initializable {
 
     public void keyPressed(KeyEvent keyEvent) {
         clavier.handle(keyEvent);
+        handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
         System.out.println(linkControl.getLink().getX()/64 + " ......." + linkControl.getLink().getY()/64);
     }

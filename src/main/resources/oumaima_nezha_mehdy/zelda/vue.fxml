@@ -8,24 +8,29 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.control.Label?>
 <BorderPane fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oumaima_nezha_mehdy.zelda.controleur.Controleur">
    <center>
       <Pane fx:id="univers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" onKeyPressed="#keyPressed" onMouseClicked="#mouseclicked" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="vueActeur">
                <children>
-                  <Pane fx:id="vueActeur">
-                     <children>
-                        <TilePane fx:id="mapVIllage2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
-                     </children>
-                  </Pane>
-                  <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
-                  <TilePane fx:id="TresorPnj" />
-                  <Pane fx:id="vueDonneurQuetes"/>
-                  <Pane fx:id="vueSbir" />
-                  <Pane fx:id="vueArmes" />
-
-
+                  <TilePane fx:id="mapVIllage2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
                </children>
             </Pane>
+            <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
+            <TilePane fx:id="TresorPnj" />
+            <Pane fx:id="vueDonneurQuetes"/>
+            <Pane fx:id="vueSbir" />
+            <Pane fx:id="vueArmes" />
+            <Pane fx:id="dialoguePane" layoutX="50" layoutY="50" prefHeight="100" prefWidth="400" style="-fx-background-color: rgba(0, 0, 0, 0.8); -fx-border-color: white; -fx-border-width: 2;">
+               <children>
+                  <Label fx:id="dialogueLabel" layoutX="10" layoutY="10" textFill="white" wrapText="true" prefWidth="380"/>
+               </children>
+            </Pane>
+            <Label fx:id="interactionLabel" layoutX="50" layoutY="200" textFill="white"/>
+         </children>
+      </Pane>
    </center>
    <bottom>
       <Pane prefHeight="128.0" prefWidth="600.0" BorderPane.alignment="CENTER">

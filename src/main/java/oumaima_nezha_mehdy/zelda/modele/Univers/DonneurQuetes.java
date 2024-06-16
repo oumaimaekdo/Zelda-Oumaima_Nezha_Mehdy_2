@@ -16,10 +16,11 @@ public class DonneurQuetes extends Acteur{
     public boolean linkAutour() {
         Acteur link = getChamp().getLink();
         boolean present = false;
-        int rayon = 30;
+        int rayon = 100;
             if ((this.getY() - rayon <= link.getY() && link.getY() <= this.getY() + rayon) && (this.getX() - rayon <= link.getX() && link.getX() <= this.getX() + rayon)){
                 present = true;
             }
+        System.out.println("la presence est :"+present);
         return present;
     }
 
