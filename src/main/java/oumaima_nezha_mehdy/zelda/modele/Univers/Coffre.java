@@ -4,9 +4,11 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
+import java.util.ArrayList;
+
 public class Coffre extends Bloc{
 
-    private Armes contenu;
+    private ArrayList<Armes> contenu;
 
     private BooleanProperty ouvert = new SimpleBooleanProperty();
 
@@ -17,7 +19,7 @@ public class Coffre extends Bloc{
 
     private String cléRequise;
 
-    public Coffre(Armes contenu,String cléRequise,Champ c){
+    public Coffre(ArrayList<Armes> contenu, String cléRequise, Champ c){
         super(false,700,700);
         this.contenu=contenu;
         this.cléRequise=cléRequise;
@@ -39,8 +41,8 @@ public class Coffre extends Bloc{
         return nbInteraction;
     }
 
-    public Armes getContenu() {
-        Armes returneur  = contenu;
+    public ArrayList<Armes> getContenu() {
+        ArrayList<Armes> returneur  = contenu;
         contenu=null;
         return returneur;
     }

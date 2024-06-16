@@ -167,7 +167,8 @@ public class Acteur {
                 c.interagir();
 
             if(c.getNbInteraction()>1)
-                ramasser(c.getContenu());
+                for(Armes a : c.getContenu())
+                ramasser(a);
 
         }
     }

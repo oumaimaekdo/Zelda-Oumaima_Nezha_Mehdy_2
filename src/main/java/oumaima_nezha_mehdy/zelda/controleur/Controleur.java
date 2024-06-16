@@ -11,11 +11,16 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import oumaima_nezha_mehdy.zelda.Vue.VueDonneurQuetes;
 import oumaima_nezha_mehdy.zelda.Vue.ListObsBloc;
 import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
@@ -147,7 +152,8 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
         this.champ.getListBloc().addListener(new ListObsBloc(VueBloc));
-        Coffre c = new Coffre(new EpeeDeFer(champ),"CléNormal",this.champ);
+        ArrayList<Armes> coffreContenu = new ArrayList<>(Arrays.asList(new Bombe(champ),new EpeeDeFer(champ),new Arc(champ)));
+        Coffre c = new Coffre(coffreContenu,"CléNormal",this.champ);
 
     }
 
