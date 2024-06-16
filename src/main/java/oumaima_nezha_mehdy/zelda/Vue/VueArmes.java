@@ -26,6 +26,7 @@ public abstract class VueArmes extends VueOutils {
     public VueArmes(Image image,Armes arme,Image invesré) {
 
         super(arme,invesré,image);
+        creerArme(image,arme);
         this.arme = arme;
     }
 

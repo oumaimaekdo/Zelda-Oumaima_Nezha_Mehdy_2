@@ -4,9 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
-import oumaima_nezha_mehdy.zelda.Vue.VueOutils;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
 import java.util.ArrayList;
@@ -118,31 +115,10 @@ public class Acteur {
     }
 
 
-    /*public void attaquer(VueOutils armeEquipe, Acteur acteur) {
-        if (armeEquipe.getOutils().getNom().equals("bombe")) {
-            acteur.setVie(acteur.getVie() - armeEquipe.ge);
-        } else {
-            acteur.setVie(acteur.getVie() - armeEquipe.getArme().getDegats());
-            System.out.println("l'acteur a : " + acteur.getVie() + "de vie");
-        }
-    }*/
-
-
     public void attaquer(Armes armeEquipe, Acteur acteur) {
         acteur.setVie(acteur.getVie()-armeEquipe.getDegats());
         System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
-    /*public void attaquer(Acteur cible, Armes arme) {
-        // Vérifier si l'arme est dans l'inventaire
-        if (inventaire.contains(arme)) {
-            // Infliger des dégâts en fonction de la puissance de l'arme
-            int dommages = arme.getDegats();
-            cible.setVie(cible.getVie() - dommages);
-            System.out.println(nom + " attaque " + cible.nom + " avec " + arme.getNom() + " causant " + dommages + " dommages.");
-        } else {
-            System.out.println(nom + " n'a pas " + arme.getNom() + " dans son inventaire.");
-        }
-    }*/
 
 
     public ArrayList<Coffre> InteragirCoffreAutour(){
@@ -206,8 +182,7 @@ public class Acteur {
         armeEquipé=null;
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);
-            //armeEquipé.getYProperty().bind(this.y);
-            //armeEquipé.getXProperty().bind(this.x);
+
         }
 
     }
