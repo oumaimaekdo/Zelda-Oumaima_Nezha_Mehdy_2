@@ -23,7 +23,7 @@ public class Acteur {
 
     private ObservableList<Armes> inventaire;
 
-    private static int vie = 100;
+    private IntegerProperty vie;
 
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
@@ -41,6 +41,7 @@ public class Acteur {
         this.arme = null;
         this.inventaire= FXCollections.observableArrayList();
         chargerInventaire();
+        this.vie = new SimpleIntegerProperty();
     }
     public Acteur(String nom, Champ m){
         this.nom=nom;
@@ -48,6 +49,7 @@ public class Acteur {
         this.x.set(m.getLongueur()/2);
         this.y.set(m.getLargeur()/2);
         this.arme = null;
+        this.vie = new SimpleIntegerProperty();
     }
 
     public void seDeplacer(String direction) {
@@ -84,9 +86,11 @@ public class Acteur {
     public void setX(int x){this.x.setValue(x);}
     public void setY(int y){this.y.setValue(y);}
 
-    public int getVie(){ return this.vie; }
+    public final int getVie(){ return vie.getValue(); }
 
-    public void setVie(int vie){ this.vie = vie;}
+    public final void setVie(int vie){ this.vie.setValue(vie);}
+
+    public final IntegerProperty vieProperty(int vie){ return this.vie;}
 
     public int getVitesse() {
         return vitesse;

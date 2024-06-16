@@ -11,11 +11,8 @@ import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import oumaima_nezha_mehdy.zelda.Vue.VueDonneurQuetes;
-import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
+import oumaima_nezha_mehdy.zelda.Vue.*;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
-import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
-import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 
 public class Controleur implements Initializable {
 
@@ -42,8 +39,11 @@ public class Controleur implements Initializable {
     private Pane vueDonneurQuetes;
     @FXML
     private Pane vueArmesInventaire;
+    @FXML
+    private Pane vuePointsDeVie;
 
     private Champ champ;
+    private VuePointsDeVie pointsDeVieControl;
     private VueActLink linkControl;
     private VueSbir sbirControl;
     private VueDonneurQuetes donneurQuetesControl;
@@ -72,6 +72,8 @@ public class Controleur implements Initializable {
         this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
+
+        this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
         setUpListeners();
 
 
