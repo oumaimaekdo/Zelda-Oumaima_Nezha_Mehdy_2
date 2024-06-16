@@ -10,35 +10,28 @@ import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class VueSbir {
 
     @FXML
     private Pane vueSbir;
-    private Ennemi sbir1;
-    private Ennemi sbir2;
     private Champ champ;
     private int tailleTuile;
-
-    @FXML
-    private ImageView vueSbir1;
-    private Image SbirNord;
-    private Image SbirSud;
-    private Image SbirEst;
-    private Image SbirOuest;
+    private Map<Ennemi, ImageView> ennemiImageViewMap;
 
     public VueSbir(Pane pane, Champ c, int tailleTuile) {
         vueSbir = pane;
         this.champ = c;
-        this.sbir1 = champ.getSbir();
-        this.sbir2 = champ.getSbir2();
         this.tailleTuile = tailleTuile;
-        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif", sbir1);
-        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif",sbir2);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(champ.getListEnnemi())));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        this.ennemiImageViewMap = new HashMap<>();
+        for (Ennemi e : champ.getListEnnemi()) {
+            creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif", e);
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+        }
     }
 
     public void creerSbir(String path, Ennemi s) {
@@ -53,24 +46,20 @@ public class VueSbir {
         r.setTranslateY(s.getY());
         r.translateXProperty().bind(s.getXProperty());
         r.translateYProperty().bind(s.getYProperty());
-        this.vueSbir1 = r;
-    }
-
-    public Ennemi getSbir() {
-        return this.sbir1;
+        this.ennemiImageViewMap.put(s, r);  // Associez l'ennemi à son ImageView
     }
 
     public void updateChamp(Champ champ) {
         this.champ = champ;
     }
 
-    public void supprimerSbir(ArrayList<Ennemi> ennemi){
-        for(Ennemi e : ennemi){
-            if(e.estmort()){
-                vueSbir.getChildren().remove(vueSbir1);
+    public void supprimerSbir(Ennemi ennemi) {
+        if (ennemi.estmort()) {
+            ImageView imageView = this.ennemiImageViewMap.get(ennemi);
+            if (imageView != null) {
+                vueSbir.getChildren().remove(imageView);
+                this.ennemiImageViewMap.remove(ennemi);
             }
         }
-
     }
-
 }

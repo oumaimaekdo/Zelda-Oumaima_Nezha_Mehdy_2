@@ -51,6 +51,7 @@ public class Controleur implements Initializable {
     private Champ champ;
     private VueActLink linkControl;
     private VueSbir sbirControl;
+    private VueSbir sbirControl2;
     private VueDonneurQuetes donneurQuetesControl;
     private Clavier clavier;
     private VueVillage2 vueVillage2;
@@ -89,6 +90,7 @@ public class Controleur implements Initializable {
                 LayerSup.getChildren().clear();
                 this.donneurQuetesControl = new VueDonneurQuetes(vueDonneurQuetes,champ, champ.gettT());
                 this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
+
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
                 ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());

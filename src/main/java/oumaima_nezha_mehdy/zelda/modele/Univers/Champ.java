@@ -23,7 +23,6 @@ public class Champ {
     private ArrayList<Integer> pointDeCollision;
     private ObservableList<Outils> item;
     private Acteur link;
-    private Sbir sbir;
 
     private int longueur;
 
@@ -32,7 +31,7 @@ public class Champ {
     private int tT;
 
     private Ennemi sbir2;
-    private Ennemi sbir3;
+    private Ennemi sbir1;
     private DonneurQuetes Arthur;
     private DonneurQuetes Vanessa;
 
@@ -40,10 +39,10 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
+        this.sbir1 = new Ennemi("Vocanorax",250,650,this);
+        listEnnemi.add(sbir1);
         this.sbir2 = new Ennemi("Vocanorax",50,650,this);
         listEnnemi.add(sbir2);
-        this.sbir3 = new Ennemi("squelette",300,350,this);
-        listEnnemi.add(sbir3);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
@@ -172,9 +171,7 @@ public class Champ {
     public Ennemi getSbir() {
         return sbir2;
     }
-    public Ennemi getSbir2() {
-        return sbir3;
-    }
+
     public DonneurQuetes getArthur() {
         return Arthur;
     }
