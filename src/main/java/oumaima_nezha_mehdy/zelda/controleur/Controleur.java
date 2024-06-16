@@ -90,7 +90,6 @@ public class Controleur implements Initializable {
                 LayerSup.getChildren().clear();
                 this.donneurQuetesControl = new VueDonneurQuetes(vueDonneurQuetes,champ, champ.gettT());
                 this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
-
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
                 ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());
@@ -110,7 +109,7 @@ public class Controleur implements Initializable {
                 vueDonneurQuetes.getChildren().clear();
                 linkControl.getLink().setX(60);
                 linkControl.getLink().setY(590);
-                ChargementMap(mapInt4, "iceLand", MapPossible.collision.getCarte());
+                ChargementMap(mapInt4, "iceLand", MapPossible.collisionvillageGlace.getCarte());
             }
             else if(vueVillage2.getNom().equals("iceLand") &&champ.getLink().getY()/64==9 && champ.getLink().getX()/64==0) {
                 mapVIllage2.getChildren().clear();
@@ -148,7 +147,8 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
         this.champ.getListBloc().addListener(new ListObsBloc(VueBloc));
-        Coffre c = new Coffre(new EpeeDeFer(this.champ),"CléNormal",this.champ);
+        Coffre c = new Coffre(new EpeeDeFer(champ),"CléNormal",this.champ);
+
     }
 
 
