@@ -3,6 +3,12 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import static java.nio.file.Files.move;
 
 public class Sbir extends Acteur {
 
@@ -14,6 +20,7 @@ public class Sbir extends Acteur {
     private IntegerProperty yArrive;
     private boolean moveX; // Indicates if the Sbir moves on the X-axis or Y-axis
     private Champ champ;
+
 
     public Sbir(String nom, int x, int y, Champ m, boolean moveX) {
         super(nom, x, y, m);
@@ -27,53 +34,7 @@ public class Sbir extends Acteur {
         this.moveX = moveX;
     }
 
-    public void deplacementAleatoire() {
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (moveX) {
-                    deplacementAleatoireX();
-                } else {
-                    deplacementAleatoireY();
-                }
-            }
-        };
-        timer.start();
-    }
 
-    private void deplacementAleatoireX() {
-        if (getX() < xArrive.get()) {
-            seDeplacer("est");
-        } else if (getX() > xDepart.get()) {
-            seDeplacer("ouest");
-        }
-    }
-
-    private void deplacementAleatoireY() {
-        if (getY() < yArrive.get()) {
-            seDeplacer("sud");
-        } else if (getY() > yDepart.get()) {
-            seDeplacer("nord");
-        }
-    }
-
-    public void seDeplacer(String direction) {
-        switch (direction) {
-            case "nord":
-                this.yDepart.set(this.yDepart.getValue() - (1 * vitesse));
-                break;
-            case "sud":
-                this.yDepart.set(this.yDepart.getValue() + (1 * vitesse));
-                break;
-            case "ouest":
-                this.xDepart.set(this.xDepart.getValue() - (1 * vitesse));
-                break;
-            case "est":
-                this.xDepart.set(this.xDepart.getValue() + (1 * vitesse));
-                break;
-            default:
-        }
-    }
 
     // Getter and setter methods for x and y using IntegerProperty
     @Override

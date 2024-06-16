@@ -8,69 +8,65 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
+import oumaima_nezha_mehdy.zelda.modele.Univers.DonneurQuetes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 
 import java.util.ArrayList;
 
-public class VueSbir {
+public class VueDonneurQuetes {
 
     @FXML
-    private Pane vueSbir;
-    private Ennemi sbir1;
-    private Ennemi sbir2;
+    private Pane vueDonneurQuetes;
+    private DonneurQuetes Arthur;
+    private DonneurQuetes Vanessa;
     private Champ champ;
     private int tailleTuile;
 
     @FXML
-    private ImageView vueSbir1;
-    private Image SbirNord;
-    private Image SbirSud;
-    private Image SbirEst;
-    private Image SbirOuest;
+    private ImageView DonneurQuetes;
 
-    public VueSbir(Pane pane, Champ c, int tailleTuile) {
-        vueSbir = pane;
+    public VueDonneurQuetes(Pane pane, Champ c, int tailleTuile) {
+        vueDonneurQuetes = pane;
         this.champ = c;
-        this.sbir1 = champ.getSbir();
-        this.sbir2 = champ.getSbir2();
+        this.Arthur = champ.getArthur();
+        this.Vanessa = champ.getVanessa();
         this.tailleTuile = tailleTuile;
-        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif", sbir1);
-        creerSbir("file:src/main/resources/images/squeletteMarcheEst.gif",sbir2);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(champ.getListEnnemi())));
+        creerDonneurQuetes("file:src/main/resources/images/Personnages/-1.png", Arthur);
+        creerDonneurQuetes("file:src/main/resources/images/Personnages/-2.png",Vanessa);
+        /*Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(champ.getListEnnemi())));
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        timeline.play();*/
     }
 
-    public void creerSbir(String path, Ennemi s) {
+    public void creerDonneurQuetes(String path, DonneurQuetes s) {
         ImageView r = new ImageView();
         Image image = new Image(path);
         r.setImage(image);
         r.setFitWidth(30);
         r.setFitHeight(30);
-        vueSbir.getChildren().add(r);
+        vueDonneurQuetes.getChildren().add(r);
         r.setId(s.getId());
         r.setTranslateX(s.getX());
         r.setTranslateY(s.getY());
         r.translateXProperty().bind(s.getXProperty());
         r.translateYProperty().bind(s.getYProperty());
-        this.vueSbir1 = r;
+        this.DonneurQuetes = r;
     }
 
-    public Ennemi getSbir() {
-        return this.sbir1;
+    public DonneurQuetes getDonneurQuetes() {
+        return this.Arthur;
     }
 
     public void updateChamp(Champ champ) {
         this.champ = champ;
     }
 
-    public void supprimerSbir(ArrayList<Ennemi> ennemi){
+    /*public void supprimerSbir(ArrayList<Ennemi> ennemi){
         for(Ennemi e : ennemi){
             if(e.estmort()){
                 vueSbir.getChildren().remove(vueSbir1);
             }
         }
 
-    }
-
+    }*/
 }

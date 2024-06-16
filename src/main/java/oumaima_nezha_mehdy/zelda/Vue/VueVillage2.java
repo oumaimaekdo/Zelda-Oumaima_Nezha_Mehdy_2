@@ -14,22 +14,25 @@ import java.util.Map;
 public class VueVillage2 {
     private TilePane map1;
     private TilePane LayerSup;
+
+
     private Champ champ;
 
     private int[] sol;
     private int[] carteLayersup;
 
+
     private int tailleTuile;
     private int LongueurInt;
     private int LargeurInt;
     private String nom;
-    private ArrayList<VueArmes> listeArmesCreer;
 
     private static final String IMAGE_PATH_Debut = "file:src/main/resources/images/mapDebut64/";
     private static final String IMAGE_PATH_Village2 = "file:src/main/resources/images/village2/";
     private static final String IMAGE_PATH_VolcanIsland = "file:src/main/resources/images/villageFeu/";
     private static final String IMAGE_PATH_iceLand = "file:src/main/resources/images/villageGlace/";
     private static final String IMAGE_PATH_foret = "file:src/main/resources/images/foret/";
+    private static final String IMAGE_PATH_perso = "file:src/main/resources/images/Personnages/";
 
 
     public VueVillage2(TilePane map1,TilePane LayerSup, Champ champ, MapInt mapInt,MapInt carteLayersup,String nom){
@@ -59,6 +62,7 @@ public class VueVillage2 {
         LayerSup.setPrefTileWidth(tailleTuile);
         LayerSup.setPrefHeight(LargeurInt * tailleTuile);
         LayerSup.setPrefWidth(LongueurInt * tailleTuile);
+
 
         CreationMap();
         CreationLayerSup();
@@ -151,7 +155,7 @@ public class VueVillage2 {
             }
         }
         else if(nom == "foret") {
-            listeLayerSup = new ArrayList<Integer>(Arrays.asList(7, 8,9,27,28,29,47,48,49,51,52,53,56,57,58,71,72,73,76,77,78,80,81,82,91,92,93, 100, 101, 102,119, 123,124,125,139,143,144,145,160,161,276, 277, 278, 253, 252,251, 266, 267, 267, 268, 260,261,262));
+            listeLayerSup = new ArrayList<Integer>(Arrays.asList(7, 8,9,27,28,29,13,36,37,38,47,48,49,51, 52,56,57,58, 71, 72,73, 76, 77,78,80,81,82,91,92,93,100,101,102, 103, 104, 105,119,123,124,125,139,140,141,143,144,145,160, 161,174,175,176,180,181,189,194,195,196,203,204,205,211,212,213,214,215,216,220,221,222,223,224,225,226,227,228,231,232, 233, 234,240,241,242,246,247, 248,251,252, 253, 254, 256, 257,260,261,262,266, 267, 268, 276, 277,278));
             for (int i : listeLayerSup) {
                 imageMap.put(i, new Image(IMAGE_PATH_foret + "1-" + i + ".png"));
             }
@@ -179,12 +183,9 @@ public class VueVillage2 {
 
     }
 
+
     public String getNom() {
         return nom;
     }
 
-    public ArrayList<VueArmes> getListeArmesCreer(){
-        return this.listeArmesCreer;
-
-    }
 }

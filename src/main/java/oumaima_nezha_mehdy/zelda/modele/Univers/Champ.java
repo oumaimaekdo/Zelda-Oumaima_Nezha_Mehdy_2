@@ -1,8 +1,7 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
-import oumaima_nezha_mehdy.zelda.Vue.ListObsBloc;
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
+
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +17,8 @@ public class Champ {
     private ObservableList<Coffre> listCoffre =FXCollections.observableArrayList();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
+    private ArrayList<Ennemi> listEnnemi = new ArrayList<>();
+    private ArrayList<DonneurQuetes> listQuetes = new ArrayList<>();
 
     private ArrayList<Integer> pointDeCollision;
     private ObservableList<Outils> item;
@@ -30,20 +31,27 @@ public class Champ {
 
     private int tT;
 
-    private VueArmes vueArmes;
-    private Armes arme;
+    private Ennemi sbir2;
+    private Ennemi sbir3;
+    private DonneurQuetes Arthur;
+    private DonneurQuetes Vanessa;
 
     public Champ(int L , int l,int[] map){
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.sbir = new Sbir("Squelette",50,650,this,true);
+        this.sbir2 = new Ennemi("Vocanorax",50,650,this);
+        listEnnemi.add(sbir2);
+        this.sbir3 = new Ennemi("squelette",300,350,this);
+        listEnnemi.add(sbir3);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
         this.link = new Acteur("Link",0,700,this);
-
-
+        this.Arthur = new DonneurQuetes("Arthur",920,410,this);
+        listQuetes.add(Arthur);
+        this.Vanessa = new DonneurQuetes("Vanessa",730,850,this);
+        listQuetes.add(Vanessa);
     }
 
 
@@ -148,6 +156,10 @@ public class Champ {
     public ArrayList<Acteur> getListActeur() {
         return listActeur;
     }
+    public ArrayList<Ennemi> getListEnnemi() {
+        return listEnnemi;
+    }
+
 
     public ObservableList<Outils> getItem() {
         return item;
@@ -157,9 +169,19 @@ public class Champ {
         return link;
     }
 
-    public Sbir getSbir() {
-        return sbir;
+    public Ennemi getSbir() {
+        return sbir2;
     }
+    public Ennemi getSbir2() {
+        return sbir3;
+    }
+    public DonneurQuetes getArthur() {
+        return Arthur;
+    }
+    public DonneurQuetes getVanessa() {
+        return Vanessa;
+    }
+
 
     public int getLongueur(){return longueur;}
     public int getLargeur(){return largeur;}
@@ -173,5 +195,10 @@ public class Champ {
         this.longueur=L;
         this.champ = map;
         this.tT=64;
+    }
+
+    public void mortActeur(Acteur acteur){
+        listActeur.remove(acteur);
+        listEnnemi.remove(acteur);
     }
 }

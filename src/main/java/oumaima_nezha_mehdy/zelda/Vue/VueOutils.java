@@ -31,6 +31,7 @@ public class VueOutils {
         this.outils=outils;
     }
 
+
     public ImageView getVue() {
         return Vue;
     }

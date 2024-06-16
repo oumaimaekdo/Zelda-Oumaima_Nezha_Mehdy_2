@@ -3,20 +3,17 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.beans.InvalidationListener;
 import javafx.scene.layout.TilePane;
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.controleur.Controleur;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import javafx.animation.KeyFrame;
@@ -25,7 +22,6 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 
@@ -41,8 +37,7 @@ public class VueActLink {
 
     private Pane VueArmesJeu;
 
-    @FXML
-    private TilePane armesMap;
+
 
     @FXML
     private ImageView vueLink;
@@ -56,7 +51,7 @@ public class VueActLink {
 
     private int tT;
 
-    private VueOutils armeEquipé;
+    public VueOutils armeEquipé ;
 
     private Pane vueArmesInventaire;
 
@@ -69,8 +64,10 @@ public class VueActLink {
 
     private HashSet<String> touchePressé;
 
-    private Armes epee ;
     private int numeroImage;
+
+    private Armes epee ;
+
 
 
 
@@ -79,7 +76,6 @@ public class VueActLink {
         numeroImage=1;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
-        //this.armesMap = armesMap;
         this.link=champ.getLink();
         this.tT=tailleTuile;
         this.vueCaseInventaire=vueCaseInventaire;
@@ -87,7 +83,6 @@ public class VueActLink {
         this.touchePressé = new HashSet<>();
         this.directionregardé="est";
         this.vueInventaire = new ArrayList<>();
-        this.epee = new EpeeDeFer(this.champ);
         this.vueItem = new ArrayList<>();
         chargerInventaire();
         link.getInventaire().addListener(new InventaireObs(link,vueArmesInventaire,vueCaseInventaire,this));
@@ -97,6 +92,7 @@ public class VueActLink {
         linkSud=new Image("file:src/main/resources/images/Link/sudDefault.png");
         linkEst=new Image("file:src/main/resources/images/Link/estDefault.png");
         linkOuest=new Image("file:src/main/resources/images/Link/ouestDefault.png");
+        this.epee = new EpeeDeFer(this.champ);
         initAnimation();
         gameLoop.play();
         Clé clé= new  Clé("CléNormal",this.champ);
@@ -136,24 +132,26 @@ public class VueActLink {
         }
         if (touchePressé.contains("A")){
             if(armeEquipé!=null && armeEquipé instanceof VueArmes)
-            new Thread(() -> {
-                try {
-                    link.attaquer((VueArmes) armeEquipé,link);
-                    ((VueArmes) armeEquipé).vueAttaque(link, epee);
-                    System.out.println("le perso attaque");
-                    Thread.sleep(300);
-                    ((VueArmes) armeEquipé).getArmeVue().setFitWidth(15);
-                    ((VueArmes) armeEquipé).getArmeVue().setFitHeight(15);
-                    ((VueArmes) armeEquipé).vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
-                    System.out.println("le perso arrete l'attaque");
+                new Thread(() -> {
+                    try {
+                        link.attaquer(champ.getSbir(), ((VueArmes)armeEquipé).getArme());
+                        ((VueArmes) armeEquipé).vueAttaque(this,link,((VueArmes) armeEquipé).getArme());
+                        System.out.println("le perso attaque");
+                        Thread.sleep(300);
+                        ((VueArmes) armeEquipé).getArmeVue().setFitWidth(15);
+                        ((VueArmes) armeEquipé).getArmeVue().setFitHeight(15);
+                        ((VueArmes) armeEquipé).vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
+                        System.out.println("le perso arrete l'attaque");
 
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }).start();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).start();
         }
         if (armeEquipé!=null)
             bindeur(directionregardé);
+            System.out.println(link.getX()+","+link.getY());
+            System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
@@ -256,7 +254,7 @@ public class VueActLink {
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-        
+
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.03),

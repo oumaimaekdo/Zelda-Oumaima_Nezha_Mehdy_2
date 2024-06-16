@@ -3,7 +3,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.modele.Armes.*;
 
@@ -19,6 +19,7 @@ public abstract class VueArmes extends VueOutils {
     private Image armeImage;
 
     private Image attaqueEpee = new Image("file:src/main/resources/images/Armes/attaqueEpee.gif");
+    private Image attaqueBombe = new Image("file:src/main/resources/images/Armes/explosionBombe.gif");
 
 
     // Constructeur
@@ -26,6 +27,18 @@ public abstract class VueArmes extends VueOutils {
         super(arme,invesré,image);
     }
 
+    // Méthode pour créer une arme
+    public void creerArme(Image image, Armes arme) {
+        ImageView r = new ImageView();
+        r.setImage(image);
+        r.setFitWidth(15); // Ajuste selon la taille souhaitée
+        r.setFitHeight(15); // Ajuste selon la taille souhaitée
+        r.setId(arme.getId());
+        this.ArmeVue = r;
+        this.arme=arme;
+        ArmeVue.xProperty().bind(arme.getXProperty());
+        ArmeVue.yProperty().bind(arme.getYProperty());
+    }
 
     public ImageView getArmeVue() {
         return ArmeVue;
@@ -40,7 +53,7 @@ public abstract class VueArmes extends VueOutils {
         return armeImage;
     }
 
-    public void vueAttaque(Acteur acteur,Armes arme){
+    public void vueAttaque(VueActLink vueActeur,Acteur acteur,Armes arme){
 
         if(arme.getNom().equals("epee")){
             ArmeVue.setImage(attaqueEpee);
@@ -48,6 +61,14 @@ public abstract class VueArmes extends VueOutils {
             ArmeVue.setFitHeight(30);
             ArmeVue.xProperty().bind(acteur.getXProperty().add(14));
             ArmeVue.yProperty().bind(acteur.getYProperty().add(1));
+        }
+        else if(arme.getNom().equals("bombe")){
+            ArmeVue.setImage(attaqueBombe);
+            ArmeVue.setFitWidth(30);
+            ArmeVue.setFitHeight(30);
+            ArmeVue.xProperty().bind(acteur.getXProperty().add(140));
+            ArmeVue.yProperty().bind(acteur.getYProperty().add(1));
+            acteur.lacher();
         }
 
     }

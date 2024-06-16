@@ -35,5 +35,11 @@ public abstract class Armes extends Outils {
     }
 
 
+    public Champ getChamp() {
+        return champ;
+    }
 
+    public void setDegats(int degats) {
+        this.degats = degats;
+    }
 }

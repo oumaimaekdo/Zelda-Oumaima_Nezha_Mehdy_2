@@ -18,10 +18,11 @@
                         <Pane fx:id="VueBloc" />
                      </children>
                   </Pane>
-                  <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
-                  <Pane fx:id="vueArcPane" />
-                  <Pane fx:id="vueSbir" />
                   <Pane fx:id="vueArmes" />
+                  <TilePane fx:id="LayerSup" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
+                  <TilePane fx:id="TresorPnj" />
+                  <Pane fx:id="vueDonneurQuetes"/>
+                  <Pane fx:id="vueSbir" />
 
 
                </children>

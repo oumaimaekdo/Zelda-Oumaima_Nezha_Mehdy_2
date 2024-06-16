@@ -29,7 +29,7 @@ public class AccueilController implements Initializable {
     public void LancerJeu(ActionEvent event) throws IOException {
         Stage newWindow =    (Stage) this.lancer.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("vue.fxml"));
-        Scene scene = new Scene(loader.load(),1920,1080);
+        Scene scene = new Scene(loader.load(),1280,960);
         Controleur controller = loader.getController();
         newWindow.setTitle("B-O Hazard");
         newWindow.setScene((scene));

@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
+import oumaima_nezha_mehdy.zelda.Vue.VueOutils;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
 import java.util.ArrayList;
@@ -100,6 +101,16 @@ public class Acteur {
                 }
         return itemAutour;
     }
+
+    public ArrayList<Acteur> ennemiAutour() {
+        int rayon = 50;
+        ArrayList<Acteur> ennemi = new ArrayList<>();
+        for (Acteur a : champ.getListEnnemi())
+                if ((this.getY() - rayon <= a.getY() && a.getY() <= this.getY() + rayon) && (this.getX() - rayon <= a.getX() && a.getX() <= this.getX() + rayon)){
+                    ennemi.add(a);
+                }
+        return ennemi;
+    }
     public void ramasserAutour() {
         if (!armeAutour().isEmpty()){
             ramasser(armeAutour().get(0));
@@ -107,10 +118,32 @@ public class Acteur {
     }
 
 
-    public void attaquer(VueArmes armeEquipe, Acteur acteur) {
+    /*public void attaquer(VueOutils armeEquipe, Acteur acteur) {
+        if (armeEquipe.getOutils().getNom().equals("bombe")) {
+            acteur.setVie(acteur.getVie() - armeEquipe.ge);
+        } else {
+            acteur.setVie(acteur.getVie() - armeEquipe.getArme().getDegats());
+            System.out.println("l'acteur a : " + acteur.getVie() + "de vie");
+        }
+    }*/
+
+
+    /*public void attaquer(VueArmes armeEquipe, Acteur acteur) {
         acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
         System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
+    }*/
+    public void attaquer(Acteur cible, Armes arme) {
+        // Vérifier si l'arme est dans l'inventaire
+        if (inventaire.contains(arme)) {
+            // Infliger des dégâts en fonction de la puissance de l'arme
+            int dommages = arme.getDegats();
+            cible.setVie(cible.getVie() - dommages);
+            System.out.println(nom + " attaque " + cible.nom + " avec " + arme.getNom() + " causant " + dommages + " dommages.");
+        } else {
+            System.out.println(nom + " n'a pas " + arme.getNom() + " dans son inventaire.");
+        }
     }
+
 
     public ArrayList<Coffre> InteragirCoffreAutour(){
         ArrayList<Coffre> coffreAutour = new ArrayList<>();
@@ -172,6 +205,8 @@ public class Acteur {
         armeEquipé=null;
         if(inventaire.get(i-1)!=null) {
             armeEquipé = inventaire.get(i-1);
+            //armeEquipé.getYProperty().bind(this.y);
+            //armeEquipé.getXProperty().bind(this.x);
         }
 
     }
@@ -184,6 +219,19 @@ public class Acteur {
             armeEquipé.getXProperty().unbind();
             armeEquipé=null;
         }
+    }
+
+    public Champ getChamp(){
+        return this.champ;
+    }
+
+    public boolean estEnCollisionAvec(Acteur autre) {
+        System.out.println("est en collission");
+        return (this.getX() == autre.getX() && this.getY() == autre.getY());
+    }
+
+    public String getNom(){
+        return this.nom;
     }
 
 }
