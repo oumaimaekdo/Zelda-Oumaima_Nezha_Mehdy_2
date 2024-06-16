@@ -24,7 +24,9 @@ public abstract class VueArmes extends VueOutils {
 
     // Constructeur
     public VueArmes(Image image,Armes arme,Image invesré) {
+
         super(arme,invesré,image);
+        this.arme = arme;
     }
 
     // Méthode pour créer une arme
@@ -41,7 +43,7 @@ public abstract class VueArmes extends VueOutils {
     }
 
     public ImageView getArmeVue() {
-        return ArmeVue;
+        return super.getVue();
     }
     public Armes getArme(){return arme;}
 
@@ -56,30 +58,30 @@ public abstract class VueArmes extends VueOutils {
     public void vueAttaque(VueActLink vueActeur,Acteur acteur,Armes arme){
 
         if(arme.getNom().equals("epee")){
-            ArmeVue.setImage(attaqueEpee);
-            ArmeVue.setFitWidth(30);
-            ArmeVue.setFitHeight(30);
-            ArmeVue.xProperty().bind(acteur.getXProperty().add(14));
-            ArmeVue.yProperty().bind(acteur.getYProperty().add(1));
+            super.getVue().setImage(attaqueEpee);
+            super.getVue().setFitWidth(30);
+            super.getVue().setFitHeight(30);
+            super.getVue().xProperty().bind(acteur.getXProperty().add(14));
+            super.getVue().yProperty().bind(acteur.getYProperty().add(1));
         }
         else if(arme.getNom().equals("bombe")){
-            ArmeVue.setImage(attaqueBombe);
-            ArmeVue.setFitWidth(30);
-            ArmeVue.setFitHeight(30);
-            ArmeVue.xProperty().bind(acteur.getXProperty().add(140));
-            ArmeVue.yProperty().bind(acteur.getYProperty().add(1));
+            super.getVue().setImage(attaqueBombe);
+            super.getVue().setFitWidth(30);
+            super.getVue().setFitHeight(30);
+            super.getVue().xProperty().bind(acteur.getXProperty().add(140));
+            super.getVue().yProperty().bind(acteur.getYProperty().add(1));
             acteur.lacher();
         }
 
     }
 
     public void vueRepos(Image image,Armes arme,Acteur acteur){
-        ArmeVue.setImage(armeImage);
-        ArmeVue.setImage(image);
-        ArmeVue.setFitWidth(15); // Ajuste selon la taille souhaitée
-        ArmeVue.setFitHeight(15); // Ajuste selon la taille souhaitée
-        ArmeVue.setId(arme.getId());
-        ArmeVue.xProperty().bind(acteur.getXProperty().add(17));
-        ArmeVue.yProperty().bind(acteur.getYProperty().add(10));
+        super.getVue().setImage(armeImage);
+        super.getVue().setImage(image);
+        super.getVue().setFitWidth(15); // Ajuste selon la taille souhaitée
+        super.getVue().setFitHeight(15); // Ajuste selon la taille souhaitée
+        super.getVue().setId(arme.getId());
+        super.getVue().xProperty().bind(acteur.getXProperty().add(17));
+        super.getVue().yProperty().bind(acteur.getYProperty().add(10));
     }
 }

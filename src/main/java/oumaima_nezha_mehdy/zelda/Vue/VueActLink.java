@@ -134,14 +134,17 @@ public class VueActLink {
             if(armeEquipé!=null && armeEquipé instanceof VueArmes)
                 new Thread(() -> {
                     try {
-                        link.attaquer(champ.getSbir(), ((VueArmes)armeEquipé).getArme());
-                        ((VueArmes) armeEquipé).vueAttaque(this,link,((VueArmes) armeEquipé).getArme());
-                        System.out.println("le perso attaque");
-                        Thread.sleep(300);
-                        ((VueArmes) armeEquipé).getArmeVue().setFitWidth(15);
-                        ((VueArmes) armeEquipé).getArmeVue().setFitHeight(15);
-                        ((VueArmes) armeEquipé).vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
-                        System.out.println("le perso arrete l'attaque");
+                        for(Acteur e :link.ennemiAutour()){
+                            link.attaquer( ((VueArmes) armeEquipé).getArme(),e);
+                            ((VueArmes) armeEquipé).vueAttaque(this,link,((VueArmes) armeEquipé).getArme());
+                            System.out.println("le perso attaque");
+                            Thread.sleep(300);
+                            ((VueArmes) armeEquipé).getArmeVue().setFitWidth(15);
+                            ((VueArmes) armeEquipé).getArmeVue().setFitHeight(15);
+                            ((VueArmes) armeEquipé).vueRepos(new Image("file:src/main/resources/images/Armes/epeeFerInversé.png"), epee, link);
+                            System.out.println("le perso arrete l'attaque");
+
+                        }
 
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);

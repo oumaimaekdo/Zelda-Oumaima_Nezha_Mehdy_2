@@ -128,11 +128,11 @@ public class Acteur {
     }*/
 
 
-    /*public void attaquer(VueArmes armeEquipe, Acteur acteur) {
-        acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
+    public void attaquer(Armes armeEquipe, Acteur acteur) {
+        acteur.setVie(acteur.getVie()-armeEquipe.getDegats());
         System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
-    }*/
-    public void attaquer(Acteur cible, Armes arme) {
+    }
+    /*public void attaquer(Acteur cible, Armes arme) {
         // Vérifier si l'arme est dans l'inventaire
         if (inventaire.contains(arme)) {
             // Infliger des dégâts en fonction de la puissance de l'arme
@@ -142,7 +142,7 @@ public class Acteur {
         } else {
             System.out.println(nom + " n'a pas " + arme.getNom() + " dans son inventaire.");
         }
-    }
+    }*/
 
 
     public ArrayList<Coffre> InteragirCoffreAutour(){

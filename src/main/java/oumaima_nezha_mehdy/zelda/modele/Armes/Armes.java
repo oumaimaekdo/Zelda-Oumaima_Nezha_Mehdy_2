@@ -22,7 +22,7 @@ public abstract class Armes extends Outils {
     }
 
     public String getNom() {
-        return nom;
+        return super.getNom();
     }
 
     public int getDegats() {
