@@ -8,6 +8,8 @@ import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class InventaireTest {
 
@@ -25,11 +27,11 @@ public class InventaireTest {
     @Test
     public void testCoordonneePossible() {
         int[] map = new int[100]; // map simplifié pour le test
-        Arrays.fill(map, 1); // Assume all tiles are initially walkable
+        Arrays.fill(map, 1);
         Champ champ = new Champ(10, 10, map);
 
-        assertTrue(champ.coordonnéPossible(5, 5), "Should return true for coordinates within boundaries");
-        assertFalse(champ.coordonnéPossible(-1, -1), "Should return false for out-of-bound coordinates");
+        assertTrue(champ.coordonnéPossible(5, 5), "les limites des coordonnées sont respectés");
+        assertFalse(champ.coordonnéPossible(-1, -1), "les limites des coordonnées ne sont pas respectés");
     }
 
     @Test

@@ -8,6 +8,7 @@ import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.testng.Assert.*;
 
 public class EnnemiTest {
 
@@ -15,11 +16,11 @@ public class EnnemiTest {
     public void testEnnemiMovement() {
         // Créer un champ de test avec une carte simple
         int[] map = new int[100];
-        Arrays.fill(map, 1); // Remplir la carte avec des cellules traversables
+        Arrays.fill(map, 1);
         Champ testChamp = new Champ(10, 10, map);
 
         // Créer un Link
-        Acteur link = testChamp.getLink(); // Récupérer Link initialisé dans le constructeur de Champ
+        Acteur link = testChamp.getLink();
         link.setX(5);
         link.setY(5);
 
