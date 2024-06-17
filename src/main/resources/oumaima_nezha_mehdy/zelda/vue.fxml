@@ -12,7 +12,6 @@
    <center>
       <Pane fx:id="univers" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" onKeyPressed="#keyPressed" onMouseClicked="#mouseclicked" prefHeight="1080.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="vuePointsDeVie" />
                   <Pane fx:id="vueActeur">
                      <children>
                         <TilePane fx:id="mapVIllage2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="650.0" />
@@ -44,6 +43,7 @@
                </opaqueInsets>
             </HBox>
             <Pane fx:id="vueArmesInventaire" />
+            <Pane fx:id="vuePointsDeVie" />
          </children>
          <opaqueInsets>
             <Insets />

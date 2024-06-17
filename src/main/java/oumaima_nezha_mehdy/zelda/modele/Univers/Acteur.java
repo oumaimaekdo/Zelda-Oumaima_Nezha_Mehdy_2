@@ -1,6 +1,8 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +25,7 @@ public class Acteur {
 
     private ObservableList<Armes> inventaire;
 
-    private IntegerProperty vie;
+    private DoubleProperty vie;
 
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
@@ -41,7 +43,7 @@ public class Acteur {
         this.arme = null;
         this.inventaire= FXCollections.observableArrayList();
         chargerInventaire();
-        this.vie = new SimpleIntegerProperty();
+        this.vie = new SimpleDoubleProperty(100);
     }
     public Acteur(String nom, Champ m){
         this.nom=nom;
@@ -49,7 +51,7 @@ public class Acteur {
         this.x.set(m.getLongueur()/2);
         this.y.set(m.getLargeur()/2);
         this.arme = null;
-        this.vie = new SimpleIntegerProperty();
+        this.vie = new SimpleDoubleProperty(100);
     }
 
     public void seDeplacer(String direction) {
@@ -86,11 +88,11 @@ public class Acteur {
     public void setX(int x){this.x.setValue(x);}
     public void setY(int y){this.y.setValue(y);}
 
-    public final int getVie(){ return vie.getValue(); }
+    public final double getVie(){ return vie.getValue(); }
 
-    public final void setVie(int vie){ this.vie.setValue(vie);}
+    public final void setVie(double vie){ if (vie >= 0) this.vie.setValue(vie);}
 
-    public final IntegerProperty vieProperty(int vie){ return this.vie;}
+    public final DoubleProperty vieProperty(){ return this.vie;}
 
     public int getVitesse() {
         return vitesse;
@@ -116,6 +118,13 @@ public class Acteur {
                 }
         return ennemi;
     }
+
+    public boolean linkAutour(){
+
+        return champ.getArthur().linkAutour();
+
+    }
+
     public void ramasserAutour() {
         if (!armeAutour().isEmpty()){
             ramasser(armeAutour().get(0));
@@ -129,7 +138,7 @@ public class Acteur {
         }
         else{
             acteur.setVie(acteur.getVie()-armeEquipe.getArme().getDegats());
-            System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
+            //System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
         }
 
     }
@@ -190,7 +199,7 @@ public class Acteur {
     }
 
     public boolean estEnCollisionAvec(Acteur autre) {
-        System.out.println("est en collission");
+        //System.out.println("est en collission");
         return (this.getX() == autre.getX() && this.getY() == autre.getY());
     }
 

@@ -5,18 +5,25 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class Ennemi extends Acteur {
-    private Timeline mouvementTimeline;
+    private Timeline mouvementTimeline, attaqueTimeline;
+    private int degats;
 
     public Ennemi(String nom, int x, int y, Champ m) {
         super(nom, x, y, m);
         initialiserMouvement();
         setVie(1000);
+        this.degats = 15;
+        attaquer();
     }
 
     private void initialiserMouvement() {
         mouvementTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> seDirigerVersLink()));
         mouvementTimeline.setCycleCount(Timeline.INDEFINITE);
         mouvementTimeline.play();
+
+        attaqueTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> attaquer()));
+        attaqueTimeline.setCycleCount(Timeline.INDEFINITE);
+        attaqueTimeline.play();
     }
 
     private void seDirigerVersLink() {
@@ -49,11 +56,20 @@ public class Ennemi extends Acteur {
                 this.seDeplacer(direction);
             } else {
                 direction = "ouest";
+                link.setVie(link.getVie() - 1);
             }
         }else{
             getChamp().mortActeur(this);
         }
 
+    }
+
+    public void attaquer(){
+
+        if(this.linkAutour()){
+            getChamp().getLink().setVie(getChamp().getLink().getVie()-this.degats);
+            System.out.println("l'ennemi attaque");
+        }
     }
 
     public boolean estmort(){

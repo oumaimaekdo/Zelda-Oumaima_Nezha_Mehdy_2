@@ -2,6 +2,8 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,23 +33,37 @@ public class VuePointsDeVie {
 
     private void initialiserVue() {
         barreDeVieLink = new ProgressBar();
-        barreDeVieLink.setPrefWidth(200);
+        barreDeVieLink.setPrefWidth(100);
         //barreDeVieLink.setLayoutX();
 
         link = champ.getLink();
         ennemi = champ.getListEnnemi().get(0);
 
         barreDeVieEnnemi = new ProgressBar();
-        barreDeVieEnnemi.setPrefWidth(200);
+        barreDeVieEnnemi.setPrefWidth(100);
 
-        barreDeVieLink.progressProperty().bind(link.vieProperty(3));
-        barreDeVieEnnemi.progressProperty().bind(ennemi.vieProperty(3));
 
-        barreDeVieLink.setLayoutX(link.getX());
-        barreDeVieLink.setLayoutY(link.getY()+2);
 
-        barreDeVieEnnemi.setLayoutX(ennemi.getX());
-        barreDeVieEnnemi.setLayoutY(ennemi.getY()+2);
+        barreDeVieLink.progressProperty().bind(link.vieProperty().divide(100));
+        barreDeVieEnnemi.progressProperty().bind(ennemi.vieProperty().divide(100));
+
+        barreDeVieLink.setLayoutX(600);
+        barreDeVieLink.setLayoutY(-450);
+
+        barreDeVieEnnemi.setLayoutX(600 + link.getX() - ennemi.getX());
+        barreDeVieEnnemi.setLayoutY(-450 + link.getY() - ennemi.getY());
+
+        ChangeListener<Number> xlistener = (obs, old, nouv) -> {
+            barreDeVieEnnemi.setLayoutX(600 + ennemi.getX() - link.getX());
+        };
+        ChangeListener<Number> ylistener = (obs, old, nouv) -> {
+            barreDeVieEnnemi.setLayoutY(-450 + ennemi.getY() - link.getY());
+        };
+
+        link.getXProperty().addListener(xlistener);
+        link.getYProperty().addListener(ylistener);
+        ennemi.getXProperty().addListener(xlistener);
+        ennemi.getYProperty().addListener(ylistener);
 
         vuePointsDeVie.getChildren().addAll(barreDeVieLink, barreDeVieEnnemi);
 

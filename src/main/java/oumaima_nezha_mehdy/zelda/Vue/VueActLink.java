@@ -268,6 +268,7 @@ public class VueActLink {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     DeplacementLink();
+                    System.out.println("vie : " + link.getVie());
                     if (touchePressé.isEmpty())
                         animation("inactif");
                     else
