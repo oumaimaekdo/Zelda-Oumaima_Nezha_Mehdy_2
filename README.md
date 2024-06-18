@@ -41,7 +41,7 @@ Téléchargez le fichier du jeu depuis.
 
 ```bash
 git clone https://github.com/oumaimaekdo/Zelda-Oumaima_Nezha_Mehdy.git
-
+```
 Extrayez le contenu du fichier téléchargé dans un répertoire de votre choix.
 
 Ouvrez une fenêtre de terminal ou une invite de commandes et accédez au répertoire où vous avez extrait les fichiers du jeu.
@@ -50,12 +50,12 @@ Compilez les fichiers Java en utilisant la commande suivante :
 
 ```bash
 javac *.java
-
+```
 Une fois la compilation terminée, lancez le jeu en utilisant la commande suivante :
 
 ```bash
 java Main
-
+```
 Le jeu se lancera et vous pourrez commencer à jouer en suivant les instructions à l'écran.
 
 Contrôles du jeu
