@@ -1,6 +1,6 @@
-#Zelda B-O Hazard
+# Zelda B-O Hazard
 
-##Presentation
+### Presentation
 
 
 Zelda B-O Hazard est un jeu qui se déroule dans un univers où l’on retrouve deux mondes majeurs et une mineur. 
@@ -25,7 +25,11 @@ Pour l'inventaire, on cliquera sur un chiffre compris entre 1 et 5 en fonction d
 
 
 - ## Captures d'Écran
-![Capture du jeu](url_de_l'image)
+
+![Menu](/home/guest/Images/Captures d’écran/menu.png)
+
+![Map d'entrée](/home/guest/Images/Captures d’écran/map-principale.png)
+
 
 ##Installation
 
