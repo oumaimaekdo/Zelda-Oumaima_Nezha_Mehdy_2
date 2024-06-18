@@ -2,6 +2,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 
 import javafx.beans.InvalidationListener;
+import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
 
@@ -41,6 +42,8 @@ public class VueActLink {
 
     @FXML
     private ImageView vueLink;
+    @FXML
+    private Button linkMort ;
 
     private Image linkNord;
     private Image linkSud;

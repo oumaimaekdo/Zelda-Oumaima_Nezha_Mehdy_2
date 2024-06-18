@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class Acteur {
     private Champ champ;
 
     private int vitesse=10;
-
 
 
     private ObservableList<Outils> inventaire;
@@ -42,6 +42,7 @@ public class Acteur {
         chargerInventaire();
         this.vie =new SimpleDoubleProperty(100);
     }
+
     public Acteur(String nom, Champ m){
         this.nom=nom;
         this.champ=m;
@@ -50,27 +51,35 @@ public class Acteur {
         this.vie =new SimpleDoubleProperty(100);
     }
 
-    public void seDeplacer(String direction) {
-        switch (direction) {
-            case "nord":
-                if(champ.coordonnéPossible(this.getX(), this.getY() - (1 * this.getVitesse())))
-                    this.y.set(this.y.getValue()-(1*vitesse));
-                break;
-            case "sud":
-                if(champ.coordonnéPossible(this.getX(), this.getY() + (1 * this.getVitesse())))
-                    this.y.set(this.y.getValue()+(1*vitesse));
-                break;
-            case "ouest":
-                if(champ.coordonnéPossible(this.getX() - (1 * this.getVitesse()), this.getY()))
-                    this.x.set(this.x.getValue()-(1*vitesse));
-                break;
-            case "est":
-                if(this.champ.coordonnéPossible(this.getX()+(1*this.vitesse),this.getY()))
-                    this.x.set(this.x.getValue()+(1*vitesse));
-                break;
-            default:
-        }
+    public boolean enVie(){
+        return getVie()>0;
     }
+
+    public void seDeplacer(String direction) {
+        if(enVie()){
+            switch (direction) {
+                case "nord":
+                    if(champ.coordonnéPossible(this.getX(), this.getY() - (1 * this.getVitesse())))
+                        this.y.set(this.y.getValue()-(1*vitesse));
+                    break;
+                case "sud":
+                    if(champ.coordonnéPossible(this.getX(), this.getY() + (1 * this.getVitesse())))
+                        this.y.set(this.y.getValue()+(1*vitesse));
+                    break;
+                case "ouest":
+                    if(champ.coordonnéPossible(this.getX() - (1 * this.getVitesse()), this.getY()))
+                        this.x.set(this.x.getValue()-(1*vitesse));
+                    break;
+                case "est":
+                    if(this.champ.coordonnéPossible(this.getX()+(1*this.vitesse),this.getY()))
+                        this.x.set(this.x.getValue()+(1*vitesse));
+                    break;
+                default:
+            }
+        }
+
+    }
+
     public int getX(){return x.getValue();}
 
     public int getY(){return y.getValue();}
@@ -214,6 +223,10 @@ public class Acteur {
 
     public String getNom(){
         return this.nom;
+    }
+
+    public void estMort(){
+
     }
 
 }

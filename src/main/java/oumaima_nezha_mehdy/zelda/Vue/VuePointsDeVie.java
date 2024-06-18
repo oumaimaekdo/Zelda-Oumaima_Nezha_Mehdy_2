@@ -30,7 +30,7 @@ public class VuePointsDeVie {
 
     private void initialiserVue() {
         barreDeVieLink = new ProgressBar();
-        barreDeVieLink.setPrefWidth(100);
+        barreDeVieLink.setPrefWidth(50);
         //barreDeVieLink.setLayoutX();
 
         link = champ.getLink();
