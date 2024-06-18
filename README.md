@@ -1,7 +1,7 @@
 # Zelda B-O Hazard
----
+
 ### Presentation
----
+
 
 Zelda B-O Hazard est un jeu qui se déroule dans un univers où l’on retrouve deux mondes majeurs et une mineur. 
 Une partie feu, une partie glace et leur frontière qui serait la partie eau. Dans chaque monde on retrouve une quête 
@@ -11,7 +11,7 @@ La quête principale est d'éradiquer tous les boss qui ont pris possession de l
 Néanmoins dans la partie feu, résiste un village nommé Hazard où réside Link, notre joueur, qui n’a pas encore été conquis par le boss feu. Ce village est encore plein de vie et coloré. C’est ici que la mission commence. 
 
 ### Commandes
----
+
 Afin de faire apparaître le link, il faudra cliquer sur l'écran puis cliquer sur les touches suivantes en fonction de
 sa direction : 
 
@@ -25,8 +25,11 @@ Pour l'inventaire, on cliquera sur un chiffre compris entre 1 et 5 en fonction d
 
 
 - ## Captures d'Écran
----
-![Capture du jeu](url_de_l'image)
+
+![Menu](/home/guest/Images/Captures d’écran/menu.png)
+
+![Map d'entrée](/home/guest/Images/Captures d’écran/map-principale.png)
+
 
 ##Installation
 
