@@ -26,9 +26,21 @@ Pour l'inventaire, on cliquera sur un chiffre compris entre 1 et 5 en fonction d
 
 - ## Captures d'Écran
 
-![Menu](/home/guest/Images/Captures d’écran/menu.png)
 
-![Map d'entrée](/home/guest/Images/Captures d’écran/map-principale.png)
+### Menu
+
+![Menu](readme-images/menu.png)
+
+
+
+### Première Map
+
+![Map d'entrée](readme-images/map-principale.png)
+
+
+### Deuxième Map
+
+![Map d'entrée](readme-images/2e-map.png)
 
 
 ### Installation
