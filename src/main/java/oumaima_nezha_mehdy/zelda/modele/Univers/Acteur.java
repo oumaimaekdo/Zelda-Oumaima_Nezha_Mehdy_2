@@ -1,6 +1,8 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +23,7 @@ public class Acteur {
 
     private ObservableList<Outils> inventaire;
 
-    private static int vie = 100;
+    private static DoubleProperty vie ;
 
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
@@ -38,12 +40,14 @@ public class Acteur {
         id += 1;
         this.inventaire= FXCollections.observableArrayList();
         chargerInventaire();
+        this.vie =new SimpleDoubleProperty(100);
     }
     public Acteur(String nom, Champ m){
         this.nom=nom;
         this.champ=m;
         this.x.set(m.getLongueur()/2);
         this.y.set(m.getLargeur()/2);
+        this.vie =new SimpleDoubleProperty(100);
     }
 
     public void seDeplacer(String direction) {
@@ -80,9 +84,11 @@ public class Acteur {
     public void setX(int x){this.x.setValue(x);}
     public void setY(int y){this.y.setValue(y);}
 
-    public int getVie(){ return this.vie; }
+    public final double getVie(){ return vie.getValue(); }
 
-    public void setVie(int vie){ this.vie = vie;}
+    public final void setVie(double vie){ if (vie >= 0) this.vie.setValue(vie);}
+
+    public final DoubleProperty vieProperty(){ return this.vie;}
 
     public int getVitesse() {
         return vitesse;
