@@ -31,7 +31,7 @@ Pour l'inventaire, on cliquera sur un chiffre compris entre 1 et 5 en fonction d
 ![Map d'entrée](/home/guest/Images/Captures d’écran/map-principale.png)
 
 
-##Installation
+### Installation
 
 Pour exécuter le jeu, suivez les étapes ci-dessous :
 
