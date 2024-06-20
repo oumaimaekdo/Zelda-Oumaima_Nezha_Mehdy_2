@@ -2,8 +2,6 @@ package oumaima_nezha_mehdy.zelda.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -24,7 +22,6 @@ import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
-import oumaima_nezha_mehdy.zelda.Vue.VuePointsDeVie;
 import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 
 public class Controleur implements Initializable {
@@ -57,7 +54,7 @@ public class Controleur implements Initializable {
     private Pane vuePointsDeVie;
 
     private Champ champ;
-    private VuePointsDeVie pointsDeVieControl;
+    //private VuePointsDeVie pointsDeVieControl;
     private VueActLink linkControl;
     private VueSbir sbirControl;
     private VueSbir sbirControl2;
@@ -84,10 +81,11 @@ public class Controleur implements Initializable {
         ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
+        this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
 
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
 
-        this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
+        //this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
 
         setUpListeners();
 
@@ -101,7 +99,7 @@ public class Controleur implements Initializable {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
                 this.donneurQuetesControl = new VueDonneurQuetes(vueDonneurQuetes,champ, champ.gettT());
-                this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT());
+
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
                 ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());

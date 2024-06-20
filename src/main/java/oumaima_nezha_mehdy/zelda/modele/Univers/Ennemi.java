@@ -4,54 +4,26 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
-public class Ennemi extends Acteur {
-    private Timeline mouvementTimeline;
+public abstract class Ennemi extends Acteur {
+
+
 
     public Ennemi(String nom, int x, int y, Champ m) {
         super(nom, x, y, m);
-        initialiserMouvement();
+
         setVie(1000);
     }
 
-    private void initialiserMouvement() {
-        mouvementTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> seDirigerVersLink()));
-        mouvementTimeline.setCycleCount(Timeline.INDEFINITE);
-        mouvementTimeline.play();
-    }
+    public abstract void seDirigerVersLink();
 
-    private void seDirigerVersLink() {
-        Acteur link = this.getChamp().getLink();
-        if (link == null) {
-            return;
-        }
+    public void attaquerLink(){
 
-        int linkX = link.getX();
-        int linkY = link.getY();
-        int deltaX = linkX - this.getX();
-        int deltaY = linkY - this.getY();
+        int rayon = 20;
 
-        String direction = "";
-        if(!estmort()){
-            if (!estEnCollisionAvec(getChamp().getLink())) {
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    if (deltaX > 0) {
-                        direction = "est";
-                    } else {
-                        direction = "ouest";
-                    }
-                } else {
-                    if (deltaY > 0) {
-                        direction = "sud";
-                    } else {
-                        direction = "nord";
-                    }
-                }
-                this.seDeplacer(direction);
-            } else {
-                direction = "ouest";
+        for(int i=0; i < champ.getListActeur().size(); i++){
+            if(champ.getListActeur().get(i).getX() < rayon && champ.getListActeur().get(i).getY() < rayon){
+                champ.getListActeur().get(i).setVie(10);
             }
-        }else{
-            getChamp().mortActeur(this);
         }
 
     }

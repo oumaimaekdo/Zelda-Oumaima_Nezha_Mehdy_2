@@ -15,19 +15,18 @@ import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VueSbir {
+public class VueBoss{
 
     private Pane vuePointsDeVie;
     @FXML
-    private Pane vueSbir;
+    private Pane vueBoss;
     private Champ champ;
     private int tailleTuile;
     private Map<Ennemi, ImageView> ennemiImageViewMap;
     public ProgressBar barreDeVieEnnemi;
 
-    public VueSbir(Pane pane, Champ c, int tailleTuile, Pane vuePointsDeVie) {
-        vueSbir = pane;
-        this.vuePointsDeVie = vuePointsDeVie;
+    public VueBoss(Pane pane, Champ c, int tailleTuile) {
+        vueBoss = pane;
         this.champ = c;
         this.tailleTuile = tailleTuile;
         this.ennemiImageViewMap = new HashMap<>();
@@ -54,7 +53,7 @@ public class VueSbir {
 
 
         for (Ennemi e : champ.getListEnnemi()) {
-            creerSbir("file:src/main/resources/images/sbire-simple.png", e);
+            creerSbir("file:src/main/resources/images/volcanorax-attaque.png", e);
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
@@ -67,7 +66,7 @@ public class VueSbir {
         r.setImage(image);
         r.setFitWidth(30);
         r.setFitHeight(30);
-        vueSbir.getChildren().add(r);
+        vueBoss.getChildren().add(r);
         r.setId(s.getId());
         r.setTranslateX(s.getX());
         r.setTranslateY(s.getY());
@@ -84,7 +83,7 @@ public class VueSbir {
         if (ennemi.estmort()) {
             ImageView imageView = this.ennemiImageViewMap.get(ennemi);
             if (imageView != null) {
-                vueSbir.getChildren().remove(imageView);
+                vueBoss.getChildren().remove(imageView);
                 this.ennemiImageViewMap.remove(ennemi);
             }
         }

@@ -39,9 +39,9 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.sbir1 = new Ennemi("Vocanorax",250,650,this);
+        this.sbir1 = new Sbir("Vocanorax",450,650,this);
         listEnnemi.add(sbir1);
-        this.sbir2 = new Ennemi("Vocanorax",50,650,this);
+        this.sbir2 = new Sbir("Vocanorax",650,650,this);
         listEnnemi.add(sbir2);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
