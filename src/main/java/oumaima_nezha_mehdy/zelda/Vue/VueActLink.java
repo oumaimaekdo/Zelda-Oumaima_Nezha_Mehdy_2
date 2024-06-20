@@ -71,6 +71,7 @@ public class VueActLink {
 
     private Armes epee ;
 
+    private int nbImages;
 
 
 
@@ -106,6 +107,7 @@ public class VueActLink {
 
     public void ajouterTouche(String key){
         touchePressé.add(key);
+        System.out.println("voici les touches pressé"+touchePressé);
     }
 
     public void DeplacementLink() {
@@ -156,8 +158,8 @@ public class VueActLink {
         }
         if (armeEquipé!=null)
             bindeur(directionregardé);
-            System.out.println(link.getX()+","+link.getY());
-            System.out.println(link.getX()/tT+","+link.getY()/tT);
+            //System.out.println(link.getX()+","+link.getY());
+            //System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
@@ -260,13 +262,18 @@ public class VueActLink {
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-
+        this.nbImages = 1;
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.03),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
+                    if(nbImages%5==0){
+                        champ.getBoss().seDirigerVersLink();
+                        champ.getSbir().seDirigerVersLink();
+                    }
+
                     DeplacementLink();
                     if (touchePressé.isEmpty())
                         animation("inactif");
@@ -275,10 +282,11 @@ public class VueActLink {
                     numeroImage++;
                     if(numeroImage>10)
                         numeroImage=1;
-
+                        nbImages++;
                 })
         );gameLoop.getKeyFrames().add(kf);
     }
+
     public ArrayList<VueOutils> getVueInventaire() {
         return vueInventaire;
     }

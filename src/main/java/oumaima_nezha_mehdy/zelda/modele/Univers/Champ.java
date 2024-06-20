@@ -40,16 +40,17 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.boss = new Sbir("Volcanorax",650,650,this);
-        listEnnemi.add(boss);
+        this.link = new Link("Link",0,700,this);
         this.sbir1 = new Sbir("sbir1",450,650,this);
         listEnnemi.add(sbir1);
         this.sbir2 = new Sbir("sbir2",650,650,this);
         listEnnemi.add(sbir2);
+        this.boss = new Boss("Volcanorax",650,650,this);
+        listEnnemi.add(boss);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
-        this.link = new Link("Link",0,700,this);
+
         this.Arthur = new DonneurQuetes("Arthur",920,410,this);
         listQuetes.add(Arthur);
         this.Vanessa = new DonneurQuetes("Vanessa",730,850,this);
@@ -202,4 +203,6 @@ public class Champ {
         listActeur.remove(acteur);
         listEnnemi.remove(acteur);
     }
+
+
 }

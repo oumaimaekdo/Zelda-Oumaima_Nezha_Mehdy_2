@@ -80,7 +80,7 @@ public class Controleur implements Initializable {
         ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
-        //this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
+        this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
         this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
 

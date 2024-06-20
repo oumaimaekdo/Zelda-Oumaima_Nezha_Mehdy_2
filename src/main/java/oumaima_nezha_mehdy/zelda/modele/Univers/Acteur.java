@@ -55,8 +55,9 @@ public class Acteur {
         return getVie()>0;
     }
 
+
     public void seDeplacer(String direction) {
-        if(enVie()){
+
             switch (direction) {
                 case "nord":
                     if(champ.coordonnéPossible(this.getX(), this.getY() - (1 * this.getVitesse())))
@@ -76,7 +77,7 @@ public class Acteur {
                     break;
                 default:
             }
-        }
+
 
     }
 
@@ -125,7 +126,7 @@ public class Acteur {
 
     public void attaquer(Armes armeEquipe, Acteur acteur) {
         acteur.setVie(acteur.getVie()-armeEquipe.getDegats());
-        System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
+        //System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
 
 
@@ -139,7 +140,7 @@ public class Acteur {
     }
 
     public boolean estEnCollisionAvec(Acteur autre) {
-        System.out.println("est en collision");
+        //System.out.println("est en collision");
         return (this.getX() == autre.getX() && this.getY() == autre.getY());
     }
 

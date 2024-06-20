@@ -10,13 +10,14 @@ import javafx.util.Duration;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 import static java.nio.file.Files.move;
 
 public class Sbir extends Ennemi {
 
     private Timeline mouvementTimeline;
-
+    private String direction = "est";
 
     private int vie;
     private int vitesse;
@@ -29,52 +30,51 @@ public class Sbir extends Ennemi {
         this.champ = m;
         this.vie = 100;
         this.vitesse = 10;
-        initialiserMouvement();
+        //initialiserMouvement();
     }
 
-
+/*
     private void initialiserMouvement() {
         mouvementTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> seDirigerVersLink()));
         mouvementTimeline.setCycleCount(Timeline.INDEFINITE);
         mouvementTimeline.play();
     }
 
+ */
+
 
     public void seDirigerVersLink() {
-        Acteur link = this.getChamp().getLink();
-        if (link == null) {
-            return;
+
+        /*
+        Random rand = new Random();
+        int direction = rand.nextInt(2); // Génère un nombre aléatoire entre 0 et 3 inclus
+
+        String[] directions = {"nord","sud","ouest","est"};
+        /*
+        switch (direction) {
+
+            case 0:
+                seDeplacer("nord");
+                break;
+            case 1:
+                seDeplacer("sud");
+                break;
+            case 2:
+                seDeplacer("ouest");
+                break;
+            case 3:
+                seDeplacer("est");
+                break;
+
+
         }
 
-        int linkX = link.getX();
-        int linkY = link.getY();
-        int deltaX = linkX - this.getX();
-        int deltaY = linkY - this.getY();
 
-        String direction = "";
-        if(!estmort()){
-            if (!estEnCollisionAvec(getChamp().getLink())) {
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                    if (deltaX > 0) {
-                        direction = "est";
-                    } else {
-                        direction = "ouest";
-                    }
-                } else {
-                    if (deltaY > 0) {
-                        direction = "sud";
-                    } else {
-                        direction = "nord";
-                    }
-                }
-                this.seDeplacer(direction);
-            } else {
-                direction = "ouest";
-            }
-        }else{
-            getChamp().mortActeur(this);
+        if(Math.random()>0.5){
+            this.direction = directions[(int) Math.random()*4];
         }
-
+        seDeplacer(this.direction);
+        */
     }
 }
 

@@ -20,7 +20,7 @@ public class DonneurQuetes extends Acteur{
             if ((this.getY() - rayon <= link.getY() && link.getY() <= this.getY() + rayon) && (this.getX() - rayon <= link.getX() && link.getX() <= this.getX() + rayon)){
                 present = true;
             }
-        System.out.println("Link est present");
+        //System.out.println("Link est present");
         return present;
     }
 
