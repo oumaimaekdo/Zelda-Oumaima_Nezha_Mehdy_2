@@ -9,7 +9,6 @@ import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Champ {
 
@@ -98,7 +97,6 @@ public class Champ {
             if(x<b.getX()+rayon&&x>b.getX()-(rayon-15)&&y<b.getY()+rayon&&y>b.getY()-(rayon-15))
                 return b.getpassable();
 
-        // Return the final condition
         return collisionHautGauche && collisionBasDroite;
     }
 

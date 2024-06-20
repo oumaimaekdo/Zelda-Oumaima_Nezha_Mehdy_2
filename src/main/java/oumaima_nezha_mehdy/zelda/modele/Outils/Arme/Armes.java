@@ -1,7 +1,7 @@
 package oumaima_nezha_mehdy.zelda.modele.Outils.Arme;
 
-import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 public abstract class Armes extends Outils {
     private String nom;
