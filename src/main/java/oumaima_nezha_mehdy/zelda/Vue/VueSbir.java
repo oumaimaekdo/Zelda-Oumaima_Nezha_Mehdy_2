@@ -53,8 +53,8 @@ public class VueSbir {
         ImageView r = new ImageView();
         Image image = new Image(path);
         r.setImage(image);
-        r.setFitWidth(30);
-        r.setFitHeight(30);
+        r.setFitWidth(35);
+        r.setFitHeight(35);
         vueSbir.getChildren().add(r);
         r.setId(s.getId());
         r.setTranslateX(s.getX());

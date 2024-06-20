@@ -60,4 +60,9 @@ public class Boss extends Ennemi{
     public int getDegat() {
         return degat;
     }
+
+    @Override
+    public boolean estUnSbire() {
+        return false;
+    }
 }

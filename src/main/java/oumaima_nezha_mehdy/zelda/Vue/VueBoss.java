@@ -41,10 +41,10 @@ public class VueBoss{
         this.barreDeVieEnnemi.setStyle("-fx-accent: red;");
         creerBarreDeVie(champ.getBoss());
 
-        creerSbir("file:src/main/resources/images/volcanorax-attaque.png", champ.getBoss());
+        creerBoss("file:src/main/resources/images/volcanorax-attaque.png", champ.getBoss());
         for (Ennemi e : champ.getListEnnemi()) {
 
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerBoss(e)));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         }
@@ -69,7 +69,7 @@ public class VueBoss{
         //barreDeVieEnnemi.translateYProperty().setValue(0);
     }
 
-    public void creerSbir(String path, Ennemi s) {
+    public void creerBoss(String path, Ennemi s) {
         ImageView r = new ImageView();
         Image image = new Image(path);
         r.setImage(image);
@@ -88,7 +88,7 @@ public class VueBoss{
         this.champ = champ;
     }
 
-    public void supprimerSbir(Ennemi ennemi) {
+    public void supprimerBoss(Ennemi ennemi) {
         if (ennemi.estmort()) {
             ImageView imageView = this.ennemiImageViewMap.get(ennemi);
             if (imageView != null) {

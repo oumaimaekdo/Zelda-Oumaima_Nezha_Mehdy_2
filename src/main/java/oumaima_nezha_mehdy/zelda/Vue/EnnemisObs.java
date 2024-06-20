@@ -9,6 +9,8 @@ public class EnnemisObs {
 
 
     private ObservableList<Ennemi> ennemis;
+    private VueBoss vueBoss;
+    private VueSbir vueSbir;
 
     public EnnemisObs() {
         ennemis = FXCollections.observableArrayList();
@@ -20,6 +22,13 @@ public class EnnemisObs {
                 while (change.next()) {
                     if (change.wasAdded()) {
                         for (Ennemi e : change.getAddedSubList()) {
+                            if(e.estUnSbire()){
+                                String chemin = "file:src/main/resources/images/sbire-simple.png";
+                                vueSbir.creerSbir(chemin,e);
+                            }else{
+                                String chemin = "file:src/main/resources/images/volcanorax-attaque.png";
+                                vueBoss.creerBoss(chemin,e);
+                            }
                             System.out.println(e.getNom() + " a été ajouté à la liste des ennemis.");
                         }
                     }

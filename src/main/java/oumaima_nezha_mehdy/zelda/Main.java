@@ -20,6 +20,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("Acceuil.fxml"));
         newWindow.setScene(new Scene(loader.load()));
         newWindow.show();
+
+
     }
 
     public static void main(String[] args) {

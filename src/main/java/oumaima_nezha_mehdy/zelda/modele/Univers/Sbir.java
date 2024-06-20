@@ -24,6 +24,10 @@ public class Sbir extends Ennemi {
         return 5;
     }
 
+    public boolean estUnSbire(){
+        return true;
+    }
+
 }
 
         /**/

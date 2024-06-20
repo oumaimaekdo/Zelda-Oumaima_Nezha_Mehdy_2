@@ -61,7 +61,7 @@ public abstract class Ennemi extends Acteur {
 
     public boolean linkAutour() {
 
-        int rayon = 100;
+        int rayon = 50;
         Link link = champ.getLink();
         boolean present = false;
             if ((this.getY() - rayon <= link.getY() && link.getY() <= this.getY() + rayon) && (this.getX() - rayon <= link.getX() && link.getX() <= this.getX() + rayon)){
@@ -74,6 +74,6 @@ public abstract class Ennemi extends Acteur {
         return getVie()<=0;
     }
 
-
+    public abstract boolean estUnSbire();
 
 }
