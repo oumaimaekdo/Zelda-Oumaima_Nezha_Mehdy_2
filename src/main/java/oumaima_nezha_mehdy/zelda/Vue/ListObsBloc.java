@@ -2,6 +2,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
+import oumaima_nezha_mehdy.zelda.Vue.Outils.Elements.VueCoffre;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Coffre;
 
 public class ListObsBloc implements ListChangeListener<Coffre> {

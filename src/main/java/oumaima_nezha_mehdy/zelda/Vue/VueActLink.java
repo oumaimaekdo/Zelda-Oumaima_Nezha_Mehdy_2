@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import oumaima_nezha_mehdy.zelda.Vue.Outils.Armes.VueArmes;
+import oumaima_nezha_mehdy.zelda.Vue.Outils.VueOutils;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Clé;
@@ -299,6 +301,10 @@ public class VueActLink {
                         if(champ.getSbir().linkAutour()){
                             champ.getSbir().seDirigerVersLink();
                             champ.getSbir().attaquerLink();
+                        }
+                        if(champ.getSbir2().linkAutour()){
+                            champ.getSbir2().seDirigerVersLink();
+                            champ.getSbir2().attaquerLink();
                         }
                         if(champ.getBoss().linkAutour()){
                             champ.getBoss().attaquerLink();

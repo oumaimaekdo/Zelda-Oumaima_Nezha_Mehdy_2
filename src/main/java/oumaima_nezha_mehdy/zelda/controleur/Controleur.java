@@ -20,7 +20,10 @@ import java.util.ResourceBundle;
 import javafx.stage.Stage;
 import oumaima_nezha_mehdy.zelda.Main;
 import oumaima_nezha_mehdy.zelda.Vue.*;
-import Arc;
+import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
+import oumaima_nezha_mehdy.zelda.Vue.Acteurs.VueBoss;
+import oumaima_nezha_mehdy.zelda.Vue.Acteurs.VueDonneurQuetes;
+import oumaima_nezha_mehdy.zelda.Vue.Acteurs.VueSbir;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.EpeeDeFer;
@@ -90,7 +93,9 @@ public class Controleur implements Initializable {
             ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
 
             this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire,vuePointsDeVie);
-            this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
+            this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie,champ.getSbir());
+            this.sbirControl2 = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie,champ.getSbir2());
+
             this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
             this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
 
@@ -165,7 +170,7 @@ public class Controleur implements Initializable {
         mapVIllage2.setPrefWidth(LongueurInt*tailleTuile);
         this.vueVillage2 = new VueVillage2(mapVIllage2,LayerSup,champ,mapInt4,MapPossible.LayerSup,nomMap);
         this.champ.getListBloc().addListener(new ListObsBloc(VueBloc));
-        ArrayList<Armes> coffreContenu = new ArrayList<>(Arrays.asList(new Bombe(champ),new EpeeDeFer(champ),new Arc(champ)));
+        ArrayList<Armes> coffreContenu = new ArrayList<>(Arrays.asList(new Bombe(champ),new EpeeDeFer(champ)));
         Coffre c = new Coffre(coffreContenu,"CléNormal",this.champ);
 
     }

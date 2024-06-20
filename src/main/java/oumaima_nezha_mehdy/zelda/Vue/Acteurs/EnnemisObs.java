@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.Vue;
+package oumaima_nezha_mehdy.zelda.Vue.Acteurs;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;

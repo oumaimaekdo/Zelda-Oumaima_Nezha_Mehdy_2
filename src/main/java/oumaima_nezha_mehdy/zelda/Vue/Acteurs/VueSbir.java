@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.Vue;
+package oumaima_nezha_mehdy.zelda.Vue.Acteurs;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,41 +11,72 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Acteur;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Sbir;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Ennemi;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class VueBoss{
+public class VueSbir {
 
     private Pane vuePointsDeVie;
     @FXML
-    private Pane vueBoss;
+    private Pane vueSbir;
     private Champ champ;
     private int tailleTuile;
     private Map<Ennemi, ImageView> ennemiImageViewMap;
     public ProgressBar barreDeVieEnnemi;
+    private Ennemi sbir;
 
-
-    public VueBoss(Pane pane, Champ c, int tailleTuile, Pane vuePointsDeVie) {
-        vueBoss = pane;
+    public VueSbir(Pane pane, Champ c, int tailleTuile, Pane vuePointsDeVie, Ennemi sbir) {
+        vueSbir = pane;
+        this.sbir = sbir;
+        this.vuePointsDeVie = vuePointsDeVie;
         this.champ = c;
         this.tailleTuile = tailleTuile;
-        this.vuePointsDeVie =vuePointsDeVie;
         this.ennemiImageViewMap = new HashMap<>();
         this.barreDeVieEnnemi = new ProgressBar();
         this.barreDeVieEnnemi.setPrefWidth(70);
         this.barreDeVieEnnemi.setPrefHeight(15);
         this.barreDeVieEnnemi.setStyle("-fx-accent: red;");
-        creerBarreDeVie(champ.getBoss());
+        creerSbir("file:src/main/resources/images/sbire-simple.png", sbir);
+        creerBarreDeVie(sbir);
 
-        creerBoss("file:src/main/resources/images/volcanorax-attaque.png", champ.getBoss());
         for (Ennemi e : champ.getListEnnemi()) {
-
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerBoss(e)));
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
+        }
+    }
+
+    public void creerSbir(String path, Ennemi s) {
+        ImageView r = new ImageView();
+        Image image = new Image(path);
+        r.setImage(image);
+        r.setFitWidth(35);
+        r.setFitHeight(35);
+        vueSbir.getChildren().add(r);
+        r.setId(s.getId());
+        r.setTranslateX(s.getX());
+        r.setTranslateY(s.getY());
+        r.translateXProperty().bind(s.getXProperty());
+        r.translateYProperty().bind(s.getYProperty());
+        this.ennemiImageViewMap.put(s, r);  // Associez l'ennemi à son ImageView
+    }
+
+    public void updateChamp(Champ champ) {
+        this.champ = champ;
+    }
+
+    public void supprimerSbir(Ennemi ennemi) {
+        if (ennemi.estmort()) {
+            ImageView imageView = this.ennemiImageViewMap.get(ennemi);
+            if (imageView != null) {
+                vueSbir.getChildren().remove(imageView);
+                vueSbir.getChildren().remove(barreDeVieEnnemi);
+                this.ennemiImageViewMap.remove(ennemi);
+            }
         }
     }
 
@@ -63,37 +94,8 @@ public class VueBoss{
     }
 
     public void barreDeVie(){
-        vueBoss.getChildren().add(barreDeVieEnnemi);
-        //barreDeVieEnnemi.translateXProperty().setValue(0);
-        //barreDeVieEnnemi.translateYProperty().setValue(0);
+        vueSbir.getChildren().add(barreDeVieEnnemi);
     }
 
-    public void creerBoss(String path, Ennemi s) {
-        ImageView r = new ImageView();
-        Image image = new Image(path);
-        r.setImage(image);
-        r.setFitWidth(30);
-        r.setFitHeight(30);
-        vueBoss.getChildren().add(r);
-        r.setId(s.getId());
-        r.setTranslateX(s.getX());
-        r.setTranslateY(s.getY());
-        r.translateXProperty().bind(s.getXProperty());
-        r.translateYProperty().bind(s.getYProperty());
-        this.ennemiImageViewMap.put(s, r);  // Associez l'ennemi à son ImageView
-    }
 
-    public void updateChamp(Champ champ) {
-        this.champ = champ;
-    }
-
-    public void supprimerBoss(Ennemi ennemi) {
-        if (ennemi.estmort()) {
-            ImageView imageView = this.ennemiImageViewMap.get(ennemi);
-            if (imageView != null) {
-                vueBoss.getChildren().remove(imageView);
-                this.ennemiImageViewMap.remove(ennemi);
-            }
-        }
-    }
 }

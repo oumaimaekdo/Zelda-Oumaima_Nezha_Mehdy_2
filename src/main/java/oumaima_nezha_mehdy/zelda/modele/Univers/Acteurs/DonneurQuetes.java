@@ -1,16 +1,13 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 public class DonneurQuetes extends Acteur {
-    private Timeline verifTimeline;
+
 
     public DonneurQuetes(String nom, int x, int y, Champ m) {
         super(nom, x, y, m);
-        verificationLink();
+
     }
     public boolean linkAutour() {
         Acteur link = getChamp().getLink();
@@ -23,9 +20,4 @@ public class DonneurQuetes extends Acteur {
         return present;
     }
 
-    private void verificationLink() {
-        verifTimeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> linkAutour()));
-        verifTimeline.setCycleCount(Timeline.INDEFINITE);
-        verifTimeline.play();
-    }
 }

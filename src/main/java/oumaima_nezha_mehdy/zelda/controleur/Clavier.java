@@ -1,11 +1,9 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.*;
 import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
-import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 import oumaima_nezha_mehdy.zelda.Vue.VueInventaire;
 
 public class Clavier{

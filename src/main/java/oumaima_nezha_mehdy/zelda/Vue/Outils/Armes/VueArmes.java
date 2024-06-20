@@ -1,9 +1,11 @@
-package oumaima_nezha_mehdy.zelda.Vue;
+package oumaima_nezha_mehdy.zelda.Vue.Outils.Armes;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
+import oumaima_nezha_mehdy.zelda.Vue.Outils.VueOutils;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Acteur;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Link;

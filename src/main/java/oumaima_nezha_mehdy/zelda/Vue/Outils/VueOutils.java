@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.Vue;
+package oumaima_nezha_mehdy.zelda.Vue.Outils;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;

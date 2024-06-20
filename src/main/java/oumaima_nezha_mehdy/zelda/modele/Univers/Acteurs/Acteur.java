@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
-import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
 
 public class Acteur {
 
@@ -26,7 +25,6 @@ public class Acteur {
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
 
-    private Outils armeEquipé;
 
 
     public Acteur(String nom, int x , int y, Champ m){
@@ -98,9 +96,6 @@ public class Acteur {
     public final DoubleProperty vieProperty(){ return this.vie;}
 
 
-    public final double getMaxVie(){ return maxPointsDeVie.getValue(); }
-
-    public final void setMaxVie(double vie){ if (vie >= 0) this.maxPointsDeVie.setValue(vie);}
 
     public final IntegerProperty maxVieProperty(){ return this.maxPointsDeVie;}
 

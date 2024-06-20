@@ -2,6 +2,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
+import oumaima_nezha_mehdy.zelda.Vue.Outils.VueOutils;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
 
 public class ChampItemObs implements ListChangeListener<Outils> {

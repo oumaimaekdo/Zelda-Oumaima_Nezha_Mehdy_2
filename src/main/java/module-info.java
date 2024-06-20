@@ -15,4 +15,12 @@ module oumaima_nezha_mehdy.zelda {
     opens oumaima_nezha_mehdy.zelda.controleur to javafx.fxml;
     exports oumaima_nezha_mehdy.zelda.Vue;
     opens oumaima_nezha_mehdy.zelda.Vue to javafx.fxml;
+    exports oumaima_nezha_mehdy.zelda.Vue.Acteurs;
+    opens oumaima_nezha_mehdy.zelda.Vue.Acteurs to javafx.fxml;
+    exports oumaima_nezha_mehdy.zelda.Vue.Outils.Armes;
+    opens oumaima_nezha_mehdy.zelda.Vue.Outils.Armes to javafx.fxml;
+    exports oumaima_nezha_mehdy.zelda.Vue.Outils.Elements;
+    opens oumaima_nezha_mehdy.zelda.Vue.Outils.Elements to javafx.fxml;
+    exports oumaima_nezha_mehdy.zelda.Vue.Outils;
+    opens oumaima_nezha_mehdy.zelda.Vue.Outils to javafx.fxml;
 }

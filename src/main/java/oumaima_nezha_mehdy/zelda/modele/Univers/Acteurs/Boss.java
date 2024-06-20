@@ -4,7 +4,6 @@ import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 public class Boss extends Ennemi {
 
-    //private BFS bfs;
     private int degat;
     public Boss(String nom, int x, int y, Champ m) {
         super(nom, x, y, m);

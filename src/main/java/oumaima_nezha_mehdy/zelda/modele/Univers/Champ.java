@@ -21,7 +21,6 @@ public class Champ {
     private ArrayList<Ennemi> listEnnemi = new ArrayList<>();
     private ArrayList<DonneurQuetes> listQuetes = new ArrayList<>();
 
-    private ArrayList<Integer> pointDeCollision;
     private ObservableList<Outils> item;
     private Link link;
 
@@ -44,12 +43,11 @@ public class Champ {
         this.link = new Link("Link",0,700,this);
         this.sbir1 = new Sbir("sbir1",450,650,this);
         listEnnemi.add(sbir1);
-        /*this.sbir2 = new Sbir("sbir2",650,650,this);
-        listEnnemi.add(sbir2);*/
+        this.sbir2 = new Sbir("sbir2",650,650,this);
+        listEnnemi.add(sbir2);
         this.boss = new Boss("Volcanorax",650,650,this);
         listEnnemi.add(boss);
         this.tT=64;
-        this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
 
         this.Arthur = new DonneurQuetes("Arthur",920,410,this);
@@ -176,7 +174,11 @@ public class Champ {
     public Ennemi getSbir() {
         return sbir1;
     }
-        public Ennemi getBoss() {return boss;}
+    public Ennemi getSbir2() {
+        return sbir2;
+    }
+
+    public Ennemi getBoss() {return boss;}
 
     public DonneurQuetes getArthur() {
         return Arthur;
