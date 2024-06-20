@@ -30,6 +30,7 @@ public class Champ {
 
     private int tT;
 
+    private Ennemi boss;
     private Ennemi sbir2;
     private Ennemi sbir1;
     private DonneurQuetes Arthur;
@@ -39,9 +40,11 @@ public class Champ {
         this.largeur=l;
         this.longueur=L;
         this.champ = map;
-        this.sbir1 = new Sbir("Vocanorax",450,650,this);
+        this.boss = new Sbir("Volcanorax",650,650,this);
+        listEnnemi.add(boss);
+        this.sbir1 = new Sbir("sbir1",450,650,this);
         listEnnemi.add(sbir1);
-        this.sbir2 = new Sbir("Vocanorax",650,650,this);
+        this.sbir2 = new Sbir("sbir2",650,650,this);
         listEnnemi.add(sbir2);
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
@@ -171,6 +174,7 @@ public class Champ {
     public Ennemi getSbir() {
         return sbir2;
     }
+        public Ennemi getBoss() {return boss;}
 
     public DonneurQuetes getArthur() {
         return Arthur;

@@ -25,6 +25,7 @@ public class Acteur {
 
     private DoubleProperty vie ;
 
+    private IntegerProperty maxPointsDeVie;
 
     private IntegerProperty x = new SimpleIntegerProperty(0);
     private IntegerProperty y = new SimpleIntegerProperty(0);
@@ -41,6 +42,7 @@ public class Acteur {
         this.inventaire= FXCollections.observableArrayList();
         chargerInventaire();
         this.vie =new SimpleDoubleProperty(100);
+        this.maxPointsDeVie =new SimpleIntegerProperty(100);
     }
 
     public Acteur(String nom, Champ m){
@@ -98,6 +100,13 @@ public class Acteur {
     public final void setVie(double vie){ if (vie >= 0) this.vie.setValue(vie);}
 
     public final DoubleProperty vieProperty(){ return this.vie;}
+
+
+    public final double getMaxVie(){ return maxPointsDeVie.getValue(); }
+
+    public final void setMaxVie(double vie){ if (vie >= 0) this.maxPointsDeVie.setValue(vie);}
+
+    public final IntegerProperty maxVieProperty(){ return this.maxPointsDeVie;}
 
     public int getVitesse() {
         return vitesse;

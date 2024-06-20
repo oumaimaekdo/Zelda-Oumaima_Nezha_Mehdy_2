@@ -23,6 +23,7 @@
                   <TilePane fx:id="TresorPnj" />
                   <Pane fx:id="vueDonneurQuetes"/>
                   <Pane fx:id="vueSbir" />
+                  <Pane fx:id="vueBoss" />
 
 
                </children>

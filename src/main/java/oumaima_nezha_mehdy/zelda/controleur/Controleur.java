@@ -13,16 +13,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import oumaima_nezha_mehdy.zelda.Vue.VueDonneurQuetes;
-import oumaima_nezha_mehdy.zelda.Vue.ListObsBloc;
-import oumaima_nezha_mehdy.zelda.Vue.VueVillage2;
+import oumaima_nezha_mehdy.zelda.Vue.*;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
-import oumaima_nezha_mehdy.zelda.Vue.VueActLink;
-import oumaima_nezha_mehdy.zelda.Vue.VueSbir;
 
 public class Controleur implements Initializable {
 
@@ -45,6 +41,8 @@ public class Controleur implements Initializable {
     @FXML
     private Pane vueArmes;
     @FXML
+    private Pane vueBoss;
+    @FXML
     private Pane vueSbir;
     @FXML
     private Pane vueDonneurQuetes;
@@ -56,6 +54,7 @@ public class Controleur implements Initializable {
     private Champ champ;
     //private VuePointsDeVie pointsDeVieControl;
     private VueActLink linkControl;
+    private VueBoss bossControl;
     private VueSbir sbirControl;
     private VueSbir sbirControl2;
     private VueDonneurQuetes donneurQuetesControl;
@@ -81,8 +80,8 @@ public class Controleur implements Initializable {
         ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
 
         this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
-        this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
-
+        //this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
+        this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
         this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
 
         //this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
@@ -99,7 +98,7 @@ public class Controleur implements Initializable {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
                 this.donneurQuetesControl = new VueDonneurQuetes(vueDonneurQuetes,champ, champ.gettT());
-
+                this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
                 linkControl.getLink().setX(660);
                 linkControl.getLink().setY(50);
                 ChargementMap(mapInt4, "foret", MapPossible.collisionForet.getCarte());

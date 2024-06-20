@@ -2,6 +2,8 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
@@ -9,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteur;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
 
@@ -25,39 +28,43 @@ public class VueBoss{
     private Map<Ennemi, ImageView> ennemiImageViewMap;
     public ProgressBar barreDeVieEnnemi;
 
-    public VueBoss(Pane pane, Champ c, int tailleTuile) {
+    public VueBoss(Pane pane, Champ c, int tailleTuile, Pane vuePointsDeVie) {
         vueBoss = pane;
         this.champ = c;
         this.tailleTuile = tailleTuile;
+        this.vuePointsDeVie =vuePointsDeVie;
         this.ennemiImageViewMap = new HashMap<>();
         this.barreDeVieEnnemi = new ProgressBar();
         this.barreDeVieEnnemi.setPrefWidth(70);
         this.barreDeVieEnnemi.setStyle("-fx-accent: red;");
+        creerBarreDeVie(champ.getListEnnemi().get(2));
 
-        barreDeVieEnnemi.progressProperty().bind(champ.getSbir().vieProperty().divide(100));
-
-        barreDeVieEnnemi.setLayoutX(600 + champ.getLink().getX() - champ.getSbir().getX());
-        barreDeVieEnnemi.setLayoutY(-450 + champ.getLink().getY() - champ.getLink().getY());
-
-        ChangeListener<Number> xlistener = (obs, old, nouv) -> {
-            barreDeVieEnnemi.setLayoutX(600 + champ.getSbir().getX() - champ.getLink().getX());
-        };
-        ChangeListener<Number> ylistener = (obs, old, nouv) -> {
-            barreDeVieEnnemi.setLayoutY(-450 + champ.getSbir().getY() - champ.getLink().getY());
-        };
-
-        champ.getSbir().getXProperty().addListener(xlistener);
-        champ.getSbir().getYProperty().addListener(ylistener);
-
-        vuePointsDeVie.getChildren().add(barreDeVieEnnemi);
-
-
+        creerSbir("file:src/main/resources/images/volcanorax-attaque.png", champ.getBoss());
         for (Ennemi e : champ.getListEnnemi()) {
-            creerSbir("file:src/main/resources/images/volcanorax-attaque.png", e);
+
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
         }
+    }
+
+    public void creerBarreDeVie(Acteur a){
+
+        NumberBinding progressBinding = Bindings.createDoubleBinding(
+                () -> a.vieProperty().get()/ (double) 100,a.vieProperty(),a.maxVieProperty()
+        );
+        barreDeVieEnnemi.progressProperty().bind(progressBinding);
+        barreDeVieEnnemi.translateXProperty().bind(a.getXProperty());
+        barreDeVieEnnemi.translateYProperty().bind(a.getYProperty());
+        barreDeVieEnnemi.setId(a.getNom());
+        barreDeVie();
+
+    }
+
+    public void barreDeVie(){
+        vueBoss.getChildren().add(barreDeVieEnnemi);
+        //barreDeVieEnnemi.translateXProperty().setValue(0);
+        //barreDeVieEnnemi.translateYProperty().setValue(0);
     }
 
     public void creerSbir(String path, Ennemi s) {
