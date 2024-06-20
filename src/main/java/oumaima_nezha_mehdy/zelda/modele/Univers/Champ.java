@@ -43,8 +43,8 @@ public class Champ {
         this.link = new Link("Link",0,700,this);
         this.sbir1 = new Sbir("sbir1",450,650,this);
         listEnnemi.add(sbir1);
-        this.sbir2 = new Sbir("sbir2",650,650,this);
-        listEnnemi.add(sbir2);
+        /*this.sbir2 = new Sbir("sbir2",650,650,this);
+        listEnnemi.add(sbir2);*/
         this.boss = new Boss("Volcanorax",650,650,this);
         listEnnemi.add(boss);
         this.tT=64;
@@ -173,7 +173,7 @@ public class Champ {
     }
 
     public Ennemi getSbir() {
-        return sbir2;
+        return sbir1;
     }
         public Ennemi getBoss() {return boss;}
 

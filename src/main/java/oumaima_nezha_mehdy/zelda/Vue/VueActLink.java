@@ -2,7 +2,10 @@ package oumaima_nezha_mehdy.zelda.Vue;
 
 
 import javafx.beans.InvalidationListener;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.TilePane;
 
 
@@ -13,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import oumaima_nezha_mehdy.zelda.controleur.AccueilController;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
@@ -72,11 +76,16 @@ public class VueActLink {
     private Armes epee ;
 
     private int nbImages;
+    public ProgressBar barreDeVieLink;
+    private Pane vuePointsDeVie;
 
 
 
-    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire){
+
+
+    public VueActLink(Pane pane, Champ c, int tailleTuile, Pane VueArmesJeu, HBox vueCaseInventaire, Pane vueArmesInventaire, Pane vuePointsDeVie){
         vueActeur=pane;
+        this.vuePointsDeVie = vuePointsDeVie;
         numeroImage=1;
         this.VueArmesJeu = VueArmesJeu;
         this.champ=c;
@@ -101,8 +110,28 @@ public class VueActLink {
         gameLoop.play();
         Clé clé= new  Clé("CléNormal",this.champ);
         link.ramasser(clé);
+        this.barreDeVieLink = new ProgressBar();
+        this.barreDeVieLink.setPrefWidth(70);
+        this.barreDeVieLink.setPrefHeight(15);
+        this.barreDeVieLink.setStyle("-fx-accent: green;");
+        creerBarreDeVie(champ.getLink());
 
+    }
+    public void creerBarreDeVie(Acteur a){
 
+        NumberBinding progressBinding = Bindings.createDoubleBinding(
+                () -> a.vieProperty().get()/ (double) 100,a.vieProperty(),a.maxVieProperty()
+        );
+        barreDeVieLink.progressProperty().bind(progressBinding);
+        barreDeVieLink.translateXProperty().bind(a.getXProperty().subtract(20));
+        barreDeVieLink.translateYProperty().bind(a.getYProperty().subtract(20));
+        barreDeVieLink.setId(a.getNom());
+        barreDeVie();
+
+    }
+
+    public void barreDeVie(){
+        vueActeur.getChildren().add(barreDeVieLink);
     }
 
     public void ajouterTouche(String key){
@@ -158,8 +187,6 @@ public class VueActLink {
         }
         if (armeEquipé!=null)
             bindeur(directionregardé);
-            //System.out.println(link.getX()+","+link.getY());
-            //System.out.println(link.getX()/tT+","+link.getY()/tT);
     }
     public void creerlink(String path , Acteur a){
         ImageView r = new ImageView();
@@ -271,10 +298,19 @@ public class VueActLink {
                 (ev ->{
                     if(nbImages%5==0){
                         champ.getBoss().seDirigerVersLink();
-                        champ.getSbir().seDirigerVersLink();
+                        if(champ.getSbir().linkAutour()){
+                            champ.getSbir().seDirigerVersLink();
+                            champ.getSbir().attaquerLink();
+                        }
+                        if(champ.getBoss().linkAutour()){
+                            champ.getBoss().attaquerLink();
+                        }
                     }
-
-                    DeplacementLink();
+                    if(champ.getLink().enVie()){
+                        DeplacementLink();
+                    }else{
+                        gameLoop.stop();
+                    }
                     if (touchePressé.isEmpty())
                         animation("inactif");
                     else

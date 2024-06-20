@@ -36,6 +36,8 @@ public class AccueilController implements Initializable {
         newWindow.show();
     }
 
+
+
     public void Regle(ActionEvent actionEvent) throws IOException {
         Stage newWindow = new Stage();
         newWindow.setTitle("Les règles");

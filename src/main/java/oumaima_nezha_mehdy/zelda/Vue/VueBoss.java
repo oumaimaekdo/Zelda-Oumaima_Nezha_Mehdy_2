@@ -28,6 +28,7 @@ public class VueBoss{
     private Map<Ennemi, ImageView> ennemiImageViewMap;
     public ProgressBar barreDeVieEnnemi;
 
+
     public VueBoss(Pane pane, Champ c, int tailleTuile, Pane vuePointsDeVie) {
         vueBoss = pane;
         this.champ = c;
@@ -36,8 +37,9 @@ public class VueBoss{
         this.ennemiImageViewMap = new HashMap<>();
         this.barreDeVieEnnemi = new ProgressBar();
         this.barreDeVieEnnemi.setPrefWidth(70);
+        this.barreDeVieEnnemi.setPrefHeight(15);
         this.barreDeVieEnnemi.setStyle("-fx-accent: red;");
-        creerBarreDeVie(champ.getListEnnemi().get(2));
+        creerBarreDeVie(champ.getBoss());
 
         creerSbir("file:src/main/resources/images/volcanorax-attaque.png", champ.getBoss());
         for (Ennemi e : champ.getListEnnemi()) {
@@ -54,8 +56,8 @@ public class VueBoss{
                 () -> a.vieProperty().get()/ (double) 100,a.vieProperty(),a.maxVieProperty()
         );
         barreDeVieEnnemi.progressProperty().bind(progressBinding);
-        barreDeVieEnnemi.translateXProperty().bind(a.getXProperty());
-        barreDeVieEnnemi.translateYProperty().bind(a.getYProperty());
+        barreDeVieEnnemi.translateXProperty().bind(a.getXProperty().subtract(20));
+        barreDeVieEnnemi.translateYProperty().bind(a.getYProperty().subtract(20));
         barreDeVieEnnemi.setId(a.getNom());
         barreDeVie();
 

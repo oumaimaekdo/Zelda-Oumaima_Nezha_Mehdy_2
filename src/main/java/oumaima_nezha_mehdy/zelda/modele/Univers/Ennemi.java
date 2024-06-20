@@ -1,9 +1,5 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-
 public abstract class Ennemi extends Acteur {
 
 
@@ -14,22 +10,70 @@ public abstract class Ennemi extends Acteur {
         setVie(1000);
     }
 
-    public abstract void seDirigerVersLink();
+
+    public void seDirigerVersLink() {
+
+        Acteur link = this.getChamp().getLink();
+        if (link == null) {
+            return;
+        }
+
+        int linkX = link.getX();
+        int linkY = link.getY();
+        int deltaX = linkX - this.getX();
+        int deltaY = linkY - this.getY();
+
+        String direction = "";
+        if(!estmort()){
+            if (!estEnCollisionAvec(getChamp().getLink())) {
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX > 0) {
+                        direction = "est";
+                    } else {
+                        direction = "ouest";
+                    }
+                } else {
+                    if (deltaY > 0) {
+                        direction = "sud";
+                    } else {
+                        direction = "nord";
+                    }
+                }
+                this.seDeplacer(direction);
+            } else {
+                direction = "ouest";
+            }
+        }else{
+            getChamp().mortActeur(this);
+        }
+    }
+
+    public abstract int getDegat();
 
     public void attaquerLink(){
 
-        int rayon = 20;
-
-        for(int i=0; i < champ.getListActeur().size(); i++){
-            if(champ.getListActeur().get(i).getX() < rayon && champ.getListActeur().get(i).getY() < rayon){
-                champ.getListActeur().get(i).setVie(10);
-            }
+        if(linkAutour()){
+            champ.getLink().setVie(champ.getLink().getVie()-this.getDegat());
         }
 
+
+    }
+
+    public boolean linkAutour() {
+
+        int rayon = 100;
+        Link link = champ.getLink();
+        boolean present = false;
+            if ((this.getY() - rayon <= link.getY() && link.getY() <= this.getY() + rayon) && (this.getX() - rayon <= link.getX() && link.getX() <= this.getX() + rayon)){
+                present = true;
+            }
+        return present;
     }
 
     public boolean estmort(){
         return getVie()<=0;
     }
+
+
 
 }

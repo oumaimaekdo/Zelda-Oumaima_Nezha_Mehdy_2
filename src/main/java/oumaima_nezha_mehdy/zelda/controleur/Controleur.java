@@ -1,18 +1,24 @@
 package oumaima_nezha_mehdy.zelda.controleur;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import javafx.stage.Stage;
+import oumaima_nezha_mehdy.zelda.Main;
 import oumaima_nezha_mehdy.zelda.Vue.*;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
@@ -74,20 +80,20 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.mapInt4 = MapPossible.village2;
+
+            this.mapInt4 = MapPossible.village2;
 
 
-        ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
+            ChargementMap(mapInt4,"debut",MapPossible.collision.getCarte());
 
-        this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire);
-        this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
-        this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
-        this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
+            this.linkControl = new VueActLink(vueActeur, champ, champ.gettT(), vueArmes, vueInventaire, vueArmesInventaire,vuePointsDeVie);
+            this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie);
+            this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
+            this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
 
-        //this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
+            //this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
 
-        setUpListeners();
-
+            setUpListeners();
 
     }
 
@@ -170,6 +176,15 @@ public class Controleur implements Initializable {
         clavier.handle(keyEvent);
         System.out.println(vueInventaire.lookup("#case1").getId());
         System.out.println(linkControl.getLink().getX()/64 + " ......." + linkControl.getLink().getY()/64);
+    }
+
+    @FXML
+    public void FinDePartie(ActionEvent actionEvent) throws IOException {
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Perdu");
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("Perdu.fxml"));
+        newWindow.setScene(new Scene(loader.load()));
+        newWindow.show();
     }
 
     public void keyReleased(KeyEvent e){

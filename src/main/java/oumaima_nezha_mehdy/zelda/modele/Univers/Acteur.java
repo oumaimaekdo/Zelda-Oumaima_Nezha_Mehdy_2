@@ -112,26 +112,13 @@ public class Acteur {
     }
 
 
-    public ArrayList<Acteur> ennemiAutour() {
-        int rayon = 50;
-        ArrayList<Acteur> ennemi = new ArrayList<>();
-        for (Acteur a : champ.getListEnnemi())
-                if ((this.getY() - rayon <= a.getY() && a.getY() <= this.getY() + rayon) && (this.getX() - rayon <= a.getX() && a.getX() <= this.getX() + rayon)){
-                    ennemi.add(a);
-                }
-        return ennemi;
-    }
+
 
 
 
     public void attaquer(Armes armeEquipe, Acteur acteur) {
         acteur.setVie(acteur.getVie()-armeEquipe.getDegats());
-        //System.out.println("l'acteur a : "+acteur.getVie()+"de vie");
     }
-
-
-
-
 
 
 
