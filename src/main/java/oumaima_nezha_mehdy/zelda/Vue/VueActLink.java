@@ -30,7 +30,7 @@ import java.util.HashSet;
 public class VueActLink {
 
 
-    private Acteur link;
+    private Link link;
     @FXML
     private Pane vueActeur;
 
@@ -214,7 +214,7 @@ public class VueActLink {
 
     }
 
-    public Acteur getLink(){
+    public Link getLink(){
         return this.link;
     }
 

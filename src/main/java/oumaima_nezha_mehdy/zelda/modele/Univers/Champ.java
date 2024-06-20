@@ -22,7 +22,7 @@ public class Champ {
 
     private ArrayList<Integer> pointDeCollision;
     private ObservableList<Outils> item;
-    private Acteur link;
+    private Link link;
 
     private int longueur;
 
@@ -49,7 +49,7 @@ public class Champ {
         this.tT=64;
         this.pointDeCollision = new ArrayList<Integer>(Arrays.asList(5,6,7,8));
         this.item = FXCollections.observableArrayList();
-        this.link = new Acteur("Link",0,700,this);
+        this.link = new Link("Link",0,700,this);
         this.Arthur = new DonneurQuetes("Arthur",920,410,this);
         listQuetes.add(Arthur);
         this.Vanessa = new DonneurQuetes("Vanessa",730,850,this);
@@ -167,7 +167,7 @@ public class Champ {
         return item;
     }
 
-    public Acteur getLink() {
+    public Link getLink() {
         return link;
     }
 

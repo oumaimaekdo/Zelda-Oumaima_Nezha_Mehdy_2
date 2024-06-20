@@ -56,7 +56,7 @@ public abstract class VueArmes extends VueOutils {
         return armeImage;
     }
 
-    public void vueAttaque(VueActLink vueActeur,Acteur acteur,Armes arme){
+    public void vueAttaque(VueActLink vueActeur,Link acteur,Armes arme){
 
         if(arme.getNom().equals("epee")){
             super.getVue().setImage(attaqueEpee);

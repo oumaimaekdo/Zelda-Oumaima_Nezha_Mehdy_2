@@ -21,7 +21,6 @@ public class Acteur {
     private int vitesse=10;
 
 
-    private ObservableList<Outils> inventaire;
 
     private DoubleProperty vie ;
 
@@ -39,8 +38,7 @@ public class Acteur {
         this.y.set(y);
         this.champ=m;
         id += 1;
-        this.inventaire= FXCollections.observableArrayList();
-        chargerInventaire();
+
         this.vie =new SimpleDoubleProperty(100);
         this.maxPointsDeVie =new SimpleIntegerProperty(100);
     }
@@ -112,16 +110,6 @@ public class Acteur {
         return vitesse;
     }
 
-    public ArrayList<Outils> armeAutour() {
-        int rayon = 30;
-        ArrayList<Outils> itemAutour = new ArrayList<>();
-        for (Outils a : champ.getItem())
-            if (!inventaire.contains(a))
-                if ((this.getY() - rayon <= a.getY() && a.getY() <= this.getY() + rayon) && (this.getX() - rayon <= a.getX() && a.getX() <= this.getX() + rayon)){
-                    itemAutour.add(a);
-                }
-        return itemAutour;
-    }
 
     public ArrayList<Acteur> ennemiAutour() {
         int rayon = 50;
@@ -132,11 +120,7 @@ public class Acteur {
                 }
         return ennemi;
     }
-    public void ramasserAutour() {
-        if (!armeAutour().isEmpty()){
-            ramasser(armeAutour().get(0));
-        }
-    }
+
 
 
     public void attaquer(Armes armeEquipe, Acteur acteur) {
@@ -145,81 +129,10 @@ public class Acteur {
     }
 
 
-    public ArrayList<Coffre> InteragirCoffreAutour(){
-        ArrayList<Coffre> coffreAutour = new ArrayList<>();
-        int rayon = 30;
-        for (Coffre c : champ.getListBloc()){
-            if ((this.getY() - rayon <= c.getY() && c.getY() <= this.getY() + rayon) && (this.getX() - rayon <= c.getX() && c.getX() <= this.getX() + rayon))
-            coffreAutour.add(c);
-        }
-        return coffreAutour;
-    }
-    public void interagirCoffre(){
-        if(!InteragirCoffreAutour().isEmpty()) {
-            Coffre c = InteragirCoffreAutour().get(0);
-            if(armeEquipé!=null) {
-                if (armeEquipé.getNom().equals(c.getCléRequise()) || c.getouvertProperty().getValue()) {
-                    c.interagir();
-                    System.out.println(inventaire.indexOf(armeEquipé));
-                }
-            }
-            else if(c.getouvert())
-                c.interagir();
-
-            if(c.getNbInteraction()>1)
-                for(Armes a : c.getContenu())
-                ramasser(a);
-
-        }
-    }
 
 
-    public void ajouterArme(Armes arme) {
-        inventaire.add(arme);
-    }
 
-    public ObservableList<Outils> getInventaire() {
-        return inventaire;
-    }
 
-    public Outils getArmeParIndex(int index) {
-        if (index >= 0 && index < inventaire.size()) {
-            return inventaire.get(index);
-        }
-        return null;
-    }
-    private void chargerInventaire(){
-        for(int i=0;i<5;i++){
-            inventaire.add(null);
-        }
-    }
-    public void ramasser(Outils vA) {
-        for(int i=0 ; i<5;i++)
-            if(inventaire.get(i)==null) {
-                inventaire.set(i,vA);
-                break;
-            }
-        champ.getItem().remove(vA);
-    }
-
-    public void selectioner(int i){
-        armeEquipé=null;
-        if(inventaire.get(i-1)!=null) {
-            armeEquipé = inventaire.get(i-1);
-
-        }
-
-    }
-    public void lacher(){
-        if(armeEquipé!=null){
-            int indice = inventaire.indexOf(armeEquipé);
-            inventaire.set(indice,null);
-            champ.ajouterItem(armeEquipé);
-            armeEquipé.getYProperty().unbind();
-            armeEquipé.getXProperty().unbind();
-            armeEquipé=null;
-        }
-    }
 
     public Champ getChamp(){
         return this.champ;

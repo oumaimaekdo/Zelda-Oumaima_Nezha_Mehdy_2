@@ -12,18 +12,19 @@ import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.Vue.VueArmes;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Clé;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Link;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Outils;
 
 class InventaireObs implements ListChangeListener<Outils> {
 
-    private Acteur link;
+        private Link link;
 
     private Pane vueArmesInventaire;
 
     private HBox vueCaseInventaire;
     private VueActLink val;
 
-    InventaireObs(Acteur link,Pane vAI,HBox vCI,VueActLink val) {
+    InventaireObs(Link link,Pane vAI,HBox vCI,VueActLink val) {
         this.link = link;
         this.vueArmesInventaire=vAI;
         this.vueCaseInventaire=vCI;

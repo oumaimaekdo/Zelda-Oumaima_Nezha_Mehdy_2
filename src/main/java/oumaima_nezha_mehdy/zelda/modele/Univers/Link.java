@@ -3,6 +3,7 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 
@@ -14,7 +15,7 @@ public class Link extends Acteur{
     public static int id= 0;;
     private String nom;
 
-    protected Champ champ;
+    private Champ champ;
 
     private int vitesse=10;
 
@@ -31,42 +32,19 @@ public class Link extends Acteur{
 
 
     public Link(String nom, int x, int y, Champ m) {
+
         super(nom, x, y, m);
+        this.champ = m;
+        this.inventaire= FXCollections.observableArrayList();
+        chargerInventaire();
     }
 
-
-    public boolean enVie(){
-        return getVie()>0;
-    }
-
-    public void seDeplacer(String direction) {
-        if(enVie()){
-            switch (direction) {
-                case "nord":
-                    if(champ.coordonnéPossible(this.getX(), this.getY() - (1 * this.getVitesse())))
-                        this.y.set(this.y.getValue()-(1*vitesse));
-                    break;
-                case "sud":
-                    if(champ.coordonnéPossible(this.getX(), this.getY() + (1 * this.getVitesse())))
-                        this.y.set(this.y.getValue()+(1*vitesse));
-                    break;
-                case "ouest":
-                    if(champ.coordonnéPossible(this.getX() - (1 * this.getVitesse()), this.getY()))
-                        this.x.set(this.x.getValue()-(1*vitesse));
-                    break;
-                case "est":
-                    if(this.champ.coordonnéPossible(this.getX()+(1*this.vitesse),this.getY()))
-                        this.x.set(this.x.getValue()+(1*vitesse));
-                    break;
-                default:
-            }
-        }
-
-    }
 
     public void ajouterArme(Armes arme) {
         inventaire.add(arme);
     }
+
+
 
     public ObservableList<Outils> getInventaire() {
         return inventaire;
@@ -78,6 +56,26 @@ public class Link extends Acteur{
         }
         return null;
     }
+
+    public void ramasser(Outils vA) {
+        for(int i=0 ; i<5;i++)
+            if(inventaire.get(i)==null) {
+                inventaire.set(i,vA);
+                break;
+            }
+        super.champ.getItem().remove(vA);
+    }
+
+    public ArrayList<Outils> armeAutour() {
+        int rayon = 30;
+        ArrayList<Outils> itemAutour = new ArrayList<>();
+        for (Outils a : champ.getItem())
+            if (!inventaire.contains(a))
+                if ((this.getY() - rayon <= a.getY() && a.getY() <= this.getY() + rayon) && (this.getX() - rayon <= a.getX() && a.getX() <= this.getX() + rayon)){
+                    itemAutour.add(a);
+                }
+        return itemAutour;
+    }
     public ArrayList<Coffre> InteragirCoffreAutour(){
         ArrayList<Coffre> coffreAutour = new ArrayList<>();
         int rayon = 30;
@@ -87,6 +85,9 @@ public class Link extends Acteur{
         }
         return coffreAutour;
     }
+
+
+
     public void interagirCoffre(){
         if(!InteragirCoffreAutour().isEmpty()) {
             Coffre c = InteragirCoffreAutour().get(0);
@@ -111,14 +112,7 @@ public class Link extends Acteur{
             inventaire.add(null);
         }
     }
-    public void ramasser(Outils vA) {
-        for(int i=0 ; i<5;i++)
-            if(inventaire.get(i)==null) {
-                inventaire.set(i,vA);
-                break;
-            }
-        champ.getItem().remove(vA);
-    }
+
 
     public void selectioner(int i){
         armeEquipé=null;
@@ -137,6 +131,12 @@ public class Link extends Acteur{
             armeEquipé.getYProperty().unbind();
             armeEquipé.getXProperty().unbind();
             armeEquipé=null;
+        }
+    }
+
+    public void ramasserAutour() {
+        if (!armeAutour().isEmpty()){
+            ramasser(armeAutour().get(0));
         }
     }
 }
