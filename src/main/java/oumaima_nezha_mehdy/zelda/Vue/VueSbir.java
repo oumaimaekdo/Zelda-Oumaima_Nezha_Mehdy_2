@@ -39,10 +39,11 @@ public class VueSbir {
         this.barreDeVieEnnemi.setPrefWidth(70);
         this.barreDeVieEnnemi.setPrefHeight(15);
         this.barreDeVieEnnemi.setStyle("-fx-accent: red;");
+        creerSbir("file:src/main/resources/images/sbire-simple.png", champ.getSbir());
         creerBarreDeVie(champ.getSbir());
 
         for (Ennemi e : champ.getListEnnemi()) {
-            creerSbir("file:src/main/resources/images/sbire-simple.png", e);
+
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
