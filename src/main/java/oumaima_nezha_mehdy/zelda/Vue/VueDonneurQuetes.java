@@ -1,17 +1,11 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
-import oumaima_nezha_mehdy.zelda.modele.Univers.DonneurQuetes;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
-
-import java.util.ArrayList;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.DonneurQuetes;
 
 public class VueDonneurQuetes {
 

@@ -3,7 +3,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Coffre;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Coffre;
 
 public class VueCoffre {
 

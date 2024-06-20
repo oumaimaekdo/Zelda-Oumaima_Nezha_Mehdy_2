@@ -1,5 +1,7 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs;
 
+
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 public class Sbir extends Ennemi {
 

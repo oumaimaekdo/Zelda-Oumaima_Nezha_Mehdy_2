@@ -1,12 +1,14 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Outils.Element;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Map.Bloc;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 import java.util.ArrayList;
 
-public class Coffre extends Bloc{
+public class Coffre extends Bloc {
 
     private ArrayList<Armes> contenu;
 

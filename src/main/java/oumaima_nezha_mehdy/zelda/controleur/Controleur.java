@@ -20,11 +20,14 @@ import java.util.ResourceBundle;
 import javafx.stage.Stage;
 import oumaima_nezha_mehdy.zelda.Main;
 import oumaima_nezha_mehdy.zelda.Vue.*;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Arc;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
-import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
+import Arc;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Bombe;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.EpeeDeFer;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Coffre;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Map.MapInt;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Map.MapPossible;
 
 public class Controleur implements Initializable {
 

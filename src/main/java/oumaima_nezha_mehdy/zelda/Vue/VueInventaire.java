@@ -4,9 +4,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Bloc;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Outils;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
 
 public class VueInventaire {
 

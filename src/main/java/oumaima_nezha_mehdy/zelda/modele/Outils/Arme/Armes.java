@@ -1,9 +1,7 @@
-package oumaima_nezha_mehdy.zelda.modele.Armes;
+package oumaima_nezha_mehdy.zelda.modele.Outils.Arme;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Outils;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
 
 public abstract class Armes extends Outils {
     private String nom;

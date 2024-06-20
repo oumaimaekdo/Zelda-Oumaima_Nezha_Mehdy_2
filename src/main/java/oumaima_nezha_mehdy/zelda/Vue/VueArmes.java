@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import oumaima_nezha_mehdy.zelda.modele.Univers.*;
-import oumaima_nezha_mehdy.zelda.modele.Armes.*;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Acteur;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Link;
 
 
 public abstract class VueArmes extends VueOutils {
@@ -56,7 +57,7 @@ public abstract class VueArmes extends VueOutils {
         return armeImage;
     }
 
-    public void vueAttaque(VueActLink vueActeur,Link acteur,Armes arme){
+    public void vueAttaque(VueActLink vueActeur, Link acteur, Armes arme){
 
         if(arme.getNom().equals("epee")){
             super.getVue().setImage(attaqueEpee);
@@ -76,7 +77,7 @@ public abstract class VueArmes extends VueOutils {
 
     }
 
-    public void vueRepos(Image image,Armes arme,Acteur acteur){
+    public void vueRepos(Image image, Armes arme, Acteur acteur){
         super.getVue().setImage(armeImage);
         super.getVue().setImage(image);
         super.getVue().setFitWidth(15); // Ajuste selon la taille souhaitée

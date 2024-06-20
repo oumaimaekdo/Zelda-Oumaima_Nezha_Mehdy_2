@@ -1,7 +1,7 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 
 import java.util.ArrayList;
 

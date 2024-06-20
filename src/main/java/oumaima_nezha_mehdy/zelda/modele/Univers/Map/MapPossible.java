@@ -1,4 +1,4 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers.Map;
 
 public class MapPossible {
 

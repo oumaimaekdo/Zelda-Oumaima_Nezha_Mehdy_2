@@ -1,5 +1,7 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers;
 
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Ennemi;
+
 import java.util.*;
 
 public class BFS {

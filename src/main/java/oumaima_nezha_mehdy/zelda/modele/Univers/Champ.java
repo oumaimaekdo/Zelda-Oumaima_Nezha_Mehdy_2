@@ -2,10 +2,11 @@ package oumaima_nezha_mehdy.zelda.modele.Univers;
 
 
 
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Coffre;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

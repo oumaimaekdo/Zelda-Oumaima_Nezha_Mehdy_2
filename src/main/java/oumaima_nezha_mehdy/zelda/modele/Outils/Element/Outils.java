@@ -1,7 +1,8 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Outils.Element;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 public class Outils {
 

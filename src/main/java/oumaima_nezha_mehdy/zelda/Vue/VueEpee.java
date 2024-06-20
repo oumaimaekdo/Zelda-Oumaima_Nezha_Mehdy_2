@@ -1,8 +1,7 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.scene.image.Image;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Outils;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 
 public class VueEpee extends VueArmes{
     public VueEpee(Armes epee) {

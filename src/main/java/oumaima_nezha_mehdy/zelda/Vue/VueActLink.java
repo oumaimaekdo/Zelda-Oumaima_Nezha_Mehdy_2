@@ -1,13 +1,10 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.TilePane;
-
 
 
 import javafx.fxml.FXML;
@@ -16,14 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.controleur.AccueilController;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Bombe;
-import oumaima_nezha_mehdy.zelda.modele.Armes.EpeeDeFer;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.EpeeDeFer;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Clé;
 import oumaima_nezha_mehdy.zelda.modele.Univers.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Acteur;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Link;
 
 import java.util.ArrayList;
 

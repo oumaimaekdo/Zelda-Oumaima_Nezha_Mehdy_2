@@ -1,15 +1,12 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import oumaima_nezha_mehdy.zelda.modele.Armes.Armes;
-
-import java.util.ArrayList;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Outils;
 
 public class Acteur {
 

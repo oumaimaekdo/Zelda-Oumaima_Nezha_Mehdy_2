@@ -3,7 +3,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
-import oumaima_nezha_mehdy.zelda.modele.Univers.MapInt;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Map.MapInt;
 
 import java.util.ArrayList;
 import java.util.Arrays;

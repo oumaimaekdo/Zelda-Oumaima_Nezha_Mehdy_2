@@ -1,11 +1,8 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.collections.ListChangeListener;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Bloc;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Coffre;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Coffre;
 
 public class ListObsBloc implements ListChangeListener<Coffre> {
 

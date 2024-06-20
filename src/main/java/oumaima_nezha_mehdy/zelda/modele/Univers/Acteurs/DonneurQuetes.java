@@ -1,12 +1,11 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
-import java.util.ArrayList;
-
-public class DonneurQuetes extends Acteur{
+public class DonneurQuetes extends Acteur {
     private Timeline verifTimeline;
 
     public DonneurQuetes(String nom, int x, int y, Champ m) {

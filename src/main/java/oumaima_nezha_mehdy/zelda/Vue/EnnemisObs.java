@@ -3,7 +3,7 @@ package oumaima_nezha_mehdy.zelda.Vue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Ennemi;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Ennemi;
 
 public class EnnemisObs {
 

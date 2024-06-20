@@ -1,16 +1,21 @@
-package oumaima_nezha_mehdy.zelda.modele.Univers;
+package oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs;
 
-public abstract class Ennemi extends Acteur {
+import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
+public class Boss extends Ennemi {
 
-
-    public Ennemi(String nom, int x, int y, Champ m) {
+    //private BFS bfs;
+    private int degat;
+    public Boss(String nom, int x, int y, Champ m) {
         super(nom, x, y, m);
-
-        setVie(1000);
+        seDirigerVersLink();
+        attaquerLink();
+        this.degat = 10;
+        attaquerLink();
     }
 
 
+    @Override
     public void seDirigerVersLink() {
 
         Acteur link = this.getChamp().getLink();
@@ -48,32 +53,12 @@ public abstract class Ennemi extends Acteur {
         }
     }
 
-    public abstract int getDegat();
-
-    public void attaquerLink(){
-
-        if(linkAutour()){
-            champ.getLink().setVie(champ.getLink().getVie()-this.getDegat());
-        }
-
-
+    public int getDegat() {
+        return degat;
     }
 
-    public boolean linkAutour() {
-
-        int rayon = 50;
-        Link link = champ.getLink();
-        boolean present = false;
-            if ((this.getY() - rayon <= link.getY() && link.getY() <= this.getY() + rayon) && (this.getX() - rayon <= link.getX() && link.getX() <= this.getX() + rayon)){
-                present = true;
-            }
-        return present;
+    @Override
+    public boolean estUnSbire() {
+        return false;
     }
-
-    public boolean estmort(){
-        return getVie()<=0;
-    }
-
-    public abstract boolean estUnSbire();
-
 }

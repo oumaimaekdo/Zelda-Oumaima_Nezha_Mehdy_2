@@ -1,8 +1,7 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import oumaima_nezha_mehdy.zelda.modele.Univers.Clé;
+import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Clé;
 
 public class VueClé extends VueOutils {
 
