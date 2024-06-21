@@ -42,9 +42,9 @@ public class Champ {
         this.link = new Link("Link",0,700,this);
         this.sbir1 = new Sbir("sbir1",450,650,this);
         listEnnemi.add(sbir1);
-        this.sbir2 = new Sbir("sbir2",650,650,this);
+        this.sbir2 = new Sbir("sbir2",200,500,this);
         listEnnemi.add(sbir2);
-        this.boss = new Boss("Volcanorax",650,650,this);
+        this.boss = new Boss("Volcanorax",650,350,this);
         listEnnemi.add(boss);
         this.tT=64;
         this.item = FXCollections.observableArrayList();

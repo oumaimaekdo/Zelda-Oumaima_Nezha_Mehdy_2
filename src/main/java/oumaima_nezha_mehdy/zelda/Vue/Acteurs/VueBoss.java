@@ -92,6 +92,7 @@ public class VueBoss{
             ImageView imageView = this.ennemiImageViewMap.get(ennemi);
             if (imageView != null) {
                 vueBoss.getChildren().remove(imageView);
+                vuePointsDeVie.getChildren().remove(barreDeVieEnnemi);
                 this.ennemiImageViewMap.remove(ennemi);
             }
         }

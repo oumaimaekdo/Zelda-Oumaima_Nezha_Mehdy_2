@@ -1,0 +1,32 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="Zelda:jar">
+    <output-path>$PROJECT_DIR$/..</output-path>
+    <root id="root">
+      <element id="archive" name="Zelda.jar">
+        <element id="module-output" name="Zelda" />
+      </element>
+      <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:mac-aarch64:22-ea+11" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:22-ea+11" />
+      <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-api:5.10.0" />
+      <element id="library" level="project" name="Maven: org.testng:testng:7.10.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:mac-aarch64:22-ea+11" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:22-ea+11" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.14.1" />
+      <element id="library" level="project" name="Maven: com.beust:jcommander:1.82" />
+      <element id="library" level="project" name="Maven: org.opentest4j:opentest4j:1.3.0" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:mac-aarch64:22-ea+11" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.14.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:22-ea+11" />
+      <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-commons:1.10.0" />
+      <element id="library" level="project" name="Maven: org.webjars:jquery:3.7.1" />
+      <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.1.2" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.14.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:mac-aarch64:22-ea+11" />
+      <element id="library" level="project" name="Maven: junit:junit:4.13.2" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.36" />
+      <element id="library" level="project" name="Maven: org.controlsfx:controlsfx:11.1.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:22-ea+11" />
+    </root>
+  </artifact>
+</component>
