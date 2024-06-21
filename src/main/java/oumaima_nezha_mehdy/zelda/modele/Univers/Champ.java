@@ -14,6 +14,7 @@ public class Champ {
 
     private int[] champ;
 
+    private ObservableList<Ennemi> listEnnemisObs;
     private ObservableList<Coffre> listCoffre =FXCollections.observableArrayList();
 
     private ArrayList<Acteur> listActeur = new ArrayList<>();
@@ -48,6 +49,7 @@ public class Champ {
         listEnnemi.add(boss);
         this.tT=64;
         this.item = FXCollections.observableArrayList();
+        this.listEnnemisObs = FXCollections.observableArrayList();
 
         this.Arthur = new DonneurQuetes("Arthur",920,410,this);
         listQuetes.add(Arthur);
@@ -126,6 +128,9 @@ public class Champ {
         listCoffre.add(b);
     }
 
+    public ObservableList<Ennemi> getListEnnemis() {
+        return listEnnemisObs;
+    }
     public ObservableList<Coffre> getListBloc() {
         return listCoffre;
     }

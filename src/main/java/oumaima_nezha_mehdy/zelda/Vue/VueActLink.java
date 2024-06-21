@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 import oumaima_nezha_mehdy.zelda.Main;
 import oumaima_nezha_mehdy.zelda.Vue.Outils.Armes.VueArmes;
 import oumaima_nezha_mehdy.zelda.Vue.Outils.VueOutils;
-import oumaima_nezha_mehdy.zelda.controleur.FinDePartieControleur;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Clé;
