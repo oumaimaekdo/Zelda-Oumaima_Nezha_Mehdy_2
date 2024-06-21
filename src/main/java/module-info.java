@@ -6,6 +6,7 @@ module oumaima_nezha_mehdy.zelda {
     requires java.desktop;
     requires junit;
     requires org.junit.jupiter.api;
+    //requires org.junit.jupiter.api;
     //requires gdx;
     //requires gdx.backend.lwjgl;
 
@@ -23,4 +24,5 @@ module oumaima_nezha_mehdy.zelda {
     opens oumaima_nezha_mehdy.zelda.Vue.Outils.Elements to javafx.fxml;
     exports oumaima_nezha_mehdy.zelda.Vue.Outils;
     opens oumaima_nezha_mehdy.zelda.Vue.Outils to javafx.fxml;
+    exports oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs to junit;
 }

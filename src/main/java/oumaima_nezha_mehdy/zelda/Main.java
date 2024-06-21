@@ -11,8 +11,6 @@ import javafx.application.Application;
 
         import java.io.IOException;
 
-
-
 public class Main extends Application {
     @Override
     public void start(Stage newWindow) throws IOException {

@@ -105,6 +105,8 @@ public class Controleur implements Initializable {
 
     private void setUpListeners() {
         this.champ.getLink().getXProperty().addListener((observable, oldValue, newValue) -> {
+
+
             this.univers.setTranslateX(univers.getPrefWidth() / 2 - champ.getLink().getX());
             if(vueVillage2.getNom().equals("debut")&&champ.getLink().getY()/64==14 && champ.getLink().getX()/64==10) {
                 mapVIllage2.getChildren().clear();
@@ -198,6 +200,7 @@ public class Controleur implements Initializable {
     public void keyReleased(KeyEvent e){
         clavier.toucheRelaché(e);
     }
+
 
 
 }

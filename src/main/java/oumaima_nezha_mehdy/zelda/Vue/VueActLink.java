@@ -1,8 +1,13 @@
 package oumaima_nezha_mehdy.zelda.Vue;
 
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 
@@ -13,8 +18,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import oumaima_nezha_mehdy.zelda.Main;
 import oumaima_nezha_mehdy.zelda.Vue.Outils.Armes.VueArmes;
 import oumaima_nezha_mehdy.zelda.Vue.Outils.VueOutils;
+import oumaima_nezha_mehdy.zelda.controleur.FinDePartieControleur;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.Armes;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Arme.EpeeDeFer;
 import oumaima_nezha_mehdy.zelda.modele.Outils.Element.Clé;
@@ -25,6 +33,7 @@ import javafx.util.Duration;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Acteur;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Link;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.HashSet;
@@ -312,9 +321,37 @@ public class VueActLink {
                     }
                     if(champ.getLink().enVie()){
                         DeplacementLink();
+
                     }else{
+                        System.out.println("fin de partie");
                         gameLoop.stop();
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Game Over");
+                            alert.setHeaderText(null);
+                            if (!champ.getLink().enVie()) {
+                                alert.setContentText("Link est mort. \nFin de Partie appuyer sur OK pour revenir sur le menu principal");
+                            } else {
+                                alert.setContentText("Bien joué, Vous avez la clé. \nFin de Partie appuyer sur OK pour revenir sur le menu principal");
+
+                            }
+                            alert.setOnHidden(evt -> {
+                                try {
+                                    Stage primaryStage = (Stage) vueActeur.getScene().getWindow();
+                                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("Acceuil.fxml"));
+                                    primaryStage.setScene(new Scene(loader.load()));
+                                    primaryStage.show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
+                            alert.show();
+
+
+                        });
                     }
+
                     if (touchePressé.isEmpty())
                         animation("inactif");
                     else
@@ -345,6 +382,4 @@ public class VueActLink {
     public Pane getVueArmesJeu() {
         return VueArmesJeu;
     }
-
-
 }
