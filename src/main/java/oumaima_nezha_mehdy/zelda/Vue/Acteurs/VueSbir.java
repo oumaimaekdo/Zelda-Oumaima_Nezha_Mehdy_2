@@ -44,6 +44,7 @@ public class VueSbir {
         creerBarreDeVie(sbir);
 
         for (Ennemi e : champ.getListEnnemi()) {
+            creerSbir("file:src/main/resources/images/sbire-simple.png", e);
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> supprimerSbir(e)));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
