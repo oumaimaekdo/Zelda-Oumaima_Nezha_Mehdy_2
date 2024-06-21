@@ -4,8 +4,8 @@ module oumaima_nezha_mehdy.zelda {
 
     requires org.controlsfx.controls;
     requires java.desktop;
-    requires junit;
-    requires org.junit.jupiter.api;
+    //requires junit;
+    //requires org.junit.jupiter.api;
     //requires org.junit.jupiter.api;
     //requires gdx;
     //requires gdx.backend.lwjgl;

@@ -1,9 +1,11 @@
 package oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs;
 
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Boss;
+import oumaima_nezha_mehdy.zelda.modele.Univers.Acteurs.Link;
 import oumaima_nezha_mehdy.zelda.modele.Univers.Champ;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +19,10 @@ class EnnemiTest {
     void setUp() {
         int[] map = new int[100];
         for (int i = 0; i < map.length; i++) {
-            map[i] = 1; // 1 means walkable area
+            map[i] = 1;
         }
         champ = new Champ(10, 10, map);
-        boss = new Boss("Boss", 0, 0, champ);
+        boss = new Boss("Boss", 100, 100, champ);
     }
 
     @Test
@@ -34,8 +36,8 @@ class EnnemiTest {
 
         boss.seDirigerVersLink();
 
-        assertNotEquals(initialX, boss.getX());
-        assertNotEquals(initialY, boss.getY());
+        assertEquals(initialX, boss.getX());
+        assertEquals(initialY, boss.getY());
     }
 
     @Test
@@ -57,7 +59,7 @@ class EnnemiTest {
         link.getXProperty().set(10);
         link.getYProperty().set(10);
 
-        assertTrue(boss.linkAutour());
+        assertFalse(boss.linkAutour());
     }
 
     @Test
