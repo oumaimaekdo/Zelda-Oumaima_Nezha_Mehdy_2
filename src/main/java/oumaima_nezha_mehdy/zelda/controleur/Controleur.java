@@ -96,10 +96,8 @@ public class Controleur implements Initializable {
             this.sbirControl = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie,champ.getSbir());
             this.sbirControl2 = new VueSbir(vueSbir, champ, champ.gettT(),vuePointsDeVie,champ.getSbir2());
 
-            this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
             this.clavier = new Clavier(vueActeur, linkControl, vueInventaire);
 
-            //this.pointsDeVieControl = new VuePointsDeVie(vuePointsDeVie,champ);
 
             setUpListeners();
 
@@ -120,7 +118,7 @@ public class Controleur implements Initializable {
             else if(vueVillage2.getNom().equals("foret") &&champ.getLink().getY()/64==0 && champ.getLink().getX()/64==10) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
-                vueSbir.getChildren().clear();
+                vueBoss.getChildren().clear();
                 vueDonneurQuetes.getChildren().clear();
                 linkControl.getLink().setX(670);
                 linkControl.getLink().setY(900);
@@ -129,6 +127,7 @@ public class Controleur implements Initializable {
             else if(vueVillage2.getNom().equals("foret") &&champ.getLink().getY()/64==10 && champ.getLink().getX()/64==19) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
+                vueBoss.getChildren().clear();
                 vueDonneurQuetes.getChildren().clear();
                 linkControl.getLink().setX(60);
                 linkControl.getLink().setY(590);
@@ -137,6 +136,7 @@ public class Controleur implements Initializable {
             else if(vueVillage2.getNom().equals("iceLand") &&champ.getLink().getY()/64==9 && champ.getLink().getX()/64==0) {
                 mapVIllage2.getChildren().clear();
                 LayerSup.getChildren().clear();
+                this.bossControl = new VueBoss(vueBoss, champ, champ.gettT(),vuePointsDeVie);
                 this.donneurQuetesControl = new VueDonneurQuetes(vueDonneurQuetes,champ, champ.gettT());
                 linkControl.getLink().setX(1180);
                 linkControl.getLink().setY(590);
