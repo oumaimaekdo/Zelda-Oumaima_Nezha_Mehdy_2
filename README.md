@@ -1,6 +1,6 @@
 # Zelda B-O Hazard
 
-- ## Descripyion
+- ## Description
 
 
 Le jeu se déroule dans un univers où l’on retrouve un monde majeur : le monde de la glace. Dans ce monde on retrouve une quête qui consiste à tuer un boss plus ou moins difficile à tuer avec ces sbires spécifiques et leurs propres attaques.
@@ -42,7 +42,7 @@ Pour l'inventaire, on cliquera sur un chiffre compris entre 1 et 5 en fonction d
 
 ![Map d'entrée](readme-images/2e-map.png)
 
-### Technologies utilisées 
+- ## Technologies utilisées 
 
 Zelda B-O Hazard a été développé en utilisant les technologies suivantes :
 
@@ -51,7 +51,7 @@ Zelda B-O Hazard a été développé en utilisant les technologies suivantes :
 
 Java a été utilisé pour la logique du jeu, la gestion des ennemis et des interactions avec l'utilisateur. JavaFX a été utilisé pour la création de l'interface utilisateur graphique, y compris les différentes pages du jeu et les éléments visuels tels que les images et les boutons.
 
-### Installation
+- ## Installation
 
 Pour exécuter le jeu, suivez les étapes ci-dessous :
 
