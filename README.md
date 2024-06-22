@@ -10,7 +10,7 @@ Néanmoins dans la partie feu, résiste un village nommé Hazard où réside Lin
 
 - ## Controle du jeu
 
-Afin de faire apparaître le link, il faudra cliquer sur l'interface du jeu puis cliquer sur les touches suivantes en fonction de sa direction : 
+Afin de faire apparaître le link, il faudra cliquer sur l'interface du jeu puis cliquer sur les touches suivantes en fonction des actions du link : 
 
 - `D` : aller à droite
 - `Q` : aller à gauche
@@ -46,8 +46,8 @@ Pour l'inventaire, on cliquera sur un chiffre compris entre 1 et 5 en fonction d
 
 Zelda B-O Hazard a été développé en utilisant les technologies suivantes :
 
-    Langage de programmation : Java
-    Framework : JavaFX
+Langage de programmation : Java
+Framework : JavaFX
 
 Java a été utilisé pour la logique du jeu, la gestion des ennemis et des interactions avec l'utilisateur. JavaFX a été utilisé pour la création de l'interface utilisateur graphique, y compris les différentes pages du jeu et les éléments visuels tels que les images et les boutons.
 
